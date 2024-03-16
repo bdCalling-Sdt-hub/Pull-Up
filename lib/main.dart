@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: themeData,
           transitionDuration: const Duration(milliseconds: 200),
-          initialRoute: AppRoute.splash,
+          initialRoute: AppRoute.home,
           navigatorKey: Get.key,
           getPages: AppRoute.routes,
         );

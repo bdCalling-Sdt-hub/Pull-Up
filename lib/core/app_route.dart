@@ -6,6 +6,8 @@ import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_p
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_verify.dart';
 import 'package:pull_up/view/screen/auth/logIn/login.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
+import 'package:pull_up/view/screen/location/change_location.dart';
+import 'package:pull_up/view/screen/location/located_shop.dart';
 import 'package:pull_up/view/screen/onboarding.dart';
 
 import '../view/screen/auth/email_verify.dart';
@@ -24,6 +26,8 @@ class AppRoute {
   static const String forgetPasswordEmailVerify = "/forget_password_verify.dart";
   static const String forgetPasswordResetPassword = "/forget_password_reset_password.dart";
   static const String home = "/home_screen.dart";
+  static const String changeLocation = "/change_location.dart";
+  static const String locatedShop = "/located_shop.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -37,5 +41,7 @@ class AppRoute {
     GetPage(name: forgetPasswordEmailVerify, page: () =>  ForgetPasswordEmailVerify()),
     GetPage(name: forgetPasswordResetPassword, page: () =>  ForgetPasswordResetPassword()),
     GetPage(name: home, page: () =>  HomeScreen()),
+    GetPage(name: changeLocation, page: () =>  ChangeLocationScreen()),
+    GetPage(name: locatedShop, page: () =>  LocatedShop()),
   ];
 }

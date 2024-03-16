@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,32 +15,42 @@ import 'package:pull_up/view/widget/text/custom_text.dart';
 import '../../widget/home_product_item.dart';
 import '../navBar/navbar.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class LocatedShop extends StatelessWidget {
+  LocatedShop({super.key});
 
-  List books = [
+  List nearby = [
     {
-      "image": AppImages.thinkingFast,
-      "title": AppString.thinkingFast,
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
       "subTitle": AppString.charleyStore
     },
     {
-      "image": AppImages.milkAndHoney,
-      "title": AppString.milkAndHoney,
-      "subTitle": AppString.generalStore
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
     },
   ];
 
-  List burgers = [
+  List topRated = [
     {
-      "image": AppImages.burger,
-      "title": AppString.burger,
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
       "subTitle": AppString.charleyStore
     },
     {
-      "image": AppImages.burgers,
-      "title": AppString.burgers,
-      "subTitle": AppString.generalStore
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
+    },
+    {
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
+    },
+    {
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
     },
   ];
 
@@ -86,18 +97,18 @@ class HomeScreen extends StatelessWidget {
                 hintText: AppString.searchForKeywords,
                 hintStyle: const TextStyle(color: AppColors.white50),
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
+                EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
                 suffixIcon: const Icon(
                   Icons.search_sharp,
                   color: AppColors.white50,
                 ),
                 border: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: AppColors.white50, width: 1.w),
+                    BorderSide(color: AppColors.white50, width: 1.w),
                     borderRadius: BorderRadius.circular(10.r)),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: AppColors.white50, width: 1.w),
+                    BorderSide(color: AppColors.white50, width: 1.w),
                     borderRadius: BorderRadius.circular(10.r)),
               ),
             ),
@@ -111,54 +122,47 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 )),
             SizedBox(
-              height: 100.h,
+              height: 200.h,
               child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, mainAxisExtent: 50),
-                itemCount: 6,
+                scrollDirection: Axis.horizontal,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 16.w,
+                    mainAxisExtent: 150.w,
+                    crossAxisSpacing: 16.w),
+                itemCount: topRated.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.all(8.sp),
-                    decoration: BoxDecoration(
-                        color: AppColors.secondary,
-                        borderRadius: BorderRadius.circular(4.r)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            width: 24.sp,
-                            height: 24.sp,
-                            margin: EdgeInsets.only(right: 12.w),
-                            child: CustomImage(imageSrc: AppIcons.burger)),
-                        const CustomText(
-                          text: AppString.burger,
-                          color: AppColors.white50,
-                        )
-                      ],
-                    ),
+                  var item = topRated[index];
+                  return HomeProductItem(
+                    image: item['image'],
+                    title: item['title'],
+                    subTitle: item['subTitle'],
                   );
                 },
               ),
             ),
             SizedBox(
-              height: 44.h,
+              height: 18.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppString.books,
+                  text: AppString.nearby,
                   fontWeight: FontWeight.w600,
                   fontSize: 20.sp,
                   color: AppColors.white50,
                 ),
                 CustomText(
-                  text: AppString.more,
+                  text: AppString.seeAll,
                   fontWeight: FontWeight.w400,
                   fontSize: 14.sp,
                   color: AppColors.white50,
                 ),
               ],
+            ),
+            SizedBox(
+              height: 16.h,
             ),
             SizedBox(
               height: 200.h,
@@ -167,9 +171,9 @@ class HomeScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisExtent: 190.h,
                     crossAxisSpacing: 34.w),
-                itemCount: books.length,
+                itemCount: nearby.length,
                 itemBuilder: (context, index) {
-                  var item = books[index];
+                  var item = nearby[index];
                   return HomeProductItem(
                     image: item['image'],
                     title: item['title'],
@@ -185,13 +189,13 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppString.burgers,
+                  text: AppString.topRated,
                   fontWeight: FontWeight.w600,
                   fontSize: 20.sp,
                   color: AppColors.white50,
                 ),
                 CustomText(
-                  text: AppString.more,
+                  text: AppString.seeAll,
                   fontWeight: FontWeight.w400,
                   fontSize: 14.sp,
                   color: AppColors.white50,
@@ -201,28 +205,27 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 17.h,
             ),
-            SizedBox(
-              height: 200.h,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 190.h,
-                    crossAxisSpacing: 34.w),
-                itemCount: burgers.length,
-                itemBuilder: (context, index) {
-                  var item = burgers[index];
-                  return HomeProductItem(
-                    image: item['image'],
-                    title: item['title'],
-                    subTitle: item['subTitle'],
-                  );
-                },
-              ),
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16.h,
+                  mainAxisExtent: 190.h,
+                  crossAxisSpacing: 34.w),
+              itemCount: topRated.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                var item = topRated[index];
+                return HomeProductItem(
+                  image: item['image'],
+                  title: item['title'],
+                  subTitle: item['subTitle'],
+                );
+              },
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
     );
   }
 }

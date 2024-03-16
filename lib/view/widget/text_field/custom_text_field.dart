@@ -9,22 +9,21 @@ import '../text/custom_text.dart';
 class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
-        this.hintText = "",
-        this.labelText = "",
-        this.prefixSvgIcon,
-        this.isPassword = false,
-        this.controller,
-        this.textInputAction = TextInputAction.next,
-        this.keyboardType = TextInputType.text,
-        this.mexLength,
-        this.validator,
-        this.prefixText = "",
-        this.paddingHorizontal ,
-        this.paddingVertical,
-        this.inputFormatters,
-        this.fillColor = AppColors.grey800,
-        this.suffixIcon});
-
+      this.hintText = "",
+      this.labelText = "",
+      this.prefixSvgIcon,
+      this.isPassword = false,
+      this.controller,
+      this.textInputAction = TextInputAction.next,
+      this.keyboardType = TextInputType.text,
+      this.mexLength,
+      this.validator,
+      this.prefixText = "",
+      this.paddingHorizontal,
+      this.paddingVertical,
+      this.inputFormatters,
+      this.fillColor = AppColors.grey800,
+      this.suffixIcon});
 
   final String hintText;
   final String labelText;
@@ -64,16 +63,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLength: widget.mexLength,
       cursorColor: AppColors.white50,
       inputFormatters: widget.inputFormatters,
-      style: TextStyle(
-          fontSize: 14.sp,
-        color: AppColors.white50
-      ),
+      style: TextStyle(fontSize: 14.sp, color: AppColors.white50),
       decoration: InputDecoration(
         errorMaxLines: 2,
         filled: true,
         prefixIcon: widget.prefixSvgIcon,
         fillColor: widget.fillColor,
-
         counterText: "",
         contentPadding: EdgeInsets.symmetric(
             horizontal: widget.paddingHorizontal ?? 16.w,
@@ -90,44 +85,42 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(10.r),
           borderSide: const BorderSide(color: AppColors.transparent),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: const BorderSide(color: AppColors.white50),
+        ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: const BorderSide(color: AppColors.transparent),
         ),
         hintText: widget.hintText == "" ? " " : widget.hintText,
         labelText: widget.labelText == "" ? " " : widget.labelText,
-        hintStyle: GoogleFonts.roboto(
-            fontSize: 14.sp,
-          color: AppColors.white50
-
-        ),
-        labelStyle: GoogleFonts.roboto(
-            fontSize: 14.sp,
-          color: AppColors.white50
-
-        ),
+        hintStyle:
+            GoogleFonts.roboto(fontSize: 14.sp, color: AppColors.white50),
+        labelStyle:
+            GoogleFonts.roboto(fontSize: 14.sp, color: AppColors.white50),
         prefix: CustomText(
           text: widget.prefixText,
           fontWeight: FontWeight.w400,
         ),
         suffixIcon: widget.isPassword
             ? GestureDetector(
-          onTap: toggle,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(end: 10.w),
-            child: obscureText
-                ? Icon(
-              Icons.visibility_off_outlined,
-              size: 20.sp,
-              color: AppColors.white50,
-            )
-                : Icon(
-              Icons.visibility_outlined,
-              color: AppColors.white50,
-              size: 20.sp,
-            ),
-          ),
-        )
+                onTap: toggle,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(end: 10.w),
+                  child: obscureText
+                      ? Icon(
+                          Icons.visibility_off_outlined,
+                          size: 20.sp,
+                          color: AppColors.white50,
+                        )
+                      : Icon(
+                          Icons.visibility_outlined,
+                          color: AppColors.white50,
+                          size: 20.sp,
+                        ),
+                ),
+              )
             : widget.suffixIcon,
       ),
     );

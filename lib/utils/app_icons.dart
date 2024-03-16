@@ -30,6 +30,7 @@ class AppIcons {
   static const String boost = "$baseurl/boost.svg" ;
   static const String addMenu = "$baseurl/add_menu.svg" ;
   static const String logOut = "$baseurl/log_out.svg" ;
+  static const String changeLocation = "$baseurl/change_location.svg" ;
 
 
 
