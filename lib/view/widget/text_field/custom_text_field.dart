@@ -24,6 +24,7 @@ class CustomTextField extends StatefulWidget {
         this.fillColor = AppColors.grey800,
         this.suffixIcon});
 
+
   final String hintText;
   final Widget? prefixSvgIcon;
   final TextEditingController? controller;
