@@ -1,4 +1,4 @@
-class AppImages {
+class AppIcons {
   static const String baseurl = "assets/icons" ;
 
 

@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
         this.hintText = "",
+        this.labelText = "",
         this.prefixSvgIcon,
         this.isPassword = false,
         this.controller,
@@ -18,14 +19,15 @@ class CustomTextField extends StatefulWidget {
         this.mexLength,
         this.validator,
         this.prefixText = "",
-        this.paddingHorizontal = 16,
-        this.paddingVertical = 16,
+        this.paddingHorizontal ,
+        this.paddingVertical,
         this.inputFormatters,
         this.fillColor = AppColors.grey800,
         this.suffixIcon});
 
 
   final String hintText;
+  final String labelText;
   final Widget? prefixSvgIcon;
   final TextEditingController? controller;
   final bool isPassword;
@@ -38,9 +40,9 @@ class CustomTextField extends StatefulWidget {
   final Color? fillColor;
   final String prefixText;
 
-  final double paddingHorizontal;
+  final double? paddingHorizontal;
 
-  final double paddingVertical;
+  final double? paddingVertical;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -74,8 +76,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
         counterText: "",
         contentPadding: EdgeInsets.symmetric(
-            horizontal: widget.paddingHorizontal,
-            vertical: widget.paddingVertical),
+            horizontal: widget.paddingHorizontal ?? 16.w,
+            vertical: widget.paddingVertical ?? 14.h),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: const BorderSide(color: AppColors.transparent),
@@ -93,8 +95,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderSide: const BorderSide(color: AppColors.transparent),
         ),
         hintText: widget.hintText == "" ? " " : widget.hintText,
-        hintStyle: GoogleFonts.plusJakartaSans(
-            fontSize: 14.sp
+        labelText: widget.labelText == "" ? " " : widget.labelText,
+        hintStyle: GoogleFonts.roboto(
+            fontSize: 14.sp,
+          color: AppColors.white50
+
+        ),
+        labelStyle: GoogleFonts.roboto(
+            fontSize: 14.sp,
+          color: AppColors.white50
 
         ),
         prefix: CustomText(

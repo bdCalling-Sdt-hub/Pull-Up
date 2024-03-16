@@ -25,6 +25,7 @@ class EnableLocationScreen extends StatelessWidget {
               child: CustomText(
                 text: AppString.enableLocation,
                 fontSize: 24.sp,
+                color: AppColors.white50,
                 top: 60.h,
                 fontWeight: FontWeight.w600,
                 textAlign: TextAlign.start,

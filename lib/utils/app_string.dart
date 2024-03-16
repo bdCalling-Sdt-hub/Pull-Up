@@ -38,7 +38,7 @@ class AppString {
   static const String registerNow = "Register Now" ;
   static const String forgetYourPassword = "Forget your Password" ;
   static const String emailAddressAssociated   = "Enter the email address associated with your account" ;
-  static const String checkEmail = "Check Email for 5-Digits PIN" ;
+  static const String checkEmailOtp = "Check Email for 5-Digits PIN" ;
   static const String resetPassword = "Reset Password" ;
   static const String reset = "Reset" ;
 
@@ -249,6 +249,8 @@ class AppString {
     static const String enterAboutYourBusiness = "Enter About your Business" ;
     static const String website = "Website" ;
     static const String businessHours = "Business Hours" ;
+    static const String enterYourEmail = "Enter your Email" ;
+    static const String pleaseEnterTheOTPCode = "Please enter the OTP code" ;
 
 
 
