@@ -251,6 +251,10 @@ class AppString {
     static const String businessHours = "Business Hours" ;
     static const String enterYourEmail = "Enter your Email" ;
     static const String pleaseEnterTheOTPCode = "Please enter the OTP code" ;
+    static const String enterCardHolderName = "Enter card holder name" ;
+    static const String enterCardHolderNumber = "Enter card holder Number" ;
+    static const String cvv = "CVV/CVC" ;
+    static const String mm = "MM/YY" ;
 
 
 

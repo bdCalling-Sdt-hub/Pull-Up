@@ -30,7 +30,6 @@ class ChangeLocationScreen extends StatelessWidget {
           children: [
             SizedBox(height: 430.h,),
 
-            SizedBox(height: 31.sp,),
             TextFormField(
               cursorColor: AppColors.white50,
               decoration: InputDecoration(
@@ -70,6 +69,8 @@ class ChangeLocationScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
+
     );
   }
 }

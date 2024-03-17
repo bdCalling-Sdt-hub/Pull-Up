@@ -9,6 +9,9 @@ import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
 import 'package:pull_up/view/screen/onboarding.dart';
+import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
+import 'package:pull_up/view/screen/shop_house/product_payment/product_payment.dart';
+import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 
 import '../view/screen/auth/email_verify.dart';
 import '../view/screen/splash.dart';
@@ -28,6 +31,9 @@ class AppRoute {
   static const String home = "/home_screen.dart";
   static const String changeLocation = "/change_location.dart";
   static const String locatedShop = "/located_shop.dart";
+  static const String shopHouse = "/shop_house.dart";
+  static const String productDetails = "/product_details.dart";
+  static const String productPayment = "/product_payment.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -43,5 +49,8 @@ class AppRoute {
     GetPage(name: home, page: () =>  HomeScreen()),
     GetPage(name: changeLocation, page: () =>  ChangeLocationScreen()),
     GetPage(name: locatedShop, page: () =>  LocatedShop()),
+    GetPage(name: shopHouse, page: () =>  ShopHouseScreen()),
+    GetPage(name: productDetails, page: () =>  ProductDetails()),
+    GetPage(name: productPayment, page: () =>  Productpayment()),
   ];
 }

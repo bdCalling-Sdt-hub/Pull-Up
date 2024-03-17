@@ -9,11 +9,13 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
+import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../widget/home_product_item.dart';
 import '../navBar/navbar.dart';
+import 'inner_widget/located_gridview_item.dart';
 
 class LocatedShop extends StatelessWidget {
   LocatedShop({super.key});
@@ -52,6 +54,16 @@ class LocatedShop extends StatelessWidget {
       "title": AppString.surpriseBag,
       "subTitle": AppString.charleyStore
     },
+    {
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
+    },
+    {
+      "image": AppImages.located,
+      "title": AppString.surpriseBag,
+      "subTitle": AppString.charleyStore
+    },
   ];
 
   @override
@@ -59,6 +71,7 @@ class LocatedShop extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        leading: const AppbarIcon(),
         title: CustomText(
           text: AppString.weJustKnowThePlace,
           color: AppColors.white50,
@@ -95,12 +108,12 @@ class LocatedShop extends StatelessWidget {
               cursorColor: AppColors.white50,
               decoration: InputDecoration(
                 hintText: AppString.searchForKeywords,
-                hintStyle: const TextStyle(color: AppColors.white50),
+                hintStyle: const TextStyle(color: AppColors.white600),
                 contentPadding:
                 EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
                 suffixIcon: const Icon(
                   Icons.search_sharp,
-                  color: AppColors.white50,
+                  color: AppColors.white600,
                 ),
                 border: OutlineInputBorder(
                     borderSide:
@@ -112,69 +125,40 @@ class LocatedShop extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.r)),
               ),
             ),
-            Align(
-                alignment: FractionalOffset.centerLeft,
-                child: CustomText(
-                  text: AppString.quick,
-                  color: AppColors.white50,
-                  fontSize: 20.sp,
-                  top: 21.h,
-                  fontWeight: FontWeight.w600,
-                )),
-            SizedBox(
-              height: 200.h,
-              child: GridView.builder(
-                scrollDirection: Axis.horizontal,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 16.w,
-                    mainAxisExtent: 150.w,
-                    crossAxisSpacing: 16.w),
-                itemCount: topRated.length,
-                itemBuilder: (context, index) {
-                  var item = topRated[index];
-                  return HomeProductItem(
-                    image: item['image'],
-                    title: item['title'],
-                    subTitle: item['subTitle'],
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 18.h,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
                   text: AppString.nearby,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20.sp,
                   color: AppColors.white50,
+                  fontSize: 20.sp,
+                  top: 21.h,
+                  bottom: 18.h,
+                  fontWeight: FontWeight.w600,
                 ),
                 CustomText(
                   text: AppString.seeAll,
-                  fontWeight: FontWeight.w400,
+                  color: AppColors.primaryColor,
                   fontSize: 14.sp,
-                  color: AppColors.white50,
+                  top: 21.h,
+                  bottom: 18.h,
+                  fontWeight: FontWeight.w400,
                 ),
               ],
             ),
             SizedBox(
-              height: 16.h,
-            ),
-            SizedBox(
-              height: 200.h,
+              height: 160.h,
               child: GridView.builder(
+                scrollDirection: Axis.horizontal,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 190.h,
-                    crossAxisSpacing: 34.w),
-                itemCount: nearby.length,
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 8.w,
+                    mainAxisExtent: 150.w,
+                    crossAxisSpacing: 8.w),
+                itemCount: topRated.length,
                 itemBuilder: (context, index) {
-                  var item = nearby[index];
-                  return HomeProductItem(
+                  var item = topRated[index];
+                  return LocatedGridviewItem(
                     image: item['image'],
                     title: item['title'],
                     subTitle: item['subTitle'],
@@ -182,6 +166,7 @@ class LocatedShop extends StatelessWidget {
                 },
               ),
             ),
+
             SizedBox(
               height: 17.h,
             ),
@@ -198,7 +183,7 @@ class LocatedShop extends StatelessWidget {
                   text: AppString.seeAll,
                   fontWeight: FontWeight.w400,
                   fontSize: 14.sp,
-                  color: AppColors.white50,
+                  color: AppColors.primaryColor,
                 ),
               ],
             ),
@@ -208,15 +193,15 @@ class LocatedShop extends StatelessWidget {
             GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 16.h,
-                  mainAxisExtent: 190.h,
-                  crossAxisSpacing: 34.w),
+                  mainAxisSpacing: 18.h,
+                  mainAxisExtent: 160.h,
+                  crossAxisSpacing: 8.w),
               itemCount: topRated.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 var item = topRated[index];
-                return HomeProductItem(
+                return LocatedGridviewItem(
                   image: item['image'],
                   title: item['title'],
                   subTitle: item['subTitle'],
@@ -226,6 +211,7 @@ class LocatedShop extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
     );
   }
 }

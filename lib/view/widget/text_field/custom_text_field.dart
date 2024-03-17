@@ -23,6 +23,8 @@ class CustomTextField extends StatefulWidget {
       this.paddingVertical,
       this.inputFormatters,
       this.fillColor = AppColors.grey800,
+      this.hintTextColor = AppColors.white50,
+      this.labelTextColor = AppColors.white50,
       this.suffixIcon});
 
   final String hintText;
@@ -37,6 +39,8 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Widget? suffixIcon;
   final Color? fillColor;
+  final Color? labelTextColor;
+  final Color? hintTextColor;
   final String prefixText;
 
   final double? paddingHorizontal;
@@ -96,9 +100,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintText: widget.hintText == "" ? " " : widget.hintText,
         labelText: widget.labelText == "" ? " " : widget.labelText,
         hintStyle:
-            GoogleFonts.roboto(fontSize: 14.sp, color: AppColors.white50),
+            GoogleFonts.roboto(fontSize: 14.sp, color: widget.hintTextColor),
         labelStyle:
-            GoogleFonts.roboto(fontSize: 14.sp, color: AppColors.white50),
+            GoogleFonts.roboto(fontSize: 14.sp, color: widget.labelTextColor),
         prefix: CustomText(
           text: widget.prefixText,
           fontWeight: FontWeight.w400,
