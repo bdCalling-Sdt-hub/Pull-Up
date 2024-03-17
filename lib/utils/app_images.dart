@@ -18,6 +18,9 @@ class AppImages {
   static const String seminar = "$baseurl/seminar.png" ;
   static const String seminar2 = "$baseurl/seminar2.png" ;
   static const String profile = "$baseurl/profile.png" ;
+  static const String profile1 = "$baseurl/profile1.png" ;
+  static const String profile2 = "$baseurl/profile2.png" ;
+  static const String profile3 = "$baseurl/profile3.png" ;
   static const String located = "$baseurl/located.png" ;
   static const String book = "$baseurl/book.png" ;
   static const String loveBook = "$baseurl/love_book.png" ;

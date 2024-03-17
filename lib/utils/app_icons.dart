@@ -33,6 +33,7 @@ class AppIcons {
   static const String changeLocation = "$baseurl/change_location.svg" ;
   static const String timer = "$baseurl/timer.svg" ;
   static const String car = "$baseurl/car.svg" ;
+  static const String eventListLocation = "$baseurl/event_list_location.svg" ;
 
 
 

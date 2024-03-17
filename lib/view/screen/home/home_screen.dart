@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,32 @@ import '../navBar/navbar.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
+  List quick = [
+    {
+      "image":AppIcons.burger,
+      "title": AppString.burger,
+    },
+    {
+      "image": AppIcons.event,
+      "title": AppString.event,
+    },
+    {
+      "image":AppIcons.iceCream,
+      "title": AppString.iceCream,
+    },
+    {
+      "image": AppIcons.coffee,
+      "title": AppString.coffee,
+    },
+    {
+      "image":AppIcons.garage,
+      "title": AppString.garage,
+    },
+    {
+      "image": AppIcons.dj,
+      "title": AppString.dj,
+    },
+  ];
   List books = [
     {
       "image": AppImages.thinkingFast,
@@ -78,6 +105,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+
         child: Column(
           children: [
             TextFormField(
@@ -115,26 +143,33 @@ class HomeScreen extends StatelessWidget {
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, mainAxisExtent: 50),
-                itemCount: 6,
+                itemCount: quick.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.all(8.sp),
-                    decoration: BoxDecoration(
-                        color: AppColors.secondary,
-                        borderRadius: BorderRadius.circular(4.r)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            width: 24.sp,
-                            height: 24.sp,
-                            margin: EdgeInsets.only(right: 12.w),
-                            child: CustomImage(imageSrc: AppIcons.burger)),
-                        const CustomText(
-                          text: AppString.burger,
-                          color: AppColors.white50,
-                        )
-                      ],
+                  var item = quick[index] ;
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(AppRoute.eventList),
+                    child: Container(
+                      margin: EdgeInsets.all(8.sp),
+                      decoration: BoxDecoration(
+                          color: AppColors.secondary,
+                          borderRadius: BorderRadius.circular(4.r)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                              width: 24.sp,
+                              height: 24.sp,
+                              margin: EdgeInsets.only(right: 12.w),
+                              child: CustomImage(imageSrc: item['image'])),
+                          Flexible(
+                            child: CustomText(
+                              text: item['title'],
+                              maxLines: 1,
+                              color: AppColors.white50,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -5,6 +5,7 @@ import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_password.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_verify.dart';
 import 'package:pull_up/view/screen/auth/logIn/login.dart';
+import 'package:pull_up/view/screen/event/event_list/event_list.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
@@ -34,6 +35,7 @@ class AppRoute {
   static const String shopHouse = "/shop_house.dart";
   static const String productDetails = "/product_details.dart";
   static const String productPayment = "/product_payment.dart";
+  static const String eventList = "/event_list.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -52,5 +54,6 @@ class AppRoute {
     GetPage(name: shopHouse, page: () =>  ShopHouseScreen()),
     GetPage(name: productDetails, page: () =>  ProductDetails()),
     GetPage(name: productPayment, page: () =>  Productpayment()),
+    GetPage(name: eventList, page: () =>  EventListScreen()),
   ];
 }
