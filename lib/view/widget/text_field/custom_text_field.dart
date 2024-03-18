@@ -25,6 +25,7 @@ class CustomTextField extends StatefulWidget {
       this.fillColor = AppColors.grey800,
       this.hintTextColor = AppColors.white50,
       this.labelTextColor = AppColors.white50,
+      this.textColor = AppColors.white50,
       this.suffixIcon});
 
   final String hintText;
@@ -41,6 +42,7 @@ class CustomTextField extends StatefulWidget {
   final Color? fillColor;
   final Color? labelTextColor;
   final Color? hintTextColor;
+  final Color? textColor;
   final String prefixText;
 
   final double? paddingHorizontal;
@@ -67,7 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLength: widget.mexLength,
       cursorColor: AppColors.white50,
       inputFormatters: widget.inputFormatters,
-      style: TextStyle(fontSize: 14.sp, color: AppColors.white50),
+      style: TextStyle(fontSize: 14.sp, color: widget.textColor),
       decoration: InputDecoration(
         errorMaxLines: 2,
         filled: true,
@@ -97,6 +99,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(10.r),
           borderSide: const BorderSide(color: AppColors.transparent),
         ),
+
         hintText: widget.hintText == "" ? " " : widget.hintText,
         labelText: widget.labelText == "" ? " " : widget.labelText,
         hintStyle:

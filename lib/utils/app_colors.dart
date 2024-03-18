@@ -9,6 +9,7 @@ class AppColors {
   static const Color deepOrange= Color(0xFFD07E2A);
   static const Color transparent = Colors.transparent;
 
+
   /// ========================> Yellow <========================================
 
 

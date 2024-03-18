@@ -5,7 +5,6 @@ import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/utils/app_images.dart';
-import 'package:pull_up/view/screen/shop_house/product_payment/inner_widget/successful_popup.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
@@ -14,6 +13,7 @@ import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../widget/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
+import 'successful_popup.dart';
 
 class AddPaymentMethod extends StatelessWidget {
   const AddPaymentMethod({super.key});

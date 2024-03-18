@@ -157,7 +157,10 @@ class EventListScreen extends StatelessWidget {
                   itemCount: 10,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const UpcommingEventItem() ;
+                    return GestureDetector(
+                      onTap: () => Get.toNamed(AppRoute.eventInfo),
+                        
+                        child: const UpcommingEventItem()) ;
                   },)
             ),
             Row(

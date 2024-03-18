@@ -100,7 +100,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
         decoration: BoxDecoration(
             color: AppColors.grey900,
             borderRadius: BorderRadius.all(Radius.circular(10.r))),
@@ -110,7 +109,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             return GestureDetector(
               onTap: () => onTap(index),
               child: Container(
-                margin: EdgeInsetsDirectional.all(8.sp),
+                margin: EdgeInsetsDirectional.all(12.sp),
                 color: index == bottomNavIndex
                     ? AppColors.grey900
                     : AppColors.grey900,
@@ -132,23 +131,23 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   void onTap(int index) async {
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     } else if (index == 1) {
       if (!(widget.currentIndex == 1)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.notification);
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     } else if (index == 3) {
       if (!(widget.currentIndex == 3)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     } else if (index == 4) {
       if (!(widget.currentIndex == 4)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     }
   }

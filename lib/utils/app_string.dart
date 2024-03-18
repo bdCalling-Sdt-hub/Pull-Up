@@ -255,6 +255,9 @@ class AppString {
     static const String enterCardHolderNumber = "Enter card holder Number" ;
     static const String cvv = "CVV/CVC" ;
     static const String mm = "MM/YY" ;
+    static const String aboutEvent = "About Event" ;
+    static const String favorites = "Favorites" ;
+    static const String aboutEventDetails = "Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase" ;
 
 
 

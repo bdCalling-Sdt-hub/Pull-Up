@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   List quick = [
     {
-      "image":AppIcons.burger,
+      "image": AppIcons.burger,
       "title": AppString.burger,
     },
     {
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       "title": AppString.event,
     },
     {
-      "image":AppIcons.iceCream,
+      "image": AppIcons.iceCream,
       "title": AppString.iceCream,
     },
     {
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
       "title": AppString.coffee,
     },
     {
-      "image":AppIcons.garage,
+      "image": AppIcons.garage,
       "title": AppString.garage,
     },
     {
@@ -91,6 +91,7 @@ class HomeScreen extends StatelessWidget {
                 width: 8.w,
               ),
               GestureDetector(
+                onTap: () => Get.toNamed(AppRoute.favorites),
                 child: const Icon(
                   Icons.favorite,
                   color: AppColors.primaryColor,
@@ -105,11 +106,11 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-
         child: Column(
           children: [
             TextFormField(
               cursorColor: AppColors.white50,
+              style: const TextStyle(color: AppColors.white50),
               decoration: InputDecoration(
                 hintText: AppString.searchForKeywords,
                 hintStyle: const TextStyle(color: AppColors.white50),
@@ -145,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisCount: 3, mainAxisExtent: 50),
                 itemCount: quick.length,
                 itemBuilder: (context, index) {
-                  var item = quick[index] ;
+                  var item = quick[index];
                   return GestureDetector(
                     onTap: () => Get.toNamed(AppRoute.eventList),
                     child: Container(
@@ -196,8 +197,12 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 200.h,
+              height: 16.h,
+            ),
+            SizedBox(
+              height: 190.h,
               child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisExtent: 190.h,
@@ -239,6 +244,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 200.h,
               child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisExtent: 190.h,
@@ -257,7 +263,9 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
+      bottomNavigationBar: const CustomBottomNavBar(
+        currentIndex: 0,
+      ),
     );
   }
 }
