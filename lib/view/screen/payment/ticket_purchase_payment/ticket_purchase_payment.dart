@@ -16,18 +16,14 @@ import '../../../widget/custom_image.dart';
 import '../../../widget/text_field/custom_text_field.dart';
 import '../product_payment/inner_widget/successful_popup.dart';
 
-class TicketPurchasePayment extends StatefulWidget {
+class TicketPurchasePayment extends StatelessWidget {
   TicketPurchasePayment({super.key});
 
-  @override
-  State<TicketPurchasePayment> createState() => _TicketPurchasePaymentState();
-}
-
-class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
   RxBool isCheck = false.obs;
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),

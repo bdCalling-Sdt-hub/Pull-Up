@@ -5,7 +5,8 @@ import 'package:pull_up/theme/light_theme.dart';
 
 import 'core/app_route.dart';
 
-void main() {
+Future<void> main() async {
+  await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
 }
 
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      ensureScreenSize: true,
       minTextAdapt: true,
       splitScreenMode: true,
-      ensureScreenSize: true,
       designSize: const Size(375, 822),
       builder: (context, child) {
         return GetMaterialApp(
@@ -25,7 +26,6 @@ class MyApp extends StatelessWidget {
           theme: themeData,
           transitionDuration: const Duration(milliseconds: 200),
           initialRoute: AppRoute.home,
-          navigatorKey: Get.key,
           getPages: AppRoute.routes,
         );
       },

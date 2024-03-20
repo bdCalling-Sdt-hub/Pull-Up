@@ -7,12 +7,13 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
-import 'package:pull_up/view/screen/navBar/navbar.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
+
+import '../../widget/navBar/navbar.dart';
 
 class ChangeLocationScreen extends StatelessWidget {
   const ChangeLocationScreen({super.key});

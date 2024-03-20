@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -14,7 +13,7 @@ import 'package:pull_up/view/widget/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../widget/home_product_item.dart';
-import '../navBar/navbar.dart';
+import '../../widget/navBar/navbar.dart';
 import 'inner_widget/located_gridview_item.dart';
 
 class LocatedShop extends StatelessWidget {

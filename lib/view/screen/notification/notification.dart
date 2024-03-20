@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
-import 'package:pull_up/view/screen/navBar/navbar.dart';
 import 'package:pull_up/view/screen/notification/inner_widget/delete_popup.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
+
+import '../../widget/navBar/navbar.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});

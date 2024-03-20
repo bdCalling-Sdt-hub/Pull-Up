@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +13,8 @@ import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/custom_image.dart';
 import '../../../widget/home_product_item.dart';
+import '../../../widget/navBar/navbar.dart';
 import '../../../widget/text/custom_text.dart';
-import '../../navBar/navbar.dart';
 import 'inner_widget/recommendation_list_item.dart';
 import 'inner_widget/upcomming_event_item.dart';
 

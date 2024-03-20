@@ -22,7 +22,7 @@ class PaymentPopUp {
                 Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                        onTap: () => Get.offAllNamed(AppRoute.home), child: const Icon(Icons.cancel_outlined))),
+                        onTap: () => Get.toNamed(AppRoute.home), child: const Icon(Icons.cancel_outlined))),
                 SizedBox(
                   height: 30.h,
                 ),
