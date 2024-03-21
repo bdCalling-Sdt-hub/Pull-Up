@@ -11,8 +11,12 @@ import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
+import 'package:pull_up/view/screen/new_event/new_event.dart';
 import 'package:pull_up/view/screen/onboarding.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
+import 'package:pull_up/view/screen/product/add_product/add_product.dart';
+import 'package:pull_up/view/screen/product/deal/add_deal.dart';
+import 'package:pull_up/view/screen/product/product_list/product_list.dart';
 import 'package:pull_up/view/screen/setting/deactivate_account/deactiveate_account.dart';
 import 'package:pull_up/view/screen/setting/setting_screen/setting_screen.dart';
 import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
@@ -48,6 +52,10 @@ class AppRoute {
   static const String favorites = "/favorites.dart";
   static const String settingScreen = "/setting_screen.dart";
   static const String deactiveateAccount = "/deactiveate_account.dart";
+  static const String newEvent = "/new_event.dart";
+  static const String addProduct = "/add_product.dart";
+  static const String productList = "/product_list.dart";
+  static const String addDeal = "/add_deal.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -73,5 +81,9 @@ class AppRoute {
     GetPage(name: favorites, page: () =>  FavoritesScreen()),
     GetPage(name: settingScreen, page: () =>  SettingScreen()),
     GetPage(name: deactiveateAccount, page: () =>  DeactiveateAccount()),
+    GetPage(name: newEvent, page: () =>  NewEvent()),
+    GetPage(name: addProduct, page: () =>  AddProduct()),
+    GetPage(name: productList, page: () =>  ProductList()),
+    GetPage(name: addDeal, page: () =>  AddDeal()),
   ];
 }

@@ -182,6 +182,7 @@ class AppString {
     static const String menu = "Menu" ;
     static const String addNewProduct = "Add New Product" ;
     static const String createDeal = "Create a Deal" ;
+    static const String deal = "Deal" ;
 
 
     static const String enterYourDealNameHere = "Enter your Deal name here" ;

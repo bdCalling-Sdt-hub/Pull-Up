@@ -18,7 +18,7 @@ class CustomTextField extends StatefulWidget {
       this.keyboardType = TextInputType.text,
       this.mexLength,
       this.validator,
-      this.prefixText = "",
+      this.prefixText,
       this.paddingHorizontal,
       this.paddingVertical,
       this.inputFormatters,
@@ -45,7 +45,7 @@ class CustomTextField extends StatefulWidget {
   final Color? hintTextColor;
   final Color? textColor;
   final Color borderColor;
-  final String prefixText;
+  final String? prefixText;
 
   final double? paddingHorizontal;
 
@@ -109,7 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         labelStyle:
             GoogleFonts.roboto(fontSize: 14.sp, color: widget.labelTextColor),
         prefix: CustomText(
-          text: widget.prefixText,
+          text: widget.prefixText ?? "",
           fontWeight: FontWeight.w400,
         ),
         suffixIcon: widget.isPassword

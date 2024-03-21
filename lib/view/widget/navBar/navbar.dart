@@ -160,7 +160,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        Get.offAllNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.addProduct);
       }
     } else if (index == 3) {
       if (!(widget.currentIndex == 3)) {

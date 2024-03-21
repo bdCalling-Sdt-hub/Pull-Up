@@ -12,6 +12,7 @@ class CustomImage extends StatelessWidget {
   final Color? imageColor;
   final double? size;
   final ImageType imageType;
+  final BoxFit fill;
 
   CustomImage({
 
@@ -19,6 +20,7 @@ class CustomImage extends StatelessWidget {
     this.imageColor ,
     this.size,
     this.imageType = ImageType.svg,
+    this.fill = BoxFit.contain,
     super.key,
   });
 
@@ -32,6 +34,7 @@ class CustomImage extends StatelessWidget {
         imageSrc,
         color: imageColor,
         height: size, width: size,
+        fit: fill,
       );
     }
 
@@ -40,6 +43,8 @@ class CustomImage extends StatelessWidget {
         imageSrc,
         color: imageColor,
         height: size, width: size,
+        fit: fill,
+
       );
     }
 
