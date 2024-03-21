@@ -58,7 +58,7 @@ class AddDeal extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColors.background,
                     borderRadius: BorderRadius.circular(12)),
-                width:Get.width,
+                width: Get.width,
                 height: 200,
                 child: Center(
                   child: CustomImage(imageSrc: AppIcons.upload),
@@ -103,9 +103,9 @@ class AddDeal extends StatelessWidget {
                 ),
               ),
             ),
-
-
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             CustomButton(
               titleText: AppString.save,
               onPressed: () => Get.toNamed(AppRoute.productList),
