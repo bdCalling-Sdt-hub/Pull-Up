@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/app_route.dart';
@@ -16,83 +17,95 @@ class CustomBottomNavBar extends StatefulWidget {
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   var bottomNavIndex = 0;
   List<Widget> unselectedIcons = [
-    const Icon(Icons.home_outlined, color: AppColors.white50),
-    const Icon(Icons.notifications, color: AppColors.white50),
-    const Icon(Icons.add, color: AppColors.white50),
-    const Icon(Icons.settings, color: AppColors.white50),
-    const Icon(Icons.person, color: AppColors.white50),
+    Padding(
+      padding: EdgeInsets.all(10.sp),
+      child: const Icon(Icons.home_outlined, color: AppColors.white50),
+    ),
+    Padding(
+      padding: EdgeInsets.all(10.sp),
+      child: const Icon(Icons.notifications, color: AppColors.white50),
+    ),
+    Padding(
+      padding: EdgeInsets.all(10.sp),
+      child: const Icon(Icons.add, color: AppColors.white50),
+    ),
+    Padding(
+      padding: EdgeInsets.all(10.sp),
+      child: const Icon(Icons.settings, color: AppColors.white50),
+    ),
+    Padding(
+      padding: EdgeInsets.all(10.sp),
+      child: const Icon(Icons.person, color: AppColors.white50),
+    ),
   ];
+
   List<Widget> selectedIcons = [
-    const Icon(Icons.home_outlined, color: AppColors.white50),
-    const Icon(Icons.notifications, color: AppColors.white50),
-    const Icon(Icons.add, color: AppColors.white50),
-    const Icon(Icons.settings, color: AppColors.white50),
-    const Icon(Icons.person, color: AppColors.white50),
+    NeumorphicButton(
+        onPressed: () {},
+        style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            color: AppColors.grey600,
+            shadowDarkColor: AppColors.white50,
+            depth: 1),
+        padding: EdgeInsets.all(10.sp),
+        child: const Icon(
+          Icons.home,
+          color: AppColors.white50,
+        )),
+    NeumorphicButton(
+        onPressed: () {},
+        style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            color: AppColors.grey600,
+            shadowDarkColor: AppColors.white50,
+            depth: 1),
+        padding: EdgeInsets.all(10.sp),
+        child: const Icon(
+          Icons.notifications,
+          color: AppColors.white50,
+        )),
+    NeumorphicButton(
+        onPressed: () {},
+        style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            color: AppColors.grey600,
+            shadowDarkColor: AppColors.white50,
+            depth: 1),
+        padding: EdgeInsets.all(10.sp),
+        child: const Icon(
+          Icons.add,
+          color: AppColors.white50,
+        )),
+    NeumorphicButton(
+        onPressed: () {},
+        style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            color: AppColors.grey600,
+            shadowDarkColor: AppColors.white50,
+            depth: 1),
+        padding: EdgeInsets.all(10.sp),
+        child: const Icon(
+          Icons.settings,
+          color: AppColors.white50,
+        )),
+    NeumorphicButton(
+        onPressed: () {},
+        style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            color: AppColors.grey600,
+            shadowDarkColor: AppColors.white50,
+            depth: 1),
+        padding: EdgeInsets.all(10.sp),
+        child: const Icon(
+          Icons.person,
+          color: AppColors.white50,
+        )),
   ];
-
-  // List<Widget> selectedIcons = [
-  //   NeumorphicButton(
-  //       onPressed: () {},
-  //       style: NeumorphicStyle(
-  //           shape: NeumorphicShape.flat,
-  //           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-  //           color: AppColors.grey600,
-  //           depth: 0),
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: const Icon(
-  //         Icons.home,
-  //         color: AppColors.white50,
-  //       )),
-  //   NeumorphicButton(
-  //       onPressed: () {},
-  //       style: NeumorphicStyle(
-  //           shape: NeumorphicShape.flat,
-  //           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-  //           color: AppColors.grey600,
-  //           depth: 0),
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: const Icon(
-  //         Icons.notifications,
-  //         color: AppColors.white50,
-  //       )),
-  //   NeumorphicButton(
-  //       onPressed: () {},
-  //       style: NeumorphicStyle(
-  //           shape: NeumorphicShape.flat,
-  //           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-  //           color: AppColors.grey600,
-  //           depth: 0),
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: const Icon(
-  //         Icons.add,
-  //         color: AppColors.white50,
-  //       )),
-  //   NeumorphicButton(
-  //       onPressed: () {},
-  //       style: NeumorphicStyle(
-  //           shape: NeumorphicShape.flat,
-  //           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-  //           color: AppColors.grey600,
-  //           depth: 0),
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: const Icon(
-  //         Icons.settings,
-  //         color: AppColors.white50,
-  //       )),
-  //   NeumorphicButton(
-  //       onPressed: () {},
-  //       style: NeumorphicStyle(
-  //           shape: NeumorphicShape.flat,
-  //           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-  //           color: AppColors.grey600,
-  //           depth: 0),
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: const Icon(
-  //         Icons.person,
-  //         color: AppColors.white50,
-  //       )),
-  // ];
-
 
   @override
   void initState() {
@@ -106,6 +119,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       physics: const NeverScrollableScrollPhysics(),
       child: Container(
         width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 16.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: AppColors.grey900,
@@ -138,23 +152,23 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   void onTap(int index) async {
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     } else if (index == 1) {
       if (!(widget.currentIndex == 1)) {
-        Get.toNamed(AppRoute.notification);
+        Get.offAllNamed(AppRoute.notification);
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     } else if (index == 3) {
       if (!(widget.currentIndex == 3)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.settingScreen);
       }
     } else if (index == 4) {
       if (!(widget.currentIndex == 4)) {
-        Get.toNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.home);
       }
     }
   }

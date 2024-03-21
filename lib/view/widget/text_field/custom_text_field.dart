@@ -9,8 +9,8 @@ import '../text/custom_text.dart';
 class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
-      this.hintText = "",
-      this.labelText = "",
+      this.hintText ,
+      this.labelText,
       this.prefixSvgIcon,
       this.isPassword = false,
       this.controller,
@@ -26,10 +26,11 @@ class CustomTextField extends StatefulWidget {
       this.hintTextColor = AppColors.white50,
       this.labelTextColor = AppColors.white50,
       this.textColor = AppColors.white50,
+      this.borderColor = AppColors.transparent,
       this.suffixIcon});
 
-  final String hintText;
-  final String labelText;
+  final String? hintText;
+  final String? labelText;
   final Widget? prefixSvgIcon;
   final TextEditingController? controller;
   final bool isPassword;
@@ -43,6 +44,7 @@ class CustomTextField extends StatefulWidget {
   final Color? labelTextColor;
   final Color? hintTextColor;
   final Color? textColor;
+  final Color borderColor;
   final String prefixText;
 
   final double? paddingHorizontal;
@@ -81,27 +83,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
             vertical: widget.paddingVertical ?? 14.h),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: BorderSide(color: widget.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: BorderSide(color: widget.borderColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: BorderSide(color: widget.borderColor),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: AppColors.white50),
+          borderSide: BorderSide(color: widget.borderColor),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: BorderSide(color: widget.borderColor),
         ),
 
-        hintText: widget.hintText == "" ? " " : widget.hintText,
-        labelText: widget.labelText == "" ? " " : widget.labelText,
+        hintText: widget.hintText,
+        labelText: widget.labelText,
         hintStyle:
             GoogleFonts.roboto(fontSize: 14.sp, color: widget.hintTextColor),
         labelStyle:

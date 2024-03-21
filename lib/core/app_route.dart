@@ -13,6 +13,8 @@ import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
 import 'package:pull_up/view/screen/onboarding.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
+import 'package:pull_up/view/screen/setting/deactivate_account/deactiveate_account.dart';
+import 'package:pull_up/view/screen/setting/setting_screen/setting_screen.dart';
 import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 
@@ -44,6 +46,8 @@ class AppRoute {
   static const String ticketPayment = "/ticket_purchase_payment.dart";
   static const String notification = "/notification.dart";
   static const String favorites = "/favorites.dart";
+  static const String settingScreen = "/setting_screen.dart";
+  static const String deactiveateAccount = "/deactiveate_account.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -67,5 +71,7 @@ class AppRoute {
     GetPage(name: ticketPayment, page: () =>  TicketPurchasePayment()),
     GetPage(name: notification, page: () =>  NotificationScreen()),
     GetPage(name: favorites, page: () =>  FavoritesScreen()),
+    GetPage(name: settingScreen, page: () =>  SettingScreen()),
+    GetPage(name: deactiveateAccount, page: () =>  DeactiveateAccount()),
   ];
 }
