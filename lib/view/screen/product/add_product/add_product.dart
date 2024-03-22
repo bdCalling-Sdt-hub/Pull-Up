@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
@@ -17,10 +18,21 @@ import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/text/custom_text.dart';
 
-class AddProduct extends StatelessWidget {
+class AddProduct extends StatefulWidget {
   AddProduct({super.key});
 
+  @override
+  State<AddProduct> createState() => _AddProductState();
+}
+
+class _AddProductState extends State<AddProduct> {
   final controller = ValueNotifier<bool>(false);
+
+  RxInt currentIndex = 0.obs;
+
+  TextEditingController tagController = TextEditingController();
+
+  List tagList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -138,13 +150,63 @@ class AddProduct extends StatelessWidget {
               ],
             ),
             CustomTextField(
+              controller: tagController,
               hintText: AppString.keyboardsDetails,
               borderColor: AppColors.white50,
               fillColor: AppColors.background,
+              textInputAction: TextInputAction.send,
               paddingVertical: 12.h,
+              onPressed: (value) {
+                if (value.isNotEmpty) {
+                  tagList.add(value);
+
+                  tagController.clear();
+
+                  setState(() {});
+                }
+              },
             ),
             SizedBox(
               height: 12.h,
+            ),
+            tagList.isNotEmpty
+                ? Wrap(
+                    alignment: WrapAlignment.start,
+                    spacing: 8,
+                    children: tagList.map((item) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.deepOrange,
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                        child: Row(mainAxisSize: MainAxisSize.min, children: [
+                          CustomText(
+                              fontSize: 14,
+                              maxLines: 3,
+                              color: AppColors.white50,
+                              right: 8,
+                              text: item),
+                          GestureDetector(
+                              onTap: () {
+                                tagList.remove(item);
+                                setState(() {});
+                              },
+                              child: const Icon(
+                                Icons.close,
+                                color: AppColors.white50,
+                              )),
+                        ]),
+                      );
+
+                      //========================Remove Tag====================
+                    }).toList(),
+                  )
+                : const SizedBox(),
+            const SizedBox(
+              height: 16,
             ),
             CustomButton(
               titleText: AppString.save,

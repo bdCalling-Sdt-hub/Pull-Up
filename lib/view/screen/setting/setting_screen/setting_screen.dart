@@ -6,7 +6,7 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
-import 'package:pull_up/view/screen/setting/setting_screen/inner_widget/setting_item.dart';
+import 'package:pull_up/view/widget/item.dart';
 import 'package:pull_up/view/screen/setting/setting_screen/inner_widget/sistance_units_popup.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
@@ -63,22 +63,20 @@ class _SettingScreenState extends State<SettingScreen> {
                     })
               ],
             ),
-            InkWell(
+            Item(
+              title: AppString.clearHistory,
+              icon: AppIcons.cleanHistory,
               onTap: () => ClearPopUp.clearHistoryPopUp(),
-              child: SettingItem(
-                  title: AppString.clearHistory, icon: AppIcons.cleanHistory),
             ),
-            InkWell(
+            Item(
+              title: AppString.distanceUnits,
+              icon: AppIcons.distanceUnits,
               onTap: () => DistancePopUp.distanceUnitsPopUp(),
-              child: SettingItem(
-                  title: AppString.distanceUnits, icon: AppIcons.distanceUnits),
             ),
-            InkWell(
-              onTap: () => Get.toNamed(AppRoute.deactiveateAccount),
-              child: SettingItem(
-                  title: AppString.deactivateAccount,
-                  icon: AppIcons.deactivate),
-            )
+            Item(
+                title: AppString.deactivateAccount,
+                onTap: () => Get.toNamed(AppRoute.deactiveateAccount),
+                icon: AppIcons.deactivate)
           ],
         ),
       ),

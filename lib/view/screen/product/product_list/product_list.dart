@@ -18,6 +18,7 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),

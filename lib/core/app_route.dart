@@ -17,6 +17,9 @@ import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purch
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
 import 'package:pull_up/view/screen/product/deal/add_deal.dart';
 import 'package:pull_up/view/screen/product/product_list/product_list.dart';
+import 'package:pull_up/view/screen/profile/profile_screen/profile_screen.dart';
+import 'package:pull_up/view/screen/profile/profile_without_login/profile_without_login.dart';
+import 'package:pull_up/view/screen/profile/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/view/screen/setting/deactivate_account/deactiveate_account.dart';
 import 'package:pull_up/view/screen/setting/setting_screen/setting_screen.dart';
 import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
@@ -56,6 +59,9 @@ class AppRoute {
   static const String addProduct = "/add_product.dart";
   static const String productList = "/product_list.dart";
   static const String addDeal = "/add_deal.dart";
+  static const String profileWithoutLogin = "/profile_without_login.dart";
+  static const String profile = "/profile_screen.dart";
+  static const String upgradeAccount = "/upgrade_account.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -85,5 +91,8 @@ class AppRoute {
     GetPage(name: addProduct, page: () =>  AddProduct()),
     GetPage(name: productList, page: () =>  ProductList()),
     GetPage(name: addDeal, page: () =>  AddDeal()),
+    GetPage(name: profileWithoutLogin, page: () =>  ProfileWithOutLogIn()),
+    GetPage(name: profile, page: () =>  ProfileScreen()),
+    GetPage(name: upgradeAccount, page: () =>  UpgradeAccount()),
   ];
 }

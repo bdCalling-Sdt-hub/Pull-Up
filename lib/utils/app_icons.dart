@@ -34,6 +34,8 @@ class AppIcons {
   static const String timer = "$baseurl/timer.svg" ;
   static const String car = "$baseurl/car.svg" ;
   static const String eventListLocation = "$baseurl/event_list_location.svg" ;
+  static const String income = "$baseurl/income.svg" ;
+  static const String call = "$baseurl/Call.svg" ;
 
 
 
