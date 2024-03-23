@@ -23,7 +23,7 @@ class PopUp {
                 CustomImage(imageSrc: AppIcons.right, ),
                 CustomText(text: AppString.successful, fontSize: 24.sp, fontWeight: FontWeight.w600, color: AppColors.primaryColor,bottom: 10.h,top: 10.h,),
                 CustomText(text: AppString.yourPurchaseSuccessfullyDone, fontSize: 18.sp, fontWeight: FontWeight.w600, color: AppColors.primaryColor,bottom: 16.h,),
-                CustomButton(titleText: AppString.goToHome, buttonWidth: 130.w, buttonHeight: 36.h, onPressed: () => Get.toNamed(AppRoute.home),)
+                CustomButton(titleText: AppString.goToHome, buttonWidth: 130.w, buttonHeight: 36.h, onPressed: () => Get.offAllNamed(AppRoute.home),)
 
               ],
             ),
