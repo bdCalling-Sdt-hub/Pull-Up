@@ -26,6 +26,7 @@ import 'package:pull_up/view/screen/shop_house/product_details/product_details.d
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 
 import '../view/screen/auth/email_verify.dart';
+import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
 import '../view/screen/payment/product_payment/product_payment.dart';
 import '../view/screen/splash.dart';
@@ -62,6 +63,7 @@ class AppRoute {
   static const String profileWithoutLogin = "/profile_without_login.dart";
   static const String profile = "/profile_screen.dart";
   static const String upgradeAccount = "/upgrade_account.dart";
+  static const String income = "/income.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -94,5 +96,6 @@ class AppRoute {
     GetPage(name: profileWithoutLogin, page: () =>  ProfileWithOutLogIn()),
     GetPage(name: profile, page: () =>  ProfileScreen()),
     GetPage(name: upgradeAccount, page: () =>  UpgradeAccount()),
+    GetPage(name: income, page: () =>  Income()),
   ];
 }

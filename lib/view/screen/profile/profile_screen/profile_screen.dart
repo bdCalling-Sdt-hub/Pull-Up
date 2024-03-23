@@ -96,12 +96,12 @@ class ProfileScreen extends StatelessWidget {
             Item(
               title: AppString.addMenu,
               icon: AppIcons.addMenu,
-              onTap: () => Get.toNamed(AppRoute.login),
+              onTap: () => Get.toNamed(AppRoute.productList),
             ),
             Item(
               title: AppString.income,
               icon: AppIcons.income,
-              onTap: () => Get.toNamed(AppRoute.login),
+              onTap: () => Get.toNamed(AppRoute.income),
             ),
           ],
         ),
