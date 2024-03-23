@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -18,6 +19,8 @@ class LogInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),
@@ -68,13 +71,16 @@ class LogInScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CustomText(text: AppString.doNotHaveAccount,),
+                const CustomText(text: AppString.doNotHaveAccount, color: AppColors.secondary,),
                 SizedBox(
                   width: 4.w,
                 ),
-                const CustomText(
-                  text: AppString.registerNow,
-                  color: AppColors.primaryColor,
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.createAccount),
+                  child: const CustomText(
+                    text: AppString.registerNow,
+                    color: AppColors.primaryColor,
+                  ),
                 )
               ],
             )

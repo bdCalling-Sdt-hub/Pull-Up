@@ -22,7 +22,8 @@ class PaymentPopUp {
                 Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                        onTap: () => Get.toNamed(AppRoute.home), child: const Icon(Icons.cancel_outlined))),
+                        onTap: () => Get.offAllNamed(AppRoute.home),
+                        child: const Icon(Icons.cancel_outlined))),
                 SizedBox(
                   height: 30.h,
                 ),
@@ -36,7 +37,6 @@ class PaymentPopUp {
                   color: AppColors.deepOrange,
                   bottom: 40.h,
                   top: 10.h,
-
                 ),
               ],
             ),

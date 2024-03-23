@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -85,23 +87,41 @@ class TicketPurchasePayment extends StatelessWidget {
             SizedBox(
               height: 30.h,
             ),
+            CustomText(
+              text: AppString.nameOnCard,
+              fontWeight: FontWeight.w300,
+              bottom: 6.h,
+              fontSize: 14.sp,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
             CustomTextField(
-              labelText: AppString.enterCardHolderName,
+              hintText: AppString.enterCardHolderName,
               fillColor: AppColors.white50,
-              labelTextColor: AppColors.grey200,
+              hintTextColor: AppColors.grey200,
               paddingVertical: 14.h,
+              textColor: AppColors.grey900,
               prefixSvgIcon: Padding(
                 padding: EdgeInsets.all(12.sp),
                 child: CustomImage(imageSrc: AppIcons.profile),
               ),
             ),
-            SizedBox(
-              height: 30.h,
+            CustomText(
+              text: AppString.cardNumber,
+              fontWeight: FontWeight.w300,
+              bottom: 6.h,
+              top: 10.h,
+              fontSize: 14.sp,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
-              labelText: AppString.enterCardHolderNumber,
+              hintText: AppString.enterCardHolderNumber,
               fillColor: AppColors.white50,
-              labelTextColor: AppColors.grey200,
+              hintTextColor: AppColors.grey200,
+              textColor: AppColors.grey900,
+              keyboardType: TextInputType.number,
+
               paddingVertical: 14.h,
               prefixSvgIcon: Padding(
                 padding: EdgeInsets.all(12.sp),
@@ -109,44 +129,84 @@ class TicketPurchasePayment extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 30.h,
+              height: 10.h,
             ),
-            CustomTextField(
-              labelText: AppString.cvv,
-              fillColor: AppColors.white50,
-              labelTextColor: AppColors.grey200,
-              paddingVertical: 14.h,
-              prefixSvgIcon: Padding(
-                padding: EdgeInsets.all(12.sp),
-                child: CustomImage(imageSrc: AppIcons.lock),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: [
+                      CustomText(
+                        text: AppString.expirationDate,
+                        fontWeight: FontWeight.w300,
+                        bottom: 6.h,
+                        fontSize: 14.sp,
+                        textAlign: TextAlign.start,
+                        color: AppColors.white50,
+                      ),
+                      CustomTextField(
+                        hintText: AppString.mm,
+                        fillColor: AppColors.white50,
+                        hintTextColor: AppColors.grey200,
+                        keyboardType: TextInputType.number,
+                        textColor: AppColors.grey900,
+                        paddingVertical: 14.h,
+                        prefixSvgIcon: Padding(
+                          padding: EdgeInsets.all(12.sp),
+                          child: CustomImage(imageSrc: AppIcons.date),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 16.w,),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: AppString.expirationDate,
+                        fontWeight: FontWeight.w300,
+                        bottom: 6.h,
+                        fontSize: 14.sp,
+                        textAlign: TextAlign.start,
+                        color: AppColors.white50,
+                      ),
+                      CustomTextField(
+                        hintText: AppString.cvv,
+                        fillColor: AppColors.white50,
+                        textColor: AppColors.grey900,
+                        hintTextColor: AppColors.grey200,
+                        keyboardType: TextInputType.number,
+                        paddingVertical: 14.h,
+                        isPassword: true,
+                        prefixSvgIcon: Padding(
+                          padding: EdgeInsets.all(12.sp),
+                          child: CustomImage(imageSrc: AppIcons.lock),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 30.h,
-            ),
-            CustomTextField(
-              labelText: AppString.mm,
-              fillColor: AppColors.white50,
-              labelTextColor: AppColors.grey200,
-              paddingVertical: 14.h,
-              prefixSvgIcon: Padding(
-                padding: EdgeInsets.all(12.sp),
-                child: CustomImage(imageSrc: AppIcons.date),
-              ),
-            ),
+
             SizedBox(
               height: 22.h,
             ),
             Row(
               children: [
-               Obx(() =>  Checkbox(
-                 value: isCheck.value,
-                 activeColor: AppColors.deepOrange,
-                 onChanged: (value) {
-                   isCheck.value = value!;
-
-                 },
-               ),),
+                Obx(
+                  () => Checkbox(
+                    value: isCheck.value,
+                    activeColor: AppColors.deepOrange,
+                    onChanged: (value) {
+                      isCheck.value = value!;
+                    },
+                  ),
+                ),
                 Expanded(
                     child: CustomText(
                   text: AppString.myBillingAddressIsTheSameAsMyShippingAddress,

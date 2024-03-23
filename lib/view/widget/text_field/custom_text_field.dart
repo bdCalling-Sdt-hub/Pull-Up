@@ -9,7 +9,7 @@ import '../text/custom_text.dart';
 class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
-      this.hintText ,
+      this.hintText,
       this.labelText,
       this.prefixSvgIcon,
       this.isPassword = false,
@@ -53,7 +53,6 @@ class CustomTextField extends StatefulWidget {
   final double? paddingVertical;
   final Function(String)? onPressed;
 
-
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -65,8 +64,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return TextFormField(
-
-
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: widget.keyboardType,
       validator: widget.validator,
@@ -79,9 +76,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: TextStyle(fontSize: 14.sp, color: widget.textColor),
       onFieldSubmitted: widget.onPressed,
       decoration: InputDecoration(
-
-
-
         errorMaxLines: 2,
         filled: true,
         prefixIcon: widget.prefixSvgIcon,
@@ -110,7 +104,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(color: widget.borderColor),
         ),
-
         hintText: widget.hintText,
         labelText: widget.labelText,
         hintStyle:
@@ -130,11 +123,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       ? Icon(
                           Icons.visibility_off_outlined,
                           size: 20.sp,
-                          color: AppColors.white50,
+                          color: widget.textColor,
                         )
                       : Icon(
                           Icons.visibility_outlined,
-                          color: AppColors.white50,
+                          color: widget.textColor,
                           size: 20.sp,
                         ),
                 ),

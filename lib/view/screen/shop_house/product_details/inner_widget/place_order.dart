@@ -207,7 +207,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
             InkWell(
               onTap: () => Get.toNamed(AppRoute.productPayment),
               child: Container(
-                height: 60.h,
+                height: 60.sp,
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                 margin: EdgeInsets.only(top: 10.h),
                 decoration:BoxDecoration(

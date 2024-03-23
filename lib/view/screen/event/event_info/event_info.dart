@@ -19,6 +19,7 @@ class EventInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       extendBody: true,
       body: Column(

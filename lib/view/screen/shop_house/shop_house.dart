@@ -40,6 +40,8 @@ class ShopHouseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       body: Stack(
         clipBehavior: Clip.none,
@@ -164,7 +166,7 @@ class ShopHouseScreen extends StatelessWidget {
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisExtent: 190.h,
+                        mainAxisExtent: 190.sp,
                         crossAxisSpacing: 34.w,
                         mainAxisSpacing: 24.h),
                     itemCount: books.length,

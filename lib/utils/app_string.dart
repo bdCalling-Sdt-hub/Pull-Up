@@ -261,6 +261,9 @@ class AppString {
     static const String aboutEventDetails = "Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase" ;
     static const String income = "income" ;
     static const String editProfile = "Edit Profile" ;
+    static const String  goodMorning = " Good Morning" ;
+    static const String  currentBalance = "Current Balance" ;
+    static const String   incomeList = "Income List" ;
 
 
 

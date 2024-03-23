@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pull_up/utils/app_colors.dart';
 
 import '../../../../../utils/app_string.dart';
 import '../../../../widget/text/custom_text.dart';
@@ -10,6 +11,8 @@ class CreateAccountAllField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -17,7 +20,8 @@ class CreateAccountAllField extends StatelessWidget {
         CustomText(
           text: AppString.createAccount,
           fontSize: 24.sp,
-          bottom: 23.h,
+
+          bottom: 23.h,color: AppColors.white50,
         ),
         const CustomTextField(
           labelText: AppString.businessName,
@@ -29,6 +33,7 @@ class CreateAccountAllField extends StatelessWidget {
         SizedBox(height: 20.h,),
         const CustomTextField(
           labelText: AppString.phoneNumber,
+          keyboardType: TextInputType.number,
         ),
         SizedBox(height: 20.h,),
         const CustomTextField(

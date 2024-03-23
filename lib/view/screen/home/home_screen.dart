@@ -71,6 +71,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -139,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 )),
             SizedBox(
-              height: 100.h,
+              height: 80.h,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, mainAxisExtent: 50),
@@ -175,9 +177,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(
-              height: 44.h,
-            ),
+            SizedBox(height: 20.h,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -199,12 +199,12 @@ class HomeScreen extends StatelessWidget {
               height: 16.h,
             ),
             SizedBox(
-              height: 190.h,
+              height: 190.sp,
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisExtent: 190.h,
+                    mainAxisExtent: 190.sp,
                     crossAxisSpacing: 34.w),
                 itemCount: books.length,
                 itemBuilder: (context, index) {
@@ -241,12 +241,12 @@ class HomeScreen extends StatelessWidget {
               height: 17.h,
             ),
             SizedBox(
-              height: 200.h,
+              height: 190.sp,
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisExtent: 190.h,
+                    mainAxisExtent: 190.sp,
                     crossAxisSpacing: 34.w),
                 itemCount: burgers.length,
                 itemBuilder: (context, index) {
@@ -259,6 +259,9 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
+            SizedBox(
+              height: 50.h,
+            )
           ],
         ),
       ),

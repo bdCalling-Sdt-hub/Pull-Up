@@ -29,7 +29,7 @@ class ChangeLocationScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
         child: Column(
           children: [
-            SizedBox(height: 430.h,),
+            SizedBox(height: 430.sp,),
 
             TextFormField(
               cursorColor: AppColors.white50,

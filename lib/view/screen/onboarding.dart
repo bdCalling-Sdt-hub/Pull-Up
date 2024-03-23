@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -28,6 +29,7 @@ class OnboardingScreen extends StatelessWidget {
                 CustomText(
                   text: AppString.welcomeTo,
                   fontSize: 18.h,
+                  color: AppColors.white50,
                 ),
                 CustomText(
                   text: AppString.pullUp,
@@ -56,7 +58,7 @@ class OnboardingScreen extends StatelessWidget {
             SizedBox(
               height: 9.h,
             ),
-            const CustomButton(titleText: AppString.logGuest),
+            CustomButton(titleText: AppString.logGuest, onPressed: () => Get.offAllNamed(AppRoute.home),),
             SizedBox(
               height: 28.h,
             ),
@@ -71,9 +73,12 @@ class OnboardingScreen extends StatelessWidget {
                 SizedBox(
                   width: 4.w,
                 ),
-                const CustomText(
-                  text: AppString.login,
-                  color: AppColors.primaryColor,
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.login),
+                  child: const CustomText(
+                    text: AppString.login,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ],
             )

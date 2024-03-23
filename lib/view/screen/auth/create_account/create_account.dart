@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -66,9 +67,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 SizedBox(
                   width: 4.w,
                 ),
-                const CustomText(
-                  text: AppString.login,
-                  color: AppColors.primaryColor,
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.login),
+                  child: const CustomText(
+                    text: AppString.login,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ],
             )

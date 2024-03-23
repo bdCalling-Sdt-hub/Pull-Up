@@ -75,6 +75,13 @@ class AddPaymentMethod extends StatelessWidget {
             SizedBox(
               height: 18.h,
             ),
+            CustomText(
+              text: AppString.nameOnCard,
+              fontSize: 14.sp,
+              color: AppColors.white50,
+              fontWeight: FontWeight.w400,
+              bottom: 18.h,
+            ),
             CustomTextField(
               labelText: AppString.enterCardHolderName,
               fillColor: AppColors.white50,

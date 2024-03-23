@@ -23,6 +23,8 @@ class HomeProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.secondary,

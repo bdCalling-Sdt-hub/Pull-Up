@@ -14,8 +14,8 @@ class AnotherShoppingListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 240.w,
-      height: 110.h,
-      padding: EdgeInsets.all(10.sp),
+      height: 110.sp,
+      padding: EdgeInsets.all(8.sp),
       margin: EdgeInsets.only(right: 10.w),
       decoration: BoxDecoration(
           color: AppColors.white50, borderRadius: BorderRadius.circular(10.r)),
@@ -38,16 +38,16 @@ class AnotherShoppingListItem extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                CustomText(
+                const CustomText(
                   text: AppString.familyFriendsLoveBook,
                   textAlign: TextAlign.start,
-                  fontSize: 16.sp,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomText(text: "\$43", fontSize: 18.sp, fontWeight: FontWeight.w600,),
+                    const CustomText(text: "\$43", fontSize: 18, fontWeight: FontWeight.w600,),
                     Container(
                       width: 32.sp,
                       height: 32.sp,
@@ -55,7 +55,7 @@ class AnotherShoppingListItem extends StatelessWidget {
                         color: AppColors.grey300,
                         borderRadius: BorderRadius.circular(10.r)
                       ),
-                        child: Icon(Icons.add, color: AppColors.primaryColor,))
+                        child: const Icon(Icons.add, color: AppColors.primaryColor,))
                   ],
                 )
               ],
