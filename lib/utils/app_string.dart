@@ -264,6 +264,8 @@ class AppString {
     static const String  goodMorning = " Good Morning" ;
     static const String  currentBalance = "Current Balance" ;
     static const String   incomeList = "Income List" ;
+    static const String   areYouSure = "are You Sure?" ;
+
 
 
 

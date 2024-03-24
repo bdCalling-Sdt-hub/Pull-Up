@@ -17,6 +17,7 @@ import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purch
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
 import 'package:pull_up/view/screen/product/deal/add_deal.dart';
 import 'package:pull_up/view/screen/product/product_list/product_list.dart';
+import 'package:pull_up/view/screen/profile/edit_profile/edit_profile.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/profile_screen.dart';
 import 'package:pull_up/view/screen/profile/profile_without_login/profile_without_login.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/upgrade_account.dart';
@@ -64,6 +65,7 @@ class AppRoute {
   static const String profile = "/profile_screen.dart";
   static const String upgradeAccount = "/upgrade_account.dart";
   static const String income = "/income.dart";
+  static const String editProfile = "/edit_profile.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -97,5 +99,6 @@ class AppRoute {
     GetPage(name: profile, page: () =>  ProfileScreen()),
     GetPage(name: upgradeAccount, page: () =>  UpgradeAccount()),
     GetPage(name: income, page: () =>  Income()),
+    GetPage(name: editProfile, page: () =>  EditProfile()),
   ];
 }
