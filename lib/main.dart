@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:pull_up/theme/light_theme.dart';
 
 import 'core/app_route.dart';
+import 'core/dependency_injection.dart';
 
 Future<void> main() async {
   await ScreenUtil.ensureScreenSize();
+  DependencyInjection dI = DependencyInjection();
+  dI.dependencies();
   runApp(const MyApp());
 }
 

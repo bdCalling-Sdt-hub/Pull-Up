@@ -20,6 +20,8 @@ class ForgetPasswordCheckEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),
@@ -69,7 +71,7 @@ class ForgetPasswordCheckEmail extends StatelessWidget {
               Align(
                   alignment: FractionalOffset.centerLeft,
                   child: CustomText(
-                    text: AppString.forgetYourPassword,
+                    text: AppString.forgotPassword,
                     color: AppColors.white50,
                     fontSize: 24.sp,
                     top: 70.h,

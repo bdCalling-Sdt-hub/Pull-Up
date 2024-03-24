@@ -58,7 +58,7 @@ class LogInScreen extends StatelessWidget {
                   onTap: () => Get.toNamed(AppRoute.forgetPasswordCheckEmail),
 
                   child: CustomText(
-                    text: AppString.forgetPassword,
+                    text: AppString.forgotPassword,
                     color: AppColors.white50,
                     top: 16.h,
                     bottom: 23.h,
@@ -71,7 +71,7 @@ class LogInScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CustomText(text: AppString.doNotHaveAccount, color: AppColors.secondary,),
+                const CustomText(text: AppString.doNotHaveAccount,),
                 SizedBox(
                   width: 4.w,
                 ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
-import '../../../widget/custom_image.dart';
+import '../../../widget/profile/profile_image.dart';
 import '../../../widget/text/custom_text.dart';
 import 'inner_widget/edit_profile_all_field.dart';
 
@@ -35,17 +35,7 @@ class EditProfile extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Center(
-                child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: AppColors.grey300,
-                    child: ClipOval(
-                      child: CustomImage(
-                        imageSrc: AppImages.profile1,
-                        imageType: ImageType.png,
-                        size: 100,
-                      ),
-                    ))),
+            const ProfileImage(imageURl: AppImages.profile1,),
             CustomText(
               text: 'Jackson Paul',
               color: AppColors.white50,

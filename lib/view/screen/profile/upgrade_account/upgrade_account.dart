@@ -86,7 +86,7 @@ class _UpgradeAccountState extends State<UpgradeAccount> {
                 ),
                 Expanded(
                     child: AccountButton(
-                        title: AppString.organisationAccount,
+                        title: AppString.organizationAccount,
                         color: index == 2
                             ? AppColors.primaryColor
                             : AppColors.transparent,

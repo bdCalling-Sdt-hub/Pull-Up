@@ -18,10 +18,18 @@ import '../../../widget/custom_image.dart';
 import '../../../widget/text_field/custom_text_field.dart';
 import '../product_payment/inner_widget/successful_popup.dart';
 
-class TicketPurchasePayment extends StatelessWidget {
+class TicketPurchasePayment extends StatefulWidget {
   TicketPurchasePayment({super.key});
 
+  @override
+  State<TicketPurchasePayment> createState() => _TicketPurchasePaymentState();
+}
+
+class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
   RxBool isCheck = false.obs;
+  bool visaCardChecked = false;
+  bool masterCardChecked = false;
+  bool paypalCardChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,30 +66,111 @@ class TicketPurchasePayment extends StatelessWidget {
               textAlign: TextAlign.start,
               color: AppColors.white50,
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     CustomImage(
+            //       imageSrc: AppImages.visa,
+            //       imageType: ImageType.png,
+            //       size: 64.sp,
+            //     ),
+            //     SizedBox(
+            //       width: 14.w,
+            //     ),
+            //     CustomImage(
+            //       imageSrc: AppImages.masterCard,
+            //       imageType: ImageType.png,
+            //       size: 64.sp,
+            //     ),
+            //     SizedBox(
+            //       width: 14.w,
+            //     ),
+            //     CustomImage(
+            //       imageSrc: AppImages.paypal,
+            //       imageType: ImageType.png,
+            //       size: 64.sp,
+            //     )
+            //   ],
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomImage(
-                  imageSrc: AppImages.visa,
-                  imageType: ImageType.png,
-                  size: 64.sp,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      visaCardChecked = true;
+                      masterCardChecked = false;
+                      paypalCardChecked = false;
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10.w),
+                    decoration: visaCardChecked
+                        ? const BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: AppColors.white50,
+                                offset: Offset(0, 0))
+                          ])
+                        : null,
+                    child: CustomImage(
+                      imageSrc: AppImages.visa,
+                      imageType: ImageType.png,
+                      size: 64.sp,
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  width: 14.w,
+
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      visaCardChecked = false;
+                      masterCardChecked = true;
+                      paypalCardChecked = false;
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10.w),
+                    decoration: masterCardChecked
+                        ? const BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: AppColors.white50,
+                                offset: Offset(0, 0))
+                          ])
+                        : null,
+                    child: CustomImage(
+                      imageSrc: AppImages.masterCard,
+                      imageType: ImageType.png,
+                      size: 64.sp,
+                    ),
+                  ),
                 ),
-                CustomImage(
-                  imageSrc: AppImages.masterCard,
-                  imageType: ImageType.png,
-                  size: 64.sp,
+
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      visaCardChecked = false;
+                      masterCardChecked = false;
+                      paypalCardChecked = true;
+                    });
+                  },
+                  child: Container(
+                    decoration: paypalCardChecked
+                        ? const BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: AppColors.white50,
+                                offset: Offset(0, 0))
+                          ])
+                        : null,
+                    child: CustomImage(
+                      imageSrc: AppImages.paypal,
+                      imageType: ImageType.png,
+                      size: 64.sp,
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  width: 14.w,
-                ),
-                CustomImage(
-                  imageSrc: AppImages.paypal,
-                  imageType: ImageType.png,
-                  size: 64.sp,
-                )
               ],
             ),
             SizedBox(
@@ -121,7 +210,6 @@ class TicketPurchasePayment extends StatelessWidget {
               hintTextColor: AppColors.grey200,
               textColor: AppColors.grey900,
               keyboardType: TextInputType.number,
-
               paddingVertical: 14.h,
               prefixSvgIcon: Padding(
                 padding: EdgeInsets.all(12.sp),
@@ -136,7 +224,6 @@ class TicketPurchasePayment extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-
                     children: [
                       CustomText(
                         text: AppString.expirationDate,
@@ -161,7 +248,9 @@ class TicketPurchasePayment extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 16.w,),
+                SizedBox(
+                  width: 16.w,
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +281,6 @@ class TicketPurchasePayment extends StatelessWidget {
                 ),
               ],
             ),
-
             SizedBox(
               height: 22.h,
             ),

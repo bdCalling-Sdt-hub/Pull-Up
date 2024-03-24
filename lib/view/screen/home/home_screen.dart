@@ -140,44 +140,54 @@ class HomeScreen extends StatelessWidget {
                   top: 21.h,
                   fontWeight: FontWeight.w600,
                 )),
-            SizedBox(
-              height: 80.h,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, mainAxisExtent: 50),
-                itemCount: quick.length,
-                itemBuilder: (context, index) {
-                  var item = quick[index];
-                  return GestureDetector(
-                    onTap: () => Get.toNamed(AppRoute.eventList),
-                    child: Container(
-                      margin: EdgeInsets.all(8.sp),
-                      decoration: BoxDecoration(
-                          color: AppColors.secondary,
-                          borderRadius: BorderRadius.circular(4.r)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                              width: 24.sp,
-                              height: 24.sp,
-                              margin: EdgeInsets.only(right: 12.w),
-                              child: CustomImage(imageSrc: item['image'])),
-                          Flexible(
-                            child: CustomText(
-                              text: item['title'],
-                              maxLines: 1,
-                              color: AppColors.white50,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
+            GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero, // Add this line to remove bottom padding
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisExtent: 50.h,
               ),
+              itemCount: quick.length,
+              itemBuilder: (context, index) {
+                var item = quick[index];
+                return GestureDetector(
+                  onTap: () {
+                    if(index ==1) {
+                      Get.toNamed(AppRoute.eventList) ;
+                    }
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(8.sp),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondary,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 24.sp,
+                          height: 24.sp,
+                          margin: EdgeInsets.only(right: 12.w),
+                          child: CustomImage(imageSrc: item['image']),
+                        ),
+                        Flexible(
+                          child: CustomText(
+                            text: item['title'],
+                            maxLines: 1,
+                            color: AppColors.white50,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             SizedBox(height: 20.h,),
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

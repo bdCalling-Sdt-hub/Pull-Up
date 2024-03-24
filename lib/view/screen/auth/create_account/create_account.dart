@@ -24,6 +24,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),
@@ -37,8 +38,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               children: [
                 Checkbox(
                     value: isCheckbox,
-                    shape:
-                        const CircleBorder(side: BorderSide(color: Colors.red)),
                     activeColor: AppColors.transparent,
                     checkColor: AppColors.primaryColor,
                     onChanged: (value) {
@@ -49,7 +48,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     child: CustomText(
                   text: AppString.termsAndPolicy,
                   textAlign: TextAlign.start,
-                      color: AppColors.secondary,
                 ))
               ],
             ),
@@ -62,7 +60,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               children: [
                 const CustomText(
                   text: AppString.alreadyHaveAccount,
-                  color: AppColors.secondary,
                 ),
                 SizedBox(
                   width: 4.w,

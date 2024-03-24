@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                       TextButton(
                           style: const ButtonStyle(
                             side: MaterialStatePropertyAll(
-                              BorderSide(color: AppColors.white50),
+                              BorderSide(color: AppColors.grey900),
                             ),
                             // backgroundColor: MaterialStatePropertyAll(AppColors.blue_500),
                           ),
