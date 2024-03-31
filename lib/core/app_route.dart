@@ -11,7 +11,6 @@ import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
-import 'package:pull_up/view/screen/new_event/new_event.dart';
 import 'package:pull_up/view/screen/onboarding.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
@@ -27,6 +26,7 @@ import 'package:pull_up/view/screen/shop_house/product_details/product_details.d
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 
 import '../view/screen/auth/email_verify.dart';
+import '../view/screen/event/new_event/new_event.dart';
 import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
 import '../view/screen/payment/product_payment/product_payment.dart';

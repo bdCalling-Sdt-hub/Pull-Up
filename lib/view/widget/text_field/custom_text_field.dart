@@ -27,7 +27,8 @@ class CustomTextField extends StatefulWidget {
       this.labelTextColor = AppColors.white50,
       this.textColor = AppColors.white50,
       this.borderColor = AppColors.transparent,
-      this.onPressed,
+      this.onSubmitted,
+      this.onTap,
       this.suffixIcon});
 
   final String? hintText;
@@ -51,7 +52,9 @@ class CustomTextField extends StatefulWidget {
   final double? paddingHorizontal;
 
   final double? paddingVertical;
-  final Function(String)? onPressed;
+  final Function(String)? onSubmitted;
+  final VoidCallback? onTap;
+
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -74,7 +77,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       cursorColor: AppColors.white50,
       inputFormatters: widget.inputFormatters,
       style: TextStyle(fontSize: 14.sp, color: widget.textColor),
-      onFieldSubmitted: widget.onPressed,
+      onFieldSubmitted: widget.onSubmitted,
+      onTap: widget.onTap,
       decoration: InputDecoration(
         errorMaxLines: 2,
         filled: true,

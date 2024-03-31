@@ -59,7 +59,7 @@ class EditProfileAllField extends StatelessWidget {
         ),
         CustomTextField(
           hintText: AppString.businessName,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.name,
           fillColor: AppColors.transparent,
           borderColor: AppColors.white50,
           paddingVertical: 10.sp,
@@ -139,7 +139,7 @@ class EditProfileAllField extends StatelessWidget {
         ),
         CustomTextField(
           hintText: AppString.emailAddress,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.emailAddress,
           fillColor: AppColors.transparent,
           borderColor: AppColors.white50,
           paddingVertical: 10.sp,
@@ -230,7 +230,7 @@ class EditProfileAllField extends StatelessWidget {
         ),
         CustomTextField(
           hintText: AppString.website,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.url,
           fillColor: AppColors.transparent,
           borderColor: AppColors.white50,
           paddingVertical: 10.sp,

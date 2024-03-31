@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
 import '../../../../core/app_route.dart';
 import '../../../../utils/app_colors.dart';
@@ -80,6 +82,7 @@ class EventListScreen extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        leading: const AppbarIcon(),
         title: CustomText(
           text: AppString.weJustKnowThePlace,
           color: AppColors.white50,
@@ -112,27 +115,42 @@ class EventListScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
         child: Column(
           children: [
-            TextFormField(
-              cursorColor: AppColors.white50,
-              decoration: InputDecoration(
-                hintText: AppString.searchForKeywords,
-                hintStyle: const TextStyle(color: AppColors.white50),
-                contentPadding:
-                EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
-                suffixIcon: const Icon(
-                  Icons.search_sharp,
-                  color: AppColors.white50,
-                ),
-                border: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: AppColors.white50, width: 1.w),
-                    borderRadius: BorderRadius.circular(10.r)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: AppColors.white50, width: 1.w),
-                    borderRadius: BorderRadius.circular(10.r)),
+
+            CustomTextField(
+             hintTextColor: AppColors.white50,
+              textColor: AppColors.white50,
+              hintText: AppString.searchForKeywords,
+              suffixIcon: const Icon(
+                Icons.search_sharp,
+                color: AppColors.white50,
               ),
+              borderColor: AppColors.white50,
+              fillColor: AppColors.transparent,
+              paddingVertical: 10.h,
+
+
             ),
+            // TextFormField(
+            //   cursorColor: AppColors.white50,
+            //   decoration: InputDecoration(
+            //     hintText: AppString.searchForKeywords,
+            //     hintStyle: const TextStyle(color: AppColors.white50),
+            //     contentPadding:
+            //     EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
+            //     suffixIcon: const Icon(
+            //       Icons.search_sharp,
+            //       color: AppColors.white50,
+            //     ),
+            //     border: OutlineInputBorder(
+            //         borderSide:
+            //         BorderSide(color: AppColors.white50, width: 1.w),
+            //         borderRadius: BorderRadius.circular(10.r)),
+            //     focusedBorder: OutlineInputBorder(
+            //         borderSide:
+            //         BorderSide(color: AppColors.white50, width: 1.w),
+            //         borderRadius: BorderRadius.circular(10.r)),
+            //   ),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

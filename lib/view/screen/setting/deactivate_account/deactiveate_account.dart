@@ -34,7 +34,7 @@ class DeactiveateAccount extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 28.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,40 +1,42 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pull_up/controller/add_deal_controller.dart';
-import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/controller/new_event_controller.dart';
 import 'package:pull_up/utils/app_icons.dart';
-import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/text/custom_text.dart';
 
-class AddDeal extends StatelessWidget {
-  AddDeal({super.key});
+class NewEvent extends StatelessWidget {
+  const NewEvent({super.key});
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
-        leading: const AppbarIcon(),
         title: CustomText(
-          text: AppString.deal,
+          text: AppString.newEvent,
           color: AppColors.white50,
           fontSize: 24.sp,
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: GetBuilder<AddDealController>(
+      body: GetBuilder<NewEventController>(
         builder: (controller) {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
@@ -58,12 +60,12 @@ class AddDeal extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: AppColors.background,
                         borderRadius: BorderRadius.circular(12)),
-                    width: Get.width,
-                    height: 200,
+                    width: 208.w,
+                    height: 130.h,
                     child: Center(
                         child: controller.image == null
                             ? InkWell(
-                          onTap: () => controller.selectImageGallery(),
+                          onTap: controller.selectImageCamera(),
                             child: CustomImage(imageSrc: AppIcons.upload))
                             : Image.file(File(controller.image!))),
                   ),
@@ -106,12 +108,38 @@ class AddDeal extends StatelessWidget {
                     ),
                   ),
                 ),
+                CustomText(
+                  text: AppString.price,
+                  color: AppColors.white50,
+                  fontWeight: FontWeight.w600,
+                  top: 12.h,
+                  bottom: 4.h,
+                ),
+                CustomTextField(
+                  hintText: AppString.enterYourProductPrice,
+                  borderColor: AppColors.white50,
+                  fillColor: AppColors.background,
+                  paddingVertical: 12.h,
+                ),
+                CustomText(
+                  text: AppString.location,
+                  color: AppColors.white50,
+                  fontWeight: FontWeight.w600,
+                  top: 12.h,
+                  bottom: 4.h,
+                ),
+                CustomTextField(
+                  hintText: AppString.enterYourLocation,
+                  borderColor: AppColors.white50,
+                  fillColor: AppColors.background,
+                  paddingVertical: 12.h,
+                ),
                 SizedBox(
-                  height: 20.h,
+                  height: 12.h,
                 ),
                 CustomButton(
                   titleText: AppString.save,
-                  onPressed: () => Get.toNamed(AppRoute.productList),
+                  onPressed: () {},
                 )
               ],
             ),

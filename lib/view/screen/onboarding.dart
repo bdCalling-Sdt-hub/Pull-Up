@@ -52,7 +52,7 @@ class OnboardingScreen extends StatelessWidget {
               size: 322.sp,
             ),
             SizedBox(
-              height: 101.h,
+              height: 80.h,
             ),
             CustomButton(titleText: AppString.createAccount, onPressed: () => Get.toNamed(AppRoute.createAccount),),
             SizedBox(
@@ -60,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
             ),
             CustomButton(titleText: AppString.logGuest, onPressed: () => Get.offAllNamed(AppRoute.home),),
             SizedBox(
-              height: 28.h,
+              height: 24.h,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,

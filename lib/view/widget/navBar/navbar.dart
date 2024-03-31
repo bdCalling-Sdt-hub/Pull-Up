@@ -119,7 +119,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       physics: const NeverScrollableScrollPhysics(),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 16.w),
+        margin: EdgeInsets.symmetric(horizontal: 12.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: AppColors.grey900,

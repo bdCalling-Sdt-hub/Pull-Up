@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
@@ -12,65 +13,74 @@ import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
 class ActivationTime {
+
+
   static getActivationTime() {
     showDialog(
         context: Get.context!,
         builder: (context) {
           return AlertDialog(
             backgroundColor: AppColors.grey300,
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                      onTap: () => Get.back(),
-                      child: const Icon(
-                        Icons.close,
-                        color: AppColors.white50,
-                      )),
-                ),
-                CustomText(
-                  text: AppString.activationTime,
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.primaryColor,
-                  bottom: 16,
-                ),
-                CustomButton(
-                  titleText: AppString.activationNow,
-                  buttonHeight: 35.h,
-                  onPressed: () => LocationPopUp.getLocation(),
-                ),
-                CustomText(
-                  text: AppString.or,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.white50,
-                  bottom: 4.h,
-                  top: 12.h,
-                ),
-                const CustomTextField(
-                  paddingVertical: 10,
-                  fillColor: AppColors.transparent,
-                  borderColor: AppColors.white50,
-                  labelText: '23-07-2023  1:30',
-                  labelTextColor: AppColors.white500,
-                  textColor: AppColors.white500,
-                  suffixIcon: Icon(
-                    Icons.calendar_month_outlined,
-                    color: AppColors.white50,
+            content: GetBuilder<UpgradeAccountController>(builder: (controller) {
+              return  Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                        onTap: () => Get.back(),
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.white50,
+                        )),
                   ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomButton(
-                  titleText: AppString.activationLater,
-                  buttonHeight: 35.h,
-                  onPressed: () => LocationPopUp.getLocation(),
-                )
-              ],
-            ),
+                  CustomText(
+                    text: AppString.activationTime,
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primaryColor,
+                    bottom: 16,
+                  ),
+                  CustomButton(
+                    titleText: AppString.activationNow,
+                    buttonHeight: 35.h,
+                    onPressed: () => LocationPopUp.getLocation(),
+                  ),
+                  CustomText(
+                    text: AppString.or,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.white50,
+                    bottom: 4.h,
+                    top: 12.h,
+                  ),
+                  CustomTextField(
+                    paddingVertical: 10,
+                    controller: controller.dateController,
+                    onTap: () {
+                      controller.validationTimePicker();
+                    },
+                    keyboardType: TextInputType.none,
+                    fillColor: AppColors.transparent,
+                    borderColor: AppColors.white50,
+                    labelText: '23-07-2023  1:30',
+                    labelTextColor: AppColors.white500,
+                    textColor: AppColors.white500,
+                    suffixIcon: const Icon(
+                      Icons.calendar_month_outlined,
+                      color: AppColors.white50,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  CustomButton(
+                    titleText: AppString.activationLater,
+                    buttonHeight: 35.h,
+                    onPressed: () => LocationPopUp.getLocation(),
+                  )
+                ],
+              ) ;
+            },),
           );
         });
   }

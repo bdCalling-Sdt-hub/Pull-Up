@@ -22,45 +22,58 @@ class EventInfoScreen extends StatelessWidget {
     ScreenUtil.init(context);
     return Scaffold(
       extendBody: true,
-      body: Column(
-        children: [
-          CustomImage(
-            imageSrc: AppImages.seminar,
-            imageType: ImageType.png,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-            child: Column(
-              children: [
-                CustomText(
-                  text: AppString.innovateXTheFuture,
-                  color: AppColors.white50,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.sp,
-                  top: 8.h,
-                  bottom: 18.h,
-                ),
-                const EventInfo(),
-
-
-                Align(
-                    alignment: FractionalOffset.centerLeft,
-                    child: CustomText(
-                      text: AppString.aboutEvent,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.white50,
-                      fontSize: 18.sp,
-                      top: 18.h,
-                    )),
-                CustomText(text: AppString.aboutEventDetails, color: AppColors.yellow50, textAlign: TextAlign.start, top: 10.h, bottom: 30.h,),
-                CustomButton(titleText: "${AppString.buyTicket} \$120",
-                  buttonHeight: 50.h,
-                  buttonRadius: 6.r,
-                  onPressed: () => Get.toNamed(AppRoute.ticketPayment,),)
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomImage(
+              imageSrc: AppImages.seminar,
+              imageType: ImageType.png,
             ),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+              child: Column(
+                children: [
+                  CustomText(
+                    text: AppString.innovateXTheFuture,
+                    color: AppColors.white50,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24.sp,
+                    top: 8.h,
+                    bottom: 18.h,
+                  ),
+                  const EventInfo(),
+                  Align(
+                      alignment: FractionalOffset.centerLeft,
+                      child: CustomText(
+                        text: AppString.aboutEvent,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.white50,
+                        fontSize: 18.sp,
+                        top: 18.h,
+                      )),
+                  CustomText(
+                    text: AppString.aboutEventDetails,
+                    color: AppColors.yellow50,
+                    textAlign: TextAlign.start,
+                    top: 10.h,
+                    bottom: 30.h,
+                  ),
+                  CustomButton(
+                    titleText: "${AppString.buyTicket} \$120",
+                    buttonHeight: 50.h,
+                    buttonRadius: 6.r,
+                    onPressed: () => Get.toNamed(
+                      AppRoute.ticketPayment,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 50.h,
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
     );

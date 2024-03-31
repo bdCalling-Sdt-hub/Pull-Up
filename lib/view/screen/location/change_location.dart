@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -23,14 +21,26 @@ class ChangeLocationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),
-        title: CustomText(text:AppString.changeLocation, fontSize: 24.sp, fontWeight: FontWeight.w600, color: AppColors.white50,),
+        title: CustomText(
+          text: AppString.changeLocation,
+          fontSize: 24.sp,
+          fontWeight: FontWeight.w600,
+          color: AppColors.white50,
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
         child: Column(
           children: [
-            SizedBox(height: 430.sp,),
-
+            SizedBox(
+              height: 430.sp,
+              child: const Center(
+                  child: CustomText(
+                text: "Show Google map ",
+                color: AppColors.white50,
+                fontSize: 24,
+              )),
+            ),
             TextFormField(
               cursorColor: AppColors.white50,
               decoration: InputDecoration(
@@ -40,38 +50,51 @@ class ChangeLocationScreen extends StatelessWidget {
                 focusColor: AppColors.white50,
                 fillColor: AppColors.white50,
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                    EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
                 prefixIcon: const Icon(
                   Icons.search_sharp,
                   color: AppColors.grey200,
                 ),
                 border: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.primaryColor, width: 1.w),
+                        BorderSide(color: AppColors.primaryColor, width: 1.w),
                     borderRadius: BorderRadius.circular(10.r)),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.primaryColor, width: 1.w),
+                        BorderSide(color: AppColors.primaryColor, width: 1.w),
                     borderRadius: BorderRadius.circular(10.r)),
               ),
             ),
-            SizedBox(height: 12.h,),
+            SizedBox(
+              height: 12.h,
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-              CustomImage(imageSrc: AppIcons.changeLocation),
-                SizedBox(width: 8.w,),
-                CustomText(text: AppString.useMyCurrentLocation, color: AppColors.primaryColor, fontSize: 16.sp,)
+                CustomImage(imageSrc: AppIcons.changeLocation),
+                SizedBox(
+                  width: 8.w,
+                ),
+                CustomText(
+                  text: AppString.useMyCurrentLocation,
+                  color: AppColors.primaryColor,
+                  fontSize: 16.sp,
+                )
               ],
             ),
-            SizedBox(height: 12.sp,),
-            CustomButton(titleText: AppString.pingLocation, onPressed: () => Get.toNamed(AppRoute.locatedShop),)
-            
+            SizedBox(
+              height: 12.sp,
+            ),
+            CustomButton(
+              titleText: AppString.pingLocation,
+              onPressed: () => Get.toNamed(AppRoute.locatedShop),
+            )
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
-
+      bottomNavigationBar: const CustomBottomNavBar(
+        currentIndex: 0,
+      ),
     );
   }
 }
