@@ -41,41 +41,41 @@ class EmailVerify extends StatelessWidget {
                   imageType: ImageType.png,
                   size: 170.sp,
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      height: 5.h,
-                      width: 88.w,
-                      margin: EdgeInsets.only(right: 8.w),
-                      decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(64.r))),
-                    ),
-                    Container(
-                      height: 5.h,
-                      width: 88.w,
-                      margin: EdgeInsets.only(right: 8.w),
-                      decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(64.r))),
-                    ),
-                    Container(
-                      height: 5.h,
-                      width: 88.w,
-                      decoration: BoxDecoration(
-                          color: AppColors.grey200,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(64.r))),
-                    )
-                  ],
-                ),
+                // SizedBox(
+                //   height: 30.h,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   mainAxisSize: MainAxisSize.min,
+                //   children: [
+                //     Container(
+                //       height: 5.h,
+                //       width: 88.w,
+                //       margin: EdgeInsets.only(right: 8.w),
+                //       decoration: BoxDecoration(
+                //           color: AppColors.primaryColor,
+                //           borderRadius:
+                //               BorderRadius.all(Radius.circular(64.r))),
+                //     ),
+                //     Container(
+                //       height: 5.h,
+                //       width: 88.w,
+                //       margin: EdgeInsets.only(right: 8.w),
+                //       decoration: BoxDecoration(
+                //           color: AppColors.primaryColor,
+                //           borderRadius:
+                //               BorderRadius.all(Radius.circular(64.r))),
+                //     ),
+                //     Container(
+                //       height: 5.h,
+                //       width: 88.w,
+                //       decoration: BoxDecoration(
+                //           color: AppColors.grey200,
+                //           borderRadius:
+                //               BorderRadius.all(Radius.circular(64.r))),
+                //     )
+                //   ],
+                // ),
                 CustomText(
                   text: AppString.checkEmailForVerifyPin,
                   fontSize: 20.sp,

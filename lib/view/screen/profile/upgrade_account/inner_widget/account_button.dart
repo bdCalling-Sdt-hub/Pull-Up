@@ -21,15 +21,15 @@ class AccountButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 4.h),
+        padding: EdgeInsets.symmetric(vertical: 8.h),
         decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(6.r),
             border: Border.all(color: AppColors.white50)),
         child: CustomText(
           text: title,
-          fontSize: 10,
-          maxLines: 1,
+          fontSize: 8,
+          maxLines: 2,
           color: AppColors.white50,
         ),
       ),
