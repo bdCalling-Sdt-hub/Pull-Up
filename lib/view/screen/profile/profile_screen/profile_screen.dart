@@ -48,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                                     AppColors.deepOrange),
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Get.offAllNamed(AppRoute.login);
                               },
                               child: const Text(
                                 AppString.yes,

@@ -45,7 +45,7 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,14 +249,14 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
                   ),
                 ),
                 SizedBox(
-                  width: 16.w,
+                  width: 12.w,
                 ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: AppString.expirationDate,
+                        text: AppString.cvv,
                         fontWeight: FontWeight.w300,
                         bottom: 6.h,
                         fontSize: 14.sp,
@@ -273,8 +273,9 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
                         isPassword: true,
                         prefixSvgIcon: Padding(
                           padding: EdgeInsets.all(12.sp),
-                          child: CustomImage(imageSrc: AppIcons.lock),
+                          child: CustomImage(imageSrc: AppIcons.lock, ),
                         ),
+                        paddingHorizontal: 0.sp,
                       ),
                     ],
                   ),

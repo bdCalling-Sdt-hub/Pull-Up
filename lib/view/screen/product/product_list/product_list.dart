@@ -14,45 +14,56 @@ import '../../../../utils/app_string.dart';
 import '../../../widget/text/custom_text.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList({super.key});
+  ProductList({super.key});
+
+  String account = Get.parameters['account'] ?? "";
 
   @override
   Widget build(BuildContext context) {
+    print(account);
     ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         leading: const AppbarIcon(),
         title: CustomText(
-          text: AppString.menu,
+          text: account == "shopping" ? AppString.product : AppString.menu,
           color: AppColors.white50,
           fontSize: 24.sp,
           fontWeight: FontWeight.w600,
         ),
         actions: [
-          GestureDetector(
-            onTap:() => Get.toNamed(AppRoute.addProduct),
-            child: CustomText(
-              text: AppString.addNewProduct,
-              color: AppColors.white50,
-              right: 30.w,
-            ),
-          )
+          account == "shopping"
+              ? const SizedBox()
+              : GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.addProduct),
+                  child: CustomText(
+                    text: AppString.addNewProduct,
+                    color: AppColors.white50,
+                    right: 30.w,
+                  ),
+                )
         ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
         child: Column(
           children: [
-            CustomButton(
-              titleText: AppString.createDeal,
-              onPressed: () => Get.toNamed(AppRoute.addDeal),
-            ),
-            SizedBox(height: 25.h,),
+            account == "shopping"
+                ? const SizedBox()
+                : CustomButton(
+                    titleText: AppString.createDeal,
+                    onPressed: () => Get.toNamed(AppRoute.addDeal),
+                  ),
             Expanded(
                 child: ListView.builder(
-                  itemCount: 4,
+              itemCount: 4,
               itemBuilder: (context, index) {
-                return ProductItem(title: "Cheese Burger", subTitle: "This is the Cheese burger with loaded cheese", image: AppImages.burger, price: "10.99",) ;
+                return ProductItem(
+                  title: "Cheese Burger",
+                  subTitle: "This is the Cheese burger with loaded cheese",
+                  image: AppImages.burger,
+                  price: "10.99",
+                );
               },
             ))
           ],

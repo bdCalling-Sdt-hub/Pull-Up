@@ -2,7 +2,7 @@ class AppString {
   static const String enableLocation = "Enable Location";
 
   static const String enableLocationDetails =
-      "App name receives your location when you’re using the app to search for nearby businesses, gives you a better local experience, and more ";
+      "Pull Up receives your location when you’re using the app to search for nearby businesses, gives you a better local experience, and more ";
 
   static const String turnOn = "Turn On";
 
@@ -283,11 +283,12 @@ class AppString {
 
   static const String keyboardsDetails = "e.g.: Food, Burger, Books, etc";
 
-  static const String keyboards = "Keyboards";
+  static const String keywords = "Keywords";
 
   static const String showProfile = "Show on profile";
 
   static const String menu = "Menu";
+  static const String product = "Product";
 
   static const String addNewProduct = "Add New Product";
 
@@ -414,9 +415,9 @@ class AppString {
 
   static const String pleaseEnterTheOTPCode = "Please enter the OTP code";
 
-  static const String enterCardHolderName = "Enter cardholder name";
+  static const String enterCardHolderName = "Enter card holder Name";
 
-  static const String enterCardHolderNumber = "Enter cardholder Number";
+  static const String enterCardHolderNumber = "Enter card Number";
 
   static const String cvv = "CVV/CVC";
 
@@ -440,4 +441,5 @@ class AppString {
   static const String incomeList = "Income List";
 
   static const String areYouSure = "Are You Sure?";
+  static const String skip = "Skip";
 }

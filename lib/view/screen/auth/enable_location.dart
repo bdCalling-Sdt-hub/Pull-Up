@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -21,12 +22,21 @@ class EnableLocationScreen extends StatelessWidget {
         child: Column(
           children: [
             Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                    onTap: () => Get.toNamed(AppRoute.onboarding),
+                    child: CustomText(
+                      text: AppString.skip,
+                      fontSize: 18,
+                      top: 30.h,
+                      bottom: 10.h,
+                    ))),
+            Align(
               alignment: Alignment.centerLeft,
               child: CustomText(
                 text: AppString.enableLocation,
                 fontSize: 24.sp,
                 color: AppColors.white50,
-                top: 60.h,
                 fontWeight: FontWeight.w600,
                 textAlign: TextAlign.start,
               ),

@@ -78,8 +78,8 @@ class _AddProductState extends State<AddProduct> {
                     child: Center(
                       child: controller.image == null
                           ? InkWell(
-                        onTap:() =>  controller.selectImageGallery(),
-                          child: CustomImage(imageSrc: AppIcons.upload))
+                              onTap: () => controller.selectImageGallery(),
+                              child: CustomImage(imageSrc: AppIcons.upload, size: 50.sp,))
                           : Image.file(File(controller.image!)),
                     ),
                   ),
@@ -135,28 +135,12 @@ class _AddProductState extends State<AddProduct> {
                   fillColor: AppColors.background,
                   paddingVertical: 12.h,
                 ),
-                Row(
-                  children: [
-                    CustomText(
-                      text: AppString.keyboards,
-                      color: AppColors.white50,
-                      fontWeight: FontWeight.w600,
-                      top: 12.h,
-                      bottom: 4.h,
-                    ),
-                    const Spacer(),
-                    CustomText(
-                      text: AppString.keyboards,
-                      color: AppColors.white50,
-                      fontWeight: FontWeight.w600,
-                      right: 8.w,
-                    ),
-                    AdvancedSwitch(
-                      height: 14.h,
-                      width: 28.w,
-                      controller: switchController,
-                    )
-                  ],
+                CustomText(
+                  text: AppString.keywords,
+                  color: AppColors.white50,
+                  fontWeight: FontWeight.w600,
+                  top: 12.h,
+                  bottom: 4.h,
                 ),
                 CustomTextField(
                   controller: tagController,

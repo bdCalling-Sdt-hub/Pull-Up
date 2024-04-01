@@ -66,7 +66,7 @@ class NewEvent extends StatelessWidget {
                         child: controller.image == null
                             ? InkWell(
                           onTap: controller.selectImageCamera(),
-                            child: CustomImage(imageSrc: AppIcons.upload))
+                            child: CustomImage(imageSrc: AppIcons.upload, size: 50.sp,))
                             : Image.file(File(controller.image!))),
                   ),
                 ),

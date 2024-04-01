@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -106,7 +107,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
         child: Column(
           children: [
             TextFormField(
@@ -146,7 +147,7 @@ class HomeScreen extends StatelessWidget {
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                mainAxisExtent: 50.h,
+                mainAxisExtent: 40.h,
               ),
               itemCount: quick.length,
               itemBuilder: (context, index) {
@@ -158,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    margin: EdgeInsets.all(8.sp),
+                    margin: EdgeInsets.only(right: 8.w, bottom: 8.sp),
                     decoration: BoxDecoration(
                       color: AppColors.secondary,
                       borderRadius: BorderRadius.circular(4.r),
@@ -169,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                         Container(
                           width: 24.sp,
                           height: 24.sp,
-                          margin: EdgeInsets.only(right: 12.w),
+                          margin: EdgeInsets.only(right: 4.w),
                           child: CustomImage(imageSrc: item['image']),
                         ),
                         Flexible(
@@ -197,11 +198,14 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 20.sp,
                   color: AppColors.white50,
                 ),
-                CustomText(
-                  text: AppString.more,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14.sp,
-                  color: AppColors.white50,
+                InkWell(
+                  onTap: () => Get.toNamed(AppRoute.productList, parameters: {"account" : "shopping"}),
+                  child: CustomText(
+                    text: AppString.more,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14.sp,
+                    color: AppColors.white50,
+                  ),
                 ),
               ],
             ),
@@ -219,10 +223,13 @@ class HomeScreen extends StatelessWidget {
                 itemCount: books.length,
                 itemBuilder: (context, index) {
                   var item = books[index];
-                  return HomeProductItem(
-                    image: item['image'],
-                    title: item['title'],
-                    subTitle: item['subTitle'],
+                  return  InkWell(
+                    onTap: () => Get.toNamed(AppRoute.productDetails),
+                    child: HomeProductItem(
+                      image: item['image'],
+                      title: item['title'],
+                      subTitle: item['subTitle'],
+                    ),
                   );
                 },
               ),
@@ -239,11 +246,15 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 20.sp,
                   color: AppColors.white50,
                 ),
-                CustomText(
-                  text: AppString.more,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14.sp,
-                  color: AppColors.white50,
+                InkWell(
+                  onTap: () => Get.toNamed(AppRoute.productList, parameters: {"account" : "shopping"}),
+
+                  child: CustomText(
+                    text: AppString.more,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14.sp,
+                    color: AppColors.white50,
+                  ),
                 ),
               ],
             ),
@@ -261,10 +272,13 @@ class HomeScreen extends StatelessWidget {
                 itemCount: burgers.length,
                 itemBuilder: (context, index) {
                   var item = burgers[index];
-                  return HomeProductItem(
-                    image: item['image'],
-                    title: item['title'],
-                    subTitle: item['subTitle'],
+                  return  InkWell(
+                    onTap: () => Get.toNamed(AppRoute.productDetails),
+                    child: HomeProductItem(
+                      image: item['image'],
+                      title: item['title'],
+                      subTitle: item['subTitle'],
+                    ),
                   );
                 },
               ),
