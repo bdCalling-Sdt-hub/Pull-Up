@@ -442,4 +442,11 @@ class AppString {
 
   static const String areYouSure = "Are You Sure?";
   static const String skip = "Skip";
+  static const String enterYourBusinessName = "Enter your business Name";
+  static const String enterYourPhoneNumber = "Enter your Phone Number";
+  static const String emailIsRequired = "Email is required";
+  static const String enterValidEmail = "Enter valid email";
+  static const String fieldCaNotBeEmpty = "Field can't be empty";
+  static const String passwordValidator = "Password must be 8 characters & contain both \nalphabets and numerics";
+  static const String passwordDoseNotMatch = "Password doesn't match";
 }

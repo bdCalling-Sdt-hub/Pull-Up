@@ -21,6 +21,7 @@ class CreateAccountScreen extends StatefulWidget {
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool isCheckbox = false;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,49 +32,64 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-        child: Column(
-          children: [
-            const CreateAccountAllField(),
-            Row(
-              children: [
-                Checkbox(
-                    value: isCheckbox,
-                    activeColor: AppColors.transparent,
-                    checkColor: AppColors.primaryColor,
-                    onChanged: (value) {
-                      isCheckbox = value!;
-                      setState(() {});
-                    }),
-                const Expanded(
-                    child: CustomText(
-                  text: AppString.termsAndPolicy,
-                  textAlign: TextAlign.start,
-                ))
-              ],
-            ),
-            SizedBox(height: 55.h,),
-            CustomButton(titleText: AppString.create, onPressed: () => Get.toNamed (AppRoute.emailVerify),),
-            SizedBox(height: 25.h,),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CustomText(
-                  text: AppString.alreadyHaveAccount,
-                ),
-                SizedBox(
-                  width: 4.w,
-                ),
-                GestureDetector(
-                  onTap: () => Get.toNamed(AppRoute.login),
-                  child: const CustomText(
-                    text: AppString.login,
-                    color: AppColors.primaryColor,
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              CreateAccountAllField(),
+              Row(
+                children: [
+                  Checkbox(
+                      value: isCheckbox,
+                      activeColor: AppColors.transparent,
+                      checkColor: AppColors.primaryColor,
+                      onChanged: (value) {
+                        isCheckbox = value!;
+                        setState(() {});
+                      }),
+                  const Expanded(
+                      child: CustomText(
+                    text: AppString.termsAndPolicy,
+                    textAlign: TextAlign.start,
+                  ))
+                ],
+              ),
+              SizedBox(
+                height: 55.h,
+              ),
+              CustomButton(
+                  titleText: AppString.create,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      Get.toNamed(AppRoute.emailVerify);
+                    }
+                  }),
+              SizedBox(
+                height: 25.h,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CustomText(
+                    text: AppString.alreadyHaveAccount,
                   ),
-                ),
-              ],
-            )
-          ],
+                  SizedBox(
+                    width: 4.w,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoute.login);
+                    },
+                    child: const CustomText(
+                      text: AppString.login,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

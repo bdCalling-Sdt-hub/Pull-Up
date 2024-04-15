@@ -11,7 +11,7 @@ import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
-import 'package:pull_up/view/screen/onboarding.dart';
+import 'package:pull_up/view/screen/onboarding/onboarding.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
 import 'package:pull_up/view/screen/product/deal/add_deal.dart';
@@ -30,7 +30,7 @@ import '../view/screen/event/new_event/new_event.dart';
 import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
 import '../view/screen/payment/product_payment/product_payment.dart';
-import '../view/screen/splash.dart';
+import '../view/screen/splash/splash.dart';
 import '../view/screen/test.dart';
 
 class AppRoute {
