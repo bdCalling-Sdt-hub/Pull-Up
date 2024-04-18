@@ -26,6 +26,7 @@ class AppImages {
   static const String loveBook = "$baseurl/love_book.png" ;
   static const String favorites = "$baseurl/favorites.png" ;
   static const String merry = "$baseurl/merry.png" ;
+  static const String noData = "$baseurl/noData.png" ;
 
 
 

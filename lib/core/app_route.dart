@@ -24,6 +24,7 @@ import 'package:pull_up/view/screen/setting/deactivate_account/deactiveate_accou
 import 'package:pull_up/view/screen/setting/setting_screen/setting_screen.dart';
 import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
+import 'package:pull_up/view/widget/no_internet.dart';
 
 import '../view/screen/auth/email_verify.dart';
 import '../view/screen/event/new_event/new_event.dart';
@@ -66,6 +67,7 @@ class AppRoute {
   static const String upgradeAccount = "/upgrade_account.dart";
   static const String income = "/income.dart";
   static const String editProfile = "/edit_profile.dart";
+  static const String noInternet = "/no_internet.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  Test()),
@@ -100,5 +102,6 @@ class AppRoute {
     GetPage(name: upgradeAccount, page: () =>  UpgradeAccount()),
     GetPage(name: income, page: () =>  Income()),
     GetPage(name: editProfile, page: () =>  EditProfile()),
+    GetPage(name: noInternet, page: () =>  NoInternet()),
   ];
 }

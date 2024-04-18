@@ -449,4 +449,10 @@ class AppString {
   static const String fieldCaNotBeEmpty = "Field can't be empty";
   static const String passwordValidator = "Password must be 8 characters & contain both \nalphabets and numerics";
   static const String passwordDoseNotMatch = "Password doesn't match";
+  static const String noData = "No Data";
+  static const String checkInternet = "Check Internet";
+  static const String noInternet = "No Internet";
+  static const String back = "Back";
+  static const String pleaseAgreeToTermsAndCondition = "Please, agree to terms and condition";
+  static const String termsAndCondition = "Terms and condition";
 }

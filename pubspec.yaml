@@ -45,6 +45,7 @@ dependencies:
   dotted_border: ^2.1.0
   flutter_advanced_switch: ^3.1.0
   image_picker: ^1.0.7
+  shared_preferences: ^2.2.3
 
 
 dev_dependencies:

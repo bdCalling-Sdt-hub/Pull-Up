@@ -28,6 +28,7 @@ class CreateAccountAllField extends StatelessWidget {
         ),
         CustomTextField(
           labelText: AppString.businessName,
+          controller: controller.nameController,
           validator: (value) {
             if (value.isEmpty) {
               return AppString.enterYourBusinessName;
@@ -41,6 +42,7 @@ class CreateAccountAllField extends StatelessWidget {
         ),
         CustomTextField(
           labelText: AppString.email,
+          controller: controller.emailController,
           validator: (value) {
             if (value!.isEmpty) {
               return AppString.emailIsRequired;
@@ -57,6 +59,7 @@ class CreateAccountAllField extends StatelessWidget {
         ),
         CustomTextField(
           labelText: AppString.phoneNumber,
+          controller: controller.numberController,
           keyboardType: TextInputType.number,
           validator: (value) {
             if (value.isEmpty) {
@@ -90,6 +93,7 @@ class CreateAccountAllField extends StatelessWidget {
         ),
         CustomTextField(
           labelText: AppString.confirmPassword,
+          controller: controller.confirmControllerController,
           isPassword: true,
           validator: (value) {
             if (controller.passwordController.text != value) {

@@ -10,7 +10,10 @@ import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
+import '../../../../controller/auth/create_account_controller.dart';
+import '../../../../utils/app_utils.dart';
 import '../../../widget/appbar_icon/appbar_icon.dart';
+import '../../../widget/custom_loading.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -30,67 +33,79 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       appBar: AppBar(
         leading: const AppbarIcon(),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              CreateAccountAllField(),
-              Row(
+      body: GetBuilder<CreateAccountController>(
+        builder: (controller) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+            child: Form(
+              key: formKey,
+              child: Column(
                 children: [
-                  Checkbox(
-                      value: isCheckbox,
-                      activeColor: AppColors.transparent,
-                      checkColor: AppColors.primaryColor,
-                      onChanged: (value) {
-                        isCheckbox = value!;
-                        setState(() {});
-                      }),
-                  const Expanded(
-                      child: CustomText(
-                    text: AppString.termsAndPolicy,
-                    textAlign: TextAlign.start,
-                  ))
-                ],
-              ),
-              SizedBox(
-                height: 55.h,
-              ),
-              CustomButton(
-                  titleText: AppString.create,
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.toNamed(AppRoute.emailVerify);
-                    }
-                  }),
-              SizedBox(
-                height: 25.h,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CustomText(
-                    text: AppString.alreadyHaveAccount,
+                  CreateAccountAllField(),
+                  Row(
+                    children: [
+                      Checkbox(
+                          value: isCheckbox,
+                          activeColor: AppColors.transparent,
+                          checkColor: AppColors.primaryColor,
+                          onChanged: (value) {
+                            isCheckbox = value!;
+                            setState(() {});
+                          }),
+                      const Expanded(
+                          child: CustomText(
+                        text: AppString.termsAndPolicy,
+                        textAlign: TextAlign.start,
+                      ))
+                    ],
                   ),
                   SizedBox(
-                    width: 4.w,
+                    height: 55.h,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoute.login);
-                    },
-                    child: const CustomText(
-                      text: AppString.login,
-                      color: AppColors.primaryColor,
-                    ),
+                  controller.isLoading
+                      ? const CustomElevatedLoadingButton()
+                      : CustomButton(
+                          titleText: AppString.create,
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              if (isCheckbox) {
+                                controller.createUserRepo();
+                              } else {
+                                Utils.snackBarMessage(
+                                    AppString.termsAndCondition,
+                                    AppString.pleaseAgreeToTermsAndCondition);
+                              }
+                            }
+                          }),
+                  SizedBox(
+                    height: 25.h,
                   ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CustomText(
+                        text: AppString.alreadyHaveAccount,
+                      ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoute.login);
+                        },
+                        child: const CustomText(
+                          text: AppString.login,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

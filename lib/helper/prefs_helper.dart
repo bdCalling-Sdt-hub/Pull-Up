@@ -1,0 +1,80 @@
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../core/app_route.dart';
+
+class PrefsHelper extends GetxController {
+  static String token = "";
+  static String userId = "";
+  static String myImage = "";
+  static String myName = "";
+  static String myEmail = "";
+  static String mySubscription = "premium-plus";
+
+  ///<<<======================== Get All Data Form Shared Preference ==============>
+
+  static Future<void> getAllPrefData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    token = preferences.getString("token") ?? "";
+    userId = preferences.getString("userId") ?? "";
+    myImage = preferences.getString("myImage") ?? "";
+    myName = preferences.getString("myName") ?? "";
+    myEmail = preferences.getString("myEmail") ?? "";
+  }
+
+  ///<<<======================== Get Data Form Shared Preference ==============>
+
+  static Future<String> getString(String key) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(key) ?? "";
+  }
+
+  static Future<bool?> getBool(String key) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(key);
+  }
+
+  static Future<int> getInt(String key) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getInt(key) ?? (-1);
+  }
+
+  ///<<<=====================Save Data To Shared Preference=====================>
+
+  static Future setString(String key, value) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.setString(key, value);
+  }
+
+  static Future setBool(String key, bool value) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.setBool(key, value);
+  }
+
+  static Future setInt(String key, int value) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.setInt(key, value);
+  }
+
+  ///<<<==========================Remove Value==================================>
+
+  static Future remove(String key) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.remove(key);
+  }
+
+  ///<<<======================== Get All Data Form Shared Preference ============>
+  static Future<void> removeAllPrefData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+    preferences.setString("clientId", "");
+    preferences.setString("myEmail", "");
+    preferences.setBool("isProvider", false);
+    token = "";
+
+    myName = "";
+    myEmail = "";
+
+    Get.offAllNamed(AppRoute.login);
+  }
+}
