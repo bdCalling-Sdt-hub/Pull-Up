@@ -147,7 +147,7 @@ class _IncomeState extends State<Income> {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(
+      bottomNavigationBar:  CustomBottomNavBar(
         currentIndex: 4,
       ),
     );

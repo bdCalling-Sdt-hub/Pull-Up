@@ -211,7 +211,7 @@ class _AddProductState extends State<AddProduct> {
           );
         },
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
+      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 2),
     );
   }
 }

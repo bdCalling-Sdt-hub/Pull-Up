@@ -45,7 +45,7 @@ class FavoritesScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(
+      bottomNavigationBar:  CustomBottomNavBar(
         currentIndex: 6,
       ),
     );

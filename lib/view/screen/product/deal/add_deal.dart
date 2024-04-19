@@ -118,7 +118,7 @@ class AddDeal extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
+      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 2),
     );
   }
 }

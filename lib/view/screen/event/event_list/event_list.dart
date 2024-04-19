@@ -221,7 +221,7 @@ class EventListScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0,),
+      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 0,),
     );
   }
 }

@@ -92,7 +92,7 @@ class ChangeLocationScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(
+      bottomNavigationBar:  CustomBottomNavBar(
         currentIndex: 0,
       ),
     );

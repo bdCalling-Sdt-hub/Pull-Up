@@ -22,7 +22,7 @@ class DeletePopUp {
                 Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                        onTap: () => Get.offAllNamed(AppRoute.notification), child: const Icon(Icons.cancel_outlined))),
+                        onTap: () => Get.back(), child: const Icon(Icons.cancel_outlined))),
                 SizedBox(
                   height: 30.h,
                 ),
