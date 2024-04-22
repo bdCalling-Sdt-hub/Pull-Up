@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/inner_widget/boost_bussness.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 
 import '../../../../core/app_route.dart';

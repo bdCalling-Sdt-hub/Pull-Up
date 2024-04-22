@@ -26,7 +26,7 @@ import 'package:pull_up/view/screen/shop_house/product_details/product_details.d
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 import 'package:pull_up/view/widget/no_internet.dart';
 
-import '../view/screen/auth/email_verify.dart';
+import '../view/screen/auth/create_account/email_verify.dart';
 import '../view/screen/event/new_event/new_event.dart';
 import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';

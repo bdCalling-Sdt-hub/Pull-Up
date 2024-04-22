@@ -10,7 +10,7 @@ import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
-import '../../../../widget/custom_image.dart';
+import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import 'successful_popup.dart';
 

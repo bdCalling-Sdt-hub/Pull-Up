@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_network_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class HomeProductItem extends StatelessWidget {
@@ -26,6 +27,7 @@ class HomeProductItem extends StatelessWidget {
     ScreenUtil.init(context);
 
     return Container(
+      margin: EdgeInsets.only(right: 12.w),
       decoration: BoxDecoration(
         color: AppColors.secondary,
         borderRadius: BorderRadius.circular(10.r),
@@ -38,17 +40,23 @@ class HomeProductItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
+                CustomNetworkImage(
+                  imageSrc: image,
                   width: 135.w,
                   height: 100.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      image: DecorationImage(
-                        image: AssetImage(image),
-                        fit: BoxFit.fill,
-                      )),
-                  // child: CustomImage(imageSrc: AppImages.thinkingFast, imageType: ImageType.png, size: 150.sp,)
+                  imageType: ImageNetworkType.decorationImage,
                 ),
+                // Container(
+                //   width: 135.w,
+                //   height: 100.h,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(10.r),
+                //       image: DecorationImage(
+                //         image: AssetImage(image),
+                //         fit: BoxFit.fill,
+                //       )),
+                //   // child: CustomImage(imageSrc: AppImages.thinkingFast, imageType: ImageType.png, size: 150.sp,)
+                // ),
                 Positioned(
                     top: 0,
                     right: 0,
@@ -77,6 +85,7 @@ class HomeProductItem extends StatelessWidget {
               color: AppColors.white50,
               left: 4.h,
               top: 4.h,
+              maxLines: 1,
               fontWeight: FontWeight.w700,
               fontSize: 10.sp,
             )

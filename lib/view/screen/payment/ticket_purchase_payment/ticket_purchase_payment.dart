@@ -14,7 +14,7 @@ import 'package:pull_up/view/widget/text/custom_text.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_images.dart';
 import '../../../widget/button/custom_button.dart';
-import '../../../widget/custom_image.dart';
+import '../../../widget/image/custom_image.dart';
 import '../../../widget/text_field/custom_text_field.dart';
 import '../product_payment/inner_widget/successful_popup.dart';
 

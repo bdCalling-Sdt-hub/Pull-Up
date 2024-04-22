@@ -9,7 +9,7 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../widget/button/custom_button.dart';
@@ -89,6 +89,7 @@ class ForgetPasswordEmailVerify extends StatelessWidget {
                   Flexible(
                     flex: 0,
                     child: PinCodeTextField(
+                      autoDisposeControllers: false,
                       cursorColor: AppColors.white50,
                       textStyle: const TextStyle(color: AppColors.white50),
                       controller: controller.otpController,
@@ -121,7 +122,9 @@ class ForgetPasswordEmailVerify extends StatelessWidget {
                       enableActiveFill: false,
                     ),
                   ),
-                  const CustomText(text: AppString.resendCode),
+                  InkWell(
+                    onTap: () => controller.forgotEmailRepo(),
+                      child: const CustomText(text: AppString.resendCode)),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 24.h),
                     child: CustomButton(

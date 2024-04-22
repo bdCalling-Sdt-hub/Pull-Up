@@ -23,10 +23,6 @@ class CreateAccountController extends GetxController {
   TextEditingController confirmControllerController = TextEditingController();
   TextEditingController otpController = TextEditingController();
 
-  RegExp emailRegexp = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
-
   Future<void> createUserRepo() async {
     isLoading = true;
     update();
@@ -47,7 +43,7 @@ class CreateAccountController extends GetxController {
     print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.toastMessage(response.message);
       Get.toNamed(AppRoute.emailVerify);
     } else if (response.statusCode == 409) {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
@@ -58,6 +54,23 @@ class CreateAccountController extends GetxController {
 
     isLoading = false;
     update();
+  }
+
+  Future<void> resendOtp() async {
+    Map<String, String> body = {
+      "email": emailController.text,
+    };
+
+    var response = await ApiService.patchApi(
+      AppUrl.forgotPassword,
+      body: body,
+    );
+
+    if (response.statusCode == 200) {
+      Utils.toastMessage(response.message);
+    } else {
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
   }
 
   Future<void> verifyEmailRepo() async {
@@ -80,7 +93,7 @@ class CreateAccountController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.login);
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.toastMessage(response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }

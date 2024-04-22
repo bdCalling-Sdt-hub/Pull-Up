@@ -8,7 +8,7 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -16,13 +16,15 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         child: Column(
           children: [
             SizedBox(
-              height: 60.h,
+              height: 40.h,
             ),
             Row(
               children: [
@@ -52,13 +54,19 @@ class OnboardingScreen extends StatelessWidget {
               size: 322.sp,
             ),
             SizedBox(
-              height: 80.h,
+              height: 60.h,
             ),
-            CustomButton(titleText: AppString.createAccount, onPressed: () => Get.toNamed(AppRoute.createAccount),),
+            CustomButton(
+              titleText: AppString.createAccount,
+              onPressed: () => Get.toNamed(AppRoute.createAccount),
+            ),
             SizedBox(
               height: 9.h,
             ),
-            CustomButton(titleText: AppString.logGuest, onPressed: () => Get.offAllNamed(AppRoute.home),),
+            CustomButton(
+              titleText: AppString.logGuest,
+              onPressed: () => Get.offAllNamed(AppRoute.home),
+            ),
             SizedBox(
               height: 24.h,
             ),

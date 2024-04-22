@@ -13,7 +13,7 @@ import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
-import '../../../widget/custom_image.dart';
+import '../../../widget/image/custom_image.dart';
 import '../../../widget/home_product_item.dart';
 import '../../../widget/navBar/navbar.dart';
 import '../../../widget/text/custom_text.dart';

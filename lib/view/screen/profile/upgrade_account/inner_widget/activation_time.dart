@@ -8,7 +8,7 @@ import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/location_popup.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 

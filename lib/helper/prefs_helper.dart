@@ -5,6 +5,7 @@ import '../core/app_route.dart';
 
 class PrefsHelper extends GetxController {
   static String token = "";
+  static String refreshToken = "";
   static String userId = "";
   static String myImage = "";
   static String myName = "";
@@ -16,6 +17,7 @@ class PrefsHelper extends GetxController {
   static Future<void> getAllPrefData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     token = preferences.getString("token") ?? "";
+    token = preferences.getString("refreshToken") ?? "";
     userId = preferences.getString("userId") ?? "";
     myImage = preferences.getString("myImage") ?? "";
     myName = preferences.getString("myName") ?? "";

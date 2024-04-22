@@ -9,17 +9,36 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 
-import '../../../utils/app_colors.dart';
-import '../../widget/button/custom_button.dart';
-import '../../widget/custom_loading.dart';
-import '../../widget/text/custom_text.dart';
+import '../../../../utils/app_colors.dart';
+import '../../../widget/button/custom_button.dart';
+import '../../../widget/custom_loading.dart';
+import '../../../widget/text/custom_text.dart';
 
-class EmailVerify extends StatelessWidget {
+class EmailVerify extends StatefulWidget {
   EmailVerify({super.key});
 
+  @override
+  State<EmailVerify> createState() => _EmailVerifyState();
+}
+
+class _EmailVerifyState extends State<EmailVerify> {
   final formKey = GlobalKey<FormState>();
+
+  CreateAccountController controller = Get.put(CreateAccountController());
+
+  String email = Get.parameters['email'] ?? '';
+
+  @override
+  void initState() {
+    if (email.isNotEmpty) {
+      controller.emailController.text = email;
+      controller.resendOtp();
+      print(email);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,41 +64,6 @@ class EmailVerify extends StatelessWidget {
                       imageType: ImageType.png,
                       size: 170.sp,
                     ),
-                    // SizedBox(
-                    //   height: 30.h,
-                    // ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   mainAxisSize: MainAxisSize.min,
-                    //   children: [
-                    //     Container(
-                    //       height: 5.h,
-                    //       width: 88.w,
-                    //       margin: EdgeInsets.only(right: 8.w),
-                    //       decoration: BoxDecoration(
-                    //           color: AppColors.primaryColor,
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(64.r))),
-                    //     ),
-                    //     Container(
-                    //       height: 5.h,
-                    //       width: 88.w,
-                    //       margin: EdgeInsets.only(right: 8.w),
-                    //       decoration: BoxDecoration(
-                    //           color: AppColors.primaryColor,
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(64.r))),
-                    //     ),
-                    //     Container(
-                    //       height: 5.h,
-                    //       width: 88.w,
-                    //       decoration: BoxDecoration(
-                    //           color: AppColors.grey200,
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(64.r))),
-                    //     )
-                    //   ],
-                    // ),
                     CustomText(
                       text: AppString.checkEmailForVerifyPin,
                       fontSize: 20.sp,
@@ -90,12 +74,11 @@ class EmailVerify extends StatelessWidget {
                     Flexible(
                       flex: 0,
                       child: PinCodeTextField(
+                        autoDisposeControllers: false,
                         cursorColor: AppColors.white50,
                         controller: controller.otpController,
                         textStyle: const TextStyle(color: AppColors.white50),
-                        // controller: controller.otpController,
                         appContext: (context),
-
                         validator: (value) {
                           if (value!.length < 5) {
                             return "Please enter the OTP code.".tr;
@@ -123,7 +106,9 @@ class EmailVerify extends StatelessWidget {
                         enableActiveFill: true,
                       ),
                     ),
-                    const CustomText(text: AppString.resendCode),
+                    InkWell(
+                        onTap: () => controller.resendOtp(),
+                        child: const CustomText(text: AppString.resendCode)),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 24.h),
                       child: controller.isLoadingVerify

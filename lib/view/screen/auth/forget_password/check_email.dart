@@ -10,8 +10,9 @@ import 'package:pull_up/view/widget/custom_loading.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
+import '../../../../helper/reg_exp_helper.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../widget/custom_image.dart';
+import '../../../widget/image/custom_image.dart';
 
 class ForgetPasswordCheckEmail extends StatelessWidget {
   ForgetPasswordCheckEmail({super.key});
@@ -92,13 +93,13 @@ class ForgetPasswordCheckEmail extends StatelessWidget {
                     labelText: AppString.email,
                     onSubmitted: (value) {
                       if (formKey.currentState!.validate()) {
-                        controller.forgotPasswordController();
+                        controller.forgotEmailRepo();
                       }
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return AppString.emailIsRequired;
-                      } else if (!controller.emailRegexp
+                        return AppString.thisFieldIsRequired;
+                      } else if (!RegExpHelper.emailRegexp
                           .hasMatch(controller.emailController.text)) {
                         return AppString.enterValidEmail;
                       } else {
@@ -115,7 +116,7 @@ class ForgetPasswordCheckEmail extends StatelessWidget {
                           titleText: AppString.next,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              controller.forgotPasswordController();
+                              controller.forgotEmailRepo();
                             }
                           },
                         )

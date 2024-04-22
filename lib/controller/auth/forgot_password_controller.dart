@@ -9,14 +9,16 @@ import '../../utils/app_utils.dart';
 class ForgotPasswordController extends GetxController {
   bool isLoading = false;
   bool isLoadingVerify = false;
+  bool isLoadingReset = false;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
-  RegExp emailRegexp = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
-  Future<void> forgotPasswordController() async {
+
+  Future<void> forgotEmailRepo() async {
     isLoading = true;
     update();
 
@@ -24,15 +26,15 @@ class ForgotPasswordController extends GetxController {
       "email": emailController.text,
     };
 
-    var response = await ApiService.postApi(
+    var response = await ApiService.patchApi(
       AppUrl.forgotPassword,
-      body,
+      body: body,
     );
 
     print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.toastMessage(response.message);
       Get.toNamed(AppRoute.forgetPasswordEmailVerify);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
@@ -62,12 +64,37 @@ class ForgotPasswordController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.toNamed(AppRoute.forgetPasswordResetPassword);
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.toastMessage(response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
 
     isLoadingVerify = false;
+    update();
+  }
+
+  Future<void> resetPasswordRepo() async {
+    isLoadingReset = true;
+    update();
+
+    Map<String, String> body = {
+      "email": emailController.text,
+      "password": passwordController.text
+    };
+
+    var response = await ApiService.patchApi(
+      AppUrl.resetPassword,
+      body: body,
+    );
+
+    if (response.statusCode == 200) {
+      Get.offAllNamed(AppRoute.login);
+      Utils.toastMessage(response.message);
+    } else {
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+
+    isLoadingReset = false;
     update();
   }
 }

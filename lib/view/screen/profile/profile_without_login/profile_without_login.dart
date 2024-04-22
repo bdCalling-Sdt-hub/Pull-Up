@@ -8,7 +8,7 @@ import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/item.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 

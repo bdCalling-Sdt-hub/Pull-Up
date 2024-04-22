@@ -14,7 +14,7 @@ import 'package:pull_up/controller/add_product_controller.dart';
 import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 import '../../../../utils/app_colors.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_images.dart';
-import '../../../../widget/custom_image.dart';
+import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 
 class EventInfo extends StatelessWidget {

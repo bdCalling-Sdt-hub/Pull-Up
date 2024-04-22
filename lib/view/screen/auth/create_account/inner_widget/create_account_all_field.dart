@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/auth/create_account_controller.dart';
+import 'package:pull_up/helper/reg_exp_helper.dart';
 import 'package:pull_up/utils/app_colors.dart';
 
 import '../../../../../utils/app_string.dart';
@@ -31,7 +32,7 @@ class CreateAccountAllField extends StatelessWidget {
           controller: controller.nameController,
           validator: (value) {
             if (value.isEmpty) {
-              return AppString.enterYourBusinessName;
+              return AppString.thisFieldIsRequired;
             } else {
               return null;
             }
@@ -45,8 +46,8 @@ class CreateAccountAllField extends StatelessWidget {
           controller: controller.emailController,
           validator: (value) {
             if (value!.isEmpty) {
-              return AppString.emailIsRequired;
-            } else if (!controller.emailRegexp
+              return AppString.thisFieldIsRequired;
+            } else if (!RegExpHelper.emailRegexp
                 .hasMatch(controller.emailController.text)) {
               return AppString.enterValidEmail;
             } else {
@@ -63,7 +64,7 @@ class CreateAccountAllField extends StatelessWidget {
           keyboardType: TextInputType.number,
           validator: (value) {
             if (value.isEmpty) {
-              return AppString.enterYourPhoneNumber;
+              return AppString.thisFieldIsRequired;
             } else {
               return null;
             }
@@ -78,10 +79,10 @@ class CreateAccountAllField extends StatelessWidget {
           isPassword: true,
           validator: (value) {
             if (value.isEmpty) {
-              return AppString.fieldCaNotBeEmpty;
+              return AppString.thisFieldIsRequired;
             } else if (value.length < 8) {
               return AppString.passwordValidator;
-            } else if (!controller.passRegExp.hasMatch(value)) {
+            } else if (!RegExpHelper.passRegExp.hasMatch(value)) {
               return AppString.passwordValidator;
             } else {
               return null;

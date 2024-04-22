@@ -5,7 +5,8 @@ import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/screen/product/product_list/inner_widget/delete_popup.dart';
-import 'package:pull_up/view/widget/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_image.dart';
+import 'package:pull_up/view/widget/image/custom_network_image.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../widget/text/custom_text.dart';
@@ -41,21 +42,15 @@ class _ProductItemState extends State<ProductItem> {
           color: AppColors.grey300, borderRadius: BorderRadius.circular(10.r)),
       child: Row(
         children: [
-          Container(
-            height: 90.sp,
-            width: 90.sp,
-            margin: EdgeInsets.all(6.sp),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.r),
-                image: DecorationImage(
-                    image: AssetImage(
-              widget.image
-            ))),
-          ),
+          CustomNetworkImage(
+              imageSrc: widget.image,
+              width: 90.sp,
+              height: 90.sp,
+              imageType: ImageNetworkType.decorationImage),
           SizedBox(
             width: 12.w,
           ),
-          Flexible(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,6 +58,8 @@ class _ProductItemState extends State<ProductItem> {
                   text: widget.title,
                   color: AppColors.white50,
                   fontWeight: FontWeight.w600,
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
                 ),
                 CustomText(
                   text: widget.subTitle,
@@ -87,7 +84,7 @@ class _ProductItemState extends State<ProductItem> {
           ),
           IconButton(
               onPressed: () {
-                DeleteItemPopUp.itemDeletePopUp() ;
+                DeleteItemPopUp.itemDeletePopUp();
               },
               icon: CustomImage(
                 imageSrc: AppIcons.delete,

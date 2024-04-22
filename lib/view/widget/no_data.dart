@@ -6,7 +6,7 @@ import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../utils/app_images.dart';
-import 'custom_image.dart';
+import 'image/custom_image.dart';
 
 class NoData extends StatelessWidget {
   const NoData({super.key});

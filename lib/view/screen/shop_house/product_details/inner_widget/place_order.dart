@@ -8,7 +8,7 @@ import 'package:pull_up/core/app_route.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
-import '../../../../widget/custom_image.dart';
+import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import 'another_shoppings.dart';
 
