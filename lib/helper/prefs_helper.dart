@@ -5,12 +5,13 @@ import '../core/app_route.dart';
 
 class PrefsHelper extends GetxController {
   static String token = "";
+  static bool isLogIn = false;
   static String refreshToken = "";
   static String userId = "";
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
-  static String mySubscription = "premium-plus";
+  static String mySubscription = "business";
 
   ///<<<======================== Get All Data Form Shared Preference ==============>
 
@@ -22,6 +23,22 @@ class PrefsHelper extends GetxController {
     myImage = preferences.getString("myImage") ?? "";
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
+    isLogIn = preferences.getBool("isLogIn") ?? false;
+    mySubscription = preferences.getString("mySubscription") ?? "business";
+  }
+
+  ///<<<======================== Get All Data Form Shared Preference ============>
+  static Future<void> removeAllPrefData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+    preferences.setString("userId", "");
+    preferences.setString("token", "");
+    preferences.setString("refreshToken", "");
+    preferences.setString("myEmail", "");
+    preferences.setBool("isLogIn", false);
+
+    Get.offAllNamed(AppRoute.login);
+    getAllPrefData();
   }
 
   ///<<<======================== Get Data Form Shared Preference ==============>
@@ -63,20 +80,5 @@ class PrefsHelper extends GetxController {
   static Future remove(String key) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.remove(key);
-  }
-
-  ///<<<======================== Get All Data Form Shared Preference ============>
-  static Future<void> removeAllPrefData() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.clear();
-    preferences.setString("clientId", "");
-    preferences.setString("myEmail", "");
-    preferences.setBool("isProvider", false);
-    token = "";
-
-    myName = "";
-    myEmail = "";
-
-    Get.offAllNamed(AppRoute.login);
   }
 }

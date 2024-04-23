@@ -173,7 +173,10 @@ class ShopHouseScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var item = books[index];
                       return GestureDetector(
-                        onTap: () =>  Get.toNamed(AppRoute.productDetails),
+                        onTap: () =>   Get.toNamed(
+                            AppRoute.productDetails,
+                          // parameters: {"productId": item.sId!}
+                        ),
                         child: HomeProductItem(
                           image: item['image'],
                           title: item['title'],

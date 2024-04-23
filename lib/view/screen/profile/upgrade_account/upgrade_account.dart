@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/profile_info.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
@@ -25,8 +28,6 @@ class UpgradeAccount extends StatefulWidget {
 }
 
 class _UpgradeAccountState extends State<UpgradeAccount> {
-  int index = 0;
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -41,76 +42,73 @@ class _UpgradeAccountState extends State<UpgradeAccount> {
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-        child: Column(
-          children: [
-            ProfileInfo(
-                title: 'Jackson Paul',
-                image: AppImages.profile1,
-                subTitle: AppString.shoppingAccount),
-            SubscriptionActivate(
-              title: 'Subscription is Activated',
-              subTitle: '12 hours 34 minutes left',
-            ),
-            SizedBox(
-              width: 12.h,
-            ),
-            Row(
+      body: GetBuilder<UpgradeAccountController>(
+        builder: (controller) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+            child: Column(
               children: [
-                Expanded(
-                    child: AccountButton(
-                        title: AppString.shoppingAccount,
-                        color: index == 0
-                            ? AppColors.primaryColor
-                            : AppColors.transparent,
-                        onTap: () {
-                          index = 0;
-                          setState(() {});
-                        })),
-                SizedBox(
-                  width: 10.w,
+                ProfileInfo(
+                    title: PrefsHelper.myName,
+                    image: AppImages.profile1,
+                    subTitle: PrefsHelper.mySubscription),
+                SubscriptionActivate(
+                  title: 'Subscription is Activated',
+                  subTitle: '12 hours 34 minutes left',
                 ),
-                Expanded(
-                    child: AccountButton(
-                        title: AppString.businessAccount,
-                        color: index == 1
-                            ? AppColors.primaryColor
-                            : AppColors.transparent,
-                        onTap: () {
-                          index = 1;
-                          setState(() {});
-                        })),
                 SizedBox(
-                  width: 10.w,
+                  width: 12.h,
                 ),
-                Expanded(
-                    child: AccountButton(
-                        title: AppString.organizationAccount,
-                        color: index == 2
-                            ? AppColors.primaryColor
-                            : AppColors.transparent,
-                        onTap: () {
-                          index = 2;
-                          setState(() {});
-                        })),
-                SizedBox(
-                  width: 10.w,
+                Row(
+                  children: [
+                    Expanded(
+                        child: AccountButton(
+                      title: AppString.shoppingAccount,
+                      color: controller.accountIndex == 0
+                          ? AppColors.primaryColor
+                          : AppColors.transparent,
+                      onTap: () => controller.selectAccount(0),
+                    )),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Expanded(
+                        child: AccountButton(
+                      title: AppString.businessAccount,
+                      color: controller.accountIndex == 1
+                          ? AppColors.primaryColor
+                          : AppColors.transparent,
+                      onTap: () => controller.selectAccount(1),
+                    )),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Expanded(
+                        child: AccountButton(
+                      title: AppString.organizationAccount,
+                      color: controller.accountIndex == 2
+                          ? AppColors.primaryColor
+                          : AppColors.transparent,
+                      onTap: () => controller.selectAccount(2),
+                    )),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                  ],
                 ),
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: controller.accountIndex == 0
+                        ? const ShoppingAccount()
+                        : controller.accountIndex == 1
+                            ? BusinessAccount()
+                            : OrganisationAccount()),
               ],
             ),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: index == 0
-                    ? const ShoppingAccount()
-                    : index == 1
-                        ? BusinessAccount()
-                        : OrganisationAccount()),
-
-          ],
-        ),
+          );
+        },
       ),
-      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 4),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 4),
     );
   }
 }

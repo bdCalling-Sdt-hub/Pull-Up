@@ -15,8 +15,6 @@ import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/text/custom_text.dart';
@@ -65,8 +63,11 @@ class NewEvent extends StatelessWidget {
                     child: Center(
                         child: controller.image == null
                             ? InkWell(
-                          onTap: controller.selectImageCamera(),
-                            child: CustomImage(imageSrc: AppIcons.upload, size: 50.sp,))
+                                onTap: () => controller.selectImageCamera(),
+                                child: CustomImage(
+                                  imageSrc: AppIcons.upload,
+                                  size: 50.sp,
+                                ))
                             : Image.file(File(controller.image!))),
                   ),
                 ),
@@ -146,7 +147,7 @@ class NewEvent extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 2),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
     );
   }
 }

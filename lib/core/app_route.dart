@@ -22,7 +22,6 @@ import 'package:pull_up/view/screen/profile/profile_without_login/profile_withou
 import 'package:pull_up/view/screen/profile/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/view/screen/setting/deactivate_account/deactiveate_account.dart';
 import 'package:pull_up/view/screen/setting/setting_screen/setting_screen.dart';
-import 'package:pull_up/view/screen/shop_house/product_details/product_details.dart';
 import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 import 'package:pull_up/view/widget/no_internet.dart';
 
@@ -31,6 +30,7 @@ import '../view/screen/event/new_event/new_event.dart';
 import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
 import '../view/screen/payment/product_payment/product_payment.dart';
+import '../view/screen/product/product_details/product_details.dart';
 import '../view/screen/splash/splash.dart';
 import '../view/screen/test.dart';
 
@@ -43,8 +43,10 @@ class AppRoute {
   static const String emailVerify = "/email_verify.dart";
   static const String login = "/login.dart";
   static const String forgetPasswordCheckEmail = "/check_email.dart";
-  static const String forgetPasswordEmailVerify = "/forget_password_verify.dart";
-  static const String forgetPasswordResetPassword = "/forget_password_reset_password.dart";
+  static const String forgetPasswordEmailVerify =
+      "/forget_password_verify.dart";
+  static const String forgetPasswordResetPassword =
+      "/forget_password_reset_password.dart";
   static const String home = "/home_screen.dart";
   static const String changeLocation = "/change_location.dart";
   static const String locatedShop = "/located_shop.dart";
@@ -70,38 +72,43 @@ class AppRoute {
   static const String noInternet = "/no_internet.dart";
 
   static List<GetPage> routes = [
-    GetPage(name: test, page: () =>  Test()),
-    GetPage(name: splash, page: () =>  SplashScreen()),
-    GetPage(name: enableLocation, page: () =>  EnableLocationScreen()),
-    GetPage(name: onboarding, page: () =>  OnboardingScreen()),
-    GetPage(name: createAccount, page: () =>  CreateAccountScreen()),
-    GetPage(name: emailVerify, page: () =>  EmailVerify()),
-    GetPage(name: login, page: () =>  LogInScreen()),
-    GetPage(name: forgetPasswordCheckEmail, page: () =>  ForgetPasswordCheckEmail()),
-    GetPage(name: forgetPasswordEmailVerify, page: () =>  ForgetPasswordEmailVerify()),
-    GetPage(name: forgetPasswordResetPassword, page: () =>  ForgetPasswordResetPassword()),
-    GetPage(name: home, page: () =>  HomeScreen()),
-    GetPage(name: changeLocation, page: () =>  ChangeLocationScreen()),
-    GetPage(name: locatedShop, page: () =>  LocatedShop()),
-    GetPage(name: shopHouse, page: () =>  ShopHouseScreen()),
-    GetPage(name: productDetails, page: () =>  ProductDetails()),
-    GetPage(name: productPayment, page: () =>  Productpayment()),
-    GetPage(name: eventList, page: () =>  EventListScreen()),
-    GetPage(name: eventInfo, page: () =>  EventInfoScreen()),
-    GetPage(name: ticketPayment, page: () =>  TicketPurchasePayment()),
-    GetPage(name: notification, page: () =>  NotificationScreen()),
-    GetPage(name: favorites, page: () =>  FavoritesScreen()),
-    GetPage(name: settingScreen, page: () =>  SettingScreen()),
-    GetPage(name: deactiveateAccount, page: () =>  DeactiveateAccount()),
-    GetPage(name: newEvent, page: () =>  NewEvent()),
-    GetPage(name: addProduct, page: () =>  AddProduct()),
-    GetPage(name: productList, page: () =>  ProductList()),
-    GetPage(name: addDeal, page: () =>  AddDeal()),
-    GetPage(name: profileWithoutLogin, page: () =>  ProfileWithOutLogIn()),
-    GetPage(name: profile, page: () =>  ProfileScreen()),
-    GetPage(name: upgradeAccount, page: () =>  UpgradeAccount()),
-    GetPage(name: income, page: () =>  Income()),
-    GetPage(name: editProfile, page: () =>  EditProfile()),
-    GetPage(name: noInternet, page: () =>  NoInternet()),
+    GetPage(name: test, page: () => Test()),
+    GetPage(name: splash, page: () => SplashScreen()),
+    GetPage(name: enableLocation, page: () => EnableLocationScreen()),
+    GetPage(name: onboarding, page: () => OnboardingScreen()),
+    GetPage(name: createAccount, page: () => CreateAccountScreen()),
+    GetPage(name: emailVerify, page: () => EmailVerify()),
+    GetPage(name: login, page: () => LogInScreen()),
+    GetPage(
+        name: forgetPasswordCheckEmail, page: () => ForgetPasswordCheckEmail()),
+    GetPage(
+        name: forgetPasswordEmailVerify,
+        page: () => ForgetPasswordEmailVerify()),
+    GetPage(
+        name: forgetPasswordResetPassword,
+        page: () => ForgetPasswordResetPassword()),
+    GetPage(name: home, page: () => HomeScreen()),
+    GetPage(name: changeLocation, page: () => ChangeLocationScreen()),
+    GetPage(name: locatedShop, page: () => LocatedShop()),
+    GetPage(name: shopHouse, page: () => ShopHouseScreen()),
+    GetPage(name: productDetails, page: () => ProductDetails()),
+    GetPage(name: productPayment, page: () => Productpayment()),
+    GetPage(name: eventList, page: () => EventListScreen()),
+    GetPage(name: eventInfo, page: () => EventInfoScreen()),
+    GetPage(name: ticketPayment, page: () => TicketPurchasePayment()),
+    GetPage(name: notification, page: () => NotificationScreen()),
+    GetPage(name: favorites, page: () => FavoritesScreen()),
+    GetPage(name: settingScreen, page: () => SettingScreen()),
+    GetPage(name: deactiveateAccount, page: () => DeactiveateAccount()),
+    GetPage(name: newEvent, page: () => NewEvent()),
+    GetPage(name: addProduct, page: () => AddProduct()),
+    GetPage(name: productList, page: () => ProductList()),
+    GetPage(name: addDeal, page: () => AddDeal()),
+    GetPage(name: profileWithoutLogin, page: () => ProfileWithOutLogIn()),
+    GetPage(name: profile, page: () => ProfileScreen()),
+    GetPage(name: upgradeAccount, page: () => UpgradeAccount()),
+    GetPage(name: income, page: () => Income()),
+    GetPage(name: editProfile, page: () => EditProfile()),
+    GetPage(name: noInternet, page: () => NoInternet()),
   ];
 }

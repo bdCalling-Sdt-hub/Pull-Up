@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import '../../../core/app_route.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/app_string.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   final int currentIndex;
@@ -159,7 +161,48 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        Get.offAllNamed(AppRoute.addProduct);
+        if (PrefsHelper.mySubscription == "shopping") {
+          showDialog(
+            context: Get.context!,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text(AppString.upgradeAccount),
+                actions: [
+                  TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(AppColors.deepOrange),
+                      ),
+                      onPressed: () {
+                        Get.toNamed(AppRoute.upgradeAccount);
+                      },
+                      child: const Text(
+                        AppString.yes,
+                        style: TextStyle(color: AppColors.white50),
+                      )),
+                  TextButton(
+                      style: const ButtonStyle(
+                        side: MaterialStatePropertyAll(
+                          BorderSide(color: AppColors.grey900),
+                        ),
+                        // backgroundColor: MaterialStatePropertyAll(AppColors.blue_500),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        AppString.no,
+                        style: TextStyle(color: AppColors.grey900),
+                      )),
+                ],
+              );
+            },
+          );
+        } else if (PrefsHelper.mySubscription == "Business") {
+          Get.offAllNamed(AppRoute.addProduct);
+        } else {
+          Get.offAllNamed(AppRoute.newEvent);
+        }
       }
     } else if (index == 3) {
       if (!(widget.currentIndex == 3)) {
@@ -167,7 +210,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       }
     } else if (index == 4) {
       if (!(widget.currentIndex == 4)) {
-        Get.offAllNamed(AppRoute.profile);
+        if (PrefsHelper.isLogIn) {
+          Get.offAllNamed(AppRoute.profile);
+        } else {
+          Get.offAllNamed(AppRoute.profileWithoutLogin);
+        }
       }
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/inner_widget/boost_bussness.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
@@ -48,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                                     AppColors.deepOrange),
                               ),
                               onPressed: () {
-                                Get.offAllNamed(AppRoute.login);
+                               PrefsHelper.removeAllPrefData() ;
                               },
                               child: const Text(
                                 AppString.yes,

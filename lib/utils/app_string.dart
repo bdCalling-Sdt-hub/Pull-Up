@@ -24,6 +24,7 @@ class AppString {
   static const String login = "Login";
 
   static const String businessName = "Business Name";
+  static const String userName = "User Name";
 
   static const String email = "Email";
 
@@ -258,6 +259,7 @@ class AppString {
   static const String eventsName = "Event’s Name";
 
   static const String enterYourEventsName = "Enter your event’s name";
+  static const String enterYourProductName = "Enter your Product name";
 
   static const String description = "Description";
 
@@ -289,6 +291,7 @@ class AppString {
 
   static const String menu = "Menu";
   static const String product = "Product";
+  static const String productName = "Product Name";
 
   static const String addNewProduct = "Add New Product";
 

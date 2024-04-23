@@ -6,9 +6,10 @@ import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 
 import '../controller/add_deal_controller.dart';
-import '../controller/add_product_controller.dart';
+import '../controller/product/add_product_controller.dart';
 import '../controller/auth/forgot_password_controller.dart';
 import '../controller/new_event_controller.dart';
+import '../controller/product/product_details_controller.dart';
 import '../controller/product/product_list_controller.dart';
 
 class DependencyInjection extends Bindings {
@@ -24,5 +25,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ForgotPasswordController(), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
     Get.lazyPut(() => ProductListController(), fenix: true);
+    Get.lazyPut(() => ProductDetailsController(), fenix: true);
   }
 }

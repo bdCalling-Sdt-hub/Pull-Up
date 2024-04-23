@@ -4,16 +4,32 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../services/api_service.dart';
+import '../../utils/app_url.dart';
+import '../../utils/app_utils.dart';
 
 class ProfileController extends GetxController {
   // Status status = Status.completed;
 
   String? image;
   TimeOfDay? startTime;
+  bool isLoading = false;
 
-  TextEditingController timePickController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+
+  TextEditingController numberController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController desController = TextEditingController();
+
+  TextEditingController websiteController = TextEditingController();
+
+  TextEditingController businessHoursController = TextEditingController();
 
   Future selectImageGallery() async {
     final ImagePicker picker = ImagePicker();
@@ -47,19 +63,38 @@ class ProfileController extends GetxController {
 
     if (selectedStartTime != null) {
       startTime = selectedStartTime;
-      timePickController.text = "${_formatTimeOfDay(startTime!)} -";
+      businessHoursController.text = "${_formatTimeOfDay(startTime!)} -";
       update();
     }
 
-    print("===============Picked Time${timePickController.text}");
+    print("===============Picked Time${businessHoursController.text}");
     update();
   }
 
-// Reset times if both start and end times are selected
-// if (startTime != null && endTime != null) {
-//   startTime = null;
-//   endTime = null;
-// }
+  Future<void> updateProfileRepo() async {
+    isLoading = true;
+    update();
+    var body = {
+      "businessName": nameController.text,
+      "businessNumber": numberController.text,
+      "businessEmail": emailController.text,
+      // "businessDescription":"Hello Hello",
+      // "businessWebsite":"abc.com",
+      // "businessHours":"8:00-20:00"
+    };
+
+    var response = await ApiService.multipartRequest(
+        url: AppUrl.updateAccount, body: body, imagePath: image);
+
+    if (response.statusCode == 200) {
+      // Get.offAllNamed(AppRoute.signInScreen);
+    } else {
+      Utils.toastMessage(response.message);
+    }
+
+    isLoading = false;
+    update();
+  }
 
   String _formatTimeOfDay(TimeOfDay timeOfDay) {
     int hour = timeOfDay.hour;

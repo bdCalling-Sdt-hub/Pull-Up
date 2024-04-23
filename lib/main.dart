@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/theme/light_theme.dart';
+import 'package:pull_up/utils/payment_key.dart';
 
 import 'core/app_route.dart';
 import 'core/dependency_injection.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = PaymentKey.publishableKey;
+  PrefsHelper.getAllPrefData() ;
   await ScreenUtil.ensureScreenSize();
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
+
   runApp(const MyApp());
 }
 

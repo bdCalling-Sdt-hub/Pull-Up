@@ -186,8 +186,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             var item = controller.keywords[index];
                             return GestureDetector(
                               onTap: () {
-                                if (index == 1) {
+                                if (item == "event") {
                                   Get.toNamed(AppRoute.eventList);
+                                } else {
+                                  Get.toNamed(AppRoute.productList,
+                                      parameters: {
+                                        "account": "shopping",
+                                        "keyword": item.keyword
+                                      });
                                 }
                               },
                               child: Container(
@@ -200,13 +206,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: 24.sp,
-                                      height: 24.sp,
-                                      margin: EdgeInsets.only(right: 4.w),
-                                      // child:
-                                      //     CustomImage(imageSrc: item['image']),
-                                    ),
+                                    // Container(
+                                    //   width: 24.sp,
+                                    //   height: 24.sp,
+                                    //   margin: EdgeInsets.only(right: 4.w),
+                                    //   child:
+                                    //       CustomImage(imageSrc: item['image']),
+                                    // ),
                                     Flexible(
                                       child: CustomText(
                                         text: item.keyword,
@@ -235,7 +241,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: () => Get.toNamed(AppRoute.productList,
-                          parameters: {"account": "shopping", "keyword" : "Book"}),
+                          parameters: {
+                            "account": "shopping",
+                            "keyword": "Book"
+                          }),
                       child: CustomText(
                         text: AppString.more,
                         fontWeight: FontWeight.w400,
@@ -254,7 +263,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Status.loading =>
                         const Center(child: CircularProgressIndicator()),
                       Status.error => ErrorScreen(
-                          onTap: () => controller.bookRepo(),
+                          onTap: () {
+                            controller.bookPage = 1;
+                            controller.bookRepo();
+                          },
                         ),
                       Status.completed => controller.books.isEmpty
                           ? const NoData()
@@ -271,8 +283,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemBuilder: (context, index) {
                                 Result item = controller.books[index];
                                 return InkWell(
-                                  onTap: () =>
-                                      Get.toNamed(AppRoute.productDetails),
+                                  onTap: () => Get.toNamed(
+                                      AppRoute.productDetails,
+                                      parameters: {"productId": item.sId!}),
                                   child: HomeProductItem(
                                     image:
                                         "${AppUrl.imageUrl}/${item.image?.path}",
@@ -297,7 +310,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: () => Get.toNamed(AppRoute.productList,
-                          parameters: {"account": "shopping", "keyword" : "Burger"}),
+                          parameters: {
+                            "account": "shopping",
+                            "keyword": "Burger"
+                          }),
                       child: CustomText(
                         text: AppString.more,
                         fontWeight: FontWeight.w400,
@@ -315,9 +331,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: switch (controller.burgerStatus) {
                     Status.loading =>
                       const Center(child: CircularProgressIndicator()),
-                    Status.error => ErrorScreen(
-                        onTap: () => controller.burgerRepo(),
-                      ),
+                    Status.error => ErrorScreen(onTap: () {
+                        controller.burgerPage = 1;
+                        controller.burgerRepo();
+                      }),
                     Status.completed => controller.burgers.isEmpty
                         ? const NoData()
                         : GridView.builder(
@@ -333,8 +350,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, index) {
                               Result item = controller.burgers[index];
                               return InkWell(
-                                onTap: () =>
-                                    Get.toNamed(AppRoute.productDetails),
+                                onTap: () => Get.toNamed(
+                                    AppRoute.productDetails,
+                                    parameters: {"productId": item.sId!}),
                                 child: HomeProductItem(
                                   image:
                                       "${AppUrl.imageUrl}/${item.image?.path}",

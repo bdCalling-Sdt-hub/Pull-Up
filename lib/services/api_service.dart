@@ -7,6 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../model/api_response_model.dart';
+import 'package:mime/mime.dart';
+
+import 'package:http_parser/http_parser.dart';
 
 class ApiService {
   static const int timeOut = 30;
@@ -24,7 +27,8 @@ class ApiService {
     if (kDebugMode) {
       print("===============================================>url $url");
       print("===============================================>url $body");
-      print("===============================================>url ${header ?? mainHeader}");
+      print(
+          "===============================================>url ${header ?? mainHeader}");
     }
     try {
       final response = await http
@@ -59,7 +63,8 @@ class ApiService {
 
     if (kDebugMode) {
       print("===============================================>url $url");
-      print("===============================================>url ${header ?? mainHeader}");
+      print(
+          "===============================================>url ${header ?? mainHeader}");
     }
 
     try {
@@ -102,7 +107,8 @@ class ApiService {
     if (kDebugMode) {
       print("===============================================>url $url");
       print("===============================================>url $body");
-      print("===============================================>url ${header ?? mainHeader}");
+      print(
+          "===============================================>url ${header ?? mainHeader}");
     }
 
     try {
@@ -136,7 +142,8 @@ class ApiService {
     if (kDebugMode) {
       print("===============================================>url $url");
       print("===============================================>url $body");
-      print("===============================================>url ${header ?? mainHeader}");
+      print(
+          "===============================================>url ${header ?? mainHeader}");
     }
     try {
       if (body != null) {
@@ -182,7 +189,8 @@ class ApiService {
     if (kDebugMode) {
       print("===============================================>url $url");
       print("===============================================>url $body");
-      print("===============================================>url ${header ?? mainHeader}");
+      print(
+          "===============================================>url ${header ?? mainHeader}");
     }
 
     try {
@@ -233,24 +241,24 @@ class ApiService {
         return ApiResponseModel(
             200, jsonDecode(response.body)['message'], response.body);
       case 401:
-        // if (!unAuthorization) {
-        //   var token = await getRefreshToken();
-        //
-        //   if (token.isNotEmpty) {
-        //     PrefsHelper.token = token;
-        //     PrefsHelper.setString('token', PrefsHelper.token);
-        //   } else {
-        //     return ApiResponseModel(response.statusCode,
-        //         jsonDecode(response.body)['message'], response.body);
-        //   }
-        //
-        //   return await callback(true);
-        // } else {
-        //   return ApiResponseModel(response.statusCode,
-        //       jsonDecode(response.body)['message'], response.body);
-        // }
-         return ApiResponseModel(response.statusCode,
-            jsonDecode(response.body)['message'], response.body);
+        if (!unAuthorization) {
+          var token = await getRefreshToken();
+
+          if (token.isNotEmpty) {
+            PrefsHelper.token = token;
+            PrefsHelper.setString('token', PrefsHelper.token);
+          } else {
+            return ApiResponseModel(response.statusCode,
+                jsonDecode(response.body)['message'], response.body);
+          }
+
+          return await callback(true);
+        } else {
+          return ApiResponseModel(response.statusCode,
+              jsonDecode(response.body)['message'], response.body);
+        }
+      // return ApiResponseModel(response.statusCode,
+      //     jsonDecode(response.body)['message'], response.body);
       case 400:
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
@@ -263,6 +271,70 @@ class ApiService {
       default:
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
+    }
+  }
+
+  static Future<ApiResponseModel> multipartRequest({
+    required String url,
+    method = "POST",
+    String? imagePath,
+    imageName = 'image',
+    required Map<String, dynamic> body,
+    Map<String, String>? header,
+  }) async {
+    try {
+      Map<String, String> mainHeader = {
+        'Authorization': "Bearer ${PrefsHelper.token}",
+      };
+
+      if (kDebugMode) {
+        print("===============================================>url $url");
+        print("===============================================>url $body");
+        print(
+            "===============================================>url ${header ?? mainHeader}");
+      }
+
+      var request = http.MultipartRequest(method, Uri.parse(url));
+      body.forEach((key, value) {
+        request.fields[key] = value;
+      });
+
+      if (imagePath != null) {
+        var mimeType = lookupMimeType(imagePath);
+        var shopImage = await http.MultipartFile.fromPath(imageName, imagePath,
+            contentType: MediaType.parse(mimeType!));
+        request.files.add(shopImage);
+      }
+
+      Map<String, String> headers = header ?? mainHeader;
+
+      headers.forEach((key, value) {
+        request.headers[key] = value;
+      });
+
+      var response = await request.send();
+
+      if (kDebugMode) {
+        print(
+            "===============================================>statusCode ${response.statusCode}");
+      }
+
+      if (response.statusCode == 200) {
+        String data = await response.stream.bytesToString();
+
+        return ApiResponseModel(200, jsonDecode(data)['message'], data);
+      } else {
+        String data = await response.stream.bytesToString();
+        return ApiResponseModel(
+            response.statusCode, jsonDecode(data)['message'], data);
+      }
+    } on SocketException {
+      // Get.toNamed(AppRoute.noInternet);
+      return ApiResponseModel(503, "No internet connection", '');
+    } on FormatException {
+      return ApiResponseModel(400, "Bad Response Request", '');
+    } on TimeoutException {
+      return ApiResponseModel(408, "Request Time Out", "");
     }
   }
 

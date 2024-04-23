@@ -15,4 +15,7 @@ class AppUrl {
   static const resetPassword = "$baseUrl/users/updated-password";
   static const product = "$baseUrl/product";
   static const keywords = "$baseUrl/product/keywords";
+  static const addProduct = "$baseUrl/product/create-product";
+  static const updateAccount = "$baseUrl/users/update-account";
+  static const upgradedAccount = "$baseUrl/users/upgraded-account";
 }
