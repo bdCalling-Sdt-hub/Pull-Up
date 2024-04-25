@@ -12,7 +12,7 @@ import 'core/dependency_injection.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = PaymentKey.publishableKey;
-  PrefsHelper.getAllPrefData() ;
+  await PrefsHelper.getAllPrefData() ;
   await ScreenUtil.ensureScreenSize();
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();

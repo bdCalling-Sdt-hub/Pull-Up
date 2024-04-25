@@ -1,24 +1,35 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/payment_controller.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
+import 'package:pull_up/model/login_model.dart';
 
 import '../../core/app_route.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_url.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/payment_key.dart';
+import 'package:http/http.dart' as http;
 
 class UpgradeAccountController extends GetxController {
   bool isLoading = false;
+
+  Map<String, dynamic>? paymentIntentData;
+  bool isLoadingPayment = false;
+
   DateTime? startDate;
   TextEditingController dateController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-
-  PaymentController paymentController = Get.put(PaymentController());
+  LogInModel? logInModel;
 
   List accountType = ['shopping', 'business', 'organisation'];
   List package = ['daily', 'weekly', 'monthly'];
+  List packageAmount = ['1.99', '5.99', '17.99'];
 
   int accountIndex = 0;
   int businessAccountPackage = 0;
@@ -26,26 +37,27 @@ class UpgradeAccountController extends GetxController {
 
   String accountName = 'shopping';
   String packageDuration = 'daily';
+  String amount = '1.99';
+  String currency = "USD";
 
   selectAccount(int index) {
     accountIndex = index;
     update();
     accountName = accountType[index];
-    print(accountName);
   }
 
   selectBusinessPackage(int index) {
     businessAccountPackage = index;
     update();
     packageDuration = package[index];
-    print(packageDuration);
+    amount = packageAmount[index];
   }
 
   selectOrganisationPackage(int index) {
     organisationAccountPackage = index;
     update();
     packageDuration = package[index];
-    print(packageDuration);
+    amount = packageAmount[index];
   }
 
   Future<void> validationTimePicker() async {
@@ -74,6 +86,11 @@ class UpgradeAccountController extends GetxController {
     update();
   }
 
+  Future<void> stripePayment() async {
+    Get.toNamed(AppRoute.ticketPayment);
+    makePayment();
+  }
+
   Future<void> upgradedAccountRepo() async {
     isLoading = true;
     update();
@@ -87,20 +104,114 @@ class UpgradeAccountController extends GetxController {
           jsonEncode({"longitude": 6.84099664391005, "latitude": 47.64532465})
     };
 
-    print("======================================> body $body");
     var response = await ApiService.postApi(
       AppUrl.upgradedAccount,
       body,
     );
 
-    print(
-        "======================================> body ${response.statusCode}");
-    print("======================================> body ${response.body}");
     if (response.statusCode == 200) {
-      Get.toNamed(AppRoute.ticketPayment);
-      paymentController.makePayment();
-
+      PrefsHelper.mySubscription =
+          jsonDecode(response.body)["data"]["accountType"];
+      PrefsHelper.setString("mySubscription", PrefsHelper.mySubscription);
+      Get.offAllNamed(AppRoute.editProfile);
     }
+    isLoading = false;
+    update();
+  }
+
+  Future<void> makePayment() async {
+    isLoading = true;
+    update();
+    try {
+      paymentIntentData = await createPaymentIntent(amount, currency);
+      if (paymentIntentData != null) {
+        await Stripe.instance.initPaymentSheet(
+            paymentSheetParameters: SetupPaymentSheetParameters(
+          googlePay: const PaymentSheetGooglePay(merchantCountryCode: 'US'),
+          merchantDisplayName: 'Pull Up App',
+          paymentIntentClientSecret: paymentIntentData!['client_secret'],
+          style: ThemeMode.dark,
+        ));
+        displayPaymentSheet();
+        if (kDebugMode) {
+          print("----------display payment sheet didn't called");
+        }
+      }
+    } catch (e, s) {
+      if (kDebugMode) {
+        print(
+            '-=-=-=-=-=-=-=---=-=-=-exception: $e $s =-=-=-=-=--=-=-=-=-=-=-=');
+      }
+    }
+  }
+
+  createPaymentIntent(String amount, String currency) async {
+    isLoadingPayment = true;
+    update();
+    try {
+      Map<String, dynamic> body = {
+        'amount': calculateAmount(amount),
+        'currency': currency,
+      };
+
+      var response = await http
+          .post(Uri.parse(PaymentKey.paymentIntent), body: body, headers: {
+        'Authorization': 'Bearer ${PaymentKey.secretKey}',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
+      if (kDebugMode) {
+        print(
+            "=============>>>${response.body}----${response.statusCode}<<<==================");
+      }
+
+      return jsonDecode(response.body);
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error Occurred:======================> ${e.toString()}");
+      }
+    }
+  }
+
+  calculateAmount(String amount) {
+    dynamic a = (double.parse(amount)) * 100;
+    a = a.floor();
+    return a.toString();
+  }
+
+  displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet();
+      isLoadingPayment = false;
+      update();
+      paymentRepo();
+      if (kDebugMode) {
+        print('payment intent$paymentIntentData');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("error $e");
+      }
+    }
+  }
+
+  Future<void> paymentRepo() async {
+    isLoading = true;
+    update();
+
+    var body = {"data": jsonEncode(paymentIntentData)};
+
+    var response = await ApiService.postApi(AppUrl.payment, body);
+
+    if (response.statusCode == 200) {
+      Utils.toastMessage(response.message);
+      upgradedAccountRepo();
+    } else {
+      Utils.toastMessage(response.message);
+    }
+
+    print(response.statusCode);
+    print(response.body);
+
     isLoading = false;
     update();
   }

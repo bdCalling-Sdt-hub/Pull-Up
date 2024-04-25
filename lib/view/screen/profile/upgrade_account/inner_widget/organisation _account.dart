@@ -11,6 +11,7 @@ import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/feature
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../../../widget/button/custom_button.dart';
+import 'activation_time.dart';
 
 class OrganisationAccount extends StatefulWidget {
   OrganisationAccount({super.key});
@@ -151,9 +152,7 @@ class _OrganisationAccountState extends State<OrganisationAccount> {
           SizedBox(height: 28.h,),
           CustomButton(
             titleText: AppString.activateTheLocator,
-            onPressed: () {
-              controller.upgradedAccountRepo();
-            },
+              onPressed: () => ActivationTime.getActivationTime() ,
           )
         ],
       );

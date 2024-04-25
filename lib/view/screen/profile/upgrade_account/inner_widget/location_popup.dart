@@ -83,7 +83,8 @@ class LocationPopUp {
                       buttonHeight: 36.h,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          controller.upgradedAccountRepo();
+                          controller.stripePayment();
+                          // controller.stripePayment();
                         }
                       })
                 ],

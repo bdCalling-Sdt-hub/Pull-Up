@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
@@ -12,6 +13,9 @@ import '../../../../utils/app_string.dart';
 import '../../../widget/profile/profile_image.dart';
 import '../../../widget/text/custom_text.dart';
 import 'inner_widget/edit_profile_all_field.dart';
+import 'inner_widget/edit_profile_business_account.dart';
+import 'inner_widget/edit_profile_organisation_account.dart';
+import 'inner_widget/edit_profile_shoping_account.dart';
 
 class EditProfile extends StatelessWidget {
   EditProfile({super.key});
@@ -52,7 +56,11 @@ class EditProfile extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       top: 8.h,
                     ),
-                    EditProfileAllField(),
+                    PrefsHelper.mySubscription == "organisation"
+                        ? EditProfileOrganisationAccount()
+                        : PrefsHelper.mySubscription == "business"
+                            ? EditProfileBusinessAccount()
+                            : EditProfileShopingAccount(),
                     SizedBox(
                       height: 12.h,
                     ),

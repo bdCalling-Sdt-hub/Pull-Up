@@ -7,8 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pull_up/core/app_route.dart';
 
 import '../../services/api_service.dart';
+import '../../utils/app_colors.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
@@ -20,15 +22,10 @@ class ProfileController extends GetxController {
   bool isLoading = false;
 
   TextEditingController nameController = TextEditingController();
-
   TextEditingController numberController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController desController = TextEditingController();
-
   TextEditingController websiteController = TextEditingController();
-
   TextEditingController businessHoursController = TextEditingController();
 
   Future selectImageGallery() async {
@@ -51,6 +48,31 @@ class ProfileController extends GetxController {
       image = getImages.path;
       update();
     }
+  }
+
+  Future<void> validationTimePicker() async {
+    final DateTime? picked = await showDatePicker(
+      builder: (context, child) => Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: AppColors.primaryColor,
+            onPrimary: AppColors.white50,
+            onSurface: AppColors.grey900,
+          ),
+        ),
+        child: child!,
+      ),
+      context: Get.context!,
+      initialDate: DateTime(1999),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null) {
+      // First click, set the start date
+      businessHoursController.text = picked.toIso8601String();
+    }
+    update();
   }
 
   timePicker() async {
@@ -78,16 +100,18 @@ class ProfileController extends GetxController {
       "businessName": nameController.text,
       "businessNumber": numberController.text,
       "businessEmail": emailController.text,
-      // "businessDescription":"Hello Hello",
-      // "businessWebsite":"abc.com",
-      // "businessHours":"8:00-20:00"
+      "businessDescription": desController.text,
+      "businessWebsite": websiteController.text,
+      "businessHours": businessHoursController.text,
+      "dateOfBirth": "21/09/1994"
     };
 
     var response = await ApiService.multipartRequest(
         url: AppUrl.updateAccount, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
-      // Get.offAllNamed(AppRoute.signInScreen);
+      Get.offAllNamed(AppRoute.profile);
+      print(response.body);
     } else {
       Utils.toastMessage(response.message);
     }

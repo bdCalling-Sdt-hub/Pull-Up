@@ -18,4 +18,5 @@ class AppUrl {
   static const addProduct = "$baseUrl/product/create-product";
   static const updateAccount = "$baseUrl/users/update-account";
   static const upgradedAccount = "$baseUrl/users/upgraded-account";
+  static const payment = "$baseUrl/payment/create-payment-intent";
 }

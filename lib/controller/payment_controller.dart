@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
+import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_url.dart';
 
 import '../services/api_service.dart';
+import '../utils/app_utils.dart';
 import '../utils/payment_key.dart';
 
 class PaymentController extends GetxController {
   Map<String, dynamic>? paymentIntentData;
   bool isLoading = false;
 
-  String bagId = "66093284e10be8c06418c7db";
-  String amount = "6";
+  String amount = "";
   String currency = "USD";
-  String oderId = "";
 
   Future<void> makePayment() async {
     isLoading = true;
@@ -27,18 +28,8 @@ class PaymentController extends GetxController {
       if (paymentIntentData != null) {
         await Stripe.instance.initPaymentSheet(
             paymentSheetParameters: SetupPaymentSheetParameters(
-          // billingDetails: const BillingDetails(
-          //     name: 'Naimul Hassan',
-          //     email: 'developernaimul00@gmail.com',
-          //     address: Address(
-          //         city: 'Dhaka',
-          //         country: 'Bangladesh',
-          //         line1: 'Dhaka',
-          //         line2: 'Dhaka',
-          //         postalCode: '1121',
-          //         state: 'Dhaka')),
           googlePay: const PaymentSheetGooglePay(merchantCountryCode: 'US'),
-          merchantDisplayName: 'United App',
+          merchantDisplayName: 'Pull Up App',
           paymentIntentClientSecret: paymentIntentData!['client_secret'],
           style: ThemeMode.dark,
         ));
@@ -83,7 +74,8 @@ class PaymentController extends GetxController {
   }
 
   calculateAmount(String amount) {
-    final a = (int.parse(amount)) * 100;
+    dynamic a = (double.parse(amount)) * 100;
+    a = a.floor();
     return a.toString();
   }
 
@@ -92,9 +84,7 @@ class PaymentController extends GetxController {
       await Stripe.instance.presentPaymentSheet();
       isLoading = false;
       update();
-      // stripeCheckPaymentIntentTransaction(paymentIntentData!['client_secret']);
-      // retrieveTxnId(paymentIntent: paymentIntentData!['id']);
-      // paymentRepo();
+      paymentRepo();
       if (kDebugMode) {
         print('payment intent$paymentIntentData');
       }
@@ -105,30 +95,24 @@ class PaymentController extends GetxController {
     }
   }
 
-// Future<void> paymentRepo() async {
-//   isLoading = true;
-//   update();
-//
-//   var body = {
-//     "jsonEncoded":
-//     jsonEncode({"bagId": bagId, "stripeData": paymentIntentData})
-//   };
-//
-//   var response = await ApiService.postApi(AppUrl.purchaseBag, body);
-//
-//   if(response.statusCode == 200) {
-//     Utils.toastMessage(response.message);
-//     oderId = jsonDecode(response.responseJson)['data']["_id"] ;
-//     print("==========================================================oderId $oderId");
-//     Get.toNamed(AppRoute.orderDoneScreen);
-//   } else {
-//     Utils.toastMessage(response.message);
-//   }
-//
-//   print(response.statusCode);
-//   print(response.responseJson);
-//
-//   isLoading = false;
-//   update();
-// }
+  Future<void> paymentRepo() async {
+    isLoading = true;
+    update();
+
+    var body = {"data": jsonEncode(paymentIntentData)};
+
+    var response = await ApiService.postApi(AppUrl.payment, body);
+
+    if (response.statusCode == 200) {
+      Utils.toastMessage(response.message);
+    } else {
+      Utils.toastMessage(response.message);
+    }
+
+    print(response.statusCode);
+    print(response.body);
+
+    isLoading = false;
+    update();
+  }
 }

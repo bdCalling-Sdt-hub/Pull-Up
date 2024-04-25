@@ -289,9 +289,9 @@ class ApiService {
 
       if (kDebugMode) {
         print("===============================================>url $url");
-        print("===============================================>url $body");
+        print("===============================================>body $body");
         print(
-            "===============================================>url ${header ?? mainHeader}");
+            "===============================================>header ${header ?? mainHeader}");
       }
 
       var request = http.MultipartRequest(method, Uri.parse(url));

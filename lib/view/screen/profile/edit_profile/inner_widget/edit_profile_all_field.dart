@@ -22,7 +22,6 @@ class EditProfileAllField extends StatelessWidget {
   final hoursController = ValueNotifier<bool>(false);
   final locatorController = ValueNotifier<bool>(false);
 
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
@@ -35,8 +34,8 @@ class EditProfileAllField extends StatelessWidget {
                   text: PrefsHelper.mySubscription == 'shopping'
                       ? AppString.userName
                       : PrefsHelper.mySubscription == 'business'
-                          ? AppString.businessName
-                          : AutofillHints.organizationName,
+                      ? AppString.businessName
+                      : AutofillHints.organizationName,
                   fontWeight: FontWeight.w300,
                   fontSize: 14.sp,
                   textAlign: TextAlign.start,
@@ -67,8 +66,8 @@ class EditProfileAllField extends StatelessWidget {
               hintText: PrefsHelper.mySubscription == 'shopping'
                   ? AppString.userName
                   : PrefsHelper.mySubscription == 'business'
-                      ? AppString.businessName
-                      : AutofillHints.organizationName,
+                  ? AppString.businessName
+                  : AutofillHints.organizationName,
               controller: controller.nameController,
               keyboardType: TextInputType.name,
               fillColor: AppColors.transparent,
@@ -176,174 +175,181 @@ class EditProfileAllField extends StatelessWidget {
               height: 12.h,
             ),
             PrefsHelper.mySubscription == "shopping"
-                ? SizedBox()
+                ? const SizedBox()
                 : Column(
-                    children: [
-                      Row(
-                        children: [
-                          CustomText(
-                            text: AppString.description,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.sp,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          const Spacer(),
-                          CustomText(
-                            text: AppString.showProfile,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10.sp,
-                            right: 8.w,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          AdvancedSwitch(
-                            height: 18.sp,
-                            width: 36.w,
-                            activeColor: AppColors.deepOrange,
-                            controller: desController,
-                            initialValue: true,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
-                      Container(
-                        height: 115.sp,
-                        width: Get.width,
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.white50),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        child: TextFormField(
-                          style: TextStyle(
-                              fontSize: 14.sp, color: AppColors.white50),
-                          maxLines: 10,
-                          decoration: InputDecoration(
-                            hintText: AppString.description,
-                            border: InputBorder.none,
-                            hintStyle: GoogleFonts.roboto(
-                                fontSize: 14.sp, color: AppColors.white50),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 12.h,
-                      ),
-                      Row(
-                        children: [
-                          CustomText(
-                            text: AppString.website,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.sp,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          const Spacer(),
-                          CustomText(
-                            text: AppString.showProfile,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10.sp,
-                            right: 8.w,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          AdvancedSwitch(
-                            height: 18.sp,
-                            width: 36.w,
-                            activeColor: AppColors.deepOrange,
-                            controller: websiteController,
-                            initialValue: true,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
-                      CustomTextField(
-                        hintText: AppString.website,
-                        keyboardType: TextInputType.url,
-                        fillColor: AppColors.transparent,
-                        borderColor: AppColors.white50,
-                        paddingVertical: 10.sp,
-                      ),
-                      SizedBox(
-                        height: 12.h,
-                      ),
-                      Row(
-                        children: [
-                          CustomText(
-                            text: AppString.businessHours,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.sp,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          const Spacer(),
-                          CustomText(
-                            text: AppString.showProfile,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10.sp,
-                            right: 8.w,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          AdvancedSwitch(
-                            height: 18.sp,
-                            width: 36.w,
-                            activeColor: AppColors.deepOrange,
-                            controller: hoursController,
-                            initialValue: true,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
-                      CustomTextField(
-                        hintText: AppString.businessHours,
-                        keyboardType: TextInputType.number,
-                        fillColor: AppColors.transparent,
-                        borderColor: AppColors.white50,
-                        paddingVertical: 10.sp,
-                        suffixIcon: const Icon(
-                          Icons.calendar_month_outlined,
+              children: [
+                Row(
+                  children: [
+                    CustomText(
+                      text: AppString.description,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14.sp,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    const Spacer(),
+                    CustomText(
+                      text: AppString.showProfile,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10.sp,
+                      right: 8.w,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    AdvancedSwitch(
+                      height: 18.sp,
+                      width: 36.w,
+                      activeColor: AppColors.deepOrange,
+                      controller: desController,
+                      initialValue: true,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                Container(
+                  height: 115.sp,
+                  width: Get.width,
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.white50),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  child: TextFormField(
+                    style: TextStyle(
+                        fontSize: 14.sp, color: AppColors.white50),
+                    maxLines: 10,
+                    decoration: InputDecoration(
+                      hintText: AppString.description,
+                      border: InputBorder.none,
+                      hintStyle: GoogleFonts.roboto(
+                          fontSize: 14.sp, color: AppColors.white50),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                Row(
+                  children: [
+                    CustomText(
+                      text: AppString.website,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14.sp,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    const Spacer(),
+                    CustomText(
+                      text: AppString.showProfile,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10.sp,
+                      right: 8.w,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    AdvancedSwitch(
+                      height: 18.sp,
+                      width: 36.w,
+                      activeColor: AppColors.deepOrange,
+                      controller: websiteController,
+                      initialValue: true,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                CustomTextField(
+                  hintText: AppString.website,
+                  keyboardType: TextInputType.url,
+                  fillColor: AppColors.transparent,
+                  borderColor: AppColors.white50,
+                  paddingVertical: 10.sp,
+                ),
+                PrefsHelper.mySubscription == "business"
+                    ? Column(
+                  children: [
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Row(
+                                  children: [
+                                    CustomText(
+                          text: AppString.businessHours,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14.sp,
+                          textAlign: TextAlign.start,
                           color: AppColors.white50,
                         ),
+                        const Spacer(),
+                        CustomText(
+                          text: AppString.showProfile,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 10.sp,
+                          right: 8.w,
+                          textAlign: TextAlign.start,
+                          color: AppColors.white50,
+                        ),
+                        AdvancedSwitch(
+                          height: 18.sp,
+                          width: 36.w,
+                          activeColor: AppColors.deepOrange,
+                          controller: hoursController,
+                          initialValue: true,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.h,
+                    ),
+                    CustomTextField(
+                      hintText: AppString.businessHours,
+                      keyboardType: TextInputType.number,
+                      fillColor: AppColors.transparent,
+                      borderColor: AppColors.white50,
+                      paddingVertical: 10.sp,
+                      suffixIcon: const Icon(
+                        Icons.calendar_month_outlined,
+                        color: AppColors.white50,
                       ),
-                      SizedBox(
-                        height: 12.h,
-                      ),
-                      Row(
-                        children: [
-                          CustomText(
-                            text: AppString.location,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.sp,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          const Spacer(),
-                          CustomText(
-                            text: AppString.showProfile,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10.sp,
-                            right: 8.w,
-                            textAlign: TextAlign.start,
-                            color: AppColors.white50,
-                          ),
-                          AdvancedSwitch(
-                            height: 18.sp,
-                            width: 36.w,
-                            activeColor: AppColors.deepOrange,
-                            controller: locatorController,
-                            initialValue: true,
-                          )
-                        ],
-                      ),
-                    ],
-                  )
+                    ),
+                  ],
+                )
+                    : const SizedBox(),
+                SizedBox(
+                  height: 12.h,
+                ),
+                Row(
+                  children: [
+                    CustomText(
+                      text: AppString.location,
+                      fontWeight: FontWeight.w300,
+
+                      fontSize: 14.sp,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    const Spacer(),
+                    CustomText(
+                      text: AppString.showProfile,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10.sp,
+                      right: 8.w,
+                      textAlign: TextAlign.start,
+                      color: AppColors.white50,
+                    ),
+                    AdvancedSwitch(
+                      height: 18.sp,
+                      width: 36.w,
+                      activeColor: AppColors.deepOrange,
+                      controller: locatorController,
+                      initialValue: true,
+                    )
+                  ],
+                ),
+              ],
+            )
           ],
         );
       },

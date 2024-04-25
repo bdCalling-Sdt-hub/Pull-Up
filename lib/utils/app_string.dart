@@ -331,6 +331,7 @@ class AppString {
   static const String businessAccount = "Business Account";
 
   static const String organizationAccount = "Organizational Account";
+  static const String organizationName = "Organizational Name";
 
   static const String whatYouGet = "What you get";
 

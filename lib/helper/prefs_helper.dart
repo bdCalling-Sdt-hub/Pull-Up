@@ -11,20 +11,22 @@ class PrefsHelper extends GetxController {
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
-  static String mySubscription = "business";
+  static String mySubscription = "organisation";
 
   ///<<<======================== Get All Data Form Shared Preference ==============>
 
   static Future<void> getAllPrefData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     token = preferences.getString("token") ?? "";
-    token = preferences.getString("refreshToken") ?? "";
+    refreshToken = preferences.getString("refreshToken") ?? "";
     userId = preferences.getString("userId") ?? "";
     myImage = preferences.getString("myImage") ?? "";
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
-    mySubscription = preferences.getString("mySubscription") ?? "business";
+    // mySubscription = preferences.getString("mySubscription") ?? "business";
+
+    print(token);
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>
