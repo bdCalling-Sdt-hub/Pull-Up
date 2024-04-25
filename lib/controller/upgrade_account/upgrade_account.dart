@@ -113,6 +113,7 @@ class UpgradeAccountController extends GetxController {
       PrefsHelper.mySubscription =
           jsonDecode(response.body)["data"]["accountType"];
       PrefsHelper.setString("mySubscription", PrefsHelper.mySubscription);
+      print("=====================================>mySubscription ${PrefsHelper.mySubscription}");
       Get.offAllNamed(AppRoute.editProfile);
     }
     isLoading = false;

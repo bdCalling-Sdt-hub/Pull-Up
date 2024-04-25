@@ -193,6 +193,7 @@ class AppString {
   static const String cardNumber = "Card number";
 
   static const String expirationDate = "Expiration date";
+  static const String dateOfBrith = "Date Of Brith";
 
   static const String securityCode = "Security code";
 

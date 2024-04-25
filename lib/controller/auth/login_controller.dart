@@ -41,6 +41,7 @@ class LoginController extends GetxController {
       PrefsHelper.userId = logInModel?.data?.user?.sId ?? "";
       PrefsHelper.myEmail = logInModel?.data?.user?.email ?? "";
       PrefsHelper.myName = logInModel?.data?.user?.name ?? "";
+      PrefsHelper.mySubscription = logInModel?.data?.user?.accountType ?? "";
       PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString('token', PrefsHelper.token);
@@ -48,6 +49,7 @@ class LoginController extends GetxController {
       PrefsHelper.setString('myEmail', PrefsHelper.myEmail);
       PrefsHelper.setString('myName', PrefsHelper.myName);
       PrefsHelper.setBool('isLogIn', PrefsHelper.isLogIn);
+      PrefsHelper.setString('mySubscription', PrefsHelper.mySubscription);
 
       Utils.toastMessage(response.message);
       Get.offAllNamed(AppRoute.home);

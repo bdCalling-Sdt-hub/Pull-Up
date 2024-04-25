@@ -206,9 +206,8 @@ class _AddProductState extends State<AddProduct> {
                                         right: 8,
                                         text: item),
                                     GestureDetector(
-                                        onTap: () {
-                                          controller.tagList.remove(item);
-                                        },
+                                        onTap: () => controller.removeKeyword(
+                                            item),
                                         child: const Icon(
                                           Icons.close,
                                           color: AppColors.white50,

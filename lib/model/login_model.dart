@@ -56,6 +56,19 @@ class User {
   String? createdAt;
   String? updatedAt;
   int? iV;
+  String? accountType;
+  String? activationDate;
+  String? expirationDate;
+  String? location;
+  MapLocation? mapLocation;
+  String? packageDuration;
+  String? businessDescription;
+  String? businessEmail;
+  String? businessHours;
+  String? businessName;
+  String? businessNumber;
+  String? businessWebsite;
+  int? averageRating;
 
   User(
       {this.sId,
@@ -69,7 +82,20 @@ class User {
         this.emailVerified,
         this.createdAt,
         this.updatedAt,
-        this.iV});
+        this.iV,
+        this.accountType,
+        this.activationDate,
+        this.expirationDate,
+        this.location,
+        this.mapLocation,
+        this.packageDuration,
+        this.businessDescription,
+        this.businessEmail,
+        this.businessHours,
+        this.businessName,
+        this.businessNumber,
+        this.businessWebsite,
+        this.averageRating});
 
   User.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -84,6 +110,21 @@ class User {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    accountType = json['accountType'];
+    activationDate = json['activationDate'];
+    expirationDate = json['expirationDate'];
+    location = json['location'];
+    mapLocation = json['mapLocation'] != null
+        ? new MapLocation.fromJson(json['mapLocation'])
+        : null;
+    packageDuration = json['packageDuration'];
+    businessDescription = json['businessDescription'];
+    businessEmail = json['businessEmail'];
+    businessHours = json['businessHours'];
+    businessName = json['businessName'];
+    businessNumber = json['businessNumber'];
+    businessWebsite = json['businessWebsite'];
+    averageRating = json['averageRating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -102,6 +143,21 @@ class User {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    data['accountType'] = this.accountType;
+    data['activationDate'] = this.activationDate;
+    data['expirationDate'] = this.expirationDate;
+    data['location'] = this.location;
+    if (this.mapLocation != null) {
+      data['mapLocation'] = this.mapLocation!.toJson();
+    }
+    data['packageDuration'] = this.packageDuration;
+    data['businessDescription'] = this.businessDescription;
+    data['businessEmail'] = this.businessEmail;
+    data['businessHours'] = this.businessHours;
+    data['businessName'] = this.businessName;
+    data['businessNumber'] = this.businessNumber;
+    data['businessWebsite'] = this.businessWebsite;
+    data['averageRating'] = this.averageRating;
     return data;
   }
 }
@@ -121,6 +177,31 @@ class Image {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['publicFileUrl'] = this.publicFileUrl;
     data['path'] = this.path;
+    return data;
+  }
+}
+
+class MapLocation {
+  double? latitude;
+  double? longitude;
+  String? sId;
+  List<double>? coordinates;
+
+  MapLocation({this.latitude, this.longitude, this.sId, this.coordinates});
+
+  MapLocation.fromJson(Map<String, dynamic> json) {
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    sId = json['_id'];
+    coordinates = json['coordinates'].cast<double>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
+    data['_id'] = this.sId;
+    data['coordinates'] = this.coordinates;
     return data;
   }
 }

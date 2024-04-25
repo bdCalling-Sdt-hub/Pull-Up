@@ -1,20 +1,21 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pull_up/utils/app_url.dart';
+import 'package:pull_up/core/app_route.dart';
 
 import '../../services/api_service.dart';
+import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
-class AddProductController extends GetxController {
+class NewEventController extends GetxController {
   String? image;
-  bool isLoading = false;
-  TextEditingController tagController = TextEditingController();
 
-  List tagList = [];
+  bool isLoading = false;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController desController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
 
   Future selectImageGallery() async {
     final ImagePicker picker = ImagePicker();
@@ -28,11 +29,6 @@ class AddProductController extends GetxController {
 
   //Pick Image from Camera
 
-  removeKeyword(item) {
-    tagList.remove(item);
-    update();
-
-  }
   selectImageCamera() async {
     final ImagePicker picker = ImagePicker();
     final XFile? getImages =
@@ -43,32 +39,22 @@ class AddProductController extends GetxController {
     }
   }
 
-  TextEditingController productNameController = TextEditingController();
-
-  TextEditingController desController = TextEditingController();
-
-  TextEditingController priceController = TextEditingController();
-  final switchController = ValueNotifier<bool>(false);
-
-  Future<void> addProductRepo() async {
+  Future<void> createEventRepo() async {
     isLoading = true;
     update();
     var body = {
-      'name': productNameController.text,
-      'description': desController.text,
-      'price': priceController.text,
-      'keywords': jsonEncode(tagList),
+      "name": nameController.text,
+      "description": desController.text,
+      "price": priceController.text,
+      "location": addressController.text,
     };
 
     var response = await ApiService.multipartRequest(
-        url: AppUrl.addProduct, body: body, imagePath: image);
-
-    if (kDebugMode) {
-      print("=====================================>response ${response.body}");
-    }
+        url: AppUrl.crateEvent, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
-      // Get.offAllNamed(AppRoute.signInScreen);
+      print(response.body);
+      Get.toNamed(AppRoute.eventList);
     } else {
       Utils.toastMessage(response.message);
     }

@@ -198,7 +198,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               );
             },
           );
-        } else if (PrefsHelper.mySubscription == "Business") {
+        } else if (PrefsHelper.mySubscription == "business") {
           Get.offAllNamed(AppRoute.addProduct);
         } else {
           Get.offAllNamed(AppRoute.newEvent);

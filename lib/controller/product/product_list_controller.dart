@@ -11,7 +11,8 @@ import '../../utils/app_utils.dart';
 
 class ProductListController extends GetxController {
   Status status = Status.completed;
-  bool isMoreLoading = false ;
+  bool isMoreLoading = false;
+
   List products = [];
 
   int page = 1;
@@ -50,6 +51,7 @@ class ProductListController extends GetxController {
       }
       status = Status.completed;
       update();
+      page += 1;
     } else {
       status = Status.error;
       update();

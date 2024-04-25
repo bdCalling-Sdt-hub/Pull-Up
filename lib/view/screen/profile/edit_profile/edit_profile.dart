@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_images.dart';
+import 'package:pull_up/utils/app_utils.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/custom_loading.dart';
@@ -20,7 +21,6 @@ import 'inner_widget/edit_profile_shoping_account.dart';
 class EditProfile extends StatelessWidget {
   EditProfile({super.key});
 
-  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,42 +39,28 @@ class EditProfile extends StatelessWidget {
           builder: (controller) {
             return SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    const ProfileImage(
-                      imageURl: AppImages.profile1,
-                    ),
-                    CustomText(
-                      text: controller.nameController.text,
-                      color: AppColors.white50,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w600,
-                      top: 8.h,
-                    ),
-                    PrefsHelper.mySubscription == "organisation"
-                        ? EditProfileOrganisationAccount()
-                        : PrefsHelper.mySubscription == "business"
-                            ? EditProfileBusinessAccount()
-                            : EditProfileShopingAccount(),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    controller.isLoading
-                        ? const CustomElevatedLoadingButton()
-                        : CustomButton(
-                            titleText: AppString.save,
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                controller.updateProfileRepo();
-                              }
-                            })
-                  ],
-                ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  const ProfileImage(
+                    imageURl: AppImages.profile1,
+                  ),
+                  CustomText(
+                    text: controller.nameController.text,
+                    color: AppColors.white50,
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                    top: 8.h,
+                  ),
+                  PrefsHelper.mySubscription == "organisation"
+                      ? EditProfileOrganisationAccount()
+                      : PrefsHelper.mySubscription == "business"
+                          ? EditProfileBusinessAccount()
+                          : EditProfileShopingAccount(),
+
+                ],
               ),
             );
           },

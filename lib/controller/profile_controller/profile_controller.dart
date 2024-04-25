@@ -24,6 +24,7 @@ class ProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController dateOfBrithController = TextEditingController();
   TextEditingController desController = TextEditingController();
   TextEditingController websiteController = TextEditingController();
   TextEditingController businessHoursController = TextEditingController();
@@ -75,6 +76,32 @@ class ProfileController extends GetxController {
     update();
   }
 
+  Future<void> dateOfBrithTimePicker() async {
+    final DateTime? picked = await showDatePicker(
+      builder: (context, child) => Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: AppColors.primaryColor,
+            onPrimary: AppColors.white50,
+            onSurface: AppColors.grey900,
+          ),
+        ),
+        child: child!,
+      ),
+      context: Get.context!,
+      initialDate: DateTime(1999),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null) {
+      // First click, set the start date
+      dateOfBrithController.text =
+          "${picked.day}/${picked.month}/${picked.year}";
+    }
+    update();
+  }
+
   timePicker() async {
     // First click - select start time
     final TimeOfDay? selectedStartTime = await showTimePicker(
@@ -93,7 +120,7 @@ class ProfileController extends GetxController {
     update();
   }
 
-  Future<void> updateProfileRepo() async {
+  Future<void> updateBusinessProfileRepo() async {
     isLoading = true;
     update();
     var body = {
@@ -103,7 +130,32 @@ class ProfileController extends GetxController {
       "businessDescription": desController.text,
       "businessWebsite": websiteController.text,
       "businessHours": businessHoursController.text,
-      "dateOfBirth": "21/09/1994"
+      "businessLocation": dateOfBrithController.text
+    };
+
+    var response = await ApiService.multipartRequest(
+        url: AppUrl.updateAccount, body: body, imagePath: image);
+
+    if (response.statusCode == 200) {
+      Get.offAllNamed(AppRoute.profile);
+      print(response.body);
+    } else {
+      Utils.toastMessage(response.message);
+    }
+
+    isLoading = false;
+    update();
+  }
+  Future<void> updateOrganisationProfileRepo() async {
+    isLoading = true;
+    update();
+    var body = {
+      "organisationName": nameController.text,
+      "organisationNumber": numberController.text,
+      "organisationEmail": emailController.text,
+      "organisationDescription": desController.text,
+      "organisationWebsite": websiteController.text,
+      "dateOfBirth": dateOfBrithController.text,
     };
 
     var response = await ApiService.multipartRequest(

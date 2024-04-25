@@ -1,11 +1,14 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/controller/event/event_list_controller.dart';
+import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/event_model.dart';
+import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
 import '../../../../core/app_route.dart';
@@ -20,12 +23,17 @@ import '../../../widget/text/custom_text.dart';
 import 'inner_widget/recommendation_list_item.dart';
 import 'inner_widget/upcomming_event_item.dart';
 
-class EventListScreen extends StatelessWidget {
+class EventListScreen extends StatefulWidget {
   EventListScreen({super.key});
 
+  @override
+  State<EventListScreen> createState() => _EventListScreenState();
+}
+
+class _EventListScreenState extends State<EventListScreen> {
   List quick = [
     {
-      "image":AppIcons.burger,
+      "image": AppIcons.burger,
       "title": AppString.burger,
     },
     {
@@ -33,7 +41,7 @@ class EventListScreen extends StatelessWidget {
       "title": AppString.event,
     },
     {
-      "image":AppIcons.iceCream,
+      "image": AppIcons.iceCream,
       "title": AppString.iceCream,
     },
     {
@@ -41,7 +49,7 @@ class EventListScreen extends StatelessWidget {
       "title": AppString.coffee,
     },
     {
-      "image":AppIcons.garage,
+      "image": AppIcons.garage,
       "title": AppString.garage,
     },
     {
@@ -49,6 +57,7 @@ class EventListScreen extends StatelessWidget {
       "title": AppString.dj,
     },
   ];
+
   List books = [
     {
       "image": AppImages.thinkingFast,
@@ -74,6 +83,14 @@ class EventListScreen extends StatelessWidget {
       "subTitle": AppString.generalStore
     },
   ];
+  EventListController controller = Get.put(EventListController());
+
+  @override
+  void initState() {
+    controller.page = 1;
+    controller.eventsRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,117 +128,119 @@ class EventListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-        child: Column(
-          children: [
-
-            CustomTextField(
-             hintTextColor: AppColors.white50,
-              textColor: AppColors.white50,
-              hintText: AppString.searchForKeywords,
-              suffixIcon: const Icon(
-                Icons.search_sharp,
-                color: AppColors.white50,
-              ),
-              borderColor: AppColors.white50,
-              fillColor: AppColors.transparent,
-              paddingVertical: 10.h,
-
-
-            ),
-            // TextFormField(
-            //   cursorColor: AppColors.white50,
-            //   decoration: InputDecoration(
-            //     hintText: AppString.searchForKeywords,
-            //     hintStyle: const TextStyle(color: AppColors.white50),
-            //     contentPadding:
-            //     EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
-            //     suffixIcon: const Icon(
-            //       Icons.search_sharp,
-            //       color: AppColors.white50,
-            //     ),
-            //     border: OutlineInputBorder(
-            //         borderSide:
-            //         BorderSide(color: AppColors.white50, width: 1.w),
-            //         borderRadius: BorderRadius.circular(10.r)),
-            //     focusedBorder: OutlineInputBorder(
-            //         borderSide:
-            //         BorderSide(color: AppColors.white50, width: 1.w),
-            //         borderRadius: BorderRadius.circular(10.r)),
-            //   ),
-            // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: GetBuilder<EventListController>(
+        builder: (controller) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+            child: Column(
               children: [
-                CustomText(
-                  text: AppString.quick,
-                  color: AppColors.white50,
-                  fontSize: 20.sp,
-                  top: 21.h,
-                  fontWeight: FontWeight.w600,
+                CustomTextField(
+                  hintTextColor: AppColors.white50,
+                  textColor: AppColors.white50,
+                  hintText: AppString.searchForKeywords,
+                  suffixIcon: const Icon(
+                    Icons.search_sharp,
+                    color: AppColors.white50,
+                  ),
+                  borderColor: AppColors.white50,
+                  fillColor: AppColors.transparent,
+                  paddingVertical: 10.h,
                 ),
-                CustomText(
-                  text: AppString.seeAll,
-                  color: AppColors.white50,
-                  fontSize: 14.sp,
-                  top: 21.h,
-                  fontWeight: FontWeight.w400,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      text: AppString.quick,
+                      color: AppColors.white50,
+                      fontSize: 20.sp,
+                      top: 21.h,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    CustomText(
+                      text: AppString.seeAll,
+                      color: AppColors.white50,
+                      fontSize: 14.sp,
+                      top: 21.h,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 255.h,
+                  child: switch (controller.status) {
+                    Status.loading =>
+                      const Center(child: CircularProgressIndicator()),
+                    Status.error => ErrorScreen(
+                        onTap: () {
+                          controller.page = 1;
+                          controller.eventsRepo();
+                        },
+                      ),
+                    Status.completed => ListView.builder(
+                        itemCount: controller.events.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          Result item = controller.events[index];
+                          print(
+                              "==================> location ${item.location}");
+                          return GestureDetector(
+                              onTap: () => Get.toNamed(AppRoute.eventInfo),
+                              child: UpcommingEventItem(
+                                name: item.name ?? "",
+                                des: item.description ?? "",
+                                image:
+                                    "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
+                                location: item.location ?? "",
+                                price: item.price ?? "",
+                              ));
+                        },
+                      ),
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      text: AppString.recommendations,
+                      color: AppColors.white50,
+                      fontSize: 20.sp,
+                      top: 8.h,
+                      bottom: 8.h,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    CustomText(
+                      text: AppString.seeAll,
+                      color: AppColors.white50,
+                      fontSize: 14.sp,
+                      top: 8.h,
+                      bottom: 8.h,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 300,
+                  width: Get.height,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return RecommendationsListItem(
+                        image: AppImages.seminar2,
+                        title:
+                            AppString.elevateTheConferenceForProfessionalGrowth,
+                        price: "30.00",
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
-            SizedBox(
-                height: 255.h,
-                child:ListView.builder(
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => Get.toNamed(AppRoute.eventInfo),
-                        
-                        child: const UpcommingEventItem()) ;
-                  },)
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText(
-                  text: AppString.recommendations,
-                  color: AppColors.white50,
-                  fontSize: 20.sp,
-                  top: 8.h,
-                  bottom: 8.h,
-                  fontWeight: FontWeight.w600,
-                ),
-                CustomText(
-                  text: AppString.seeAll,
-                  color: AppColors.white50,
-                  fontSize: 14.sp,
-                  top: 8.h,
-                  bottom: 8.h,
-                  fontWeight: FontWeight.w400,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 300,
-              width: Get.height,
-              child: ListView.builder(
-                itemCount: 10,
-
-                itemBuilder: (context, index) {
-                  return RecommendationsListItem(
-                    image: AppImages.seminar2,
-                    title: AppString.elevateTheConferenceForProfessionalGrowth,
-                    price: "30.00",
-                  ) ;
-                },),
-            ),
-
-          ],
-        ),
+          );
+        },
       ),
-      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 0,),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 0,
+      ),
     );
   }
 }

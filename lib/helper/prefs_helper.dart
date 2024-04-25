@@ -24,7 +24,7 @@ class PrefsHelper extends GetxController {
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
-    // mySubscription = preferences.getString("mySubscription") ?? "business";
+    mySubscription = preferences.getString("mySubscription") ?? "shopping";
 
     print(token);
   }

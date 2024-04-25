@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             var item = controller.keywords[index];
                             return GestureDetector(
                               onTap: () {
-                                if (item == "event") {
+                                if (index == 1) {
                                   Get.toNamed(AppRoute.eventList);
                                 } else {
                                   Get.toNamed(AppRoute.productList,

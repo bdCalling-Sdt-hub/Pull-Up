@@ -323,6 +323,10 @@ class ApiService {
         String data = await response.stream.bytesToString();
 
         return ApiResponseModel(200, jsonDecode(data)['message'], data);
+      } else if (response.statusCode == 201) {
+        String data = await response.stream.bytesToString();
+
+        return ApiResponseModel(200, jsonDecode(data)['message'], data);
       } else {
         String data = await response.stream.bytesToString();
         return ApiResponseModel(
