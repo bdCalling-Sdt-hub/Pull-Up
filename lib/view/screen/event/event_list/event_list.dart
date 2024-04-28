@@ -31,64 +31,15 @@ class EventListScreen extends StatefulWidget {
 }
 
 class _EventListScreenState extends State<EventListScreen> {
-  List quick = [
-    {
-      "image": AppIcons.burger,
-      "title": AppString.burger,
-    },
-    {
-      "image": AppIcons.event,
-      "title": AppString.event,
-    },
-    {
-      "image": AppIcons.iceCream,
-      "title": AppString.iceCream,
-    },
-    {
-      "image": AppIcons.coffee,
-      "title": AppString.coffee,
-    },
-    {
-      "image": AppIcons.garage,
-      "title": AppString.garage,
-    },
-    {
-      "image": AppIcons.dj,
-      "title": AppString.dj,
-    },
-  ];
-
-  List books = [
-    {
-      "image": AppImages.thinkingFast,
-      "title": AppString.thinkingFast,
-      "subTitle": AppString.charleyStore
-    },
-    {
-      "image": AppImages.milkAndHoney,
-      "title": AppString.milkAndHoney,
-      "subTitle": AppString.generalStore
-    },
-  ];
-
-  List burgers = [
-    {
-      "image": AppImages.burger,
-      "title": AppString.burger,
-      "subTitle": AppString.charleyStore
-    },
-    {
-      "image": AppImages.burgers,
-      "title": AppString.burgers,
-      "subTitle": AppString.generalStore
-    },
-  ];
   EventListController controller = Get.put(EventListController());
 
   @override
   void initState() {
     controller.page = 1;
     controller.eventsRepo();
+    controller.scrollController.addListener(() {
+      controller.scrollControllerCall();
+    });
     super.initState();
   }
 
@@ -178,13 +129,15 @@ class _EventListScreenState extends State<EventListScreen> {
                       ),
                     Status.completed => ListView.builder(
                         itemCount: controller.events.length,
+                        controller: controller.scrollController,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           Result item = controller.events[index];
                           print(
                               "==================> location ${item.location}");
                           return GestureDetector(
-                              onTap: () => Get.toNamed(AppRoute.eventInfo),
+                              onTap: () => Get.toNamed(AppRoute.eventDetails,
+                                  parameters: {"eventId": item.sId ?? ""}),
                               child: UpcommingEventItem(
                                 name: item.name ?? "",
                                 des: item.description ?? "",
@@ -222,13 +175,14 @@ class _EventListScreenState extends State<EventListScreen> {
                   height: 300,
                   width: Get.height,
                   child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: controller.events.length,
+                    controller: controller.scrollController,
                     itemBuilder: (context, index) {
+                      Result item = controller.events.reversed.toList()[index];
                       return RecommendationsListItem(
-                        image: AppImages.seminar2,
-                        title:
-                            AppString.elevateTheConferenceForProfessionalGrowth,
-                        price: "30.00",
+                        image: "${AppUrl.imageUrl}/${item.image?.path}",
+                        title: item.name ?? "",
+                        price: item.price ?? "",
                       );
                     },
                   ),
@@ -238,7 +192,7 @@ class _EventListScreenState extends State<EventListScreen> {
           );
         },
       ),
-      bottomNavigationBar: CustomBottomNavBar(
+      bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 0,
       ),
     );

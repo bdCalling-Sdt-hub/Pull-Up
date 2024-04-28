@@ -5,7 +5,7 @@ import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_password.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_verify.dart';
 import 'package:pull_up/view/screen/auth/logIn/login.dart';
-import 'package:pull_up/view/screen/event/event_info/event_info.dart';
+import 'package:pull_up/view/screen/event/event_info/event_details.dart';
 import 'package:pull_up/view/screen/event/event_list/event_list.dart';
 import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
@@ -54,7 +54,7 @@ class AppRoute {
   static const String productDetails = "/product_details.dart";
   static const String productPayment = "/product_payment.dart";
   static const String eventList = "/event_list.dart";
-  static const String eventInfo = "/event_info.dart";
+  static const String eventDetails = "/event_details.dart";
   static const String ticketPayment = "/ticket_purchase_payment.dart";
   static const String notification = "/notification.dart";
   static const String favorites = "/favorites.dart";
@@ -94,7 +94,7 @@ class AppRoute {
     GetPage(name: productDetails, page: () => ProductDetails()),
     GetPage(name: productPayment, page: () => Productpayment()),
     GetPage(name: eventList, page: () => EventListScreen()),
-    GetPage(name: eventInfo, page: () => EventInfoScreen()),
+    GetPage(name: eventDetails, page: () => EventDetailsScreen()),
     GetPage(name: ticketPayment, page: () => TicketPurchasePayment()),
     GetPage(name: notification, page: () => NotificationScreen()),
     GetPage(name: favorites, page: () => FavoritesScreen()),

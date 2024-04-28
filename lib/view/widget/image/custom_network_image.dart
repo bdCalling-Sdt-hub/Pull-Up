@@ -40,8 +40,17 @@ class CustomNetworkImage extends StatelessWidget {
         errorBuilder: (context, error, stackTrace) {
           return Image.asset(AppImages.noImage);
         },
-        loadingBuilder: (context, child, loadingProgress) {
-          return Image.asset(AppImages.noImage);
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                  loadingProgress.expectedTotalBytes!
+                  : null,
+            ),
+          );
         },
       );
     }

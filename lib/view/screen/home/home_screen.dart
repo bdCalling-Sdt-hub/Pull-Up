@@ -75,16 +75,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    controller.burgerPage = 1;
+    controller.bookPage = 1;
+    controller.eventPage = 1;
+
     controller.bookRepo();
     controller.burgerRepo();
     controller.keywordRepo();
-    controller.burgerPage = 1;
-    controller.bookPage = 1;
+    controller.eventRepo();
+
     controller.burgerScrollController.addListener(() {
       controller.burgerScrollControllerCall();
     });
     controller.bookScrollController.addListener(() {
       controller.bookScrollControllerCall();
+    });
+    controller.eventScrollController.addListener(() {
+      controller.eventScrollControllerCall();
     });
   }
 
@@ -163,6 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           top: 21.h,
                           fontWeight: FontWeight.w600,
                         )),
+
                 switch (controller.keywordStatus) {
                   Status.loading =>
                     const Center(child: CircularProgressIndicator()),
@@ -299,6 +307,81 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 17.h,
                 ),
+
+                ///================event section==============================
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      text: AppString.event,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20.sp,
+                      color: AppColors.white50,
+                    ),
+                    InkWell(
+                      onTap: () => Get.toNamed(AppRoute.eventList),
+                      // parameters: {
+                      //   "account": "shopping",
+                      //   "keyword": "Book"
+                      // }),
+                      child: CustomText(
+                        text: AppString.more,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14.sp,
+                        color: AppColors.white50,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                SizedBox(
+                    height: 190.sp,
+                    child: switch (controller.eventStatus) {
+                      Status.loading =>
+                        const Center(child: CircularProgressIndicator()),
+                      Status.error => ErrorScreen(
+                          onTap: () {
+                            controller.eventPage = 1;
+                            controller.eventRepo();
+                          },
+                        ),
+                      Status.completed => controller.events.isEmpty
+                          ? const NoData()
+                          : GridView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              controller: controller.eventScrollController,
+                              scrollDirection: Axis.horizontal,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 1,
+                                      mainAxisExtent: 160.sp,
+                                      crossAxisSpacing: 20.w),
+                              itemCount: controller.events.length,
+                              itemBuilder: (context, index) {
+                                var item = controller.events[index];
+                                return InkWell(
+                                  onTap: () => Get.toNamed(
+                                      AppRoute.eventDetails,
+                                      parameters: {"eventId": item.sId!}),
+                                  child: HomeProductItem(
+                                    image:
+                                        "${AppUrl.imageUrl}/${item.image?.path}",
+                                    title: item.name ?? "",
+                                    subTitle: item.description ?? "",
+                                  ),
+                                );
+                              },
+                            ),
+                    }),
+                SizedBox(
+                  height: 17.h,
+                ),
+
+                ///================event section ==============================
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

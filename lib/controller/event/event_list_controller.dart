@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/event_model.dart';
@@ -11,10 +12,26 @@ import '../../utils/app_utils.dart';
 class EventListController extends GetxController {
   Status status = Status.completed;
 
+  bool isMoreLoading = false;
+
   List events = [];
   EventModel? eventModel;
 
   int page = 1;
+
+  ScrollController scrollController = ScrollController();
+
+  Future<void> scrollControllerCall() async {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      isMoreLoading = true;
+      update();
+      await eventsRepo();
+      isMoreLoading = false;
+      update();
+    }
+  }
+
 
   Future<void> eventsRepo() async {
     if (page == 1) {

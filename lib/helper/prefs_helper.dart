@@ -11,7 +11,7 @@ class PrefsHelper extends GetxController {
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
-  static String mySubscription = "organisation";
+  static String mySubscription = "shopping";
 
   ///<<<======================== Get All Data Form Shared Preference ==============>
 
@@ -26,7 +26,7 @@ class PrefsHelper extends GetxController {
     isLogIn = preferences.getBool("isLogIn") ?? false;
     mySubscription = preferences.getString("mySubscription") ?? "shopping";
 
-    print(token);
+    print(mySubscription);
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

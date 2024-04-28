@@ -14,15 +14,33 @@ import '../../../../widget/custom_loading.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';
 
-class EditProfileOrganisationAccount extends StatelessWidget {
+class EditProfileOrganisationAccount extends StatefulWidget {
   EditProfileOrganisationAccount({super.key});
 
+  @override
+  State<EditProfileOrganisationAccount> createState() => _EditProfileOrganisationAccountState();
+}
+
+class _EditProfileOrganisationAccountState extends State<EditProfileOrganisationAccount> {
   final nameController = ValueNotifier<bool>(false);
+
   final numberController = ValueNotifier<bool>(false);
+
   final emailController = ValueNotifier<bool>(false);
+
   final desController = ValueNotifier<bool>(false);
+
   final websiteController = ValueNotifier<bool>(false);
+
   final formKey = GlobalKey<FormState>();
+
+  ProfileController controller = Get.put((ProfileController()));
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

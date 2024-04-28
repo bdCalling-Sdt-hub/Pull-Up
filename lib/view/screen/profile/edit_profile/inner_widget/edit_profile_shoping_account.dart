@@ -11,16 +11,35 @@ import '../../../../../utils/app_string.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';
 
-class EditProfileShopingAccount extends StatelessWidget {
+class EditProfileShopingAccount extends StatefulWidget {
   EditProfileShopingAccount({super.key});
 
+  @override
+  State<EditProfileShopingAccount> createState() => _EditProfileShopingAccountState();
+}
+
+class _EditProfileShopingAccountState extends State<EditProfileShopingAccount> {
   final nameController = ValueNotifier<bool>(false);
+
   final numberController = ValueNotifier<bool>(false);
+
   final emailController = ValueNotifier<bool>(false);
+
   final desController = ValueNotifier<bool>(false);
+
   final websiteController = ValueNotifier<bool>(false);
+
   final hoursController = ValueNotifier<bool>(false);
+
   final locatorController = ValueNotifier<bool>(false);
+
+  ProfileController controller = Get.put((ProfileController()));
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
