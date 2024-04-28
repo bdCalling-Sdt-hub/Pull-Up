@@ -51,7 +51,8 @@ class OnboardingScreen extends StatelessWidget {
             CustomImage(
               imageSrc: AppImages.onboarding,
               imageType: ImageType.png,
-              size: 322.sp,
+              width: 322.sp,
+              height: 322.sp,
             ),
             SizedBox(
               height: 60.h,

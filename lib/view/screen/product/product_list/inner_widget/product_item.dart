@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/screen/product/product_list/inner_widget/delete_popup.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../widget/text/custom_text.dart';
@@ -42,11 +41,11 @@ class _ProductItemState extends State<ProductItem> {
           color: AppColors.grey300, borderRadius: BorderRadius.circular(10.r)),
       child: Row(
         children: [
-          CustomNetworkImage(
+          CustomImage(
               imageSrc: widget.image,
               width: 90.sp,
               height: 90.sp,
-              imageType: ImageNetworkType.decorationImage),
+              imageType: ImageType.decorationImage),
           SizedBox(
             width: 12.w,
           ),

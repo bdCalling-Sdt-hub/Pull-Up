@@ -75,6 +75,7 @@ class AppString {
   static const String burger = "Burger";
 
   static const String event = "Event";
+  static const String myEvent = "My Event";
 
   static const String iceCream = "Ice cream";
 
@@ -292,6 +293,7 @@ class AppString {
 
   static const String menu = "Menu";
   static const String product = "Product";
+  static const String myProduct = "My Product";
   static const String productName = "Product Name";
 
   static const String addNewProduct = "Add New Product";

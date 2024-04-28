@@ -116,7 +116,8 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
                     child: CustomImage(
                       imageSrc: AppImages.visa,
                       imageType: ImageType.png,
-                      size: 64.sp,
+                      width: 64.sp,
+                      height: 64.sp,
                     ),
                   ),
                 ),
@@ -142,7 +143,8 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
                     child: CustomImage(
                       imageSrc: AppImages.masterCard,
                       imageType: ImageType.png,
-                      size: 64.sp,
+                      height: 64.sp,
+                      width: 64.sp,
                     ),
                   ),
                 ),
@@ -167,7 +169,8 @@ class _TicketPurchasePaymentState extends State<TicketPurchasePayment> {
                     child: CustomImage(
                       imageSrc: AppImages.paypal,
                       imageType: ImageType.png,
-                      size: 64.sp,
+                      width: 64.sp,
+                      height: 64.sp,
                     ),
                   ),
                 ),

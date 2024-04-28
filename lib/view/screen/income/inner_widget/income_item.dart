@@ -39,7 +39,8 @@ class IncomeItem extends StatelessWidget {
                   child: CustomImage(
                 imageSrc: image,
                 imageType: ImageType.png,
-                size: 40,
+                height: 40,
+                width: 40,
               ))),
           Expanded(
             child: Column(

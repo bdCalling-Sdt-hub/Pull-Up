@@ -34,7 +34,7 @@ class _FavoritesItemState extends State<FavoritesItem> {
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Row(
         children: [
-          CustomImage(imageSrc: widget.image,imageType: ImageType.png, size: 60.sp,),
+          CustomImage(imageSrc: widget.image,imageType: ImageType.png, height: 60.sp, width: 60.sp,),
           SizedBox(width: 12.w,),
           Flexible(
             child: Column(

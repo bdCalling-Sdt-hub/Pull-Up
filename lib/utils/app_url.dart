@@ -14,6 +14,7 @@ class AppUrl {
   static const forgotPasswordVerify = "$baseUrl/users/verify-code";
   static const resetPassword = "$baseUrl/users/updated-password";
   static const product = "$baseUrl/product";
+  static const myProduct = "$baseUrl/product/user-wise-product";
   static const keywords = "$baseUrl/product/keywords";
   static const addProduct = "$baseUrl/product/create-product";
   static const updateAccount = "$baseUrl/users/update-account";
@@ -21,4 +22,5 @@ class AppUrl {
   static const payment = "$baseUrl/payment/create-payment-intent";
   static const crateEvent = "$baseUrl/event/create-event";
   static const event = "$baseUrl/event";
+  static const isFavorite = "$baseUrl/favorite/add";
 }

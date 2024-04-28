@@ -36,6 +36,7 @@ class ProfileController extends GetxController {
     if (getImages != null) {
       image = getImages.path;
       update();
+      print(image);
     }
   }
 
@@ -130,7 +131,8 @@ class ProfileController extends GetxController {
       "businessDescription": desController.text,
       "businessWebsite": websiteController.text,
       "businessHours": businessHoursController.text,
-      "businessLocation": dateOfBrithController.text
+      "businessLocation": dateOfBrithController.text,
+      "dateOfBirth": "21/09/1994"
     };
 
     var response = await ApiService.multipartRequest(

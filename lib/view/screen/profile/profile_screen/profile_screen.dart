@@ -95,7 +95,8 @@ class ProfileScreen extends StatelessWidget {
                           child: CustomImage(
                             imageSrc: AppImages.profile1,
                             imageType: ImageType.png,
-                            size: 100,
+                            height: 100,
+                            width: 100,
                           ),
                         ))),
                 CustomText(
@@ -146,9 +147,13 @@ class ProfileScreen extends StatelessWidget {
                     icon: AppIcons.boost,
                     onTap: () {}),
                 Item(
-                  title: AppString.addMenu,
+                  title: PrefsHelper.mySubscription == "business"
+                      ? AppString.myProduct
+                      : PrefsHelper.mySubscription == "organisation"
+                          ? AppString.myEvent
+                          : "",
                   icon: AppIcons.addMenu,
-                  onTap: () => Get.toNamed(AppRoute.productList),
+                  onTap: () => Get.toNamed(AppRoute.myProduct),
                 ),
                 Item(
                   title: AppString.income,
@@ -160,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentIndex: 4),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 4),
     );
   }
 }

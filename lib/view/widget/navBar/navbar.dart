@@ -161,7 +161,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        if (PrefsHelper.mySubscription == "shopping") {
+        if (PrefsHelper.mySubscription == "organisation") {
+          Get.offAllNamed(AppRoute.newEvent);
+        } else if (PrefsHelper.mySubscription == "business") {
+          Get.offAllNamed(AppRoute.addProduct);
+        } else {
           showDialog(
             context: Get.context!,
             builder: (context) {
@@ -198,10 +202,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               );
             },
           );
-        } else if (PrefsHelper.mySubscription == "business") {
-          Get.offAllNamed(AppRoute.addProduct);
-        } else {
-          Get.offAllNamed(AppRoute.newEvent);
         }
       }
     } else if (index == 3) {

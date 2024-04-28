@@ -14,14 +14,9 @@ import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import 'another_shoppings.dart';
 
-class PlaceOrder extends StatefulWidget {
+class PlaceOrder extends StatelessWidget {
   PlaceOrder({super.key});
 
-  @override
-  State<PlaceOrder> createState() => _PlaceOrderState();
-}
-
-class _PlaceOrderState extends State<PlaceOrder> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductDetailsController>(

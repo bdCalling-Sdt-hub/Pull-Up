@@ -62,7 +62,8 @@ class _EmailVerifyState extends State<EmailVerify> {
                     CustomImage(
                       imageSrc: AppImages.emailVerifyLogo,
                       imageType: ImageType.png,
-                      size: 170.sp,
+                      width: 170.sp,
+                      height: 170.sp,
                     ),
                     CustomText(
                       text: AppString.checkEmailForVerifyPin,

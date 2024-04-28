@@ -13,7 +13,6 @@ import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../../widget/navBar/navbar.dart';
@@ -54,10 +53,10 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                 child: Column(
 
                   children: [
-                    CustomNetworkImage(
+                    CustomImage(
                       imageSrc: "${AppUrl.imageUrl}/${controller
                           .eventDetailsModel?.data?.image?.path ?? ""}",
-                      imageType: ImageNetworkType.decorationImage, height: 200.h,),
+                      imageType: ImageType.decorationImage, height: 200.h,),
                     Padding(
                       padding:
                       EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),

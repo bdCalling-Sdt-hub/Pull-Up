@@ -41,7 +41,8 @@ class ForgetPasswordEmailVerify extends StatelessWidget {
                   CustomImage(
                     imageSrc: AppImages.emailVerifyLogo,
                     imageType: ImageType.png,
-                    size: 170.sp,
+                    height: 170.sp,
+                    width: 170.sp,
                   ),
                   SizedBox(
                     height: 30.h,

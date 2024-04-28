@@ -43,7 +43,8 @@ class LogInScreen extends StatelessWidget {
                   CustomImage(
                     imageSrc: AppImages.onboarding,
                     imageType: ImageType.png,
-                    size: 286.w,
+                    height: 286.w,
+                    width: 286.w,
                   ),
                   CustomText(
                     text: AppString.loginYourAccount,

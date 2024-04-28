@@ -40,13 +40,8 @@ class _EditProfileBusinessAccountState
 
   final formKey = GlobalKey<FormState>();
 
-  ProfileController controller = Get.put((ProfileController()));
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -359,6 +354,7 @@ class _EditProfileBusinessAccountState
                           if (controller.image != null) {
                             controller.updateBusinessProfileRepo();
                           } else {
+                            print(controller.image);
                             Utils.snackBarMessage(
                                 "500", 'please, select image');
                           }

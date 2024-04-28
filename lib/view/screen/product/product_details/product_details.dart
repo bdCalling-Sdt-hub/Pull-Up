@@ -4,20 +4,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/product/product_details_controller.dart';
-import 'package:pull_up/controller/product/product_list_controller.dart';
 import 'package:pull_up/model/api_response_model.dart';
-import 'package:pull_up/model/product_details_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
-import '../../../../utils/app_images.dart';
-import '../../../../utils/app_string.dart';
+
 import 'inner_widget/place_order.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -60,13 +55,13 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             Status.completed => Stack(
                 children: [
-                  CustomNetworkImage(
+                  CustomImage(
                     imageSrc:
                         "${AppUrl.imageUrl}/${controller.productDetailsModel?.data?.image?.path ?? ""}",
                     height: 340.h,
                     width: Get.width,
                     fill: BoxFit.fill,
-                    imageType: ImageNetworkType.decorationImage,
+                    imageType: ImageType.decorationImage,
                   ),
                   PlaceOrder()
                 ],

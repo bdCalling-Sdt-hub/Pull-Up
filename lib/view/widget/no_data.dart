@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,7 +19,8 @@ class NoData extends StatelessWidget {
           CustomImage(
             imageSrc: AppImages.noData,
             imageType: ImageType.png,
-            size: 70.sp,
+            height: 70.sp,
+            width: 70.sp,
           ),
           CustomText(
             text: AppString.noData,
@@ -33,5 +33,4 @@ class NoData extends StatelessWidget {
   }
 }
 
-class AppStrings {
-}
+class AppStrings {}

@@ -58,19 +58,25 @@ class Result {
   Image? image;
   List<String>? keywords;
   String? userId;
+  String? address;
   String? createdAt;
   String? updatedAt;
+  bool? isFavorite;
+  int? averageRating;
 
   Result(
       {this.sId,
-      this.name,
-      this.description,
-      this.price,
-      this.image,
-      this.keywords,
-      this.userId,
-      this.createdAt,
-      this.updatedAt});
+        this.name,
+        this.description,
+        this.price,
+        this.image,
+        this.keywords,
+        this.userId,
+        this.address,
+        this.createdAt,
+        this.updatedAt,
+        this.isFavorite,
+        this.averageRating});
 
   Result.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -80,8 +86,11 @@ class Result {
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     keywords = json['keywords'].cast<String>();
     userId = json['userId'];
+    address = json['address'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    isFavorite = json['isFavorite'];
+    averageRating = json['averageRating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -95,8 +104,11 @@ class Result {
     }
     data['keywords'] = this.keywords;
     data['userId'] = this.userId;
+    data['address'] = this.address;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
+    data['isFavorite'] = this.isFavorite;
+    data['averageRating'] = this.averageRating;
     return data;
   }
 }

@@ -3,11 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/event/event_details_controller.dart';
 import 'package:pull_up/utils/app_url.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_images.dart';
 import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 
@@ -93,11 +91,12 @@ class EventInfo extends StatelessWidget {
                 CircleAvatar(
                   radius: 30.sp,
                   child: ClipOval(
-                    child: CustomNetworkImage(
+                    child: CustomImage(
                       imageSrc:
                           "${AppUrl.imageUrl}/${controller.eventDetailsModel?.data?.image?.path ?? ""}",
                       height: 60.sp,
                       width: 60.sp,
+                      imageType: ImageType.network,
                     ),
                   ),
                 ),

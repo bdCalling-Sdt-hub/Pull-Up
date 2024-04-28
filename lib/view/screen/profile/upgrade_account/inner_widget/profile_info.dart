@@ -49,7 +49,8 @@ class ProfileInfo extends StatelessWidget {
           CustomImage(
             imageSrc: image,
             imageType: ImageType.png,
-            size: 60,
+            height: 60,
+             width: 60,
           )
         ],
       ),

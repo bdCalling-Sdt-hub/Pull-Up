@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -18,19 +16,25 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Get.toNamed(AppRoute.enableLocation) ;
+      Get.toNamed(AppRoute.enableLocation);
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white50,
-      body: Center(child: CustomImage(imageSrc: AppImages.splashLogo, imageType: ImageType.png, size: 162.sp),),
+      body: Center(
+        child: CustomImage(
+            imageSrc: AppImages.splashLogo,
+            imageType: ImageType.png,
+            height: 162.sp,
+            width: 162.sp),
+      ),
     );
   }
 }

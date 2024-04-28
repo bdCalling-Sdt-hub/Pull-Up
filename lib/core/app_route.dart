@@ -5,7 +5,6 @@ import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_password.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_verify.dart';
 import 'package:pull_up/view/screen/auth/logIn/login.dart';
-import 'package:pull_up/view/screen/event/event_info/event_details.dart';
 import 'package:pull_up/view/screen/event/event_list/event_list.dart';
 import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
@@ -15,6 +14,7 @@ import 'package:pull_up/view/screen/onboarding/onboarding.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
 import 'package:pull_up/view/screen/product/deal/add_deal.dart';
+import 'package:pull_up/view/screen/product/my_product.dart';
 import 'package:pull_up/view/screen/product/product_list/product_list.dart';
 import 'package:pull_up/view/screen/profile/edit_profile/edit_profile.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/profile_screen.dart';
@@ -26,6 +26,7 @@ import 'package:pull_up/view/screen/shop_house/shop_house.dart';
 import 'package:pull_up/view/widget/no_internet.dart';
 
 import '../view/screen/auth/create_account/email_verify.dart';
+import '../view/screen/event/event_details/event_details.dart';
 import '../view/screen/event/new_event/new_event.dart';
 import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
@@ -70,6 +71,7 @@ class AppRoute {
   static const String income = "/income.dart";
   static const String editProfile = "/edit_profile.dart";
   static const String noInternet = "/no_internet.dart";
+  static const String myProduct = "/my_product.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -110,5 +112,6 @@ class AppRoute {
     GetPage(name: income, page: () => Income()),
     GetPage(name: editProfile, page: () => EditProfile()),
     GetPage(name: noInternet, page: () => NoInternet()),
+    GetPage(name: myProduct, page: () => MyProduct()),
   ];
 }

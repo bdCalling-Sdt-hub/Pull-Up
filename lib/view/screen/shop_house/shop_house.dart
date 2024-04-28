@@ -66,7 +66,6 @@ class ShopHouseScreen extends StatelessWidget {
             height: Get.height,
             margin: EdgeInsets.only(top: 270.h),
             padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-
             decoration: BoxDecoration(
                 color: AppColors.background,
                 borderRadius: BorderRadius.only(
@@ -173,14 +172,15 @@ class ShopHouseScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var item = books[index];
                       return GestureDetector(
-                        onTap: () =>   Get.toNamed(
-                            AppRoute.productDetails,
+                        onTap: () => Get.toNamed(
+                          AppRoute.productDetails,
                           // parameters: {"productId": item.sId!}
                         ),
                         child: HomeProductItem(
                           image: item['image'],
                           title: item['title'],
                           subTitle: item['subTitle'],
+                          isFavorite: false,
                         ),
                       );
                     },

@@ -11,6 +11,7 @@ import '../controller/event/event_list_controller.dart';
 import '../controller/product/add_product_controller.dart';
 import '../controller/auth/forgot_password_controller.dart';
 import '../controller/event/new_event_controller.dart';
+import '../controller/product/my_product_controller.dart';
 import '../controller/product/product_details_controller.dart';
 import '../controller/product/product_list_controller.dart';
 
@@ -30,5 +31,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ProductDetailsController(), fenix: true);
     Get.lazyPut(() => EventListController(), fenix: true);
     Get.lazyPut(() => EventDetailsController(), fenix: true);
+    Get.lazyPut(() => MyProductController(), fenix: true);
   }
 }

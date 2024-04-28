@@ -52,7 +52,8 @@ class AddPaymentMethod extends StatelessWidget {
                 CustomImage(
                   imageSrc: AppImages.visa,
                   imageType: ImageType.png,
-                  size: 64.sp,
+                  height: 64.sp,
+                  width: 64.sp,
                 ),
                 SizedBox(
                   width: 14.w,
@@ -60,7 +61,8 @@ class AddPaymentMethod extends StatelessWidget {
                 CustomImage(
                   imageSrc: AppImages.masterCard,
                   imageType: ImageType.png,
-                  size: 64.sp,
+                  width: 64.sp,
+                  height: 64.sp,
                 ),
                 SizedBox(
                   width: 14.w,
@@ -68,7 +70,8 @@ class AddPaymentMethod extends StatelessWidget {
                 CustomImage(
                   imageSrc: AppImages.paypal,
                   imageType: ImageType.png,
-                  size: 64.sp,
+                  height: 64.sp,
+                  width: 64.sp,
                 )
               ],
             ),

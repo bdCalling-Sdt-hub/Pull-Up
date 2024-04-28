@@ -299,6 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "${AppUrl.imageUrl}/${item.image?.path}",
                                     title: item.name ?? "",
                                     subTitle: item.description ?? "",
+                                    isFavorite: item.isFavorite ?? false,
                                   ),
                                 );
                               },
@@ -371,6 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "${AppUrl.imageUrl}/${item.image?.path}",
                                     title: item.name ?? "",
                                     subTitle: item.description ?? "",
+                                    isFavorite: false,
                                   ),
                                 );
                               },
@@ -441,6 +443,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "${AppUrl.imageUrl}/${item.image?.path}",
                                   title: item.name ?? "",
                                   subTitle: item.description ?? "",
+                                  isFavorite: item.isFavorite ?? false,
                                 ),
                               );
                             },

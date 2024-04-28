@@ -33,11 +33,14 @@ class PrefsHelper extends GetxController {
   static Future<void> removeAllPrefData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.clear();
-    preferences.setString("userId", "");
     preferences.setString("token", "");
     preferences.setString("refreshToken", "");
+    preferences.setString("userId", "");
+    preferences.setString("myImage", "");
+    preferences.setString("myName", "");
     preferences.setString("myEmail", "");
     preferences.setBool("isLogIn", false);
+    preferences.setString("mySubscription", "shopping");
 
     Get.offAllNamed(AppRoute.login);
     getAllPrefData();

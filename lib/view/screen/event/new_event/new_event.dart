@@ -72,7 +72,8 @@ class NewEvent extends StatelessWidget {
                                   onTap: () => controller.selectImageCamera(),
                                   child: CustomImage(
                                     imageSrc: AppIcons.upload,
-                                    size: 50.sp,
+                                    height: 50.sp,
+                                    width: 50.sp,
                                   ))
                               : Image.file(File(controller.image!))),
                     ),

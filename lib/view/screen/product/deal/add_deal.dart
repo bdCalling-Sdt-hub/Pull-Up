@@ -64,7 +64,7 @@ class AddDeal extends StatelessWidget {
                         child: controller.image == null
                             ? InkWell(
                           onTap: () => controller.selectImageGallery(),
-                            child: CustomImage(imageSrc: AppIcons.upload, size: 50.sp,))
+                            child: CustomImage(imageSrc: AppIcons.upload, width: 50.sp,height: 50.sp))
                             : Image.file(File(controller.image!))),
                   ),
                 ),

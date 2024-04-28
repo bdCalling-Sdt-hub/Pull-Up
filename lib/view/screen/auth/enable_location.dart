@@ -51,7 +51,8 @@ class EnableLocationScreen extends StatelessWidget {
                 child: CustomImage(
               imageSrc: AppImages.enableLocation,
               imageType: ImageType.png,
-              size: 295,
+              width: 295,
+              height: 295,
             )),
             SizedBox(
               height: 129.h,

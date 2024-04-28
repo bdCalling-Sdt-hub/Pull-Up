@@ -77,7 +77,8 @@ class _AddProductState extends State<AddProduct> {
                                 onTap: () => controller.selectImageGallery(),
                                 child: CustomImage(
                                   imageSrc: AppIcons.upload,
-                                  size: 50.sp,
+                                  height: 50.sp,
+                                  width: 50.sp,
                                 ))
                             : Image.file(File(controller.image!)),
                       ),

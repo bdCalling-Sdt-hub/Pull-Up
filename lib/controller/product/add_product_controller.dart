@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/utils/app_url.dart';
 
+import '../../core/app_route.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_utils.dart';
 
@@ -68,7 +69,7 @@ class AddProductController extends GetxController {
     }
 
     if (response.statusCode == 200) {
-      // Get.offAllNamed(AppRoute.signInScreen);
+      Get.toNamed(AppRoute.myProduct);
     } else {
       Utils.toastMessage(response.message);
     }

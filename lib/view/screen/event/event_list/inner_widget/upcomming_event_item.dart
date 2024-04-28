@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../../../../utils/app_images.dart';
@@ -45,9 +44,9 @@ class UpcommingEventItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              CustomNetworkImage(
+              CustomImage(
                 imageSrc: image,
-                imageType: ImageNetworkType.decorationImage,
+                imageType: ImageType.decorationImage,
                 height: 130.h,
                 width: 220.w,
               ),
@@ -81,21 +80,24 @@ class UpcommingEventItem extends StatelessWidget {
                       child: CustomImage(
                         imageSrc: AppImages.profile1,
                         imageType: ImageType.png,
-                        size: 24.sp,
+                        width: 24.sp,
+                        height: 24.sp,
                       )),
                   Positioned(
                       left: 15,
                       child: CustomImage(
                         imageSrc: AppImages.profile2,
                         imageType: ImageType.png,
-                        size: 24.sp,
+                        height: 24.sp,
+                        width: 24.sp,
                       )),
                   Positioned(
                       left: 0,
                       child: CustomImage(
                         imageSrc: AppImages.profile1,
                         imageType: ImageType.png,
-                        size: 24.sp,
+                        width: 24.sp,
+                        height: 24.sp,
                       ))
                 ],
               ),

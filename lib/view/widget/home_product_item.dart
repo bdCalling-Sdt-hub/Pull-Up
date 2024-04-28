@@ -5,7 +5,6 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
-import 'package:pull_up/view/widget/image/custom_network_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class HomeProductItem extends StatelessWidget {
@@ -14,6 +13,7 @@ class HomeProductItem extends StatelessWidget {
     required this.image,
     required this.title,
     required this.subTitle,
+    required this.isFavorite,
   });
 
   final String image;
@@ -21,6 +21,7 @@ class HomeProductItem extends StatelessWidget {
   final String title;
 
   final String subTitle;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +41,11 @@ class HomeProductItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                CustomNetworkImage(
+                CustomImage(
                   imageSrc: image,
                   width: 135.w,
                   height: 100.h,
-                  imageType: ImageNetworkType.decorationImage,
+                  imageType: ImageType.decorationImage,
                 ),
                 // Container(
                 //   width: 135.w,
@@ -64,11 +65,17 @@ class HomeProductItem extends StatelessWidget {
                       radius: 12,
                       backgroundColor: AppColors.secondary.withOpacity(0.30),
                       child: ClipOval(
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: 16.sp,
-                          color: AppColors.primaryColor,
-                        ),
+                        child: isFavorite
+                            ? Icon(
+                                Icons.favorite,
+                                size: 16.sp,
+                                color: AppColors.primaryColor,
+                              )
+                            : Icon(
+                                Icons.favorite_border,
+                                size: 16.sp,
+                                color: AppColors.primaryColor,
+                              ),
                       ),
                     ))
               ],

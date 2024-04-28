@@ -34,7 +34,8 @@ class ProfileWithOutLogIn extends StatelessWidget {
                       child: CustomImage(
                         imageSrc: AppImages.profile,
                         imageType: ImageType.png,
-                        size: 80,
+                        width: 80,
+                        height: 80,
                       ),
                     ))),
             SizedBox(

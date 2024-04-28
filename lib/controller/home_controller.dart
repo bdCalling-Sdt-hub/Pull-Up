@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/event_list_model.dart';
 import 'package:pull_up/model/keyword_model.dart';
@@ -43,6 +44,7 @@ class HomeController extends GetxController {
       update();
     }
   }
+
   Future<void> eventScrollControllerCall() async {
     if (eventScrollController.position.pixels ==
         eventScrollController.position.maxScrollExtent) {
@@ -73,7 +75,7 @@ class HomeController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      "${AppUrl.product}?keywords=Book&page=$bookPage",
+      "${AppUrl.product}?keywords=Book&page=$bookPage${PrefsHelper.userId.isNotEmpty ? "&userId=${PrefsHelper.userId}" : ''}",
     );
 
     if (response.statusCode == 200) {
@@ -101,7 +103,7 @@ class HomeController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      "${AppUrl.product}?keywords=Burger&page=$burgerPage",
+      "${AppUrl.product}?keywords=Burger&page=$burgerPage${PrefsHelper.userId.isNotEmpty ? "&userId=${PrefsHelper.userId}" : ''}",
     );
 
     if (response.statusCode == 200) {
@@ -113,7 +115,7 @@ class HomeController extends GetxController {
       }
       burgerStatus = Status.completed;
       update();
-      burgerPage += 1 ;
+      burgerPage += 1;
     } else {
       burgerStatus = Status.error;
       update();
@@ -121,6 +123,7 @@ class HomeController extends GetxController {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
   }
+
   Future<void> eventRepo() async {
     if (eventPage == 1) {
       events.clear();
@@ -158,6 +161,31 @@ class HomeController extends GetxController {
     var response = await ApiService.getApi(
       AppUrl.keywords,
     );
+
+    if (response.statusCode == 200) {
+      keywordModel = KeywordModel.fromJson(jsonDecode(response.body));
+
+      if (keywordModel?.data != null) {
+        keywords.addAll(keywordModel!.data!);
+        print("================> ${keywords.length}");
+      }
+      keywordStatus = Status.completed;
+      update();
+    } else {
+      keywordStatus = Status.error;
+      update();
+
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
+
+  Future<void> isFavoriteRepo() async {
+    keywords.clear();
+    keywordStatus = Status.loading;
+    update();
+    var body = {"id": "662637ed78d7303c0c03e227"};
+
+    var response = await ApiService.postApi(AppUrl.isFavorite, body);
 
     if (response.statusCode == 200) {
       keywordModel = KeywordModel.fromJson(jsonDecode(response.body));
