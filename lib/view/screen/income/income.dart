@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/income_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
+import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/income_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
@@ -131,7 +133,14 @@ class _IncomeState extends State<Income> {
                   height: 20.h,
                 ),
                 Expanded(
-                  child: controller.incomes.isEmpty
+                    child: switch (controller.status) {
+                  Status.loading =>
+                    const Center(child: CircularProgressIndicator()),
+                  Status.error => ErrorScreen(
+                      onTap: () =>
+                          controller.currentBalance(controller.selectedChoice),
+                    ),
+                  Status.completed => controller.incomes.isEmpty
                       ? const NoData()
                       : ListView.builder(
                           itemCount: controller.incomes.length,
@@ -147,7 +156,7 @@ class _IncomeState extends State<Income> {
                             );
                           },
                         ),
-                ),
+                }),
               ],
             ),
           );

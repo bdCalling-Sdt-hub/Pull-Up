@@ -12,7 +12,6 @@ class IncomeController extends GetxController {
   Status status = Status.completed;
 
   String selectedChoice = 'This Month';
-  String incomeListChoice = 'This Month';
 
   final List<String> choices = ['This Month', 'This Day'];
 

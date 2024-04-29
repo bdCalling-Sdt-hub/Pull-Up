@@ -19,15 +19,15 @@ class Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(16.sp),
-        margin: EdgeInsets.symmetric(vertical: 8.h),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          color: AppColors.grey900,
-        ),
+    return Container(
+      padding: EdgeInsets.all(16.sp),
+      margin: EdgeInsets.symmetric(vertical: 8.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.r),
+        color: AppColors.grey900,
+      ),
+      child: InkWell(
+        onTap: onTap,
         child: Row(
           children: [
             CustomImage(imageSrc: icon),
