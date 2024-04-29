@@ -42,8 +42,7 @@ class HomeController extends GetxController {
   }
 
   void updateKeyboardVisibility() {
-    final bool isKeyboardVisible =
-        MediaQuery.of(Get.context!).viewInsets.bottom > 0;
+    final bool isKeyboardVisible = Get.mediaQuery.viewInsets.bottom > 0;
 
     isSearch = isKeyboardVisible;
     update();
