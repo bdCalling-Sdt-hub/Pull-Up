@@ -7,7 +7,7 @@ import '../../../utils/app_images.dart';
 
 enum ImageType { png, svg, network, decorationImage }
 
-class CustomImage extends StatelessWidget {
+class CustomImage extends StatefulWidget {
   final String imageSrc;
   final String defaultImage;
   final Color? imageColor;
@@ -27,41 +27,49 @@ class CustomImage extends StatelessWidget {
     super.key,
   });
 
+  @override
+  State<CustomImage> createState() => _CustomImageState();
+}
+
+class _CustomImageState extends State<CustomImage> {
   late Widget imageWidget;
-  RxBool networkError = false.obs;
+
+  bool networkError = false;
 
   @override
   Widget build(BuildContext context) {
-    if (imageType == ImageType.svg) {
+    if (widget.imageType == ImageType.svg) {
       imageWidget = SvgPicture.asset(
-        imageSrc,
-        color: imageColor,
-        height: height,
-        width: width,
-        fit: fill,
+        widget.imageSrc,
+        color: widget.imageColor,
+        height: widget.height,
+        width: widget.width,
+        fit: widget.fill,
       );
     }
 
-    if (imageType == ImageType.png) {
+    if (widget.imageType == ImageType.png) {
       imageWidget = Image.asset(
-        imageSrc,
-        color: imageColor,
-        height: height,
-        width: width,
-        fit: fill,
-        errorBuilder: (context, error, stackTrace) => Image.asset(defaultImage),
+        widget.imageSrc,
+        color: widget.imageColor,
+        height: widget.height,
+        width: widget.width,
+        fit: widget.fill,
+        errorBuilder: (context, error, stackTrace) =>
+            Image.asset(widget.defaultImage),
       );
     }
 
-    if (imageType == ImageType.network) {
+    if (widget.imageType == ImageType.network) {
       imageWidget = Image.network(
-        imageSrc,
-        color: imageColor,
-        height: height,
-        width: width,
-        fit: fill,
+        widget.imageSrc,
+        color: widget.imageColor,
+        height: widget.height,
+        width: widget.width,
+        fit: widget.fill,
         errorBuilder: (context, error, stackTrace) {
-          return Image.asset(defaultImage);
+          print(widget.imageSrc);
+          return Image.asset(widget.defaultImage);
         },
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent? loadingProgress) {
@@ -78,27 +86,37 @@ class CustomImage extends StatelessWidget {
       );
     }
 
-    if (imageType == ImageType.decorationImage) {
-      imageWidget = Obx(() => Container(
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                image: networkError.value
-                    ? DecorationImage(
-                        fit: fill, image: AssetImage(defaultImage))
-                    : DecorationImage(
-                        image: NetworkImage(imageSrc),
-                        onError: (exception, stackTrace) {
-                          networkError.value = true;
+    if (widget.imageType == ImageType.decorationImage) {
+      imageWidget = networkError
+          ? Container(
+              width: widget.width,
+              height: widget.height,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  image: DecorationImage(
+                      fit: widget.fill,
+                      image: AssetImage(widget.defaultImage))),
+            )
+          : Container(
+              width: widget.width,
+              height: widget.height,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  image: DecorationImage(
+                    image: NetworkImage(widget.imageSrc),
+                    onError: (exception, stackTrace) {
+                      networkError = true;
+                      print(widget.imageSrc);
+                      setState(() {});
 
-                          return;
-                        },
-                        fit: fill,
-                      )),
-          ));
+                      return;
+                    },
+                    fit: widget.fill,
+                  )),
+            );
     }
 
-    return SizedBox(height: height, width: width, child: imageWidget);
+    return SizedBox(
+        height: widget.height, width: widget.width, child: imageWidget);
   }
 }

@@ -15,6 +15,7 @@ class IncomeItem extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.image,
+    required this.amount,
   });
 
   final String title;
@@ -22,6 +23,7 @@ class IncomeItem extends StatelessWidget {
   final String subTitle;
 
   final String image;
+  final num amount;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class IncomeItem extends StatelessWidget {
             ),
           ),
           CustomText(
-            text: "+\$21.80",
+            text: "+\$${amount/100}",
             fontSize: 12.sp,
             color: AppColors.deepOrange,
             fontWeight: FontWeight.w700,

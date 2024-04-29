@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
-import 'package:pull_up/utils/app_images.dart';
+import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/profile_info.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
-import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 
 import '../../../../utils/app_colors.dart';
@@ -21,13 +21,14 @@ import 'inner_widget/shopping_Account.dart';
 import 'inner_widget/subscription_activate.dart';
 
 class UpgradeAccount extends StatefulWidget {
-  UpgradeAccount({super.key});
+  const UpgradeAccount({super.key});
 
   @override
   State<UpgradeAccount> createState() => _UpgradeAccountState();
 }
 
 class _UpgradeAccountState extends State<UpgradeAccount> {
+  ProfileController profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -50,7 +51,7 @@ class _UpgradeAccountState extends State<UpgradeAccount> {
               children: [
                 ProfileInfo(
                     title: PrefsHelper.myName,
-                    image: AppImages.profile1,
+                    image: "${AppUrl.imageUrl}/${profileController.profileModel?.data?.image?.path ?? ""}",
                     subTitle: PrefsHelper.mySubscription),
                 SubscriptionActivate(
                   title: 'Subscription is Activated',

@@ -6,8 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
+import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/utils/app_icons.dart';
+import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/inner_widget/boost_bussness.dart';
+import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 
@@ -18,8 +21,21 @@ import '../../../../utils/app_string.dart';
 import '../../../widget/item.dart';
 import '../../../widget/text/custom_text.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  ProfileController controller = Get.put(ProfileController());
+
+  @override
+  void initState() {
+    controller.profileRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,89 +96,97 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: GetBuilder<ProfileController>(
         builder: (controller) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                Center(
-                    child: CircleAvatar(
-                        radius: 50,
-                        backgroundColor: AppColors.grey300,
-                        child: ClipOval(
-                          child: CustomImage(
-                            imageSrc: AppImages.profile1,
-                            imageType: ImageType.png,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ))),
-                CustomText(
-                  text: 'Jackson Paul',
-                  color: AppColors.white50,
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w600,
-                  top: 8.h,
-                ),
-                SizedBox(
-                  height: 14.h,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () => Get.toNamed(AppRoute.editProfile),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CustomText(
-                          text: AppString.editProfile,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.white50,
-                          right: 8.w,
-                        ),
-                        CustomImage(imageSrc: AppIcons.edit)
-                      ],
+          return switch (controller.status) {
+            Status.loading => const Center(child: CircularProgressIndicator()),
+            Status.error => ErrorScreen(
+                onTap: () => controller.profileRepo(),
+              ),
+            Status.completed => SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
+                    Center(
+                        child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: AppColors.grey300,
+                            child: ClipOval(
+                              child: CustomImage(
+                                imageSrc:
+                                    "${AppUrl.imageUrl}/${controller.profileModel?.data?.image?.path ?? ""}",
+                                imageType: ImageType.network,
+                                height: 100,
+                                width: 100,
+                                defaultImage: AppImages.defaultProfile,
+                              ),
+                            ))),
+                    CustomText(
+                      text:  controller.profileModel?.data?.name ?? "",
+                      color: AppColors.white50,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w600,
+                      top: 8.h,
+                    ),
+                    SizedBox(
+                      height: 14.h,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () => Get.toNamed(AppRoute.editProfile),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CustomText(
+                              text: AppString.editProfile,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.white50,
+                              right: 8.w,
+                            ),
+                            CustomImage(imageSrc: AppIcons.edit)
+                          ],
+                        ),
+                      ),
+                    ),
+                    BoostBusiness(
+                        title: AppString.phone,
+                        subTitle: controller.profileModel?.data?.phoneNumber ?? "",
+                        icon: AppIcons.call,
+                        background: AppColors.background,
+                        subTitleTextSize: 14,
+                        onTap: () {}),
+                    Item(
+                      title: AppString.upgradeAccount,
+                      icon: AppIcons.upgradeAccount,
+                      onTap: () => Get.toNamed(AppRoute.upgradeAccount),
+                    ),
+                    BoostBusiness(
+                        title: AppString.boostYourBusiness,
+                        subTitle: AppString.boostYourBusinessDetails,
+                        icon: AppIcons.boost,
+                        onTap: () {}),
+                    Item(
+                      title: PrefsHelper.mySubscription == "business"
+                          ? AppString.myProduct
+                          : PrefsHelper.mySubscription == "organisation"
+                              ? AppString.myEvent
+                              : "",
+                      icon: AppIcons.addMenu,
+                      onTap: () => Get.toNamed(AppRoute.myProduct),
+                    ),
+                    Item(
+                      title: AppString.income,
+                      icon: AppIcons.income,
+                      onTap: () => Get.toNamed(AppRoute.income),
+                    ),
+                  ],
                 ),
-                BoostBusiness(
-                    title: AppString.phone,
-                    subTitle: '+62 821 560 641',
-                    icon: AppIcons.call,
-                    background: AppColors.background,
-                    subTitleTextSize: 14,
-                    onTap: () {}),
-                Item(
-                  title: AppString.upgradeAccount,
-                  icon: AppIcons.upgradeAccount,
-                  onTap: () => Get.toNamed(AppRoute.upgradeAccount),
-                ),
-                BoostBusiness(
-                    title: AppString.boostYourBusiness,
-                    subTitle: AppString.boostYourBusinessDetails,
-                    icon: AppIcons.boost,
-                    onTap: () {}),
-                Item(
-                  title: PrefsHelper.mySubscription == "business"
-                      ? AppString.myProduct
-                      : PrefsHelper.mySubscription == "organisation"
-                          ? AppString.myEvent
-                          : "",
-                  icon: AppIcons.addMenu,
-                  onTap: () => Get.toNamed(AppRoute.myProduct),
-                ),
-                Item(
-                  title: AppString.income,
-                  icon: AppIcons.income,
-                  onTap: () => Get.toNamed(AppRoute.income),
-                ),
-              ],
-            ),
-          );
+              ),
+          };
         },
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentIndex: 4),

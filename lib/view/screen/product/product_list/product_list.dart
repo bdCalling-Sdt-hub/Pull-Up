@@ -71,9 +71,9 @@ class _ProductListState extends State<ProductList> {
                       },
                     ),
                   Status.completed => controller.products.isEmpty
-                      ? const NoData()
+                      ? const Expanded(child: NoData())
                       : Expanded(
-                        child: ListView.builder(
+                          child: ListView.builder(
                             itemCount: controller.products.length,
                             controller: controller.scrollController,
                             physics: const BouncingScrollPhysics(),
@@ -87,7 +87,7 @@ class _ProductListState extends State<ProductList> {
                               );
                             },
                           ),
-                      ),
+                        ),
                 }
               ],
             ),

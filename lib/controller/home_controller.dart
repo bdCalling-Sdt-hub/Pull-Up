@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/api_response_model.dart';
@@ -13,7 +14,7 @@ import '../utils/app_url.dart';
 import '../utils/app_utils.dart';
 
 class HomeController extends GetxController {
-  // bool isLoading = false;
+  bool isSearch = false;
   Status bookStatus = Status.completed;
   Status burgerStatus = Status.completed;
   Status eventStatus = Status.completed;
@@ -30,9 +31,23 @@ class HomeController extends GetxController {
   int burgerPage = 1;
   int eventPage = 1;
 
+  TextEditingController searchController = TextEditingController();
+
   ScrollController bookScrollController = ScrollController();
   ScrollController burgerScrollController = ScrollController();
   ScrollController eventScrollController = ScrollController();
+
+  changeSearchKeyword(value) {
+    update();
+  }
+
+  void updateKeyboardVisibility() {
+    final bool isKeyboardVisible =
+        MediaQuery.of(Get.context!).viewInsets.bottom > 0;
+
+    isSearch = isKeyboardVisible;
+    update();
+  }
 
   Future<void> bookScrollControllerCall() async {
     if (bookScrollController.position.pixels ==
@@ -179,28 +194,42 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> isFavoriteRepo() async {
-    keywords.clear();
-    keywordStatus = Status.loading;
-    update();
-    var body = {"id": "662637ed78d7303c0c03e227"};
+  Future<void> isFavoriteRepo(String productId) async {
+    var body = {"id": productId};
 
     var response = await ApiService.postApi(AppUrl.isFavorite, body);
 
     if (response.statusCode == 200) {
-      keywordModel = KeywordModel.fromJson(jsonDecode(response.body));
-
-      if (keywordModel?.data != null) {
-        keywords.addAll(keywordModel!.data!);
-        print("================> ${keywords.length}");
-      }
-      keywordStatus = Status.completed;
-      update();
     } else {
-      keywordStatus = Status.error;
-      update();
-
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  bookIsFavoriteRepo(int index) {
+    if (PrefsHelper.token.isEmpty) return;
+
+    if (books[index].isFavorite != null && books[index].isFavorite) {
+      books[index].isFavorite = false;
+      update();
+    } else {
+      books[index].isFavorite = true;
+      update();
+    }
+
+    isFavoriteRepo(books[index].sId);
+  }
+
+  burgerIsFavoriteRepo(int index) {
+    if (PrefsHelper.token.isEmpty) return;
+
+    if (burgers[index].isFavorite != null && burgers[index].isFavorite) {
+      burgers[index].isFavorite = false;
+      update();
+    } else {
+      burgers[index].isFavorite = true;
+      update();
+    }
+
+    isFavoriteRepo(burgers[index].sId);
   }
 }

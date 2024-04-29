@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
+import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
@@ -46,11 +48,18 @@ class ProfileInfo extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          CustomImage(
-            imageSrc: image,
-            imageType: ImageType.png,
-            height: 60,
-             width: 60,
+          CircleAvatar(
+            backgroundColor: AppColors.transparent,
+            radius: 30,
+            child: ClipOval(
+              child: CustomImage(
+                imageSrc: image,
+                imageType: ImageType.network,
+                defaultImage: AppImages.defaultProfile,
+                height: 60,
+                 width: 60,
+              ),
+            ),
           )
         ],
       ),

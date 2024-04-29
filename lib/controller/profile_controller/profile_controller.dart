@@ -8,14 +8,16 @@ import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/model/profile_model.dart';
 
+import '../../model/api_response_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
 class ProfileController extends GetxController {
-  // Status status = Status.completed;
+  Status status = Status.completed;
 
   String? image;
   TimeOfDay? startTime;
@@ -28,6 +30,34 @@ class ProfileController extends GetxController {
   TextEditingController desController = TextEditingController();
   TextEditingController websiteController = TextEditingController();
   TextEditingController businessHoursController = TextEditingController();
+
+  ProfileModel? profileModel;
+
+  Future<void> profileRepo() async {
+    status = Status.loading;
+    update();
+
+    var response = await ApiService.getApi(
+      AppUrl.profile,
+    );
+
+    if (response.statusCode == 200) {
+      profileModel = ProfileModel.fromJson(jsonDecode(response.body));
+
+      status = Status.completed;
+      update();
+      Utils.toastMessage(response.message);
+
+      nameController.text = profileModel?.data?.name ?? "";
+      numberController.text = profileModel?.data?.phoneNumber ?? "";
+      emailController.text = profileModel?.data?.email ?? "";
+    } else {
+      status = Status.error;
+      update();
+
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
 
   Future selectImageGallery() async {
     final ImagePicker picker = ImagePicker();
@@ -148,6 +178,7 @@ class ProfileController extends GetxController {
     isLoading = false;
     update();
   }
+
   Future<void> updateOrganisationProfileRepo() async {
     isLoading = true;
     update();

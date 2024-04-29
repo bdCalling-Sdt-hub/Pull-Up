@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
@@ -8,13 +9,14 @@ import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class HomeProductItem extends StatelessWidget {
-  HomeProductItem({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.subTitle,
-    required this.isFavorite,
-  });
+  HomeProductItem(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subTitle,
+      required this.isFavorite,
+      this.showFavorite = true,
+      this.onTap});
 
   final String image;
 
@@ -22,6 +24,9 @@ class HomeProductItem extends StatelessWidget {
 
   final String subTitle;
   final bool isFavorite;
+  final bool showFavorite;
+
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -41,43 +46,40 @@ class HomeProductItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                CustomImage(
-                  imageSrc: image,
-                  width: 135.w,
-                  height: 100.h,
-                  imageType: ImageType.decorationImage,
+                Center(
+                  child: CustomImage(
+                    imageSrc: image,
+                    width: 135.w,
+                    height: 100.h,
+                    imageType: ImageType.decorationImage,
+                  ),
                 ),
-                // Container(
-                //   width: 135.w,
-                //   height: 100.h,
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(10.r),
-                //       image: DecorationImage(
-                //         image: AssetImage(image),
-                //         fit: BoxFit.fill,
-                //       )),
-                //   // child: CustomImage(imageSrc: AppImages.thinkingFast, imageType: ImageType.png, size: 150.sp,)
-                // ),
-                Positioned(
-                    top: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                      radius: 12,
-                      backgroundColor: AppColors.secondary.withOpacity(0.30),
-                      child: ClipOval(
-                        child: isFavorite
-                            ? Icon(
-                                Icons.favorite,
-                                size: 16.sp,
-                                color: AppColors.primaryColor,
-                              )
-                            : Icon(
-                                Icons.favorite_border,
-                                size: 16.sp,
-                                color: AppColors.primaryColor,
-                              ),
-                      ),
-                    ))
+                showFavorite
+                    ? Positioned(
+                        top: 0,
+                        right: 0,
+                        child: InkWell(
+                          onTap: onTap,
+                          child: CircleAvatar(
+                            radius: 12,
+                            backgroundColor:
+                                AppColors.secondary.withOpacity(0.30),
+                            child: ClipOval(
+                              child: isFavorite
+                                  ? Icon(
+                                      Icons.favorite,
+                                      size: 16.sp,
+                                      color: AppColors.primaryColor,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_border,
+                                      size: 16.sp,
+                                      color: AppColors.primaryColor,
+                                    ),
+                            ),
+                          ),
+                        ))
+                    : const SizedBox()
               ],
             ),
             CustomText(
