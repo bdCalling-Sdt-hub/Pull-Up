@@ -196,14 +196,12 @@ class ProfileController extends GetxController {
       "organisationDescription": desController.text,
       "organisationWebsite": websiteController.text,
       "dateOfBirth": dateOfBrithController.text,
-      "account_holder_name":"naimul",
-      "account_holder_type":"individual",
-      "routing_number":"110000000",
-      "account_number":"000123456789",
-
+      "account_holder_name": "naimul",
+      "account_holder_type": "individual",
+      "routing_number": "110000000",
+      "account_number": "000123456789",
     };
 
-    print(aaa);
     var response = await ApiService.multipartRequest(
         url: AppUrl.updateAccount, body: body, imagePath: aaa);
 
