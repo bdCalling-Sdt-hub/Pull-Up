@@ -221,7 +221,17 @@ class PlaceOrder extends StatelessWidget {
                   child: AnotherShopping(),
                 ),
                 InkWell(
-                  onTap: () => Get.toNamed(AppRoute.productPayment),
+                  onTap: () async {
+                    var data = await Get.toNamed(AppRoute.payment,
+                        parameters: {"amount": "${controller.price}"});
+
+                    if (data != null) {
+                      print("data Not null: $data");
+                      controller.paymentRepo(data);
+                    } else {
+                      print("data null: $data");
+                    }
+                  },
                   child: Container(
                     height: 60.sp,
                     padding:
@@ -242,7 +252,7 @@ class PlaceOrder extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                             CustomText(
-                              text: "(3 item)",
+                              text: "(${controller.item} item)",
                               color: AppColors.white50,
                               fontWeight: FontWeight.w300,
                               left: 6.w,

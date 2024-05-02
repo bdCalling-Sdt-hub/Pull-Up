@@ -20,6 +20,7 @@ class AppUrl {
   static const updateAccount = "$baseUrl/users/update-account";
   static const upgradedAccount = "$baseUrl/users/upgraded-account";
   static const payment = "$baseUrl/payment/create-payment-intent";
+  static const paymentWithProduct = "$baseUrl/payment/connect-create-payment-intent";
   static const crateEvent = "$baseUrl/event/create-event";
   static const event = "$baseUrl/event";
   static const isFavorite = "$baseUrl/favorite/add";

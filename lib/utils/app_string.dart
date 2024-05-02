@@ -459,4 +459,6 @@ class AppString {
   static const String pleaseAgreeToTermsAndCondition = "Please, agree to terms and condition";
   static const String termsAndCondition = "Terms and condition";
   static const String thisFieldIsRequired = "This field is required";
+  static const String paymentWaringText = "Please do not refresh the page or click the back or Close button of your app";
+  static const String somethingIsWrong = "Something is wrong";
 }

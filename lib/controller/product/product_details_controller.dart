@@ -51,11 +51,36 @@ class ProductDetailsController extends GetxController {
 
       status = Status.completed;
       update();
+      price = num.tryParse(productDetailsModel?.data?.price ?? "0") ?? 0;
     } else {
       status = Status.error;
       update();
 
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  Future<void> paymentRepo(var paymentIntentData) async {
+    // isLoading = true;
+    // update();
+
+    var body = {
+      "productId": productDetailsModel!.data!.sId,
+      "data": jsonEncode(paymentIntentData)
+    };
+
+    var response = await ApiService.postApi(AppUrl.paymentWithProduct, body);
+
+    if (response.statusCode == 200) {
+      Utils.toastMessage(response.message);
+    } else {
+      Utils.toastMessage(response.message);
+    }
+
+    print(response.statusCode);
+    print(response.body);
+
+    // isLoading = false;
+    // update();
   }
 }

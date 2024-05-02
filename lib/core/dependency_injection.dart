@@ -4,6 +4,7 @@ import 'package:pull_up/controller/auth/login_controller.dart';
 import 'package:pull_up/controller/event/event_details_controller.dart';
 import 'package:pull_up/controller/home_controller.dart';
 import 'package:pull_up/controller/income_controller.dart';
+import 'package:pull_up/controller/payment_controller.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 
@@ -34,5 +35,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => EventDetailsController(), fenix: true);
     Get.lazyPut(() => MyProductController(), fenix: true);
     Get.lazyPut(() => IncomeController(), fenix: true);
+    Get.lazyPut(() => PaymentController(), fenix: true);
   }
 }

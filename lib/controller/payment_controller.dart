@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
 
 import '../services/api_service.dart';
@@ -15,17 +16,34 @@ import '../utils/payment_key.dart';
 
 class PaymentController extends GetxController {
   Map<String, dynamic>? paymentIntentData;
+
   bool isLoading = false;
 
-  String amount = "";
+  // String amount = "";
   String currency = "USD";
 
-  Future<void> makePayment() async {
-    isLoading = true;
-    update();
+  Future<void> makePayment(String amount) async {
+    if (amount == "0") {
+      Utils.toastMessage(AppString.somethingIsWrong);
+      Get.back(result: null);
+
+      print("amount ========================>$amount");
+
+      return;
+    }
     try {
       paymentIntentData = await createPaymentIntent(amount, currency);
       if (paymentIntentData != null) {
+        // paymentIntentData!["business"] = "business";
+        // paymentIntentData!["daily"] = "daily";
+        // paymentIntentData = {
+        //   "business " :" business",
+        //   "daily" : "daily",
+        //   ...paymentIntentData!,
+        // };
+        // if (kDebugMode) {
+        //   print("===================================>>>$paymentIntentData");
+        // }
         await Stripe.instance.initPaymentSheet(
             paymentSheetParameters: SetupPaymentSheetParameters(
           googlePay: const PaymentSheetGooglePay(merchantCountryCode: 'US'),
@@ -47,8 +65,6 @@ class PaymentController extends GetxController {
   }
 
   createPaymentIntent(String amount, String currency) async {
-    isLoading = true;
-    update();
     try {
       Map<String, dynamic> body = {
         'amount': calculateAmount(amount),
@@ -82,9 +98,9 @@ class PaymentController extends GetxController {
   displayPaymentSheet() async {
     try {
       await Stripe.instance.presentPaymentSheet();
-      isLoading = false;
       update();
-      paymentRepo();
+
+      Get.back(result: paymentIntentData);
       if (kDebugMode) {
         print('payment intent$paymentIntentData');
       }
@@ -95,24 +111,18 @@ class PaymentController extends GetxController {
     }
   }
 
-  Future<void> paymentRepo() async {
-    isLoading = true;
-    update();
-
-    var body = {"data": jsonEncode(paymentIntentData)};
-
-    var response = await ApiService.postApi(AppUrl.payment, body);
-
-    if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
-    } else {
-      Utils.toastMessage(response.message);
-    }
-
-    print(response.statusCode);
-    print(response.body);
-
-    isLoading = false;
-    update();
-  }
+// Future<void> paymentRepo() async {
+//   var body = {"data": jsonEncode(paymentIntentData)};
+//
+//   var response = await ApiService.postApi(AppUrl.payment, body);
+//
+//   if (response.statusCode == 200) {
+//     Utils.toastMessage(response.message);
+//   } else {
+//     Utils.toastMessage(response.message);
+//   }
+//
+//   print(response.statusCode);
+//   print(response.body);
+// }
 }

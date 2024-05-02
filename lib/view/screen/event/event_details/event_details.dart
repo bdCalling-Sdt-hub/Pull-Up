@@ -44,70 +44,81 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
       body: GetBuilder<EventDetailsController>(builder: (controller) {
         return switch (controller.status) {
           Status.loading => const Center(child: CircularProgressIndicator()),
-          Status.error =>
-              ErrorScreen(
-                onTap: () => controller.eventDetailsRepo(eventId),
-              ),
-          Status.completed =>
-              SingleChildScrollView(
-                child: Column(
-
-                  children: [
-                    CustomImage(
-                      imageSrc: "${AppUrl.imageUrl}/${controller
-                          .eventDetailsModel?.data?.image?.path ?? ""}",
-                      imageType: ImageType.decorationImage, height: 200.h,),
-                    Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomText(
-                            text: controller.eventDetailsModel?.data?.name ?? "",
-                            color: AppColors.white50,
-                            fontWeight: FontWeight.w600,
-                            textAlign: TextAlign.start,
-                            fontSize: 24.sp,
-                            top: 8.h,
-                            bottom: 18.h,
-                          ),
-                          const EventInfo(),
-                          Align(
-                              alignment: FractionalOffset.centerLeft,
-                              child: CustomText(
-                                text: AppString.aboutEvent,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.white50,
-                                fontSize: 18.sp,
-                                top: 18.h,
-                              )),
-                          CustomText(
-                            text: controller.eventDetailsModel?.data?.description ??"",
-                            color: AppColors.yellow50,
-                            textAlign: TextAlign.start,
-                            top: 10.h,
-                            bottom: 30.h,
-                          ),
-                          CustomButton(
-                            titleText: "${AppString.buyTicket} \$${controller.eventDetailsModel?.data?.price ??""}",
+          Status.error => ErrorScreen(
+              onTap: () => controller.eventDetailsRepo(eventId),
+            ),
+          Status.completed => SingleChildScrollView(
+              child: Column(
+                children: [
+                  CustomImage(
+                    imageSrc:
+                        "${AppUrl.imageUrl}/${controller.eventDetailsModel?.data?.image?.path ?? ""}",
+                    imageType: ImageType.decorationImage,
+                    height: 200.h,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          text: controller.eventDetailsModel?.data?.name ?? "",
+                          color: AppColors.white50,
+                          fontWeight: FontWeight.w600,
+                          textAlign: TextAlign.start,
+                          fontSize: 24.sp,
+                          top: 8.h,
+                          bottom: 18.h,
+                        ),
+                        const EventInfo(),
+                        Align(
+                            alignment: FractionalOffset.centerLeft,
+                            child: CustomText(
+                              text: AppString.aboutEvent,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.white50,
+                              fontSize: 18.sp,
+                              top: 18.h,
+                            )),
+                        CustomText(
+                          text:
+                              controller.eventDetailsModel?.data?.description ??
+                                  "",
+                          color: AppColors.yellow50,
+                          textAlign: TextAlign.start,
+                          top: 10.h,
+                          bottom: 30.h,
+                        ),
+                        CustomButton(
+                            titleText:
+                                "${AppString.buyTicket} \$${controller.eventDetailsModel?.data?.price ?? ""}",
                             buttonHeight: 50.h,
                             buttonRadius: 6.r,
-                            onPressed: () =>
-                                Get.toNamed(
-                                  AppRoute.ticketPayment,
-                                ),
-                          )
-                        ],
-                      ),
+                            onPressed: () async {
+                              var data = await Get.toNamed(AppRoute.payment,
+                                  parameters: {
+                                    "amount": controller
+                                            .eventDetailsModel?.data?.price ??
+                                        "0"
+                                  });
+
+                              if (data != null) {
+                                print("data Not null: $data");
+                              } else {
+                                print("data null: $data");
+                              }
+                            })
+                      ],
                     ),
-                    SizedBox(
-                      height: 50.h,
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 50.h,
+                  )
+                ],
               ),
+            ),
         };
       }),
       bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),

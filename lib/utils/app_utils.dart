@@ -5,6 +5,7 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
+
   static void fieldFocusChange(
       BuildContext context, FocusNode current, FocusNode nextFocus) {
     current.unfocus();
@@ -18,14 +19,13 @@ class Utils {
       textColor: AppColors.white50,
       gravity: ToastGravity.BOTTOM,
       toastLength: Toast.LENGTH_LONG,
+
+
     );
   }
 
   static snackBarMessage(String title, String message) {
-    Get.snackbar(
-      kDebugMode ? title : 'oops!',
-      message,
-      backgroundColor: AppColors.white50
-    );
+    Get.snackbar(kDebugMode ? title : 'oops!', message,
+        backgroundColor: AppColors.white50);
   }
 }

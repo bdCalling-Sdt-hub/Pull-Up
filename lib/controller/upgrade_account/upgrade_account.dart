@@ -113,7 +113,8 @@ class UpgradeAccountController extends GetxController {
       PrefsHelper.mySubscription =
           jsonDecode(response.body)["data"]["accountType"];
       PrefsHelper.setString("mySubscription", PrefsHelper.mySubscription);
-      print("=====================================>mySubscription ${PrefsHelper.mySubscription}");
+      print(
+          "=====================================>mySubscription ${PrefsHelper.mySubscription}");
       Get.offAllNamed(AppRoute.editProfile);
     }
     isLoading = false;
@@ -199,7 +200,11 @@ class UpgradeAccountController extends GetxController {
     isLoading = true;
     update();
 
-    var body = {"data": jsonEncode(paymentIntentData)};
+    var body = {
+      "userAccountType": accountName,
+      "packageDuration": packageDuration,
+      "data": jsonEncode(paymentIntentData)
+    };
 
     var response = await ApiService.postApi(AppUrl.payment, body);
 

@@ -11,6 +11,7 @@ import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
 import 'package:pull_up/view/screen/location/located_shop.dart';
 import 'package:pull_up/view/screen/onboarding/onboarding.dart';
+import 'package:pull_up/view/screen/payment/payment_screen.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
 import 'package:pull_up/view/screen/product/add_product/add_product.dart';
 import 'package:pull_up/view/screen/product/deal/add_deal.dart';
@@ -72,6 +73,7 @@ class AppRoute {
   static const String editProfile = "/edit_profile.dart";
   static const String noInternet = "/no_internet.dart";
   static const String myProduct = "/my_product.dart";
+  static const String payment = "/payment_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -113,5 +115,6 @@ class AppRoute {
     GetPage(name: editProfile, page: () => EditProfile()),
     GetPage(name: noInternet, page: () => NoInternet()),
     GetPage(name: myProduct, page: () => MyProduct()),
+    GetPage(name: payment, page: () => PaymentScreen()),
   ];
 }
