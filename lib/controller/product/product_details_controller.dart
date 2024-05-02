@@ -72,9 +72,9 @@ class ProductDetailsController extends GetxController {
     var response = await ApiService.postApi(AppUrl.paymentWithProduct, body);
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     print(response.statusCode);

@@ -35,11 +35,7 @@ class _EditProfileShopingAccountState extends State<EditProfileShopingAccount> {
 
   ProfileController controller = Get.put((ProfileController()));
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {

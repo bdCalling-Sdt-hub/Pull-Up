@@ -30,7 +30,6 @@ class Data {
   String? password;
   Image? image;
   String? role;
-  Null? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -45,24 +44,23 @@ class Data {
 
   Data(
       {this.sId,
-        this.name,
-        this.email,
-        this.phoneNumber,
-        this.password,
-        this.image,
-        this.role,
-        this.oneTimeCode,
-        this.emailVerified,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,
-        this.accountType,
-        this.activationDate,
-        this.expirationDate,
-        this.location,
-        this.mapLocation,
-        this.packageDuration,
-        this.stripeConnectAccountId});
+      this.name,
+      this.email,
+      this.phoneNumber,
+      this.password,
+      this.image,
+      this.role,
+      this.emailVerified,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.accountType,
+      this.activationDate,
+      this.expirationDate,
+      this.location,
+      this.mapLocation,
+      this.packageDuration,
+      this.stripeConnectAccountId});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -72,7 +70,6 @@ class Data {
     password = json['password'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
-    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -99,7 +96,6 @@ class Data {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
-    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

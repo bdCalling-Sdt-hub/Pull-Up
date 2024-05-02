@@ -56,7 +56,7 @@ class NewEventController extends GetxController {
       print(response.body);
       Get.toNamed(AppRoute.eventList);
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     isLoading = false;

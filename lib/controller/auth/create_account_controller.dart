@@ -43,7 +43,7 @@ class CreateAccountController extends GetxController {
     print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
       Get.toNamed(AppRoute.emailVerify);
     } else if (response.statusCode == 409) {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
@@ -67,7 +67,7 @@ class CreateAccountController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
@@ -93,7 +93,7 @@ class CreateAccountController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.login);
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }

@@ -51,7 +51,7 @@ class LoginController extends GetxController {
       PrefsHelper.setBool('isLogIn', PrefsHelper.isLogIn);
       PrefsHelper.setString('mySubscription', PrefsHelper.mySubscription);
 
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
       Get.offAllNamed(AppRoute.home);
     } else if (response.statusCode == 406) {
       Get.toNamed(AppRoute.emailVerify,

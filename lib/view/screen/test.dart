@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pull_up/services/other_service.dart';
 
 class Test extends StatefulWidget {
@@ -10,13 +9,11 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-            onPressed: () => OtherService.showToast(), child: Icon(Icons.add)),
+        child: ElevatedButton(onPressed: () {}, child: const Icon(Icons.add)),
       ),
     );
   }

@@ -38,12 +38,12 @@ class Data {
 
   Data(
       {this.sId,
-        this.paymentData,
-        this.userId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,
-        this.userAccountType});
+      this.paymentData,
+      this.userId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.userAccountType});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -51,7 +51,7 @@ class Data {
         ? new PaymentData.fromJson(json['paymentData'])
         : null;
     userId =
-    json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
+        json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
@@ -117,43 +117,43 @@ class PaymentData {
 
   PaymentData(
       {this.id,
-        this.object,
-        this.amount,
-        this.amountCapturable,
-        this.amountReceived,
-        this.application,
-        this.applicationFeeAmount,
-        this.automaticPaymentMethods,
-        this.canceledAt,
-        this.cancellationReason,
-        this.captureMethod,
-        this.clientSecret,
-        this.confirmationMethod,
-        this.created,
-        this.currency,
-        this.customer,
-        this.description,
-        this.invoice,
-        this.lastPaymentError,
-        this.latestCharge,
-        this.livemode,
-        this.nextAction,
-        this.onBehalfOf,
-        this.paymentMethod,
-        this.paymentMethodConfigurationDetails,
-        this.paymentMethodOptions,
-        this.paymentMethodTypes,
-        this.processing,
-        this.receiptEmail,
-        this.review,
-        this.setupFutureUsage,
-        this.shipping,
-        this.source,
-        this.statementDescriptor,
-        this.statementDescriptorSuffix,
-        this.status,
-        this.transferData,
-        this.transferGroup});
+      this.object,
+      this.amount,
+      this.amountCapturable,
+      this.amountReceived,
+      this.application,
+      this.applicationFeeAmount,
+      this.automaticPaymentMethods,
+      this.canceledAt,
+      this.cancellationReason,
+      this.captureMethod,
+      this.clientSecret,
+      this.confirmationMethod,
+      this.created,
+      this.currency,
+      this.customer,
+      this.description,
+      this.invoice,
+      this.lastPaymentError,
+      this.latestCharge,
+      this.livemode,
+      this.nextAction,
+      this.onBehalfOf,
+      this.paymentMethod,
+      this.paymentMethodConfigurationDetails,
+      this.paymentMethodOptions,
+      this.paymentMethodTypes,
+      this.processing,
+      this.receiptEmail,
+      this.review,
+      this.setupFutureUsage,
+      this.shipping,
+      this.source,
+      this.statementDescriptor,
+      this.statementDescriptorSuffix,
+      this.status,
+      this.transferData,
+      this.transferGroup});
 
   PaymentData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -165,7 +165,7 @@ class PaymentData {
     applicationFeeAmount = json['application_fee_amount'];
     automaticPaymentMethods = json['automatic_payment_methods'] != null
         ? new AutomaticPaymentMethods.fromJson(
-        json['automatic_payment_methods'])
+            json['automatic_payment_methods'])
         : null;
     canceledAt = json['canceled_at'];
     cancellationReason = json['cancellation_reason'];
@@ -184,7 +184,7 @@ class PaymentData {
     onBehalfOf = json['on_behalf_of'];
     paymentMethod = json['payment_method'];
     paymentMethodConfigurationDetails =
-    json['payment_method_configuration_details'];
+        json['payment_method_configuration_details'];
     paymentMethodOptions = json['payment_method_options'] != null
         ? new PaymentMethodOptions.fromJson(json['payment_method_options'])
         : null;
@@ -297,9 +297,9 @@ class Card {
 
   Card(
       {this.installments,
-        this.mandateOptions,
-        this.network,
-        this.requestThreeDSecure});
+      this.mandateOptions,
+      this.network,
+      this.requestThreeDSecure});
 
   Card.fromJson(Map<String, dynamic> json) {
     installments = json['installments'];
@@ -326,7 +326,6 @@ class UserId {
   String? password;
   Image? image;
   String? role;
-  Null? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -341,24 +340,23 @@ class UserId {
 
   UserId(
       {this.sId,
-        this.name,
-        this.email,
-        this.phoneNumber,
-        this.password,
-        this.image,
-        this.role,
-        this.oneTimeCode,
-        this.emailVerified,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,
-        this.accountType,
-        this.activationDate,
-        this.expirationDate,
-        this.location,
-        this.mapLocation,
-        this.packageDuration,
-        this.stripeConnectAccountId});
+      this.name,
+      this.email,
+      this.phoneNumber,
+      this.password,
+      this.image,
+      this.role,
+      this.emailVerified,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.accountType,
+      this.activationDate,
+      this.expirationDate,
+      this.location,
+      this.mapLocation,
+      this.packageDuration,
+      this.stripeConnectAccountId});
 
   UserId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -368,7 +366,6 @@ class UserId {
     password = json['password'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
-    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -395,7 +392,6 @@ class UserId {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
-    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../model/api_response_model.dart';
@@ -241,24 +243,26 @@ class ApiService {
         return ApiResponseModel(
             200, jsonDecode(response.body)['message'], response.body);
       case 401:
-        if (!unAuthorization) {
-          var token = await getRefreshToken();
+        // if (!unAuthorization) {
+        //   var token = await getRefreshToken();
+        //
+        //   if (token.isNotEmpty) {
+        //     PrefsHelper.token = token;
+        //     PrefsHelper.setString('token', PrefsHelper.token);
+        //   } else {
+        //     return ApiResponseModel(response.statusCode,
+        //         jsonDecode(response.body)['message'], response.body);
+        //   }
+        //
+        //   return await callback(true);
+        // } else {
+        //   return ApiResponseModel(response.statusCode,
+        //       jsonDecode(response.body)['message'], response.body);
+        // }
+        Get.offAllNamed(AppRoute.login);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
 
-          if (token.isNotEmpty) {
-            PrefsHelper.token = token;
-            PrefsHelper.setString('token', PrefsHelper.token);
-          } else {
-            return ApiResponseModel(response.statusCode,
-                jsonDecode(response.body)['message'], response.body);
-          }
-
-          return await callback(true);
-        } else {
-          return ApiResponseModel(response.statusCode,
-              jsonDecode(response.body)['message'], response.body);
-        }
-      // return ApiResponseModel(response.statusCode,
-      //     jsonDecode(response.body)['message'], response.body);
       case 400:
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);

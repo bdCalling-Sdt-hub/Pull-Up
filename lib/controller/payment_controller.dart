@@ -24,7 +24,7 @@ class PaymentController extends GetxController {
 
   Future<void> makePayment(String amount) async {
     if (amount == "0") {
-      Utils.toastMessage(AppString.somethingIsWrong);
+      Utils.toastMessage(message: AppString.somethingIsWrong);
       Get.back(result: null);
 
       print("amount ========================>$amount");

@@ -2,44 +2,14 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
+import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_utils.dart';
 
 class OtherService {
-  static FToast fToast = FToast();
-
-  static showToast() {
-    if (Get.context != null) return;
-    fToast.init(Get.context!);
-    Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        color: Colors.greenAccent,
-      ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.check),
-          SizedBox(
-            width: 12.0,
-          ),
-          Text("This is a Custom Toast"),
-        ],
-      ),
-    );
-
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.BOTTOM,
-      toastDuration: Duration(seconds: 2),
-    );
-  }
+  static bool isFirst = true;
 
   static checkConnection() {
-    StreamSubscription subscription =
-        Connectivity().onConnectivityChanged.listen((event) {
+    Connectivity().onConnectivityChanged.listen((event) {
       checkInternet();
     });
   }
@@ -49,9 +19,21 @@ class OtherService {
         await Connectivity().checkConnectivity();
 
     if (connectivityResult.contains(ConnectivityResult.none)) {
-      Utils.toastMessage("Not Connected");
+      Utils.toastMessage(
+          message: AppString.youAreCurrentlyOffline, icon: Icons.wifi_off);
     } else {
-      Utils.toastMessage("Connected with ${connectivityResult[0]}");
+      if (isFirst) {
+        if (connectivityResult.contains(ConnectivityResult.none)) {
+          Utils.toastMessage(
+              message: AppString.youAreCurrentlyOffline, icon: Icons.wifi_off);
+        }
+      } else {
+        Utils.toastMessage(
+            message: AppString.yourInternetConnectionIsRestored,
+            icon: Icons.wifi);
+      }
     }
+    isFirst = false ;
+
   }
 }

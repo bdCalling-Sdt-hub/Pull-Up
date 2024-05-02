@@ -71,7 +71,7 @@ class AddProductController extends GetxController {
     if (response.statusCode == 200) {
       Get.toNamed(AppRoute.myProduct);
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     isLoading = false;

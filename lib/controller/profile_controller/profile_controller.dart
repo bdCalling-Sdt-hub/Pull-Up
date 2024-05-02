@@ -20,6 +20,9 @@ class ProfileController extends GetxController {
   Status status = Status.completed;
 
   String? image;
+  String aaa =
+      "/data/user/0/com.example.pull_up/cache/scaled_IMG_20240408_095402.jpg";
+
   TimeOfDay? startTime;
   bool isLoading = false;
 
@@ -46,7 +49,7 @@ class ProfileController extends GetxController {
 
       status = Status.completed;
       update();
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
 
       nameController.text = profileModel?.data?.name ?? "";
       numberController.text = profileModel?.data?.phoneNumber ?? "";
@@ -65,6 +68,7 @@ class ProfileController extends GetxController {
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (getImages != null) {
       image = getImages.path;
+      aaa = getImages.path;
       update();
       print(image);
     }
@@ -78,6 +82,8 @@ class ProfileController extends GetxController {
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (getImages != null) {
       image = getImages.path;
+      aaa = getImages.path;
+
       update();
     }
   }
@@ -165,14 +171,15 @@ class ProfileController extends GetxController {
       "dateOfBirth": "21/09/1994"
     };
 
+    print(aaa);
     var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: image);
+        url: AppUrl.updateAccount, body: body, imagePath: aaa);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
       print(response.body);
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     isLoading = false;
@@ -189,16 +196,22 @@ class ProfileController extends GetxController {
       "organisationDescription": desController.text,
       "organisationWebsite": websiteController.text,
       "dateOfBirth": dateOfBrithController.text,
+      "account_holder_name":"naimul",
+      "account_holder_type":"individual",
+      "routing_number":"110000000",
+      "account_number":"000123456789",
+
     };
 
+    print(aaa);
     var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: image);
+        url: AppUrl.updateAccount, body: body, imagePath: aaa);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
       print(response.body);
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     isLoading = false;

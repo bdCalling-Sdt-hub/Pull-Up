@@ -209,10 +209,10 @@ class UpgradeAccountController extends GetxController {
     var response = await ApiService.postApi(AppUrl.payment, body);
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
       upgradedAccountRepo();
     } else {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     }
 
     print(response.statusCode);

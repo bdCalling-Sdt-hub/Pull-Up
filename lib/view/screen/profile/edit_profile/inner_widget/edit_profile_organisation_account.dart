@@ -36,11 +36,7 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
 
   ProfileController controller = Get.put((ProfileController()));
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -345,12 +341,14 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
                   : CustomButton(
                       titleText: AppString.save,
                       onPressed: () {
+                        print(controller.image);
+                        controller.updateOrganisationProfileRepo();
                         if (formKey.currentState!.validate()) {
                           if (controller.image != null) {
                             controller.updateOrganisationProfileRepo();
                           } else {
-                            Utils.snackBarMessage(
-                                "500", 'please, select image');
+                            // Utils.snackBarMessage(
+                            //     "500", 'please, select image');
                           }
                         }
                       })

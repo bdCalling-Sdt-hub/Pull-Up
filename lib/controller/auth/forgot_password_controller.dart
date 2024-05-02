@@ -34,7 +34,7 @@ class ForgotPasswordController extends GetxController {
     print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
       Get.toNamed(AppRoute.forgetPasswordEmailVerify);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
@@ -64,7 +64,7 @@ class ForgotPasswordController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.toNamed(AppRoute.forgetPasswordResetPassword);
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
@@ -89,7 +89,7 @@ class ForgotPasswordController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.login);
-      Utils.toastMessage(response.message);
+      Utils.toastMessage(message: response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }

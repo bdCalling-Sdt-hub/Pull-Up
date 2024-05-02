@@ -461,4 +461,6 @@ class AppString {
   static const String thisFieldIsRequired = "This field is required";
   static const String paymentWaringText = "Please do not refresh the page or click the back or Close button of your app";
   static const String somethingIsWrong = "Something is wrong";
+  static const String yourInternetConnectionIsRestored = "Your internet connection is restored!";
+  static const String youAreCurrentlyOffline = "You are currently offline!";
 }

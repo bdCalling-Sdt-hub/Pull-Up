@@ -19,7 +19,6 @@ Future<void> main() async {
   dI.dependencies();
   OtherService.checkConnection();
 
-
   runApp(const MyApp());
 }
 
@@ -28,7 +27,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ScreenUtilInit(
       ensureScreenSize: true,
       minTextAdapt: true,
@@ -36,12 +34,20 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return GetMaterialApp(
+          builder: (context, child) {
+            return Overlay(
+              initialEntries: [
+                OverlayEntry(
+                  builder: (context) => child ?? Container(),
+                ),
+              ],
+            );
+          },
           debugShowCheckedModeBanner: false,
           theme: themeData,
           transitionDuration: const Duration(milliseconds: 200),
           initialRoute: AppRoute.splash,
           getPages: AppRoute.routes,
-
         );
       },
     );

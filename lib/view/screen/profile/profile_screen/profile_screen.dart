@@ -31,11 +31,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   ProfileController controller = Get.put(ProfileController());
 
-  @override
-  void initState() {
-    controller.profileRepo();
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
