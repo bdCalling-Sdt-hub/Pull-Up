@@ -43,6 +43,7 @@ class ProfileController extends GetxController {
   ProfileModel? profileModel;
 
   Future<void> profileRepo() async {
+    if (profileModel != null) return;
     status = Status.loading;
     update();
 
@@ -174,7 +175,7 @@ class ProfileController extends GetxController {
       "businessWebsite": websiteController.text,
       "businessHours": businessHoursController.text,
       "businessLocation": dateOfBrithController.text,
-      "dateOfBirth": "21/09/1994"
+      "dateOfBirth": dateOfBrithController.text
     };
 
     print(aaa);

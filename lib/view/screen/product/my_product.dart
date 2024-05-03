@@ -74,6 +74,8 @@ class _MyProductState extends State<MyProduct> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // account == "shopping"
                 //     ? const SizedBox()

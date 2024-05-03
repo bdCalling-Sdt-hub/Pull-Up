@@ -125,7 +125,7 @@ class LogInScreen extends StatelessWidget {
                         width: 4.w,
                       ),
                       GestureDetector(
-                        onTap: () => Get.offAllNamed(AppRoute.createAccount),
+                        onTap: () => Get.toNamed(AppRoute.createAccount),
                         child: const CustomText(
                           text: AppString.registerNow,
                           color: AppColors.primaryColor,

@@ -28,7 +28,7 @@ class CreateAccountAllField extends StatelessWidget {
           color: AppColors.white50,
         ),
         CustomTextField(
-          labelText: AppString.businessName,
+          labelText: AppString.name,
           controller: controller.nameController,
           validator: (value) {
             if (value.isEmpty) {

@@ -23,6 +23,8 @@ class EditProfile extends StatelessWidget {
 
   final formKey = GlobalKey<FormState>();
 
+  ProfileController profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);

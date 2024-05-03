@@ -31,7 +31,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   ProfileController controller = Get.put(ProfileController());
 
-
+  @override
+  void initState() {
+    controller.profileRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ))),
                     CustomText(
-                      text:  controller.profileModel?.data?.name ?? "",
+                      text: controller.profileModel?.data?.name ?? "",
                       color: AppColors.white50,
                       fontSize: 24.sp,
                       fontWeight: FontWeight.w600,
@@ -150,7 +154,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     BoostBusiness(
                         title: AppString.phone,
-                        subTitle: controller.profileModel?.data?.phoneNumber ?? "",
+                        subTitle:
+                            controller.profileModel?.data?.phoneNumber ?? "",
                         icon: AppIcons.call,
                         background: AppColors.background,
                         subTitleTextSize: 14,
@@ -165,20 +170,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         subTitle: AppString.boostYourBusinessDetails,
                         icon: AppIcons.boost,
                         onTap: () {}),
-                    Item(
-                      title: PrefsHelper.mySubscription == "business"
-                          ? AppString.myProduct
-                          : PrefsHelper.mySubscription == "organisation"
-                              ? AppString.myEvent
-                              : "",
-                      icon: AppIcons.addMenu,
-                      onTap: () => Get.toNamed(AppRoute.myProduct),
-                    ),
-                    Item(
-                      title: AppString.income,
-                      icon: AppIcons.income,
-                      onTap: () => Get.toNamed(AppRoute.income),
-                    ),
+                    PrefsHelper.mySubscription == "business"
+                        ? Item(
+                            title: AppString.myProduct,
+                            icon: AppIcons.addMenu,
+                            onTap: () => Get.toNamed(AppRoute.myProduct),
+                          )
+                        : PrefsHelper.mySubscription == "organisation"
+                            ? Item(
+                                title: AppString.myEvent,
+                                icon: AppIcons.addMenu,
+                                onTap: () => Get.toNamed(AppRoute.myProduct),
+                              )
+                            : const SizedBox(),
+                    PrefsHelper.mySubscription == "business" ||
+                            PrefsHelper.mySubscription == "organisation"
+                        ? Item(
+                            title: AppString.income,
+                            icon: AppIcons.income,
+                            onTap: () => Get.toNamed(AppRoute.income),
+                          )
+                        : const SizedBox()
                   ],
                 ),
               ),
