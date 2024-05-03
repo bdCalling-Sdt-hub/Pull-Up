@@ -80,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
           ],
         ),
       ),
-      bottomNavigationBar:  CustomBottomNavBar(currentIndex: 3),
+      bottomNavigationBar: CustomBottomNavBar(currentIndex: 3),
     );
   }
 }

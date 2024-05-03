@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/services/location_service.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
@@ -51,20 +51,26 @@ class EnableLocationScreen extends StatelessWidget {
                 child: CustomImage(
               imageSrc: AppImages.enableLocation,
               imageType: ImageType.png,
-              width: 295,
-              height: 295,
+              width: 295.sp,
+              height: 295.sp,
             )),
-            SizedBox(
-              height: 129.h,
-            ),
+            const Spacer(),
             CustomButton(
               titleText: AppString.turnOn,
               buttonWidth: double.infinity,
-              onPressed: () => Get.toNamed(AppRoute.onboarding),
+              onPressed: () async {
+                bool isEnabled = await LocationService.checkLocationEnabled();
+                if (isEnabled) {
+                  Get.toNamed(AppRoute.onboarding);
+                } else {
+                  await Geolocator.openLocationSettings();
+                }
+              },
             ),
             CustomText(
               text: AppString.youCanAdjustYourLocation,
               color: AppColors.grey200,
+              textAlign: TextAlign.start,
               top: 29.h,
             )
           ],

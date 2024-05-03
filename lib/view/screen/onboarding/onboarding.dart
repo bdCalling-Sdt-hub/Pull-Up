@@ -54,9 +54,7 @@ class OnboardingScreen extends StatelessWidget {
               width: 322.sp,
               height: 322.sp,
             ),
-            SizedBox(
-              height: 60.h,
-            ),
+           const Spacer(),
             CustomButton(
               titleText: AppString.createAccount,
               onPressed: () => Get.toNamed(AppRoute.createAccount),

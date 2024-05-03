@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:pull_up/core/app_route.dart';
+import 'package:geocoding/geocoding.dart';
+
+import 'package:pull_up/services/location_service.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
-import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
 import '../../widget/navBar/navbar.dart';
 
-class ChangeLocationScreen extends StatelessWidget {
-  const ChangeLocationScreen({super.key});
+class ChangeLocationScreen extends StatefulWidget {
+  ChangeLocationScreen({super.key});
+
+  @override
+  State<ChangeLocationScreen> createState() => _ChangeLocationScreenState();
+}
+
+class _ChangeLocationScreenState extends State<ChangeLocationScreen> {
+  TextEditingController controller = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +52,7 @@ class ChangeLocationScreen extends StatelessWidget {
             ),
             TextFormField(
               cursorColor: AppColors.white50,
+              controller: controller,
               decoration: InputDecoration(
                 hintText: AppString.searchCity,
                 hintStyle: const TextStyle(color: AppColors.grey200),
@@ -68,31 +78,50 @@ class ChangeLocationScreen extends StatelessWidget {
             SizedBox(
               height: 12.h,
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomImage(imageSrc: AppIcons.changeLocation),
-                SizedBox(
-                  width: 8.w,
-                ),
-                CustomText(
-                  text: AppString.useMyCurrentLocation,
-                  color: AppColors.primaryColor,
-                  fontSize: 16.sp,
-                )
-              ],
-            ),
+            isLoading
+                ? const CustomLoader()
+                : GestureDetector(
+                    onTap: () async {
+                      isLoading = true;
+                      List<Placemark> list =
+                          await LocationService.getCurrentPosition();
+
+                      isLoading = false;
+                      if (list.isNotEmpty) {
+                        controller.text =
+                            "${list.first.street}, ${list.first.subLocality}, ${list.first.locality}";
+                        setState(() {});
+                      }
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomImage(imageSrc: AppIcons.changeLocation),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        CustomText(
+                          text: AppString.useMyCurrentLocation,
+                          color: AppColors.primaryColor,
+                          fontSize: 16.sp,
+                        )
+                      ],
+                    ),
+                  ),
             SizedBox(
               height: 12.sp,
             ),
             CustomButton(
               titleText: AppString.pingLocation,
-              onPressed: () => Get.toNamed(AppRoute.locatedShop),
+              onPressed: () async {
+                List list = await LocationService.getCurrentPosition();
+                // Get.toNamed(AppRoute.locatedShop);
+              },
             )
           ],
         ),
       ),
-      bottomNavigationBar:  CustomBottomNavBar(
+      bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 0,
       ),
     );

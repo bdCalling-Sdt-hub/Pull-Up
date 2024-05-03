@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pull_up/view/screen/auth/create_account/create_account.dart';
-import 'package:pull_up/view/screen/auth/enable_location.dart';
+import 'package:pull_up/view/screen/location/enable_location.dart';
 import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_password.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_verify.dart';
