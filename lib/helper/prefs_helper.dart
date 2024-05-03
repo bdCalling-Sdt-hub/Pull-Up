@@ -26,7 +26,7 @@ class PrefsHelper extends GetxController {
     isLogIn = preferences.getBool("isLogIn") ?? false;
     mySubscription = preferences.getString("mySubscription") ?? "shopping";
 
-    print(mySubscription);
+    print(userId);
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

@@ -15,7 +15,8 @@ class EditProfileShopingAccount extends StatefulWidget {
   EditProfileShopingAccount({super.key});
 
   @override
-  State<EditProfileShopingAccount> createState() => _EditProfileShopingAccountState();
+  State<EditProfileShopingAccount> createState() =>
+      _EditProfileShopingAccountState();
 }
 
 class _EditProfileShopingAccountState extends State<EditProfileShopingAccount> {
@@ -34,8 +35,6 @@ class _EditProfileShopingAccountState extends State<EditProfileShopingAccount> {
   final locatorController = ValueNotifier<bool>(false);
 
   ProfileController controller = Get.put((ProfileController()));
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +177,9 @@ class _EditProfileShopingAccountState extends State<EditProfileShopingAccount> {
                 }
               },
             ),
-            SizedBox(height: 80.h,)
+            SizedBox(
+              height: 80.h,
+            )
           ],
         );
       },

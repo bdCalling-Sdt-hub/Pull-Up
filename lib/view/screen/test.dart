@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pull_up/services/other_service.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -9,12 +8,15 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
+  TextEditingController locationName = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: () {}, child: const Icon(Icons.add)),
-      ),
+          child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      )),
     );
   }
 }

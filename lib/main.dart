@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
+import 'package:pull_up/services/notification_service.dart';
 import 'package:pull_up/services/other_service.dart';
+import 'package:pull_up/services/socket_service.dart';
 import 'package:pull_up/theme/light_theme.dart';
 import 'package:pull_up/utils/payment_key.dart';
 
@@ -17,7 +19,10 @@ Future<void> main() async {
   await ScreenUtil.ensureScreenSize();
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
+  NotificationService notificationService = NotificationService();
+  notificationService.initLocalNotification() ;
   OtherService.checkConnection();
+  SocketServices.connectToSocket();
 
   runApp(const MyApp());
 }

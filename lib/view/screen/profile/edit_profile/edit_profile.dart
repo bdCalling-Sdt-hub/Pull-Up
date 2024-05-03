@@ -21,6 +21,7 @@ import 'inner_widget/edit_profile_shoping_account.dart';
 class EditProfile extends StatelessWidget {
   EditProfile({super.key});
 
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +40,46 @@ class EditProfile extends StatelessWidget {
           builder: (controller) {
             return SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  const ProfileImage(
-                    imageURl: AppImages.profile1,
-                  ),
-                  CustomText(
-                    text: controller.nameController.text,
-                    color: AppColors.white50,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w600,
-                    top: 8.h,
-                  ),
-                  PrefsHelper.mySubscription == "organisation"
-                      ? EditProfileOrganisationAccount()
-                      : PrefsHelper.mySubscription == "business"
-                          ? EditProfileBusinessAccount()
-                          : EditProfileShopingAccount(),
-
-                ],
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    const ProfileImage(
+                      imageURl: AppImages.profile1,
+                    ),
+                    CustomText(
+                      text: controller.nameController.text,
+                      color: AppColors.white50,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w600,
+                      top: 8.h,
+                    ),
+                    PrefsHelper.mySubscription == "organisation"
+                        ? EditProfileOrganisationAccount()
+                        : PrefsHelper.mySubscription == "business"
+                            ? EditProfileBusinessAccount()
+                            : EditProfileShopingAccount(),
+                    controller.isLoading
+                        ? const CustomElevatedLoadingButton()
+                        : CustomButton(
+                            titleText: AppString.save,
+                            onPressed: () {
+                              print(controller.image);
+                              if (formKey.currentState!.validate()) {
+                                if (controller.image != null) {
+                                  // controller.updateBusinessProfileRepo();
+                                } else {
+                                  print(controller.image);
+                                  Utils.snackBarMessage(
+                                      "500", 'please, select image');
+                                }
+                              }
+                            })
+                  ],
+                ),
               ),
             );
           },
