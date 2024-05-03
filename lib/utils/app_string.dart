@@ -463,4 +463,8 @@ class AppString {
   static const String somethingIsWrong = "Something is wrong";
   static const String yourInternetConnectionIsRestored = "Your internet connection is restored!";
   static const String youAreCurrentlyOffline = "You are currently offline!";
+  static const String accountHolderName = "Account Holder Name";
+  static const String accountNumber = "Account Number";
+  static const String routingNumber = "Routing Number";
+
 }

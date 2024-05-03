@@ -18,60 +18,28 @@ class EditProfileOrganisationAccount extends StatefulWidget {
   EditProfileOrganisationAccount({super.key});
 
   @override
-  State<EditProfileOrganisationAccount> createState() => _EditProfileOrganisationAccountState();
+  State<EditProfileOrganisationAccount> createState() =>
+      _EditProfileOrganisationAccountState();
 }
 
-class _EditProfileOrganisationAccountState extends State<EditProfileOrganisationAccount> {
-  final nameController = ValueNotifier<bool>(false);
-
-  final numberController = ValueNotifier<bool>(false);
-
-  final emailController = ValueNotifier<bool>(false);
-
-  final desController = ValueNotifier<bool>(false);
-
-  final websiteController = ValueNotifier<bool>(false);
-
-
+class _EditProfileOrganisationAccountState
+    extends State<EditProfileOrganisationAccount> {
   ProfileController controller = Get.put((ProfileController()));
-
-
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
       builder: (controller) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.organizationName,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: nameController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.organizationName,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+              bottom: 6.h,
             ),
             CustomTextField(
               hintText: AppString.organizationName,
@@ -86,38 +54,14 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.phoneNumber,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: numberController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.phoneNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+              top: 12.h,
+              bottom: 6.h,
             ),
             CustomTextField(
               hintText: AppString.phoneNumber,
@@ -132,84 +76,90 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.emailAddress,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: emailController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.address,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
-              hintText: AppString.emailAddress,
-              keyboardType: TextInputType.emailAddress,
-              controller: controller.emailController,
+              controller: controller.organisationLocationController,
+              hintText: AppString.address,
+              keyboardType: TextInputType.text,
               fillColor: AppColors.transparent,
               borderColor: AppColors.white50,
               paddingVertical: 10.sp,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
+            CustomText(
+              text: AppString.email,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.description,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: desController,
-                  initialValue: true,
-                )
-              ],
+            CustomTextField(
+              controller: controller.emailController,
+              hintText: AppString.email,
+              keyboardType: TextInputType.emailAddress,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
             ),
-            SizedBox(
-              height: 6.h,
+
+            CustomText(
+              text: AppString.dateOfBrith,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.dateOfBrithController,
+              hintText: AppString.dateOfBrith,
+              keyboardType: TextInputType.none,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              onTap: () {
+                controller.dateOfBrithTimePicker();
+              },
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.description,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             Container(
               height: 115.sp,
@@ -235,38 +185,14 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
                 ),
               ),
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.website,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: websiteController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.website,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               controller: controller.websiteController,
@@ -281,52 +207,76 @@ class _EditProfileOrganisationAccountState extends State<EditProfileOrganisation
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.dateOfBrith,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: websiteController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+
+            CustomText(
+              text: AppString.accountHolderName,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
-              controller: controller.dateOfBrithController,
-              hintText: AppString.dateOfBrith,
-              keyboardType: TextInputType.none,
+              controller: controller.accountHolderNameController,
+              hintText: AppString.accountHolderName,
+              keyboardType: TextInputType.name,
               fillColor: AppColors.transparent,
               borderColor: AppColors.white50,
-              onTap: () {
-                controller.dateOfBrithTimePicker();
-              },
               paddingVertical: 10.sp,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.accountNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.accountNumberController,
+              hintText: AppString.accountNumber,
+              keyboardType: TextInputType.number,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.routingNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.routingNumberController,
+              hintText: AppString.routingNumber,
+              keyboardType: TextInputType.number,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
                 }
               },
             ),

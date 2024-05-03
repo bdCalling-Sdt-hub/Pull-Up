@@ -24,59 +24,20 @@ class EditProfileBusinessAccount extends StatefulWidget {
 
 class _EditProfileBusinessAccountState
     extends State<EditProfileBusinessAccount> {
-  final nameController = ValueNotifier<bool>(false);
-
-  final numberController = ValueNotifier<bool>(false);
-
-  final emailController = ValueNotifier<bool>(false);
-
-  final desController = ValueNotifier<bool>(false);
-
-  final websiteController = ValueNotifier<bool>(false);
-
-  final hoursController = ValueNotifier<bool>(false);
-
-  final locatorController = ValueNotifier<bool>(false);
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
       builder: (controller) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.businessName,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: nameController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.businessName,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               hintText: AppString.businessName,
@@ -91,38 +52,14 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.phoneNumber,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: numberController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.phoneNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               hintText: AppString.phoneNumber,
@@ -137,38 +74,14 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.emailAddress,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: emailController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.emailAddress,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               hintText: AppString.emailAddress,
@@ -183,38 +96,41 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
+            CustomText(
+              text: AppString.dateOfBrith,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.description,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: desController,
-                  initialValue: true,
-                )
-              ],
+            CustomTextField(
+              controller: controller.dateOfBrithController,
+              hintText: AppString.dateOfBrith,
+              keyboardType: TextInputType.none,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              onTap: () {
+                controller.dateOfBrithTimePicker();
+              },
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
             ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.description,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             Container(
               height: 115.sp,
@@ -240,38 +156,14 @@ class _EditProfileBusinessAccountState
                 ),
               ),
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.website,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: websiteController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.website,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               controller: controller.websiteController,
@@ -286,38 +178,14 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              children: [
-                CustomText(
-                  text: AppString.businessHours,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.sp,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                const Spacer(),
-                CustomText(
-                  text: AppString.showProfile,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
-                  right: 8.w,
-                  textAlign: TextAlign.start,
-                  color: AppColors.white50,
-                ),
-                AdvancedSwitch(
-                  height: 18.sp,
-                  width: 36.w,
-                  activeColor: AppColors.deepOrange,
-                  controller: hoursController,
-                  initialValue: true,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6.h,
+            CustomText(
+              text: AppString.businessHours,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
             ),
             CustomTextField(
               hintText: AppString.businessHours,
@@ -342,7 +210,6 @@ class _EditProfileBusinessAccountState
             SizedBox(
               height: 12.h,
             ),
-
           ],
         );
       },

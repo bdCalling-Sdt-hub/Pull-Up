@@ -70,7 +70,13 @@ class EditProfile extends StatelessWidget {
                               print(controller.image);
                               if (formKey.currentState!.validate()) {
                                 if (controller.image != null) {
-                                  // controller.updateBusinessProfileRepo();
+                                  if (PrefsHelper.mySubscription ==
+                                      "organisation") {
+                                    controller.updateOrganisationProfileRepo();
+                                  } else if (PrefsHelper.mySubscription ==
+                                      "business") {
+                                    controller.updateBusinessProfileRepo();
+                                  }
                                 } else {
                                   print(controller.image);
                                   Utils.snackBarMessage(

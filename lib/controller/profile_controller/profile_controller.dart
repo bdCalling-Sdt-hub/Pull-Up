@@ -34,6 +34,12 @@ class ProfileController extends GetxController {
   TextEditingController websiteController = TextEditingController();
   TextEditingController businessHoursController = TextEditingController();
 
+  TextEditingController accountHolderNameController = TextEditingController();
+  TextEditingController routingNumberController = TextEditingController();
+  TextEditingController accountNumberController = TextEditingController();
+  TextEditingController organisationLocationController =
+      TextEditingController();
+
   ProfileModel? profileModel;
 
   Future<void> profileRepo() async {
@@ -191,16 +197,19 @@ class ProfileController extends GetxController {
     update();
     var body = {
       "organisationName": nameController.text,
-      "organisationNumber": numberController.text,
+      // "organisationNumber": numberController.text,
       "organisationEmail": emailController.text,
       "organisationDescription": desController.text,
       "organisationWebsite": websiteController.text,
       "dateOfBirth": dateOfBrithController.text,
-      "account_holder_name": "naimul",
+      "account_holder_name": accountHolderNameController.text,
       "account_holder_type": "individual",
-      "routing_number": "110000000",
-      "account_number": "000123456789",
+      "routing_number": routingNumberController.text,
+      "account_number": accountNumberController.text,
+      "organisationLocation": organisationLocationController.text,
     };
+
+    print(body);
 
     var response = await ApiService.multipartRequest(
         url: AppUrl.updateAccount, body: body, imagePath: aaa);
