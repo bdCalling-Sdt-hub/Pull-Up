@@ -17,6 +17,7 @@ import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
+import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../widget/home_product_item.dart';
@@ -79,35 +80,33 @@ class _NearByLocatedShopState extends State<NearByLocatedShop> {
                 onTap: () => controller.nearbyShopRepo(
                     latitude: latitude, longitude: longitude),
               ),
-            Status.completed => SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-                child: Column(
-                  children: [
-                    GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 18.h,
-                          mainAxisExtent: 160.h,
-                          crossAxisSpacing: 8.w),
-                      itemCount: controller.shops.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        Data item = controller.shops[index];
-                        return GestureDetector(
-                          onTap: () => Get.toNamed(AppRoute.shopHouse,
-                              parameters: {"userId": item.sId.toString()}),
-                          child: LocatedGridviewItem(
-                            image:
-                                "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
-                            title: item.name ?? "",
-                            subTitle: item.businessDescription ?? "",
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+            Status.completed => Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+                child: controller.shops.isEmpty
+                    ? const NoData()
+                    : GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10.h,
+                            mainAxisExtent: 160.h,
+                            crossAxisSpacing: 8.w),
+                        itemCount: controller.shops.length,
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          Data item = controller.shops[index];
+                          return GestureDetector(
+                            onTap: () => Get.toNamed(AppRoute.shopHouse,
+                                parameters: {"userId": item.sId.toString()}),
+                            child: LocatedGridviewItem(
+                              image:
+                                  "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
+                              title: item.businessName ?? item.name ?? "",
+                              subTitle: item.businessDescription ?? "",
+                            ),
+                          );
+                        },
+                      ),
               ),
           };
         },

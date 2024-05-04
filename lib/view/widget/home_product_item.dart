@@ -49,7 +49,6 @@ class HomeProductItem extends StatelessWidget {
                 Center(
                   child: CustomImage(
                     imageSrc: image,
-                    width: 135.w,
                     height: 100.h,
                     imageType: ImageType.decorationImage,
                   ),

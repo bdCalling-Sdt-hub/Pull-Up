@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/shop_house_controller.dart';
@@ -80,28 +78,12 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                     height: 340.h,
                     imageType: ImageType.decorationImage,
                   ),
-                  // Container(
-                  //   height: 340.h,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: ShapeDecoration(
-                  //     color: AppColors.white50,
-                  //     image: const DecorationImage(
-                  //         image: AssetImage(AppImages.bookHouse),
-                  //         fit: BoxFit.fill),
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.only(
-                  //         bottomLeft: Radius.circular(24.r),
-                  //         bottomRight: Radius.circular(24.r),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   Container(
-                    width: Get.height,
+                    width: Get.width,
                     height: Get.height,
                     margin: EdgeInsets.only(top: 270.h),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
                     decoration: BoxDecoration(
                         color: AppColors.background,
                         borderRadius: BorderRadius.only(
@@ -111,6 +93,7 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,7 +113,9 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                                 ],
                               ),
                               CustomText(
-                                text: controller.singleShopModel?.data?.name ??
+                                text: controller
+                                        .singleShopModel?.data?.businessName ??
+                                    controller.singleShopModel?.data?.name ??
                                     "",
                                 color: AppColors.white50,
                                 fontSize: 20.sp,
@@ -206,15 +191,18 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                               ),
                             ],
                           ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
                           GridView.builder(
                             physics: const NeverScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
                             shrinkWrap: true,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     mainAxisExtent: 190.sp,
-                                    crossAxisSpacing: 34.w,
-                                    mainAxisSpacing: 24.h),
+                                    mainAxisSpacing: 10.h),
                             itemCount: books.length,
                             itemBuilder: (context, index) {
                               var item = books[index];
