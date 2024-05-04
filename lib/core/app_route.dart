@@ -9,7 +9,7 @@ import 'package:pull_up/view/screen/event/event_list/event_list.dart';
 import 'package:pull_up/view/screen/favorites/favorites.dart';
 import 'package:pull_up/view/screen/home/home_screen.dart';
 import 'package:pull_up/view/screen/location/change_location.dart';
-import 'package:pull_up/view/screen/location/located_shop.dart';
+import 'package:pull_up/view/screen/location/near_by_located_shop.dart';
 import 'package:pull_up/view/screen/onboarding/onboarding.dart';
 import 'package:pull_up/view/screen/payment/payment_screen.dart';
 import 'package:pull_up/view/screen/payment/ticket_purchase_payment/ticket_purchase_payment.dart';
@@ -51,7 +51,7 @@ class AppRoute {
       "/forget_password_reset_password.dart";
   static const String home = "/home_screen.dart";
   static const String changeLocation = "/change_location.dart";
-  static const String locatedShop = "/located_shop.dart";
+  static const String locatedShop = "/near_by_located_shop.dart";
   static const String shopHouse = "/shop_house.dart";
   static const String productDetails = "/product_details.dart";
   static const String productPayment = "/product_payment.dart";
@@ -93,7 +93,7 @@ class AppRoute {
         page: () => ForgetPasswordResetPassword()),
     GetPage(name: home, page: () => HomeScreen()),
     GetPage(name: changeLocation, page: () => ChangeLocationScreen()),
-    GetPage(name: locatedShop, page: () => LocatedShop()),
+    GetPage(name: locatedShop, page: () => NearByLocatedShop()),
     GetPage(name: shopHouse, page: () => ShopHouseScreen()),
     GetPage(name: productDetails, page: () => ProductDetails()),
     GetPage(name: productPayment, page: () => Productpayment()),

@@ -108,6 +108,7 @@ class AppString {
   static const String pingLocation = "Ping Location";
 
   static const String nearby = "Nearby";
+  static const String nearbyShop = "Near by Shop";
 
   static const String seeAll = "See all";
 

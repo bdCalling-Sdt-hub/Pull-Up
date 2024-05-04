@@ -4,10 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
-import 'package:pull_up/controller/payment_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/login_model.dart';
-
+import 'package:pull_up/services/location_service.dart';
 import '../../core/app_route.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_colors.dart';
@@ -95,13 +94,18 @@ class UpgradeAccountController extends GetxController {
     isLoading = true;
     update();
 
+    List locations =
+        await LocationService.addressToCoordinate(addressController.text);
+
     var body = {
       "accountType": accountName,
       "location": addressController.text,
       "packageDuration": packageDuration,
       "activationDate": dateController.text,
-      "mapLocation":
-          jsonEncode({"longitude": 6.84099664391005, "latitude": 47.64532465})
+      "mapLocation": jsonEncode({
+        "longitude": locations.first.longitude,
+        "latitude": locations.first.latitude
+      })
     };
 
     var response = await ApiService.postApi(
@@ -113,8 +117,7 @@ class UpgradeAccountController extends GetxController {
       PrefsHelper.mySubscription =
           jsonDecode(response.body)["data"]["accountType"];
       PrefsHelper.setString("mySubscription", PrefsHelper.mySubscription);
-      print(
-          "=====================================>mySubscription ${PrefsHelper.mySubscription}");
+
       Get.offAllNamed(AppRoute.editProfile);
     }
     isLoading = false;
@@ -214,9 +217,6 @@ class UpgradeAccountController extends GetxController {
     } else {
       Utils.toastMessage(message: response.message);
     }
-
-    print(response.statusCode);
-    print(response.body);
 
     isLoading = false;
     update();

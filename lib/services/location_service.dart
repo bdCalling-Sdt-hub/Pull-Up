@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
@@ -41,18 +40,15 @@ class LocationService {
     }
   }
 
-  static getCurrentPosition() async {
+  static Future<Position?> getCurrentPosition() async {
+    Position? positions;
     try {
-      var aa = await Geolocator.getLastKnownPosition();
-      print(aa);
-      List list = [];
-      if (aa != null) {
-        list = await coordinateToAddress(lat: aa.latitude, long: aa.longitude);
-      }
+      positions = await Geolocator.getCurrentPosition();
+      print(positions);
 
-      return list;
+      return positions;
     } catch (e) {
-      return [];
+      return positions;
     }
   }
 
@@ -61,7 +57,7 @@ class LocationService {
       List<Location> locations = await locationFromAddress(address);
 
       if (kDebugMode) {
-        print(locations);
+        print(locations.first.longitude);
       }
       return locations;
     } catch (e) {
