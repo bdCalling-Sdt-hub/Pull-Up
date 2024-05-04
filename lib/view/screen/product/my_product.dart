@@ -72,7 +72,7 @@ class _MyProductState extends State<MyProduct> {
       body: GetBuilder<MyProductController>(
         builder: (controller) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -98,6 +98,7 @@ class _MyProductState extends State<MyProduct> {
                           child: ListView.builder(
                             itemCount: controller.products.length,
                             controller: controller.scrollController,
+                            padding: EdgeInsets.zero,
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
                               Result item = controller.products[index];

@@ -29,46 +29,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List quick = [
-  //   {
-  //     "image": AppIcons.burger,
-  //     "title": AppString.burger,
-  //   },
-  //   {
-  //     "image": AppIcons.event,
-  //     "title": AppString.event,
-  //   },
-  //   {
-  //     "image": AppIcons.iceCream,
-  //     "title": AppString.iceCream,
-  //   },
-  //   {
-  //     "image": AppIcons.coffee,
-  //     "title": AppString.coffee,
-  //   },
-  //   {
-  //     "image": AppIcons.garage,
-  //     "title": AppString.garage,
-  //   },
-  //   {
-  //     "image": AppIcons.dj,
-  //     "title": AppString.dj,
-  //   },
-  // ];
 
-  // List books = [
-  // List burgers = [
-  //   {
-  //     "image": AppImages.burger,
-  //     "title": AppString.burger,
-  //     "subTitle": AppString.charleyStore
-  //   },
-  //   {
-  //     "image": AppImages.burgers,
-  //     "title": AppString.burgers,
-  //     "subTitle": AppString.generalStore
-  //   },
-  // ];
 
   HomeController controller = Get.put(HomeController());
 

@@ -12,6 +12,7 @@ import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/no_data.dart';
 
+import '../../../../core/app_route.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/text/custom_text.dart';
@@ -79,11 +80,18 @@ class _ProductListState extends State<ProductList> {
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
                               Result item = controller.products[index];
-                              return ProductItem(
-                                title: item.name ?? "",
-                                subTitle: item.description ?? "",
-                                image: "${AppUrl.imageUrl}/${item.image?.path}",
-                                price: item.price ?? " ",
+                              return GestureDetector(
+                                onTap: () => Get.toNamed(
+                                    AppRoute.productDetails,
+                                    parameters: {
+                                      "productId": item.sId!
+                                    }),
+                                child: ProductItem(
+                                  title: item.name ?? "",
+                                  subTitle: item.description ?? "",
+                                  image: "${AppUrl.imageUrl}/${item.image?.path}",
+                                  price: item.price ?? " ",
+                                ),
                               );
                             },
                           ),

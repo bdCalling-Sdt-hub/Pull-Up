@@ -81,13 +81,17 @@ class _ProductItemState extends State<ProductItem> {
               ],
             ),
           ),
-          IconButton(
-              onPressed: () {
-                DeleteItemPopUp.itemDeletePopUp();
-              },
-              icon: CustomImage(
-                imageSrc: AppIcons.delete,
-              ))
+
+          const Icon(Icons.arrow_forward_ios, color: AppColors.primaryColor,),
+          SizedBox(width: 10.w,)
+
+          // IconButton(
+          //     onPressed: () {
+          //       // DeleteItemPopUp.itemDeletePopUp();
+          //     },
+          //     icon: CustomImage(
+          //       imageSrc: AppIcons.delete,
+          //     ))
         ],
       ),
     );
