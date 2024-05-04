@@ -23,6 +23,10 @@ class ProductListController extends GetxController {
   Future<void> scrollControllerCall({required String keyword}) async {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
+      print(productModel?.data?.meta?.totalPage);
+      if (productModel?.data?.meta?.totalPage != null &&
+          productModel!.data!.meta!.totalPage! < page) return;
+
       isMoreLoading = true;
       update();
       await productsRepo(keyword: keyword);

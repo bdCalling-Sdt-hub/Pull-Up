@@ -439,6 +439,7 @@ class AppString {
       "Enjoy your favorite dishes with your lovely friends and family and have a great time. Food from local food trucks will be available for purchase";
 
   static const String income = "Income";
+  static const String history = "History";
 
   static const String editProfile = "Edit Profile";
 
@@ -455,6 +456,7 @@ class AppString {
       "Password must be 8 characters & contain both \nalphabets and numerics";
   static const String passwordDoseNotMatch = "Password doesn't match";
   static const String noData = "No Data";
+  static const String noProductFound = "No Product found";
   static const String checkInternet = "Check Internet";
   static const String noInternet = "No Internet";
   static const String back = "Back";
@@ -473,4 +475,9 @@ class AppString {
   static const String routingNumber = "Routing Number";
   static const String name = "Name";
   static const String removeYourAllHistory = "Remove your all history";
+  static const String country = "Country";
+  static const String city = "City";
+  static const String state = "State";
+  static const String line = "Line 1";
+  static const String postalCode = "Postal Code";
 }

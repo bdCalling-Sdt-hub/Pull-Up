@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pull_up/view/screen/auth/create_account/create_account.dart';
+import 'package:pull_up/view/screen/history/history.dart';
 import 'package:pull_up/view/screen/location/enable_location.dart';
 import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
 import 'package:pull_up/view/screen/auth/forget_password/forget_password_reset_password.dart';
@@ -74,6 +75,7 @@ class AppRoute {
   static const String noInternet = "/no_internet.dart";
   static const String myProduct = "/my_product.dart";
   static const String payment = "/payment_screen.dart";
+  static const String history = "/history.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -116,5 +118,6 @@ class AppRoute {
     GetPage(name: noInternet, page: () => NoInternet()),
     GetPage(name: myProduct, page: () => MyProduct()),
     GetPage(name: payment, page: () => PaymentScreen()),
+    GetPage(name: history, page: () => HistoryScreen()),
   ];
 }

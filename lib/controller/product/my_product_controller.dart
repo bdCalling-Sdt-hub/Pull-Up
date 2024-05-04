@@ -1,8 +1,7 @@
-
-
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
 
@@ -12,11 +11,11 @@ import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
 class MyProductController extends GetxController {
-
   Status status = Status.completed;
   bool isMoreLoading = false;
 
   List products = [];
+  late TabController tabController;
 
   int page = 1;
 
@@ -62,7 +61,28 @@ class MyProductController extends GetxController {
     }
   }
 
+  Future<void> myProductsHistoryRepo() async {
+    products.clear();
+    status = Status.loading;
+    update();
 
+    var response = await ApiService.getApi(
+      AppUrl.myProductHistory,
+    );
 
+    if (response.statusCode == 200) {
+      productModel = ProductModel.fromJson(jsonDecode(response.body));
 
+      if (productModel?.data?.result != null) {
+        products.addAll(productModel!.data!.result!);
+        print("================> ${products.length}");
+      }
+      status = Status.completed;
+      update();
+    } else {
+      status = Status.error;
+      update();
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
 }

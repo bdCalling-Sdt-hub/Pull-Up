@@ -28,6 +28,7 @@ class HomeController extends GetxController {
   List events = [];
   List keywords = [];
   int bookPage = 1;
+  int bookTotalPage = 0;
   int burgerPage = 1;
   int eventPage = 1;
 
@@ -51,6 +52,7 @@ class HomeController extends GetxController {
   Future<void> bookScrollControllerCall() async {
     if (bookScrollController.position.pixels ==
         bookScrollController.position.maxScrollExtent) {
+      if (bookTotalPage < bookPage) return;
       isMoreLoading = true;
       update();
       await bookRepo();
@@ -98,6 +100,9 @@ class HomeController extends GetxController {
       if (productModel?.data?.result != null) {
         books.addAll(productModel!.data!.result!);
         print("================> ${books.length}");
+      }
+      if (productModel?.data?.meta?.totalPage != null) {
+        bookTotalPage = productModel!.data!.meta!.totalPage!;
       }
       bookStatus = Status.completed;
       update();

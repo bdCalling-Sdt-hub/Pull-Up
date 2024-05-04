@@ -207,6 +207,201 @@ class _EditProfileBusinessAccountState
                 color: AppColors.white50,
               ),
             ),
+            CustomText(
+              text: AppString.accountHolderName,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.accountHolderNameController,
+              hintText: AppString.accountHolderName,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.accountNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.accountNumberController,
+              hintText: AppString.accountNumber,
+              keyboardType: TextInputType.number,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.routingNumber,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.routingNumberController,
+              hintText: AppString.routingNumber,
+              keyboardType: TextInputType.number,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+
+
+
+            CustomText(
+              text: AppString.country,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.countryController,
+              hintText: AppString.country,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.city,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.cityController,
+              hintText: AppString.city,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.state,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.stateController,
+              hintText: AppString.state,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.line,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.line1Controller,
+              hintText: AppString.line,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.postalCode,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.postalCodeController,
+              hintText: AppString.postalCode,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
             SizedBox(
               height: 12.h,
             ),

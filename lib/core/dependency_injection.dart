@@ -10,6 +10,7 @@ import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 
 import '../controller/add_deal_controller.dart';
 import '../controller/event/event_list_controller.dart';
+import '../controller/history_controller.dart';
 import '../controller/location/change_location.dart';
 import '../controller/product/add_product_controller.dart';
 import '../controller/auth/forgot_password_controller.dart';
@@ -40,5 +41,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => PaymentController(), fenix: true);
     Get.lazyPut(() => ChangeLocationController(), fenix: true);
     Get.lazyPut(() => ShopHouseController(), fenix: true);
+    Get.lazyPut(() => HistoryController(), fenix: true);
   }
 }

@@ -40,6 +40,12 @@ class ProfileController extends GetxController {
   TextEditingController organisationLocationController =
       TextEditingController();
 
+  TextEditingController cityController = TextEditingController();
+  TextEditingController line1Controller = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+
   ProfileModel? profileModel;
 
   Future<void> profileRepo() async {
@@ -174,8 +180,18 @@ class ProfileController extends GetxController {
       "businessDescription": desController.text,
       "businessWebsite": websiteController.text,
       "businessHours": businessHoursController.text,
-      "businessLocation": dateOfBrithController.text,
-      "dateOfBirth": dateOfBrithController.text
+      "dateOfBirth": dateOfBrithController.text,
+      "businessLocation": jsonEncode({
+        "city": cityController.text,
+        "country": countryController.text,
+        "state": stateController.text,
+        "line1": line1Controller.text,
+        "postal_code": postalCodeController.text,
+      }),
+      "account_holder_name": accountHolderNameController.text,
+      "account_holder_type": "individual",
+      "routing_number": routingNumberController.text,
+      "account_number": accountNumberController.text,
     };
 
     print(aaa);
@@ -183,7 +199,7 @@ class ProfileController extends GetxController {
         url: AppUrl.updateAccount, body: body, imagePath: aaa);
 
     if (response.statusCode == 200) {
-      Get.offAllNamed(AppRoute.profile);
+      // Get.offAllNamed(AppRoute.profile);
       print(response.body);
     } else {
       Utils.toastMessage(message: response.message);
@@ -203,11 +219,18 @@ class ProfileController extends GetxController {
       "organisationDescription": desController.text,
       "organisationWebsite": websiteController.text,
       "dateOfBirth": dateOfBrithController.text,
+
+      "organisationLocation": jsonEncode({
+        "city": cityController.text,
+        "country": countryController.text,
+        "state": stateController.text,
+        "line1": line1Controller.text,
+        "postal_code": postalCodeController.text,
+      }),
       "account_holder_name": accountHolderNameController.text,
       "account_holder_type": "individual",
       "routing_number": routingNumberController.text,
       "account_number": accountNumberController.text,
-      "organisationLocation": organisationLocationController.text,
     };
 
     print(body);

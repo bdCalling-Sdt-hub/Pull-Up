@@ -11,6 +11,7 @@ import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/screen/product/product_list/inner_widget/product_item.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/no_data.dart';
@@ -27,11 +28,13 @@ class MyProduct extends StatefulWidget {
   State<MyProduct> createState() => _MyProductState();
 }
 
-class _MyProductState extends State<MyProduct> {
+class _MyProductState extends State<MyProduct>
+    with SingleTickerProviderStateMixin {
   MyProductController controller = Get.put(MyProductController());
 
   @override
   void initState() {
+    controller.tabController = TabController(length: 2, vsync: this);
     Future.delayed(
       Duration.zero,
       () {
@@ -44,6 +47,12 @@ class _MyProductState extends State<MyProduct> {
     );
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -71,30 +80,43 @@ class _MyProductState extends State<MyProduct> {
       ),
       body: GetBuilder<MyProductController>(
         builder: (controller) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // account == "shopping"
-                //     ? const SizedBox()
-                //     : CustomButton(
-                //         titleText: AppString.createDeal,
-                //         onPressed: () => Get.toNamed(AppRoute.addDeal),
-                //       ),
-                switch (controller.status) {
-                  Status.loading =>
-                    const Center(child: CircularProgressIndicator()),
-                  Status.error => ErrorScreen(
-                      onTap: () {
-                        controller.page = 1;
-                        controller.productsRepo();
-                      },
-                    ),
-                  Status.completed => controller.products.isEmpty
-                      ? const NoData()
-                      : Expanded(
+          return Column(
+            children: [
+              TabBar(
+                controller: controller.tabController,
+                unselectedLabelColor: AppColors.grey200,
+                labelStyle: const TextStyle(color: AppColors.primaryColor),
+                onTap: (int) {
+                  if (int == 0) {
+                    controller.page = 1;
+                    controller.productsRepo();
+                  } else {}
+                },
+                indicator: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // Change this color as needed
+                ),
+                tabs: const [
+                  Tab(
+                    text: AppString.myProduct,
+                  ),
+                  Tab(text: AppString.history),
+                ],
+              ),
+              switch (controller.status) {
+                Status.loading => const CustomLoader(),
+                Status.error => ErrorScreen(
+                    onTap: () {
+                      controller.page = 1;
+                      controller.productsRepo();
+                    },
+                  ),
+                Status.completed => controller.products.isEmpty
+                    ? const NoData()
+                    : Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 10.h),
                           child: ListView.builder(
                             itemCount: controller.products.length,
                             controller: controller.scrollController,
@@ -111,9 +133,9 @@ class _MyProductState extends State<MyProduct> {
                             },
                           ),
                         ),
-                }
-              ],
-            ),
+                      ),
+              },
+            ],
           );
         },
       ),

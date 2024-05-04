@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/shop_house_controller.dart';
 import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
@@ -11,6 +13,7 @@ import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
+import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../widget/home_product_item.dart';
@@ -23,36 +26,19 @@ class ShopHouseScreen extends StatefulWidget {
 }
 
 class _ShopHouseScreenState extends State<ShopHouseScreen> {
-  List books = [
-    {
-      "image": AppImages.thinkingFast,
-      "title": AppString.thinkingFast,
-      "subTitle": AppString.charleyStore
-    },
-    {
-      "image": AppImages.milkAndHoney,
-      "title": AppString.milkAndHoney,
-      "subTitle": AppString.generalStore
-    },
-    {
-      "image": AppImages.thinkingFast,
-      "title": AppString.thinkingFast,
-      "subTitle": AppString.charleyStore
-    },
-    {
-      "image": AppImages.milkAndHoney,
-      "title": AppString.milkAndHoney,
-      "subTitle": AppString.generalStore
-    },
-  ];
-
   String userId = Get.parameters["userId"] ?? "";
 
   ShopHouseController controller = Get.put(ShopHouseController());
 
   @override
   void initState() {
-    controller.shopHouseRepo(userId);
+    Future.delayed(
+      Duration.zero,
+      () {
+        controller.shopHouseRepo(userId);
+        controller.productsRepo(userId);
+      },
+    );
     super.initState();
   }
 
@@ -194,32 +180,48 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                           SizedBox(
                             height: 16.h,
                           ),
-                          GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    mainAxisExtent: 190.sp,
-                                    mainAxisSpacing: 10.h),
-                            itemCount: books.length,
-                            itemBuilder: (context, index) {
-                              var item = books[index];
-                              return GestureDetector(
-                                onTap: () => Get.toNamed(
-                                  AppRoute.productDetails,
-                                  // parameters: {"productId": item.sId!}
+                          switch (controller.productStatus) {
+                            Status.loading => const SizedBox(
+                                height: 200, child: CustomLoader()),
+                            Status.error => SizedBox(
+                                height: 200,
+                                child: ErrorScreen(
+                                  onTap: () => controller.productsRepo(userId),
                                 ),
-                                child: HomeProductItem(
-                                  image: item['image'],
-                                  title: item['title'],
-                                  subTitle: item['subTitle'],
-                                  isFavorite: false,
-                                ),
-                              );
-                            },
-                          ),
+                              ),
+                            Status.completed => controller.products.isEmpty
+                                ? SizedBox(height: 200.h, child: const NoData())
+                                : GridView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            mainAxisExtent: 190.sp,
+                                            mainAxisSpacing: 10.h),
+                                    itemCount: controller.products.length,
+                                    itemBuilder: (context, index) {
+                                      Data item = controller.products[index];
+                                      return GestureDetector(
+                                        onTap: () => Get.toNamed(
+                                            AppRoute.productDetails,
+                                            parameters: {
+                                              "productId": item.sId!
+                                            }),
+
+                                        child: HomeProductItem(
+                                          image:
+                                              "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
+                                          title: item.name ?? "",
+                                          subTitle: item.description ?? "",
+                                          isFavorite: false,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                          },
                         ],
                       ),
                     ),

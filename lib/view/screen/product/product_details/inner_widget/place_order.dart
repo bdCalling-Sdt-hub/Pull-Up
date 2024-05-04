@@ -6,13 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/product/product_details_controller.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/shop_product_model.dart';
+import 'package:pull_up/utils/app_url.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
+import 'package:pull_up/view/widget/error_screen.dart';
+import 'package:pull_up/view/widget/no_data.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
-import 'another_shoppings.dart';
+import 'another_shoppings_list_item.dart';
 
 class PlaceOrder extends StatelessWidget {
   PlaceOrder({super.key});
@@ -205,7 +211,7 @@ class PlaceOrder extends StatelessWidget {
                           ],
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
                 Align(
                     alignment: FractionalOffset.centerLeft,
                     child: CustomText(
@@ -216,10 +222,35 @@ class PlaceOrder extends StatelessWidget {
                       top: 10.h,
                       bottom: 10.h,
                     )),
-                const SizedBox(
-                  height: 110,
-                  child: AnotherShopping(),
-                ),
+                SizedBox(
+                    height: 110,
+                    child: switch (controller.productStatus) {
+                      Status.loading => const CustomLoader(),
+                      Status.error => ErrorScreen(
+                          onTap: () => controller.productsRepo(
+                              controller.productDetailsModel?.data?.userId ??
+                                  ""),
+                        ),
+                      Status.completed => controller.products.isEmpty
+                          ? const Center(
+                              child: CustomText(
+                                text: AppString.noProductFound,
+                                color: AppColors.grey900,
+                              ),
+                            )
+                          : ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: controller.products.length,
+                              itemBuilder: (context, index) {
+                                Data item = controller.products[index];
+                                return AnotherShoppingListItem(
+                                  image:
+                                      "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
+                                  price: item.price ?? "",
+                                  name: item.name ?? "",
+                                );
+                              }),
+                    }),
                 InkWell(
                   onTap: () async {
                     var data = await Get.toNamed(AppRoute.payment,

@@ -32,4 +32,28 @@ class EventDetailsController extends GetxController {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
   }
+
+  Future<void> paymentRepo(var paymentIntentData) async {
+    // isLoading = true;
+    // update();
+
+    var body = {
+      "eventId": eventDetailsModel!.data!.sId,
+      "data": jsonEncode(paymentIntentData)
+    };
+
+    var response = await ApiService.postApi(AppUrl.paymentWithEvent, body);
+
+    if (response.statusCode == 200) {
+      Utils.toastMessage(message: response.message);
+    } else {
+      Utils.toastMessage(message: response.message);
+    }
+
+    print(response.statusCode);
+    print(response.body);
+
+    // isLoading = false;
+    // update();
+  }
 }

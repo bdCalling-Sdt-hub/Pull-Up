@@ -106,6 +106,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
                               if (data != null) {
                                 print("data Not null: $data");
+                                controller.paymentRepo(data);
                               } else {
                                 print("data null: $data");
                               }

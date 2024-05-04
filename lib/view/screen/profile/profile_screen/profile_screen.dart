@@ -190,7 +190,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: AppIcons.income,
                             onTap: () => Get.toNamed(AppRoute.income),
                           )
-                        : const SizedBox()
+                        : const SizedBox(),
+                    Item(
+                      title: AppString.history,
+                      icon: AppIcons.cleanHistory,
+                      onTap: () => Get.toNamed(AppRoute.history),
+                    )
                   ],
                 ),
               ),

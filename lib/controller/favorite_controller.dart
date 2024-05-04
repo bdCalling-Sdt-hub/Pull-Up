@@ -22,6 +22,8 @@ class FavoriteController extends GetxController {
   Future<void> scrollControllerCall() async {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
+      if (favoriteModel?.data?.meta?.totalPage != null &&
+          favoriteModel!.data!.meta!.totalPage! < page) return;
       isMoreLoading = true;
       update();
       await favoriteRepo();
@@ -44,7 +46,7 @@ class FavoriteController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      AppUrl.favorite,
+      "${AppUrl.favorite}?page=$page",
     );
 
     if (response.statusCode == 200) {

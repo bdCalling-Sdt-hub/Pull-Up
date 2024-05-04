@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:pull_up/model/product_model.dart';
+import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/model/single_shop_model.dart';
 
 import '../model/api_response_model.dart';
@@ -10,8 +12,11 @@ import '../utils/app_utils.dart';
 
 class ShopHouseController extends GetxController {
   Status status = Status.completed;
+  Status productStatus = Status.completed;
 
   SingleShopModel? singleShopModel;
+  ShopProductModel? productModel;
+  List products = [];
 
   Future<void> shopHouseRepo(String userId) async {
     status = Status.loading;
@@ -27,6 +32,32 @@ class ShopHouseController extends GetxController {
       update();
     } else {
       status = Status.error;
+      update();
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
+
+  Future<void> productsRepo(String userId) async {
+    productStatus = Status.loading;
+    update();
+
+    var response = await ApiService.getApi(
+      "${AppUrl.shopProduct}/$userId",
+    );
+
+
+    if (response.statusCode == 200) {
+      productModel = ShopProductModel.fromJson(jsonDecode(response.body));
+
+      if (productModel?.data != null) {
+        products.clear();
+        products.addAll(productModel!.data!);
+      }
+
+      productStatus = Status.completed;
+      update();
+    } else {
+      productStatus = Status.error;
       update();
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }

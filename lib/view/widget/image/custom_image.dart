@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 import '../../../utils/app_images.dart';
 
@@ -32,9 +34,9 @@ class CustomImage extends StatefulWidget {
 }
 
 class _CustomImageState extends State<CustomImage> {
-  late Widget imageWidget;
+  RxBool notNetworkError = true.obs;
 
-  bool networkError = false;
+  late Widget imageWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -87,17 +89,8 @@ class _CustomImageState extends State<CustomImage> {
     }
 
     if (widget.imageType == ImageType.decorationImage) {
-      imageWidget = networkError
+      imageWidget = Obx(() => notNetworkError.value
           ? Container(
-              width: widget.width,
-              height: widget.height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                      fit: widget.fill,
-                      image: AssetImage(widget.defaultImage))),
-            )
-          : Container(
               width: widget.width,
               height: widget.height,
               decoration: BoxDecoration(
@@ -105,15 +98,30 @@ class _CustomImageState extends State<CustomImage> {
                   image: DecorationImage(
                     image: NetworkImage(widget.imageSrc),
                     onError: (exception, stackTrace) {
-                      networkError = true;
-                      print(widget.imageSrc);
-                      setState(() {});
+                      if (kDebugMode) {
+                        print("before: ${notNetworkError.value}");
+                      }
 
-                      return;
+                      notNetworkError.value = false;
+                      if (kDebugMode) {
+                        print("before: ${notNetworkError.value}");
+                        print(widget.imageSrc);
+                      }
+
+                      setState(() {});
                     },
                     fit: widget.fill,
                   )),
-            );
+            )
+          : Container(
+              width: widget.width,
+              height: widget.height,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  image: DecorationImage(
+                      fit: widget.fill,
+                      image: AssetImage(widget.defaultImage))),
+            ));
     }
 
     return SizedBox(

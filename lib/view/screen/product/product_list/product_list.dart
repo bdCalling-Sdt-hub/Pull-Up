@@ -59,7 +59,7 @@ class _ProductListState extends State<ProductList> {
       body: GetBuilder<ProductListController>(
         builder: (controller) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
             child: Column(
               children: [
                 switch (controller.status) {

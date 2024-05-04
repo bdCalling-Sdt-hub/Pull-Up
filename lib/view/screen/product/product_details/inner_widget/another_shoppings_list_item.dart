@@ -8,7 +8,18 @@ import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class AnotherShoppingListItem extends StatelessWidget {
-  const AnotherShoppingListItem({super.key});
+  AnotherShoppingListItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.price,
+  });
+
+  final String image;
+
+  final String name;
+
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -21,41 +32,45 @@ class AnotherShoppingListItem extends StatelessWidget {
           color: AppColors.white50, borderRadius: BorderRadius.circular(10.r)),
       child: Row(
         children: [
-          Container(
+          CustomImage(
+            imageSrc: image,
+            imageType: ImageType.decorationImage,
             height: 76.sp,
             width: 76.sp,
-            margin: EdgeInsets.only(right: 18.w),
-            decoration: ShapeDecoration(
-              color: AppColors.white50,
-              image: const DecorationImage(
-                  image: AssetImage(AppImages.book), fit: BoxFit.fill),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
-              ),
-            ),
           ),
-
+          SizedBox(
+            width: 8.w,
+          ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(
-                  text: AppString.familyFriendsLoveBook,
+                CustomText(
+                  text: name,
                   textAlign: TextAlign.start,
                   fontSize: 16,
+                  maxLines: 2,
                   fontWeight: FontWeight.w400,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText(text: "\$43", fontSize: 18, fontWeight: FontWeight.w600,),
+                    CustomText(
+                      text: "\$${price}",
+                      fontSize: 18,
+                      maxLines: 1,
+                      fontWeight: FontWeight.w600,
+                    ),
                     Container(
-                      width: 32.sp,
-                      height: 32.sp,
-                      decoration: BoxDecoration(
-                        color: AppColors.grey300,
-                        borderRadius: BorderRadius.circular(10.r)
-                      ),
-                        child: const Icon(Icons.add, color: AppColors.primaryColor,))
+                        width: 32.sp,
+                        height: 32.sp,
+                        decoration: BoxDecoration(
+                            color: AppColors.grey300,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: const Icon(
+                          Icons.add,
+                          color: AppColors.primaryColor,
+                        ))
                   ],
                 )
               ],
