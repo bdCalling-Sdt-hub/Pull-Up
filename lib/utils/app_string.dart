@@ -481,4 +481,7 @@ class AppString {
   static const String state = "State";
   static const String line = "Line 1";
   static const String postalCode = "Postal Code";
+  static const String pleaseSelectDataAndTime = "Please, select data and time";
+  static const String selectTime = "Select Time";
+  static const String selectDate = "Select date";
 }

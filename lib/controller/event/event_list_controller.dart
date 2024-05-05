@@ -32,7 +32,6 @@ class EventListController extends GetxController {
     }
   }
 
-
   Future<void> eventsRepo() async {
     if (page == 1) {
       events.clear();
@@ -41,14 +40,14 @@ class EventListController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      "${AppUrl.event}?page=$page",
+      "${AppUrl.eventList}?page=$page",
     );
 
     if (response.statusCode == 200) {
       eventModel = EventModel.fromJson(jsonDecode(response.body));
 
-      if (eventModel?.data?.result != null) {
-        events.addAll(eventModel!.data!.result!);
+      if (eventModel?.data != null) {
+        events.addAll(eventModel!.data!);
         print("================> ${events.length}");
       }
       status = Status.completed;

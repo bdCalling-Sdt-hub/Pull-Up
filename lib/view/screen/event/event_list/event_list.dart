@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/event/event_list_controller.dart';
@@ -14,10 +12,8 @@ import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 import '../../../../core/app_route.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/image/custom_image.dart';
-import '../../../widget/home_product_item.dart';
 import '../../../widget/navBar/navbar.dart';
 import '../../../widget/text/custom_text.dart';
 import 'inner_widget/recommendation_list_item.dart';
@@ -132,19 +128,36 @@ class _EventListScreenState extends State<EventListScreen> {
                         controller: controller.scrollController,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          Result item = controller.events[index];
+                          Data item = controller.events[index];
                           print(
-                              "==================> location ${item.location}");
+                              "==================> location ${item.eventData?.location}");
                           return GestureDetector(
                               onTap: () => Get.toNamed(AppRoute.eventDetails,
                                   parameters: {"eventId": item.sId ?? ""}),
                               child: UpcommingEventItem(
-                                name: item.name ?? "",
-                                des: item.description ?? "",
+                                firstImage: item.userData != null &&
+                                        item.userData!.isNotEmpty
+                                    ? item.userData![0].image?.path ?? ""
+                                    : "",
+                                secondImage: item.userData != null &&
+                                        item.userData!.length >= 2
+                                    ? item.userData![1].image?.path ?? ""
+                                    : "",
+                                thirdImage: item.userData != null &&
+                                        item.userData!.length >= 3
+                                    ? item.userData![2].image?.path ?? ""
+                                    : "",
+                                joinNumber: item.userData != null
+                                    ? item.userData!.length > 2
+                                        ? (item.userData!.length - 3).toString()
+                                        : "0"
+                                    : "0",
+                                name: item.eventData?.name ?? "",
+                                des: item.eventData?.description ?? "",
                                 image:
-                                    "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
-                                location: item.location ?? "",
-                                price: item.price ?? "",
+                                    "${AppUrl.imageUrl}/${item.eventData?.image?.path ?? ""}",
+                                location: item.eventData?.location ?? "",
+                                price: item.eventData?.price ?? "",
                               ));
                         },
                       ),
@@ -178,11 +191,16 @@ class _EventListScreenState extends State<EventListScreen> {
                     itemCount: controller.events.length,
                     controller: controller.scrollController,
                     itemBuilder: (context, index) {
-                      Result item = controller.events.reversed.toList()[index];
-                      return RecommendationsListItem(
-                        image: "${AppUrl.imageUrl}/${item.image?.path}",
-                        title: item.name ?? "",
-                        price: item.price ?? "",
+                      Data item = controller.events.reversed.toList()[index];
+                      return GestureDetector(
+                        onTap: () => Get.toNamed(AppRoute.eventDetails,
+                            parameters: {"eventId": item.sId ?? ""}),
+                        child: RecommendationsListItem(
+                          image:
+                              "${AppUrl.imageUrl}/${item.eventData?.image?.path}",
+                          title: item.eventData?.name ?? "",
+                          price: item.eventData?.price ?? "",
+                        ),
                       );
                     },
                   ),

@@ -8,7 +8,7 @@ class ProfileModel {
   ProfileModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -29,7 +29,6 @@ class Data {
   String? phoneNumber;
   Image? image;
   String? role;
-  Null? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -56,7 +55,6 @@ class Data {
       this.phoneNumber,
       this.image,
       this.role,
-      this.oneTimeCode,
       this.emailVerified,
       this.createdAt,
       this.updatedAt,
@@ -83,7 +81,6 @@ class Data {
     phoneNumber = json['phoneNumber'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
-    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -116,7 +113,6 @@ class Data {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
-    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

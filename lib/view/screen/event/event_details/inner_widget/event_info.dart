@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -32,20 +33,27 @@ class EventInfo extends StatelessWidget {
                 SizedBox(
                   width: 12.w,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: "10 December, 2023",
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.white50,
-                    ),
-                    const CustomText(
-                      text: 'Tuesday, 4:00PM - 9:00PM',
-                      color: AppColors.yellow200,
-                    )
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: controller.formatDate(
+                            controller.eventDetailsModel?.data?.dateTime != null
+                                ? controller.eventDetailsModel!.data!.dateTime!
+                                : ""),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        maxLines: 1,
+                        color: AppColors.white50,
+                      ),
+                      CustomText(
+                        text:
+                            '${controller.getDayName(controller.eventDetailsModel?.data?.dateTime != null ? controller.eventDetailsModel!.data!.dateTime! : "")}, ${controller.eventDetailsModel?.data?.dateTime != null ? "${controller.eventDetailsModel!.data!.dateTime!.split("T")[1].split(":")[0]}${":"}${controller.eventDetailsModel!.data!.dateTime!.split("T")[1].split(":")[1]}" : ""}',
+                        color: AppColors.yellow200,
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

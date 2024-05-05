@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
+import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
-
-import '../../../../../utils/app_images.dart';
-import '../../../../../utils/app_string.dart';
 
 class UpcommingEventItem extends StatelessWidget {
   UpcommingEventItem({
@@ -17,16 +15,20 @@ class UpcommingEventItem extends StatelessWidget {
     required this.des,
     required this.location,
     required this.price,
+    required this.joinNumber,
+    required this.firstImage,
+    required this.secondImage,
+    required this.thirdImage,
   });
 
   String image;
-
+  String firstImage;
+  String secondImage;
+  String thirdImage;
   String name;
-
   String des;
-
+  String joinNumber;
   String location;
-
   String price;
 
   @override
@@ -77,39 +79,60 @@ class UpcommingEventItem extends StatelessWidget {
                 children: [
                   Container(
                       padding: EdgeInsets.only(left: 30.w),
-                      child: CustomImage(
-                        imageSrc: AppImages.profile1,
-                        imageType: ImageType.png,
-                        width: 24.sp,
-                        height: 24.sp,
-                      )),
-                  Positioned(
-                      left: 15,
-                      child: CustomImage(
-                        imageSrc: AppImages.profile2,
-                        imageType: ImageType.png,
-                        height: 24.sp,
-                        width: 24.sp,
-                      )),
-                  Positioned(
-                      left: 0,
-                      child: CustomImage(
-                        imageSrc: AppImages.profile1,
-                        imageType: ImageType.png,
-                        width: 24.sp,
-                        height: 24.sp,
-                      ))
+                      child: firstImage.isNotEmpty
+                          ? CircleAvatar(
+                              radius: 12.sp,
+                              child: ClipOval(
+                                child: CustomImage(
+                                  imageSrc: "${AppUrl.imageUrl}/$firstImage",
+                                  imageType: ImageType.network,
+                                  width: 24.sp,
+                                  height: 24.sp,
+                                ),
+                              ),
+                            )
+                          : const SizedBox()),
+                  secondImage.isNotEmpty
+                      ? Positioned(
+                          left: 15,
+                          child: CircleAvatar(
+                              radius: 12.sp,
+                              child: ClipOval(
+                                child: CustomImage(
+                                  imageSrc: "${AppUrl.imageUrl}/$secondImage",
+                                  imageType: ImageType.network,
+                                  height: 24.sp,
+                                  width: 24.sp,
+                                ),
+                              )))
+                      : const SizedBox(),
+                  thirdImage.isNotEmpty
+                      ? Positioned(
+                          left: 0,
+                          child: CircleAvatar(
+                              radius: 12.sp,
+                              child: ClipOval(
+                                child: CustomImage(
+                                  imageSrc: "${AppUrl.imageUrl}/$thirdImage",
+                                  imageType: ImageType.network,
+                                  width: 24.sp,
+                                  height: 24.sp,
+                                ),
+                              )))
+                      : const SizedBox()
                 ],
               ),
               SizedBox(
                 width: 8.w,
               ),
-              CustomText(
-                text: "+30 Going",
-                fontSize: 12.w,
-                fontWeight: FontWeight.w300,
-                color: AppColors.deepOrange,
-              )
+              joinNumber != "0"
+                  ? CustomText(
+                      text: "+$joinNumber",
+                      fontSize: 12.w,
+                      fontWeight: FontWeight.w300,
+                      color: AppColors.deepOrange,
+                    )
+                  : const SizedBox()
             ],
           ),
           SizedBox(

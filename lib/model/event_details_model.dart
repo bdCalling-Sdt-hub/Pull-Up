@@ -29,20 +29,24 @@ class Data {
   String? price;
   Image? image;
   String? location;
+  String? dateTime;
+  String? userId;
   String? createdAt;
   String? updatedAt;
   int? iV;
 
   Data(
       {this.sId,
-        this.name,
-        this.description,
-        this.price,
-        this.image,
-        this.location,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.name,
+      this.description,
+      this.price,
+      this.image,
+      this.location,
+      this.dateTime,
+      this.userId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -51,6 +55,8 @@ class Data {
     price = json['price'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     location = json['location'];
+    dateTime = json['dateTime'];
+    userId = json['userId'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
@@ -66,6 +72,8 @@ class Data {
       data['image'] = this.image!.toJson();
     }
     data['location'] = this.location;
+    data['dateTime'] = this.dateTime;
+    data['userId'] = this.userId;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;

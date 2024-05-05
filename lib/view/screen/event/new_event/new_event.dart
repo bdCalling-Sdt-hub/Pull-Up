@@ -19,6 +19,7 @@ import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/app_utils.dart';
+import '../../../widget/custom_loader.dart';
 import '../../../widget/text/custom_text.dart';
 
 class NewEvent extends StatelessWidget {
@@ -164,6 +165,85 @@ class NewEvent extends StatelessWidget {
                   CustomTextField(
                     hintText: AppString.enterYourLocation,
                     controller: controller.addressController,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return AppString.thisFieldIsRequired;
+                      } else {
+                        return null;
+                      }
+                    },
+                    borderColor: AppColors.white50,
+                    fillColor: AppColors.background,
+                    paddingVertical: 12.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: AppString.selectDate,
+                        color: AppColors.white50,
+                        fontWeight: FontWeight.w600,
+                        top: 12.h,
+                        bottom: 4.h,
+                      ),
+                      controller.isLoadingLocation
+                          ? CustomLoader(
+                              size: 30.sp,
+                            )
+                          : GestureDetector(
+                              onTap: () => controller.currentLocation(),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomImage(
+                                      imageSrc: AppIcons.changeLocation),
+                                  SizedBox(
+                                    width: 8.w,
+                                  ),
+                                  CustomText(
+                                    text: AppString.useMyCurrentLocation,
+                                    color: AppColors.primaryColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  )
+                                ],
+                              ),
+                            ),
+                      const SizedBox()
+                    ],
+                  ),
+                  CustomTextField(
+                    hintText: AppString.selectDate,
+                    controller: controller.dateController,
+                    keyboardType: TextInputType.none,
+                    onTap: () {
+                      controller.selectDatePicker();
+                    },
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return AppString.thisFieldIsRequired;
+                      } else {
+                        return null;
+                      }
+                    },
+                    borderColor: AppColors.white50,
+                    fillColor: AppColors.background,
+                    paddingVertical: 12.h,
+                  ),
+                  CustomText(
+                    text: AppString.selectTime,
+                    color: AppColors.white50,
+                    fontWeight: FontWeight.w600,
+                    top: 12.h,
+                    bottom: 4.h,
+                  ),
+                  CustomTextField(
+                    hintText: AppString.selectTime,
+                    controller: controller.timeController,
+                    keyboardType: TextInputType.none,
+                    onTap: () {
+                      controller.selectTimePicker();
+                    },
                     validator: (value) {
                       if (value.isEmpty) {
                         return AppString.thisFieldIsRequired;

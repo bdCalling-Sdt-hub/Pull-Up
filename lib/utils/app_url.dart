@@ -25,6 +25,7 @@ class AppUrl {
   static const paymentWithEvent = "$baseUrl/payment/connect-create-payment-intent-event";
   static const crateEvent = "$baseUrl/event/create-event";
   static const event = "$baseUrl/event";
+  static const eventList = "$baseUrl/event/event-join";
   static const isFavorite = "$baseUrl/favorite/add";
   static const favorite = "$baseUrl/favorite";
   static const profile = "$baseUrl/users/profile";

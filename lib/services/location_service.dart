@@ -43,9 +43,19 @@ class LocationService {
   static Future<Position?> getCurrentPosition() async {
     Position? positions;
     try {
-      positions = await Geolocator.getCurrentPosition();
-      print(positions);
+      bool isEnabled = await checkLocationEnabled();
+      if (!isEnabled) {
+        isEnabled = await Geolocator.openLocationSettings();
+      }
+      if (isEnabled) {
+        bool isPermission = await locationPermission();
+        if (isPermission) {
+          positions = await Geolocator.getCurrentPosition();
+          print(positions);
 
+          return positions;
+        }
+      }
       return positions;
     } catch (e) {
       return positions;
@@ -54,12 +64,22 @@ class LocationService {
 
   static Future<List> addressToCoordinate(String address) async {
     try {
-      List<Location> locations = await locationFromAddress(address);
-
-      if (kDebugMode) {
-        print(locations.first.longitude);
+      bool isEnabled = await checkLocationEnabled();
+      if (!isEnabled) {
+        isEnabled = await Geolocator.openLocationSettings();
       }
-      return locations;
+      if (isEnabled) {
+        bool isPermission = await locationPermission();
+        if (isPermission) {
+          List<Location> locations = await locationFromAddress(address);
+          if (kDebugMode) {
+            print(locations.first.longitude);
+          }
+          return locations;
+        }
+      }
+
+      return [];
     } catch (e) {
       return [];
     }
@@ -68,19 +88,28 @@ class LocationService {
   static Future<List> coordinateToAddress(
       {required double lat, required double long}) async {
     try {
-      List<Placemark> placeMarks = await placemarkFromCoordinates(
-        lat,
-        long,
-      );
-
-      print(placeMarks.first.street);
-      print(placeMarks.first.country);
-      print(placeMarks.first.administrativeArea);
-      print(placeMarks.first.locality);
-      print(placeMarks.first.isoCountryCode);
-      print(placeMarks);
-      return placeMarks;
-
+      bool isEnabled = await checkLocationEnabled();
+      if (!isEnabled) {
+        isEnabled = await Geolocator.openLocationSettings();
+      }
+      if (isEnabled) {
+        bool isPermission = await locationPermission();
+        if (isPermission) {
+          List<Placemark> placeMarks = await placemarkFromCoordinates(
+            lat,
+            long,
+          );
+          return placeMarks;
+        }
+      }
+      //
+      // print(placeMarks.first.administrativeArea);
+      // print(placeMarks.first.country);
+      // print(placeMarks.first.administrativeArea);
+      // print(placeMarks.first.locality);
+      // print(placeMarks.first.isoCountryCode);
+      // print(placeMarks);
+      return [];
     } catch (e) {
       return [];
     }

@@ -7,11 +7,26 @@ import 'package:pull_up/model/event_details_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
+import 'package:intl/intl.dart';
 
 class EventDetailsController extends GetxController {
   Status status = Status.completed;
 
   EventDetailsModel? eventDetailsModel;
+
+  formatDate(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
+    print(formattedDate); // Output: 31 May, 2024
+    return formattedDate;
+  }
+
+  getDayName(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    String dayName = DateFormat('EEEE').format(dateTime);
+    print(dayName); // Output: Wednesday
+    return dayName;
+  }
 
   Future<void> eventDetailsRepo(String eventId) async {
     status = Status.loading;
