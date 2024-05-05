@@ -79,13 +79,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CustomText(
-                                        text: item.type ?? "",
+                                        text: item.message ?? "",
                                         color: AppColors.white50,
                                         fontSize: 16.sp,
                                         bottom: 4.h,
                                       ),
                                       CustomText(
-                                        text: item.message ?? "",
+                                        text:
+                                            item.createdAt!.split("T")[0] ?? "",
                                         color: AppColors.white50,
                                         fontWeight: FontWeight.w300,
                                         textAlign: TextAlign.start,

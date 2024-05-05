@@ -25,7 +25,7 @@ class NotificationController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      AppUrl.notifications,
+      "${AppUrl.notifications}?page=$page",
     );
 
     if (response.statusCode == 200) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
@@ -21,7 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Get.toNamed(AppRoute.enableLocation);
+      if (PrefsHelper.isLogIn) {
+        Get.offAllNamed(AppRoute.home);
+      } else {
+        Get.toNamed(AppRoute.enableLocation);
+      }
     });
     super.initState();
   }

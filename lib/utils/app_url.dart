@@ -38,4 +38,5 @@ class AppUrl {
   static const myEvent = "$baseUrl/event/user-wise-event";
   static const myEventHistory = "$baseUrl/event/receiver-event-history";
   static const eventHistory = "$baseUrl/event/event-history";
+  static const deActiveUser = "$baseUrl/users/deactive-users";
 }

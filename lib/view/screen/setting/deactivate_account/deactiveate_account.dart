@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/controller/deactive_account_controller.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
@@ -19,7 +20,9 @@ class DeactiveateAccount extends StatelessWidget {
     AppString.personalReasons,
     AppString.other
   ];
-  RxString currentOption = "".obs;
+  RxString currentOption = AppString.personalReasons.obs;
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,74 +37,98 @@ class DeactiveateAccount extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 28.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(
-              text: AppString.sadToSeeYouGo,
-              color: AppColors.white50,
-              bottom: 30.h,
-              left: 30.w,
-            ),
-            CustomText(
-              text: AppString.selectTheOption,
-              color: AppColors.white50,
-              fontWeight: FontWeight.w600,
-              fontSize: 24.sp,
-              bottom: 18.h,
-            ),
-            Obx(() => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: List.generate(
-                    options.length,
-                    (index) => InkWell(
-                      onTap: () {
-                        currentOption.value = options[index];
-                      },
-                      child: Row(
-                        children: [
-                          Radio<String>(
-                            activeColor: AppColors.primaryColor,
-                            fillColor: currentOption.value == options[index]
-                                ? null
-                                : MaterialStateProperty.all(AppColors.white50),
-                            value: options[index],
-                            groupValue: currentOption.value,
-                            onChanged: (value) {
+      body: GetBuilder<DeActiveAccountController>(
+        builder: (controller) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 28.w),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: AppString.sadToSeeYouGo,
+                    color: AppColors.white50,
+                    bottom: 30.h,
+                    left: 30.w,
+                  ),
+                  CustomText(
+                    text: AppString.selectTheOption,
+                    color: AppColors.white50,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24.sp,
+                    bottom: 18.h,
+                  ),
+                  Obx(() => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: List.generate(
+                          options.length,
+                          (index) => InkWell(
+                            onTap: () {
                               currentOption.value = options[index];
                             },
+                            child: Row(
+                              children: [
+                                Radio<String>(
+                                  activeColor: AppColors.primaryColor,
+                                  fillColor:
+                                      currentOption.value == options[index]
+                                          ? null
+                                          : MaterialStateProperty.all(
+                                              AppColors.white50),
+                                  value: options[index],
+                                  groupValue: currentOption.value,
+                                  onChanged: (value) {
+                                    currentOption.value = options[index];
+                                  },
+                                ),
+                                CustomText(
+                                  text: options[index],
+                                  fontSize: 18.sp,
+                                  color: AppColors.white50,
+                                ),
+                              ],
+                            ),
                           ),
-                          CustomText(
-                            text: options[index],
-                            fontSize: 18.sp,
-                            color: AppColors.white50,
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      )),
+                  CustomText(
+                    text: AppString.enterYourPassword,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.white50,
+                    bottom: 8.h,
                   ),
-                )),
-            CustomText(
-              text: AppString.enterYourPassword,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.white50,
-              bottom: 8.h,
+                  CustomTextField(
+                    borderColor: AppColors.white50,
+                    controller: controller.passwordController,
+                    fillColor: AppColors.background,
+                    hintText: AppString.enterYourPassword,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return AppString.thisFieldIsRequired;
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 28.h,
+                  ),
+                  CustomButton(
+                    titleText: AppString.deactivateYourAccount,
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        controller.deActiveAccountsRepo();
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
-            const CustomTextField(
-              borderColor: AppColors.white50,
-              fillColor: AppColors.background,
-              hintText: AppString.enterYourPassword,
-
-
-            ),
-            SizedBox(height: 28.h,),
-            CustomButton(titleText: AppString.deactivateYourAccount, onPressed: () => Get.back(),)
-          ],
-        ),
+          );
+        },
       ),
     );
   }
