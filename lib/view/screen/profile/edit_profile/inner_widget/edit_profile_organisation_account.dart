@@ -7,10 +7,13 @@ import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../../utils/app_utils.dart';
 import '../../../../widget/button/custom_button.dart';
+import '../../../../widget/custom_loader.dart';
 import '../../../../widget/custom_loading.dart';
+import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';
 
@@ -77,30 +80,6 @@ class _EditProfileOrganisationAccountState
               },
             ),
             CustomText(
-              text: AppString.address,
-              fontWeight: FontWeight.w300,
-              fontSize: 14.sp,
-              top: 12.h,
-              bottom: 6.h,
-              textAlign: TextAlign.start,
-              color: AppColors.white50,
-            ),
-            CustomTextField(
-              controller: controller.organisationLocationController,
-              hintText: AppString.address,
-              keyboardType: TextInputType.text,
-              fillColor: AppColors.transparent,
-              borderColor: AppColors.white50,
-              paddingVertical: 10.sp,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return AppString.thisFieldIsRequired;
-                } else {
-                  return null;
-                }
-              },
-            ),
-            CustomText(
               text: AppString.email,
               fontWeight: FontWeight.w300,
               fontSize: 14.sp,
@@ -124,7 +103,6 @@ class _EditProfileOrganisationAccountState
                 }
               },
             ),
-
             CustomText(
               text: AppString.dateOfBrith,
               fontWeight: FontWeight.w300,
@@ -207,7 +185,6 @@ class _EditProfileOrganisationAccountState
                 }
               },
             ),
-
             CustomText(
               text: AppString.accountHolderName,
               fontWeight: FontWeight.w300,
@@ -269,6 +246,154 @@ class _EditProfileOrganisationAccountState
               controller: controller.routingNumberController,
               hintText: AppString.routingNumber,
               keyboardType: TextInputType.number,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.country,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.countryController,
+              hintText: AppString.country,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(
+                  text: AppString.city,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 14.sp,
+                  top: 12.h,
+                  bottom: 6.h,
+                  textAlign: TextAlign.start,
+                  color: AppColors.white50,
+                ),
+                controller.isLoadingLocation
+                    ? CustomLoader(
+                        size: 30.sp,
+                      )
+                    : GestureDetector(
+                        onTap: () => controller.currentLocation(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CustomImage(imageSrc: AppIcons.changeLocation),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            CustomText(
+                              text: AppString.useMyCurrentLocation,
+                              color: AppColors.primaryColor,
+                              fontSize: 16.sp,
+                            )
+                          ],
+                        ),
+                      ),
+
+                SizedBox()
+              ],
+            ),
+            CustomTextField(
+              controller: controller.cityController,
+              hintText: AppString.city,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.state,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.stateController,
+              hintText: AppString.state,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.line,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.line1Controller,
+              hintText: AppString.line,
+              keyboardType: TextInputType.name,
+              fillColor: AppColors.transparent,
+              borderColor: AppColors.white50,
+              paddingVertical: 10.sp,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppString.thisFieldIsRequired;
+                } else {
+                  return null;
+                }
+              },
+            ),
+            CustomText(
+              text: AppString.postalCode,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.sp,
+              top: 12.h,
+              bottom: 6.h,
+              textAlign: TextAlign.start,
+              color: AppColors.white50,
+            ),
+            CustomTextField(
+              controller: controller.postalCodeController,
+              hintText: AppString.postalCode,
+              keyboardType: TextInputType.name,
               fillColor: AppColors.transparent,
               borderColor: AppColors.white50,
               paddingVertical: 10.sp,

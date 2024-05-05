@@ -7,10 +7,13 @@ import 'package:pull_up/controller/profile_controller/profile_controller.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../../utils/app_utils.dart';
 import '../../../../widget/button/custom_button.dart';
+import '../../../../widget/custom_loader.dart';
 import '../../../../widget/custom_loading.dart';
+import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';
 
@@ -279,9 +282,6 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-
-
-
             CustomText(
               text: AppString.country,
               fontWeight: FontWeight.w300,
@@ -306,14 +306,41 @@ class _EditProfileBusinessAccountState
                 }
               },
             ),
-            CustomText(
-              text: AppString.city,
-              fontWeight: FontWeight.w300,
-              fontSize: 14.sp,
-              top: 12.h,
-              bottom: 6.h,
-              textAlign: TextAlign.start,
-              color: AppColors.white50,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(
+                  text: AppString.city,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 14.sp,
+                  top: 12.h,
+                  bottom: 6.h,
+                  textAlign: TextAlign.start,
+                  color: AppColors.white50,
+                ),
+                controller.isLoadingLocation
+                    ? CustomLoader(
+                        size: 30.sp,
+                      )
+                    : GestureDetector(
+                        onTap: () => controller.currentLocation(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CustomImage(imageSrc: AppIcons.changeLocation),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            CustomText(
+                              text: AppString.useMyCurrentLocation,
+                              color: AppColors.primaryColor,
+                              fontSize: 16.sp,
+                            )
+                          ],
+                        ),
+                      ),
+                SizedBox()
+              ],
             ),
             CustomTextField(
               controller: controller.cityController,

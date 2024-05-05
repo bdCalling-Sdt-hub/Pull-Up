@@ -73,12 +73,14 @@ class LocationService {
         long,
       );
 
+      print(placeMarks.first.street);
+      print(placeMarks.first.country);
+      print(placeMarks.first.administrativeArea);
+      print(placeMarks.first.locality);
+      print(placeMarks.first.isoCountryCode);
       print(placeMarks);
       return placeMarks;
-      // print(placeMarks.first.street);
-      // print(placeMarks.first.subLocality);
-      // print(placeMarks.first.locality);
-      // print(placeMarks.first.postalCode);
+
     } catch (e) {
       return [];
     }

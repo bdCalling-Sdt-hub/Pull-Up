@@ -1,18 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pull_up/controller/notification_controller.dart';
+import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/notification_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/screen/notification/inner_widget/delete_popup.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
+import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../widget/navBar/navbar.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class NotificationScreen extends StatefulWidget {
+  NotificationScreen({super.key});
+
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
+  NotificationController controller = Get.put(NotificationController());
+
+  @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () {
+        controller.page = 1;
+        controller.notificationsRepo();
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,48 +50,56 @@ class NotificationScreen extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 10.h),
-        child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.symmetric(vertical: 8.h),
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(
-                          text: 'A new book Store Opened Near you',
-                          color: AppColors.white50,
-                        ),
-                        CustomText(
-                          text:
-                              'A new Book Store just got opened near you about 2 Km away!',
-                          color: AppColors.white50,
-                          fontWeight: FontWeight.w300,
-                          textAlign: TextAlign.start,
-                          maxLines: 2,
-                        )
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        DeletePopUp.deleteItemPopUp() ;
-                      },
-                      icon: CustomImage(
-                        imageSrc: AppIcons.delete,
-                      ))
-                ],
+      body: GetBuilder<NotificationController>(
+        builder: (controller) {
+          return switch (controller.status) {
+            Status.loading => const CustomLoader(),
+            Status.error => ErrorScreen(
+                onTap: () {
+                  controller.page = 1;
+                  controller.notificationsRepo();
+                },
               ),
-            );
-          },
-        ),
+            Status.completed => Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                child: ListView.builder(
+                  itemCount: controller.notifications.length,
+                  itemBuilder: (context, index) {
+                    Result item = controller.notifications[index];
+                    return Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.h),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  text: item.type ?? "",
+                                  color: AppColors.white50,
+                                  fontSize: 16.sp,
+                                  bottom: 4.h,
+                                ),
+                                CustomText(
+                                  text: item.message ?? "",
+                                  color: AppColors.white50,
+                                  fontWeight: FontWeight.w300,
+                                  textAlign: TextAlign.start,
+                                  maxLines: 2,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+          };
+        },
       ),
-      bottomNavigationBar:  CustomBottomNavBar(
+      bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 1,
       ),
     );

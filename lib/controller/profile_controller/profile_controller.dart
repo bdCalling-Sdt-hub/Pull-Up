@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/core/app_route.dart';
@@ -12,6 +13,7 @@ import 'package:pull_up/model/profile_model.dart';
 
 import '../../model/api_response_model.dart';
 import '../../services/api_service.dart';
+import '../../services/location_service.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
@@ -25,6 +27,7 @@ class ProfileController extends GetxController {
 
   TimeOfDay? startTime;
   bool isLoading = false;
+  bool isLoadingLocation = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -73,6 +76,29 @@ class ProfileController extends GetxController {
 
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  currentLocation() async {
+    isLoadingLocation = true;
+    update();
+    Position? position = await LocationService.getCurrentPosition();
+    if (position != null) {
+      List list = await LocationService.coordinateToAddress(
+          lat: position.latitude, long: position.longitude);
+      if (list.isNotEmpty) {
+        print(list);
+        countryController.text = list.first.isoCountryCode;
+        stateController.text = list.first.administrativeArea;
+        cityController.text = list.first.locality;
+        line1Controller.text = list.first.street;
+        postalCodeController.text = list.first.postalCode;
+
+        update();
+      }
+    }
+
+    isLoadingLocation = false;
+    update();
   }
 
   Future selectImageGallery() async {
@@ -214,12 +240,11 @@ class ProfileController extends GetxController {
     update();
     var body = {
       "organisationName": nameController.text,
-      // "organisationNumber": numberController.text,
+      "organisationNumber": numberController.text,
       "organisationEmail": emailController.text,
       "organisationDescription": desController.text,
       "organisationWebsite": websiteController.text,
       "dateOfBirth": dateOfBrithController.text,
-
       "organisationLocation": jsonEncode({
         "city": cityController.text,
         "country": countryController.text,
