@@ -9,6 +9,10 @@ import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
+import '../../../../../utils/app_icons.dart';
+import '../../../../widget/custom_loader.dart';
+import '../../../../widget/image/custom_image.dart';
+
 class LocationPopUp {
   static UpgradeAccountController controller =
       Get.put(UpgradeAccountController());
@@ -22,72 +26,92 @@ class LocationPopUp {
             backgroundColor: AppColors.grey300,
             content: Form(
               key: formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                        onTap: () => Get.back(),
-                        child: const Icon(
-                          Icons.close,
-                          color: AppColors.white50,
-                        )),
-                  ),
-                  CustomText(
-                    text: AppString.location,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primaryColor,
-                    bottom: 28,
-                  ),
-                  CustomTextField(
-                    controller: controller.addressController,
-                    paddingVertical: 10,
-                    fillColor: AppColors.transparent,
-                    borderColor: AppColors.white50,
-                    labelText: AppString.address,
-                    labelTextColor: AppColors.white500,
-                    textColor: AppColors.white500,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return AppString.thisFieldIsRequired;
-                      }
-                    },
-                  ),
-                  CustomText(
-                    text: AppString.or,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white50,
-                    bottom: 4.h,
-                    top: 12.h,
-                  ),
-                  CustomText(
-                    text: AppString.selectFromMap,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primaryColor,
-                    fontSize: 16.sp,
-                    bottom: 4.h,
-                  ),
-                  CustomText(
-                    text: AppString.selectFromMapNote,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.white50,
-                    textAlign: TextAlign.start,
-                    fontSize: 10.sp,
-                    bottom: 14.h,
-                  ),
-                  CustomButton(
-                      titleText: AppString.confirm,
-                      buttonWidth: 130.w,
-                      buttonHeight: 36.h,
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          controller.stripePayment();
-                          // controller.stripePayment();
-                        }
-                      })
-                ],
+              child: GetBuilder<UpgradeAccountController>(
+                builder: (controller) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () => Get.back(),
+                            child: const Icon(
+                              Icons.close,
+                              color: AppColors.white50,
+                            )),
+                      ),
+                      CustomText(
+                        text: AppString.location,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryColor,
+                        bottom: 28,
+                      ),
+                      CustomTextField(
+                        controller: controller.addressController,
+                        paddingVertical: 10,
+                        fillColor: AppColors.transparent,
+                        borderColor: AppColors.white50,
+                        labelText: AppString.address,
+                        labelTextColor: AppColors.white500,
+                        textColor: AppColors.white500,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return AppString.thisFieldIsRequired;
+                          }
+                        },
+                      ),
+                      CustomText(
+                        text: AppString.or,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.white50,
+                        bottom: 4.h,
+                        top: 12.h,
+                      ),
+                      controller.isLoadingLocation
+                          ? CustomLoader(
+                              size: 30.sp,
+                            )
+                          : GestureDetector(
+                              onTap: () => controller.currentLocation(),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomImage(
+                                      imageSrc: AppIcons.changeLocation),
+                                  SizedBox(
+                                    width: 8.w,
+                                  ),
+                                  CustomText(
+                                    text: AppString.useMyCurrentLocation,
+                                    color: AppColors.primaryColor,
+                                    fontSize: 16.sp,
+                                  )
+                                ],
+                              ),
+                            ),
+                      CustomText(
+                        text: AppString.selectFromMapNote,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.white50,
+                        textAlign: TextAlign.start,
+                        fontSize: 10.sp,
+                        bottom: 14.h,
+                        top: 8.h,
+                      ),
+                      CustomButton(
+                          titleText: AppString.confirm,
+                          buttonWidth: 130.w,
+                          buttonHeight: 36.h,
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              controller.stripePayment();
+                              // controller.stripePayment();
+                            }
+                          })
+                    ],
+                  );
+                },
               ),
             ),
           );

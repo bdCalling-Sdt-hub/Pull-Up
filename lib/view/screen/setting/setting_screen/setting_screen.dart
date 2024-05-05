@@ -68,11 +68,11 @@ class _SettingScreenState extends State<SettingScreen> {
               icon: AppIcons.cleanHistory,
               onTap: () => ClearPopUp.clearHistoryPopUp(),
             ),
-            Item(
-              title: AppString.distanceUnits,
-              icon: AppIcons.distanceUnits,
-              onTap: () => DistancePopUp.distanceUnitsPopUp(),
-            ),
+            // Item(
+            //   title: AppString.distanceUnits,
+            //   icon: AppIcons.distanceUnits,
+            //   onTap: () => DistancePopUp.distanceUnitsPopUp(),
+            // ),
             Item(
                 title: AppString.deactivateAccount,
                 onTap: () => Get.toNamed(AppRoute.deactiveateAccount),
@@ -80,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentIndex: 3),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 3),
     );
   }
 }

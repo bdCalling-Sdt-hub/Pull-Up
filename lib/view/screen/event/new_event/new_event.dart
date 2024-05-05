@@ -70,7 +70,7 @@ class NewEvent extends StatelessWidget {
                       child: Center(
                           child: controller.image == null
                               ? InkWell(
-                                  onTap: () => controller.selectImageCamera(),
+                                  onTap: () => controller.selectImageGallery(),
                                   child: CustomImage(
                                     imageSrc: AppIcons.upload,
                                     height: 50.sp,

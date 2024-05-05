@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/login_model.dart';
@@ -17,6 +18,9 @@ import 'package:http/http.dart' as http;
 
 class UpgradeAccountController extends GetxController {
   bool isLoading = false;
+  bool isLoadingLocation = false;
+
+
 
   Map<String, dynamic>? paymentIntentData;
   bool isLoadingPayment = false;
@@ -57,6 +61,22 @@ class UpgradeAccountController extends GetxController {
     update();
     packageDuration = package[index];
     amount = packageAmount[index];
+  }
+
+  currentLocation() async {
+    isLoadingLocation = true;
+    update();
+    Position? position = await LocationService.getCurrentPosition();
+    if (position != null) {
+      List list = await LocationService.coordinateToAddress(
+          lat: position.latitude, long: position.longitude);
+      if (list.isNotEmpty) {
+        addressController.text = list.first.administrativeArea;
+      }
+    }
+
+    isLoadingLocation = false;
+    update();
   }
 
   Future<void> validationTimePicker() async {

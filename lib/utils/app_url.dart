@@ -34,7 +34,7 @@ class AppUrl {
   static const shopProduct = "$baseUrl/product/single-shop-by-product";
   static const history = "$baseUrl/product/product-history";
   static const myProductHistory = "$baseUrl/product/receiver-product-history";
-  static const notifications = "$baseUrl/notifications";
+  static const notifications = "$baseUrl/notifications/user-notification";
   static const myEvent = "$baseUrl/event/user-wise-event";
   static const myEventHistory = "$baseUrl/event/receiver-event-history";
   static const eventHistory = "$baseUrl/event/event-history";

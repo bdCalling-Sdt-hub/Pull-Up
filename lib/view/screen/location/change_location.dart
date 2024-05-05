@@ -40,21 +40,23 @@ class _ChangeLocationScreenState extends State<ChangeLocationScreen> {
       ),
       body: GetBuilder<ChangeLocationController>(
         builder: (controller) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 28.h),
             child: Form(
               key: formKey,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 430.sp,
-                    child: const Center(
-                        child: CustomText(
-                      text: "Show Google map ",
-                      color: AppColors.white50,
-                      fontSize: 24,
-                    )),
-                  ),
+                  // SizedBox(
+                  //   height: 430.sp,
+                  //   child: const Center(
+                  //       child: CustomText(
+                  //     text: "Show Google map ",
+                  //     color: AppColors.white50,
+                  //     fontSize: 24,
+                  //   )),
+                  // ),
                   TextFormField(
                     cursorColor: AppColors.white50,
                     controller: controller.searchController,
@@ -111,9 +113,8 @@ class _ChangeLocationScreenState extends State<ChangeLocationScreen> {
                             ],
                           ),
                         ),
-                  SizedBox(
-                    height: 12.sp,
-                  ),
+                  const Spacer(),
+
                   controller.isLoadingButton
                       ? const CustomElevatedLoadingButton()
                       : CustomButton(
