@@ -180,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ? Item(
                                 title: AppString.myEvent,
                                 icon: AppIcons.addMenu,
-                                onTap: () => Get.toNamed(AppRoute.myProduct),
+                                onTap: () => Get.toNamed(AppRoute.myEvent),
                               )
                             : const SizedBox(),
                     PrefsHelper.mySubscription == "business" ||

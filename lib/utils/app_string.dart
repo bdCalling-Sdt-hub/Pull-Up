@@ -298,6 +298,7 @@ class AppString {
   static const String productName = "Product Name";
 
   static const String addNewProduct = "Add New Product";
+  static const String addNewEvent = "Add New Event";
 
   static const String createDeal = "Create a Deal";
 

@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/my_event_history_model.dart';
 import 'package:pull_up/model/product_history_model.dart';
 
 import '../services/api_service.dart';
@@ -11,11 +13,14 @@ import '../utils/app_utils.dart';
 class HistoryController extends GetxController {
   Status status = Status.completed;
 
-  List history = [];
+  List productHistory = [];
+  List eventHistory = [];
+  late TabController tabController;
 
   ProductHistoryModel? productHistoryModel;
+  MyEventHistoryModel? myEventHistoryModel;
 
-  Future<void> historyRepo() async {
+  Future<void> productHistoryRepo() async {
     status = Status.loading;
     update();
 
@@ -28,8 +33,8 @@ class HistoryController extends GetxController {
           ProductHistoryModel.fromJson(jsonDecode(response.body));
 
       if (productHistoryModel?.data != null) {
-        history.addAll(productHistoryModel!.data!);
-        print("================> ${history.length}");
+        productHistory.addAll(productHistoryModel!.data!);
+        print("================> ${productHistory.length}");
       }
       status = Status.completed;
       update();
@@ -37,6 +42,31 @@ class HistoryController extends GetxController {
       status = Status.error;
       update();
 
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
+
+  Future<void> eventHistoryRepo() async {
+    eventHistory.clear();
+    status = Status.loading;
+    update();
+
+    var response = await ApiService.getApi(AppUrl.eventHistory);
+
+    if (response.statusCode == 200) {
+      myEventHistoryModel =
+          MyEventHistoryModel.fromJson(jsonDecode(response.body));
+
+      if (myEventHistoryModel?.data != null) {
+        eventHistory.clear();
+        eventHistory.addAll(myEventHistoryModel!.data!);
+        print("================> ${eventHistory.length}");
+      }
+      status = Status.completed;
+      update();
+    } else {
+      status = Status.error;
+      update();
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
   }

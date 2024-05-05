@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/history_controller.dart';
@@ -25,19 +26,27 @@ class HistoryScreen extends StatefulWidget {
   State<HistoryScreen> createState() => _HistoryScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
+class _HistoryScreenState extends State<HistoryScreen>
+    with SingleTickerProviderStateMixin {
   HistoryController controller = Get.put(HistoryController());
 
   @override
   void initState() {
+    controller.tabController = TabController(length: 2, vsync: this);
     Future.delayed(
       Duration.zero,
       () {
-        controller.historyRepo();
+        controller.productHistoryRepo();
       },
     );
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -55,38 +64,102 @@ class _HistoryScreenState extends State<HistoryScreen> {
       ),
       body: GetBuilder<HistoryController>(
         builder: (controller) {
-          return switch (controller.status) {
-            Status.loading => const CustomLoader(),
-            Status.error => ErrorScreen(
-                onTap: () {
-                  controller.historyRepo();
+          return Column(
+            children: [
+              TabBar(
+                controller: controller.tabController,
+                unselectedLabelColor: AppColors.grey200,
+                labelStyle: const TextStyle(color: AppColors.primaryColor),
+                onTap: (int) {
+                  if (int == 0) {
+                    controller.productHistoryRepo();
+                  } else {
+                    controller.eventHistoryRepo();
+                  }
                 },
-              ),
-            Status.completed => controller.history.isEmpty
-                ? const NoData()
-                : Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.w, vertical: 10.h),
-                      child: ListView.builder(
-                        itemCount: controller.history.length,
-                        padding: EdgeInsets.zero,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          Data item = controller.history[index];
-
-                          return ProductItem(
-                            title: item.productId?.name ?? "",
-                            subTitle: item.productId?.description ?? "",
-                            image:
-                                "${AppUrl.imageUrl}/${item.productId?.image?.path}",
-                            price: item.productId?.price ?? " ",
-                          );
-                        },
-                      ),
-                    ),
+                indicator: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // Change this color as needed
+                ),
+                tabs: const [
+                  Tab(
+                    text: AppString.product,
                   ),
-          };
+                  Tab(text: AppString.event),
+                ],
+              ),
+              Expanded(
+                child: controller.tabController.index == 0
+                    ? switch (controller.status) {
+                        Status.loading => const CustomLoader(),
+                        Status.error => ErrorScreen(
+                            onTap: () {
+                              controller.productHistoryRepo();
+                            },
+                          ),
+                        Status.completed => controller.productHistory.isEmpty
+                            ? const NoData()
+                            : Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16.w, vertical: 10.h),
+                                  child: ListView.builder(
+                                    itemCount: controller.productHistory.length,
+                                    padding: EdgeInsets.zero,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      Data item =
+                                          controller.productHistory[index];
+
+                                      return ProductItem(
+                                        title: item.productId?.name ?? "",
+                                        subTitle:
+                                            item.productId?.description ?? "",
+                                        image:
+                                            "${AppUrl.imageUrl}/${item.productId?.image?.path}",
+                                        price: item.productId?.price ?? " ",
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                      }
+                    : switch (controller.status) {
+                        Status.loading => const CustomLoader(),
+                        Status.error => ErrorScreen(
+                            onTap: () {
+                              controller.eventHistoryRepo();
+                            },
+                          ),
+                        Status.completed => controller.eventHistory.isEmpty
+                            ? const NoData()
+                            : Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16.w, vertical: 10.h),
+                                  child: ListView.builder(
+                                    itemCount: controller.eventHistory.length,
+                                    padding: EdgeInsets.zero,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      var item = controller.eventHistory[index];
+
+                                      return ProductItem(
+                                        title: item.eventId?.name ?? "",
+                                        subTitle:
+                                            item.eventId?.description ?? "",
+                                        image:
+                                            "${AppUrl.imageUrl}/${item.eventId?.image?.path}",
+                                        price: item.eventId?.price ?? " ",
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                      },
+              ),
+            ],
+          );
         },
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),

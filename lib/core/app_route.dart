@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pull_up/view/screen/auth/create_account/create_account.dart';
+import 'package:pull_up/view/screen/event/my_event/my_event.dart';
 import 'package:pull_up/view/screen/history/history.dart';
 import 'package:pull_up/view/screen/location/enable_location.dart';
 import 'package:pull_up/view/screen/auth/forget_password/check_email.dart';
@@ -76,6 +77,7 @@ class AppRoute {
   static const String myProduct = "/my_product.dart";
   static const String payment = "/payment_screen.dart";
   static const String history = "/history.dart";
+  static const String myEvent = "/my_event.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -119,5 +121,6 @@ class AppRoute {
     GetPage(name: myProduct, page: () => MyProduct()),
     GetPage(name: payment, page: () => PaymentScreen()),
     GetPage(name: history, page: () => HistoryScreen()),
+    GetPage(name: myEvent, page: () => MyEvent()),
   ];
 }
