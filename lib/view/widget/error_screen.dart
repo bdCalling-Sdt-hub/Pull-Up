@@ -10,8 +10,8 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return Container(
+        child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

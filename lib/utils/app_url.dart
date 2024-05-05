@@ -1,8 +1,9 @@
 class AppUrl {
   ///<<<=================Base Url=========================>>>
 
+  // static const baseUrl = "http://192.168.10.14:3000/api";
   // static const imageUrl = "http://192.168.10.14:3000";
-
+  // static const socketUrl = "http://192.168.10.14:3000";
 
   static const baseUrl = "http://143.110.241.244:3000/api";
   static const imageUrl = "http://143.110.241.244:3000";
@@ -25,8 +26,10 @@ class AppUrl {
   static const updateAccount = "$baseUrl/users/update-account";
   static const upgradedAccount = "$baseUrl/users/upgraded-account";
   static const payment = "$baseUrl/payment/create-payment-intent";
-  static const paymentWithProduct = "$baseUrl/payment/connect-create-payment-intent";
-  static const paymentWithEvent = "$baseUrl/payment/connect-create-payment-intent-event";
+  static const paymentWithProduct =
+      "$baseUrl/payment/connect-create-payment-intent";
+  static const paymentWithEvent =
+      "$baseUrl/payment/connect-create-payment-intent-event";
   static const crateEvent = "$baseUrl/event/create-event";
   static const event = "$baseUrl/event";
   static const eventList = "$baseUrl/event/event-join";

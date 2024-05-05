@@ -15,17 +15,31 @@ class EventDetailsController extends GetxController {
   EventDetailsModel? eventDetailsModel;
 
   formatDate(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
-    print(formattedDate); // Output: 31 May, 2024
-    return formattedDate;
+    DateTime? dateTime = DateTime.tryParse(dateString);
+    if (dateTime != null) {
+      String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
+      print(formattedDate); // Output: 31 May, 2024
+      return formattedDate;
+    } else {
+      DateTime dateTime = DateTime.now();
+      String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
+      print(formattedDate);
+      return formattedDate;
+    }
   }
 
   getDayName(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    String dayName = DateFormat('EEEE').format(dateTime);
-    print(dayName); // Output: Wednesday
-    return dayName;
+    DateTime? dateTime = DateTime.tryParse(dateString);
+    if (dateTime != null) {
+      String dayName = DateFormat('EEEE').format(dateTime);
+      print(dayName); // Output: Wednesday
+      return dayName;
+    } else {
+      DateTime dateTime = DateTime.now();
+      String dayName = DateFormat('EEEE').format(dateTime);
+      print(dayName); // Output: Wednesday
+      return dayName;
+    }
   }
 
   Future<void> eventDetailsRepo(String eventId) async {
