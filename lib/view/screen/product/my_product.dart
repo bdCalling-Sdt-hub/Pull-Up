@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/product/product_list_controller.dart';
@@ -90,7 +91,10 @@ class _MyProductState extends State<MyProduct>
                   if (int == 0) {
                     controller.page = 1;
                     controller.productsRepo();
-                  } else {}
+                  } else {
+                    controller.page = 1;
+                    controller.myProductsHistoryRepo();
+                  }
                 },
                 indicator: BoxDecoration(
                   borderRadius:
@@ -103,38 +107,72 @@ class _MyProductState extends State<MyProduct>
                   Tab(text: AppString.history),
                 ],
               ),
-              switch (controller.status) {
-                Status.loading => const CustomLoader(),
-                Status.error => ErrorScreen(
-                    onTap: () {
-                      controller.page = 1;
-                      controller.productsRepo();
-                    },
-                  ),
-                Status.completed => controller.products.isEmpty
-                    ? const NoData()
-                    : Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.w, vertical: 10.h),
-                          child: ListView.builder(
-                            itemCount: controller.products.length,
-                            controller: controller.scrollController,
-                            padding: EdgeInsets.zero,
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              Result item = controller.products[index];
-                              return ProductItem(
-                                title: item.name ?? "",
-                                subTitle: item.description ?? "",
-                                image: "${AppUrl.imageUrl}/${item.image?.path}",
-                                price: item.price ?? " ",
-                              );
+              Expanded(
+                child: controller.tabController.index == 0
+                    ? switch (controller.status) {
+                        Status.loading => const CustomLoader(),
+                        Status.error => ErrorScreen(
+                            onTap: () {
+                              controller.page = 1;
+                              controller.productsRepo();
                             },
                           ),
-                        ),
-                      ),
-              },
+                        Status.completed => controller.myProducts.isEmpty
+                            ? const NoData()
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16.w, vertical: 10.h),
+                                child: ListView.builder(
+                                  itemCount: controller.myProducts.length,
+                                  controller: controller.scrollController,
+                                  padding: EdgeInsets.zero,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    Result item = controller.myProducts[index];
+                                    return ProductItem(
+                                      title: item.name ?? "",
+                                      subTitle: item.description ?? "",
+                                      image:
+                                          "${AppUrl.imageUrl}/${item.image?.path}",
+                                      price: item.price ?? " ",
+                                    );
+                                  },
+                                ),
+                              ),
+                      }
+                    : switch (controller.status) {
+                        Status.loading => const CustomLoader(),
+                        Status.error => ErrorScreen(
+                            onTap: () {
+                              controller.page = 1;
+                              controller.myProductsHistoryRepo();
+                            },
+                          ),
+                        Status.completed => controller.productHistory.isEmpty
+                            ? const NoData()
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16.w, vertical: 10.h),
+                                child: ListView.builder(
+                                  itemCount: controller.productHistory.length,
+                                  controller: controller.scrollController,
+                                  padding: EdgeInsets.zero,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    var item = controller.productHistory[index];
+
+                                    return ProductItem(
+                                      title: item?.productId?.name ?? "",
+                                      subTitle: item?.productId?.description ?? "",
+                                      image:
+                                          "${AppUrl.imageUrl}/${item.productId?.image?.path}",
+                                      price: item?.productId?.price ?? " ",
+                                    );
+                                  },
+                                ),
+                              ),
+                      },
+              ),
             ],
           );
         },

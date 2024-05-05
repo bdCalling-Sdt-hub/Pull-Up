@@ -33,6 +33,7 @@ class HistoryController extends GetxController {
           ProductHistoryModel.fromJson(jsonDecode(response.body));
 
       if (productHistoryModel?.data != null) {
+        productHistory.clear();
         productHistory.addAll(productHistoryModel!.data!);
         print("================> ${productHistory.length}");
       }

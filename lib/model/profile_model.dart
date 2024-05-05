@@ -27,9 +27,9 @@ class Data {
   String? name;
   String? email;
   String? phoneNumber;
-  String? password;
   Image? image;
   String? role;
+  Null? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -37,19 +37,26 @@ class Data {
   String? accountType;
   String? activationDate;
   String? expirationDate;
-  String? location;
   MapLocation? mapLocation;
   String? packageDuration;
   String? stripeConnectAccountId;
+  String? businessDescription;
+  String? businessEmail;
+  String? businessHours;
+  String? businessName;
+  String? businessNumber;
+  String? businessWebsite;
+  bool? isExpiration;
+  String? id;
 
   Data(
       {this.sId,
       this.name,
       this.email,
       this.phoneNumber,
-      this.password,
       this.image,
       this.role,
+      this.oneTimeCode,
       this.emailVerified,
       this.createdAt,
       this.updatedAt,
@@ -57,19 +64,26 @@ class Data {
       this.accountType,
       this.activationDate,
       this.expirationDate,
-      this.location,
       this.mapLocation,
       this.packageDuration,
-      this.stripeConnectAccountId});
+      this.stripeConnectAccountId,
+      this.businessDescription,
+      this.businessEmail,
+      this.businessHours,
+      this.businessName,
+      this.businessNumber,
+      this.businessWebsite,
+      this.isExpiration,
+      this.id});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     email = json['email'];
     phoneNumber = json['phoneNumber'];
-    password = json['password'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
+    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -77,12 +91,19 @@ class Data {
     accountType = json['accountType'];
     activationDate = json['activationDate'];
     expirationDate = json['expirationDate'];
-    location = json['location'];
     mapLocation = json['mapLocation'] != null
         ? new MapLocation.fromJson(json['mapLocation'])
         : null;
     packageDuration = json['packageDuration'];
     stripeConnectAccountId = json['stripeConnectAccountId'];
+    businessDescription = json['businessDescription'];
+    businessEmail = json['businessEmail'];
+    businessHours = json['businessHours'];
+    businessName = json['businessName'];
+    businessNumber = json['businessNumber'];
+    businessWebsite = json['businessWebsite'];
+    isExpiration = json['isExpiration'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -91,11 +112,11 @@ class Data {
     data['name'] = this.name;
     data['email'] = this.email;
     data['phoneNumber'] = this.phoneNumber;
-    data['password'] = this.password;
     if (this.image != null) {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
+    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
@@ -103,12 +124,19 @@ class Data {
     data['accountType'] = this.accountType;
     data['activationDate'] = this.activationDate;
     data['expirationDate'] = this.expirationDate;
-    data['location'] = this.location;
     if (this.mapLocation != null) {
       data['mapLocation'] = this.mapLocation!.toJson();
     }
     data['packageDuration'] = this.packageDuration;
     data['stripeConnectAccountId'] = this.stripeConnectAccountId;
+    data['businessDescription'] = this.businessDescription;
+    data['businessEmail'] = this.businessEmail;
+    data['businessHours'] = this.businessHours;
+    data['businessName'] = this.businessName;
+    data['businessNumber'] = this.businessNumber;
+    data['businessWebsite'] = this.businessWebsite;
+    data['isExpiration'] = this.isExpiration;
+    data['id'] = this.id;
     return data;
   }
 }
@@ -137,14 +165,17 @@ class MapLocation {
   double? longitude;
   List<double>? coordinates;
   String? sId;
+  String? id;
 
-  MapLocation({this.latitude, this.longitude, this.coordinates, this.sId});
+  MapLocation(
+      {this.latitude, this.longitude, this.coordinates, this.sId, this.id});
 
   MapLocation.fromJson(Map<String, dynamic> json) {
     latitude = json['latitude'];
     longitude = json['longitude'];
     coordinates = json['coordinates'].cast<double>();
     sId = json['_id'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -153,6 +184,7 @@ class MapLocation {
     data['longitude'] = this.longitude;
     data['coordinates'] = this.coordinates;
     data['_id'] = this.sId;
+    data['id'] = this.id;
     return data;
   }
 }

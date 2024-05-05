@@ -129,6 +129,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontWeight: FontWeight.w600,
                       top: 8.h,
                     ),
+                    controller.profileModel?.data?.isExpiration != null &&
+                            controller.profileModel!.data!.isExpiration!
+                        ? CustomText(
+                            text:  "Expiration over ",
+                            color: Colors.red,
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                            top: 8.h,
+                          )
+                        : const SizedBox(),
                     SizedBox(
                       height: 14.h,
                     ),

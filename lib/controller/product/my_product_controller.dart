@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
 
+import '../../model/product_history_model.dart';
 import '../../model/product_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_url.dart';
@@ -14,12 +15,14 @@ class MyProductController extends GetxController {
   Status status = Status.completed;
   bool isMoreLoading = false;
 
-  List products = [];
+  List myProducts = [];
+  List productHistory = [];
   late TabController tabController;
 
   int page = 1;
 
   ProductModel? productModel;
+  ProductHistoryModel? productHistoryModel;
   ScrollController scrollController = ScrollController();
 
   Future<void> scrollControllerCall() async {
@@ -35,7 +38,7 @@ class MyProductController extends GetxController {
 
   Future<void> productsRepo() async {
     if (page == 1) {
-      products.clear();
+      myProducts.clear();
       status = Status.loading;
       update();
     }
@@ -48,8 +51,8 @@ class MyProductController extends GetxController {
       productModel = ProductModel.fromJson(jsonDecode(response.body));
 
       if (productModel?.data?.result != null) {
-        products.addAll(productModel!.data!.result!);
-        print("================> ${products.length}");
+        myProducts.addAll(productModel!.data!.result!);
+        print("================> ${myProducts.length}");
       }
       status = Status.completed;
       update();
@@ -62,7 +65,7 @@ class MyProductController extends GetxController {
   }
 
   Future<void> myProductsHistoryRepo() async {
-    products.clear();
+    productHistory.clear();
     status = Status.loading;
     update();
 
@@ -71,11 +74,12 @@ class MyProductController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      productModel = ProductModel.fromJson(jsonDecode(response.body));
+      productHistoryModel =
+          ProductHistoryModel.fromJson(jsonDecode(response.body));
 
-      if (productModel?.data?.result != null) {
-        products.addAll(productModel!.data!.result!);
-        print("================> ${products.length}");
+      if (productHistoryModel?.data != null) {
+        productHistory.addAll(productHistoryModel!.data!);
+        print("================> ${productHistory.length}");
       }
       status = Status.completed;
       update();
