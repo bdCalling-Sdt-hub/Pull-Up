@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/model/api_response_model.dart';
+import 'package:pull_up/model/profile_model.dart';
 import 'package:pull_up/utils/app_string.dart';
 
 import '../../services/api_service.dart';
@@ -14,8 +18,11 @@ import '../../utils/app_utils.dart';
 class NewEventController extends GetxController {
   String? image;
 
+  Status status = Status.completed;
+
   bool isLoading = false;
   bool isLoadingLocation = false;
+  ProfileModel? profileModel;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController desController = TextEditingController();
@@ -27,6 +34,30 @@ class NewEventController extends GetxController {
   DateTime? selectedDate;
 
   TimeOfDay? selectedTime;
+
+  Future<void> profileRepo() async {
+    if (profileModel != null) return;
+    status = Status.loading;
+    update();
+
+    var response = await ApiService.getApi(
+      AppUrl.profile,
+    );
+
+    if (response.statusCode == 200) {
+      profileModel = ProfileModel.fromJson(jsonDecode(response.body));
+
+      print(profileModel?.data?.isExpiration);
+
+      status = Status.completed;
+      update();
+    } else {
+      status = Status.error;
+      update();
+
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
 
   currentLocation() async {
     isLoadingLocation = true;

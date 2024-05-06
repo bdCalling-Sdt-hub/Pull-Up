@@ -49,7 +49,7 @@ class ClearPopUp {
                     onPressed: () {
                       Utils.toastMessage(
                           message: AppString.removeYourAllHistory);
-                      Get.toNamed(AppRoute.home);
+                      Get.offAllNamed(AppRoute.home);
                     },
                     buttonWidth: 95.w,
                     buttonHeight: 35.h,

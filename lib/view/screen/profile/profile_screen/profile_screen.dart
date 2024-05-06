@@ -132,11 +132,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     controller.profileModel?.data?.isExpiration != null &&
                             controller.profileModel!.data!.isExpiration!
                         ? CustomText(
-                            text:  "Expiration over ",
+                            text: AppString.subscriptionExpired,
                             color: Colors.red,
                             fontSize: 24.sp,
                             fontWeight: FontWeight.w600,
-                            top: 8.h,
                           )
                         : const SizedBox(),
                     SizedBox(
@@ -145,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
-                        onTap: () => Get.toNamed(AppRoute.editProfile),
+                        onTap: () => Get.toNamed(AppRoute.updateProfile),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,

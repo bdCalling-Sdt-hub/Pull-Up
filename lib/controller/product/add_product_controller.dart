@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/utils/app_url.dart';
 
 import '../../core/app_route.dart';
+import '../../model/api_response_model.dart';
+import '../../model/profile_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_utils.dart';
 
@@ -14,6 +16,33 @@ class AddProductController extends GetxController {
   String? image;
   bool isLoading = false;
   TextEditingController tagController = TextEditingController();
+
+  ProfileModel? profileModel;
+  Status status = Status.completed;
+
+  Future<void> profileRepo() async {
+    if (profileModel != null) return;
+    status = Status.loading;
+    update();
+
+    var response = await ApiService.getApi(
+      AppUrl.profile,
+    );
+
+    if (response.statusCode == 200) {
+      profileModel = ProfileModel.fromJson(jsonDecode(response.body));
+
+      print(profileModel?.data?.isExpiration);
+
+      status = Status.completed;
+      update();
+    } else {
+      status = Status.error;
+      update();
+
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
 
   List tagList = [];
 
@@ -32,8 +61,8 @@ class AddProductController extends GetxController {
   removeKeyword(item) {
     tagList.remove(item);
     update();
-
   }
+
   selectImageCamera() async {
     final ImagePicker picker = ImagePicker();
     final XFile? getImages =

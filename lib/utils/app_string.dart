@@ -484,4 +484,7 @@ class AppString {
   static const String pleaseSelectDataAndTime = "Please, select data and time";
   static const String selectTime = "Select Time";
   static const String selectDate = "Select date";
+  static const String subscriptionExpired = "Subscription expired";
+  static const String yourSubscriptionIsExpiredPayAgainToGetService =
+      "Your subscription is expired, pay again to get service";
 }

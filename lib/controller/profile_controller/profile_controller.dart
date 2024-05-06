@@ -65,7 +65,6 @@ class ProfileController extends GetxController {
 
       status = Status.completed;
       update();
-      Utils.toastMessage(message: response.message);
 
       nameController.text = profileModel?.data?.name ?? "";
       numberController.text = profileModel?.data?.phoneNumber ?? "";
@@ -196,6 +195,30 @@ class ProfileController extends GetxController {
     update();
   }
 
+  Future<void> updateProfile() async {
+    isLoading = true;
+    update();
+    var body = {
+      "name": nameController.text,
+      "phoneNumber": numberController.text,
+      "email": emailController.text
+    };
+
+    print(aaa);
+    var response = await ApiService.multipartRequest(
+        url: AppUrl.updateAccount, body: body, imagePath: aaa);
+
+    if (response.statusCode == 200) {
+      Get.offAllNamed(AppRoute.profile);
+      print(response.body);
+    } else {
+      Utils.toastMessage(message: response.message);
+    }
+
+    isLoading = false;
+    update();
+  }
+
   Future<void> updateBusinessProfileRepo() async {
     isLoading = true;
     update();
@@ -225,7 +248,7 @@ class ProfileController extends GetxController {
         url: AppUrl.updateAccount, body: body, imagePath: aaa);
 
     if (response.statusCode == 200) {
-      // Get.offAllNamed(AppRoute.profile);
+      Get.offAllNamed(AppRoute.profile);
       print(response.body);
     } else {
       Utils.toastMessage(message: response.message);

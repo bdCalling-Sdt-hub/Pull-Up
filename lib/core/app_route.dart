@@ -20,6 +20,7 @@ import 'package:pull_up/view/screen/product/deal/add_deal.dart';
 import 'package:pull_up/view/screen/product/my_product.dart';
 import 'package:pull_up/view/screen/product/product_list/product_list.dart';
 import 'package:pull_up/view/screen/profile/edit_profile/edit_profile.dart';
+import 'package:pull_up/view/screen/profile/edit_profile/inner_widget/update_profile.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/profile_screen.dart';
 import 'package:pull_up/view/screen/profile/profile_without_login/profile_without_login.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/upgrade_account.dart';
@@ -78,6 +79,7 @@ class AppRoute {
   static const String payment = "/payment_screen.dart";
   static const String history = "/history.dart";
   static const String myEvent = "/my_event.dart";
+  static const String updateProfile = "/update_profile.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -122,5 +124,6 @@ class AppRoute {
     GetPage(name: payment, page: () => PaymentScreen()),
     GetPage(name: history, page: () => HistoryScreen()),
     GetPage(name: myEvent, page: () => MyEvent()),
+    GetPage(name: updateProfile, page: () => UpdateProfile()),
   ];
 }

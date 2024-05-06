@@ -50,7 +50,7 @@ class ShoppingAccount extends StatelessWidget {
             ),
             CustomButton(
               titleText: AppString.activateTheLocator,
-              onPressed: () => LocationPopUp.getLocation(),
+              onPressed: () => controller.upgradedAccountRepo(),
             )
           ],
         );
