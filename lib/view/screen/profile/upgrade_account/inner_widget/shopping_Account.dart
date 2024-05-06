@@ -9,6 +9,7 @@ import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/locatio
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../../../widget/button/custom_button.dart';
+import 'activation_time.dart';
 
 class ShoppingAccount extends StatelessWidget {
   const ShoppingAccount({super.key});
@@ -50,7 +51,7 @@ class ShoppingAccount extends StatelessWidget {
             ),
             CustomButton(
               titleText: AppString.activateTheLocator,
-              onPressed: () => controller.upgradedAccountRepo(),
+              onPressed: () => LocationPopUp.getLocation(),
             )
           ],
         );

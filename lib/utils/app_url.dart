@@ -36,6 +36,7 @@ class AppUrl {
   static const isFavorite = "$baseUrl/favorite/add";
   static const favorite = "$baseUrl/favorite";
   static const profile = "$baseUrl/users/profile";
+  static const user = "$baseUrl/users";
   static const income = "$baseUrl/payment/current-balance";
   static const nearbyShop = "$baseUrl/product/near-product";
   static const shopProduct = "$baseUrl/product/single-shop-by-product";

@@ -105,7 +105,13 @@ class LocationPopUp {
                           buttonHeight: 36.h,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              controller.stripePayment();
+                              if (controller.accountName == "shopping") {
+                                print(controller.accountName);
+                                controller.shoppingUpgradedAccountRepo();
+                              } else {
+                                controller.stripePayment();
+                              }
+
                               // controller.stripePayment();
                             }
                           })

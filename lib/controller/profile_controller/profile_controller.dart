@@ -22,8 +22,6 @@ class ProfileController extends GetxController {
   Status status = Status.completed;
 
   String? image;
-  String aaa =
-      "/data/user/0/com.example.pull_up/cache/scaled_IMG_20240408_095402.jpg";
 
   TimeOfDay? startTime;
   bool isLoading = false;
@@ -69,6 +67,7 @@ class ProfileController extends GetxController {
       nameController.text = profileModel?.data?.name ?? "";
       numberController.text = profileModel?.data?.phoneNumber ?? "";
       emailController.text = profileModel?.data?.email ?? "";
+      stateController.text = profileModel?.data?.location ?? "";
     } else {
       status = Status.error;
       update();
@@ -106,7 +105,6 @@ class ProfileController extends GetxController {
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (getImages != null) {
       image = getImages.path;
-      aaa = getImages.path;
       update();
       print(image);
     }
@@ -120,7 +118,6 @@ class ProfileController extends GetxController {
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (getImages != null) {
       image = getImages.path;
-      aaa = getImages.path;
 
       update();
     }
@@ -201,12 +198,34 @@ class ProfileController extends GetxController {
     var body = {
       "name": nameController.text,
       "phoneNumber": numberController.text,
+      "location": stateController.text,
       "email": emailController.text
     };
 
-    print(aaa);
     var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: aaa);
+        url: AppUrl.user, body: body, imagePath: image, method: "patch");
+
+    if (response.statusCode == 200) {
+      Get.offAllNamed(AppRoute.profile);
+    } else {
+      Utils.toastMessage(message: response.message);
+    }
+
+    isLoading = false;
+    update();
+  }
+
+  Future<void> updateShoppingProfileRepo() async {
+    isLoading = true;
+    update();
+    var body = {
+      "name": nameController.text,
+      "phoneNumber": numberController.text,
+      "location": stateController.text
+    };
+
+    var response = await ApiService.multipartRequest(
+        url: AppUrl.updateAccount, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
@@ -243,9 +262,8 @@ class ProfileController extends GetxController {
       "account_number": accountNumberController.text,
     };
 
-    print(aaa);
     var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: aaa);
+        url: AppUrl.updateAccount, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
@@ -284,7 +302,7 @@ class ProfileController extends GetxController {
     print(body);
 
     var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: aaa);
+        url: AppUrl.updateAccount, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);

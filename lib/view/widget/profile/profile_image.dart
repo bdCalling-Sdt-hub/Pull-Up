@@ -5,14 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
+import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 
 import '../../../controller/profile_controller/profile_controller.dart';
 
 class ProfileImage extends StatelessWidget {
-  final String imageURl;
 
-  const ProfileImage({super.key, required this.imageURl});
+  const ProfileImage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +42,18 @@ class ProfileImage extends StatelessWidget {
                               border: Border.all(
                                   color: AppColors.white50, width: 3.w)),
                         )
-                      : CustomImage(
-                          imageSrc: imageURl,
-                          imageType: ImageType.network,
-                          height: 108.w,
-                          width: 108.w,
-                          defaultImage: AppImages.defaultProfile,
+                      : CircleAvatar(
+                          radius: 54.w,
+                          child: ClipOval(
+                            child: CustomImage(
+                              imageSrc:
+                                  "${AppUrl.imageUrl}/${controller.profileModel?.data?.image?.path ?? ""}",
+                              imageType: ImageType.network,
+                              height: 108.w,
+                              width: 108.w,
+                              defaultImage: AppImages.defaultProfile,
+                            ),
+                          ),
                         )),
             ),
             GestureDetector(

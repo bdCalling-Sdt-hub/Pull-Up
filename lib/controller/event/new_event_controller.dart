@@ -96,11 +96,20 @@ class NewEventController extends GetxController {
     );
     if (picked != null) {
       selectedTime = picked;
-      timeController.text = "${selectedTime!.hour}:${selectedTime!.minute}";
+      timeController.text =
+          "${selectedTime!.hour}:${formatMinute(selectedTime!.minute.toString())}";
 
       update();
       print(selectedTime);
       print(selectedTime.toString());
+    }
+  }
+
+  formatMinute(String minute) {
+    if (minute.length < 2) {
+      return "0$minute";
+    } else {
+      return minute;
     }
   }
 
@@ -134,7 +143,7 @@ class NewEventController extends GetxController {
 
     if (selectedDate != null && selectedTime != null) {
       dateTime =
-          "${selectedDate!.toIso8601String().split("T")[0]}T${selectedTime!.hour}:${selectedTime!.minute}:00.000";
+          "${selectedDate!.toIso8601String().split("T")[0]}T${formatMinute(selectedTime!.hour.toString())}:${formatMinute(selectedTime!.minute.toString())}:00.000";
     } else {
       Utils.toastMessage(message: AppString.pleaseSelectDataAndTime);
       return;
@@ -147,6 +156,7 @@ class NewEventController extends GetxController {
       "dateTime": dateTime
     };
 
+    print(body);
     var response = await ApiService.multipartRequest(
         url: AppUrl.crateEvent, body: body, imagePath: image);
 

@@ -21,10 +21,7 @@ class EventDetailsController extends GetxController {
       print(formattedDate); // Output: 31 May, 2024
       return formattedDate;
     } else {
-      DateTime dateTime = DateTime.now();
-      String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
-      print(formattedDate);
-      return formattedDate;
+      return "";
     }
   }
 
@@ -35,10 +32,7 @@ class EventDetailsController extends GetxController {
       print(dayName); // Output: Wednesday
       return dayName;
     } else {
-      DateTime dateTime = DateTime.now();
-      String dayName = DateFormat('EEEE').format(dateTime);
-      print(dayName); // Output: Wednesday
-      return dayName;
+      return "";
     }
   }
 

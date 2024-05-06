@@ -49,9 +49,7 @@ class EditProfile extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    const ProfileImage(
-                      imageURl: AppImages.profile1,
-                    ),
+                    const ProfileImage(),
                     CustomText(
                       text: controller.nameController.text,
                       color: AppColors.white50,
@@ -78,6 +76,8 @@ class EditProfile extends StatelessWidget {
                                   } else if (PrefsHelper.mySubscription ==
                                       "business") {
                                     controller.updateBusinessProfileRepo();
+                                  } else {
+                                    controller.updateShoppingProfileRepo();
                                   }
                                 } else {
                                   print(controller.image);

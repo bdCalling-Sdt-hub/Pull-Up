@@ -45,6 +45,7 @@ class Data {
   String? businessName;
   String? businessNumber;
   String? businessWebsite;
+  String? location;
   bool? isExpiration;
   String? id;
 
@@ -71,6 +72,7 @@ class Data {
       this.businessName,
       this.businessNumber,
       this.businessWebsite,
+      this.location,
       this.isExpiration,
       this.id});
 
@@ -99,6 +101,7 @@ class Data {
     businessName = json['businessName'];
     businessNumber = json['businessNumber'];
     businessWebsite = json['businessWebsite'];
+    location = json['location'];
     isExpiration = json['isExpiration'];
     id = json['id'];
   }
@@ -131,6 +134,7 @@ class Data {
     data['businessName'] = this.businessName;
     data['businessNumber'] = this.businessNumber;
     data['businessWebsite'] = this.businessWebsite;
+    data['location'] = this.location;
     data['isExpiration'] = this.isExpiration;
     data['id'] = this.id;
     return data;

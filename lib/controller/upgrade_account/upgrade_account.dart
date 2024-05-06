@@ -20,8 +20,6 @@ class UpgradeAccountController extends GetxController {
   bool isLoading = false;
   bool isLoadingLocation = false;
 
-
-
   Map<String, dynamic>? paymentIntentData;
   bool isLoadingPayment = false;
 
@@ -108,6 +106,34 @@ class UpgradeAccountController extends GetxController {
   Future<void> stripePayment() async {
     Get.toNamed(AppRoute.ticketPayment);
     makePayment();
+  }
+
+  Future<void> shoppingUpgradedAccountRepo() async {
+    isLoading = true;
+    update();
+
+    List locations =
+        await LocationService.addressToCoordinate(addressController.text);
+
+    var body = {
+      "accountType": accountName,
+      "location": addressController.text,
+    };
+
+    var response = await ApiService.postApi(
+      AppUrl.upgradedAccount,
+      body,
+    );
+
+    if (response.statusCode == 200) {
+      PrefsHelper.mySubscription =
+          jsonDecode(response.body)["data"]["accountType"];
+      PrefsHelper.setString("mySubscription", PrefsHelper.mySubscription);
+
+      Get.toNamed(AppRoute.editProfile);
+    }
+    isLoading = false;
+    update();
   }
 
   Future<void> upgradedAccountRepo() async {
