@@ -11,6 +11,7 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
@@ -134,8 +135,7 @@ class _IncomeState extends State<Income> {
                 ),
                 Expanded(
                     child: switch (controller.status) {
-                  Status.loading =>
-                    const Center(child: CircularProgressIndicator()),
+                  Status.loading => const CustomLoader(),
                   Status.error => ErrorScreen(
                       onTap: () =>
                           controller.currentBalance(controller.selectedChoice),

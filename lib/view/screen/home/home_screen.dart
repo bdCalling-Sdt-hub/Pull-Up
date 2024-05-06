@@ -12,6 +12,7 @@ import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
@@ -227,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           switch (controller.keywordStatus) {
                             Status.loading =>
-                              const Center(child: CircularProgressIndicator()),
+                              const CustomLoader(),
                             Status.error => ErrorScreen(
                                 onTap: () => controller.keywordRepo(),
                               ),

@@ -6,6 +6,7 @@ import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/event_model.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
@@ -116,7 +117,7 @@ class _EventListScreenState extends State<EventListScreen> {
                   height: 255.h,
                   child: switch (controller.status) {
                     Status.loading =>
-                      const Center(child: CircularProgressIndicator()),
+                      const CustomLoader(),
                     Status.error => ErrorScreen(
                         onTap: () {
                           controller.page = 1;

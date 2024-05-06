@@ -10,6 +10,7 @@ import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/inner_widget/boost_bussness.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
@@ -97,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: GetBuilder<ProfileController>(
         builder: (controller) {
           return switch (controller.status) {
-            Status.loading => const Center(child: CircularProgressIndicator()),
+            Status.loading => const CustomLoader(),
             Status.error => ErrorScreen(
                 onTap: () => controller.profileRepo(),
               ),

@@ -85,8 +85,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         bottom: 4.h,
                                       ),
                                       CustomText(
-                                        text:
-                                            item.createdAt!.split("T")[0] ?? "",
+                                        text: controller
+                                            .getFormattedDate(item.createdAt!),
                                         color: AppColors.white50,
                                         fontWeight: FontWeight.w300,
                                         textAlign: TextAlign.start,

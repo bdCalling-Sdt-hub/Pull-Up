@@ -11,6 +11,7 @@ import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
+import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/no_data.dart';
@@ -39,7 +40,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -57,7 +57,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: GetBuilder<FavoriteController>(
         builder: (controller) {
           return switch (controller.status) {
-            Status.loading => const Center(child: CircularProgressIndicator()),
+            Status.loading => const CustomLoader(),
             Status.error => ErrorScreen(
                 onTap: () {
                   controller.page = 1;

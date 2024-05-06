@@ -45,4 +45,28 @@ class NotificationController extends GetxController {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
   }
+
+  String getFormattedDate(String dateString) {
+    // String dateString = "2024-02-01T04:39:03.524Z";
+    DateTime? originalDateTime = DateTime.tryParse(dateString);
+
+    originalDateTime ??= DateTime.now();
+    DateTime currentDateTime = DateTime.now();
+
+    Duration difference = currentDateTime.difference(originalDateTime);
+    if (difference.inDays == 0) {
+      if (difference.inHours == 0) {
+        return ("${difference.inMinutes} minutes ago");
+      } else if (difference.inMinutes == 0) {
+        return ("just now");
+      } else {
+        return ("${difference.inHours} hours ago");
+      }
+      // return ("${difference.inHours % 24} ${"hours".tr} ${difference.inMinutes % 60} ${"minutes".tr}");
+    } else {
+      var createdAtTime = dateString.split(".")[0];
+      var date = createdAtTime.split("T")[0];
+      return date;
+    }
+  }
 }
