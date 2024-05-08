@@ -21,6 +21,7 @@ import '../controller/product/my_product_controller.dart';
 import '../controller/product/product_details_controller.dart';
 import '../controller/product/product_list_controller.dart';
 import '../controller/shop_house_controller.dart';
+import '../view/widget/google_map/google_map.dart';
 
 class DependencyInjection extends Bindings {
   @override
@@ -46,5 +47,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => HistoryController(), fenix: true);
     Get.lazyPut(() => NotificationController(), fenix: true);
     Get.lazyPut(() => DeActiveAccountController(), fenix: true);
+    Get.lazyPut(() => ShowGoogleMapController(), fenix: true);
   }
 }

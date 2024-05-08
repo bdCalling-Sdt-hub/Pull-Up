@@ -99,16 +99,17 @@ class LocationService {
             lat,
             long,
           );
+          print(placeMarks.first.street);
+          print(placeMarks.first.country);
+          print(placeMarks.first.administrativeArea);
+          print(placeMarks.first.subLocality);
+          print(placeMarks.first.isoCountryCode);
+          print(placeMarks);
           return placeMarks;
         }
       }
       //
-      // print(placeMarks.first.administrativeArea);
-      // print(placeMarks.first.country);
-      // print(placeMarks.first.administrativeArea);
-      // print(placeMarks.first.locality);
-      // print(placeMarks.first.isoCountryCode);
-      // print(placeMarks);
+
       return [];
     } catch (e) {
       return [];

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/login_model.dart';
 import 'package:pull_up/services/location_service.dart';
@@ -75,6 +76,16 @@ class UpgradeAccountController extends GetxController {
 
     isLoadingLocation = false;
     update();
+  }
+
+  selectLocation(LatLng? data) async {
+    if (data != null) {
+      List list = await LocationService.coordinateToAddress(
+          lat: data.latitude, long: data.longitude);
+      if (list.isNotEmpty) {
+        addressController.text = list.first.administrativeArea;
+      }
+    }
   }
 
   Future<void> validationTimePicker() async {

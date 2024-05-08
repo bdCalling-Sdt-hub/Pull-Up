@@ -36,6 +36,7 @@ import '../view/screen/income/income.dart';
 import '../view/screen/notification/notification.dart';
 import '../view/screen/payment/product_payment/product_payment.dart';
 import '../view/screen/product/product_details/product_details.dart';
+import '../view/screen/profile/upgrade_account/inner_widget/select_location_from_mao.dart';
 import '../view/screen/splash/splash.dart';
 import '../view/screen/test.dart';
 
@@ -80,6 +81,7 @@ class AppRoute {
   static const String history = "/history.dart";
   static const String myEvent = "/my_event.dart";
   static const String updateProfile = "/update_profile.dart";
+  static const String selectLocationFromMap = "/select_location_from_mao.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => Test()),
@@ -125,5 +127,6 @@ class AppRoute {
     GetPage(name: history, page: () => HistoryScreen()),
     GetPage(name: myEvent, page: () => MyEvent()),
     GetPage(name: updateProfile, page: () => UpdateProfile()),
+    GetPage(name: selectLocationFromMap, page: () => SelectLocationFromMap()),
   ];
 }

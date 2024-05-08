@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/services/location_service.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
@@ -90,6 +92,31 @@ class LocationPopUp {
                                 ],
                               ),
                             ),
+                      CustomText(
+                        text: AppString.or,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.white50,
+                        bottom: 4.h,
+                        top: 12.h,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          var data =
+                              await Get.toNamed(AppRoute.selectLocationFromMap);
+
+                          print(data.runtimeType);
+                          print(data);
+
+                          if (data != null) {
+                            controller.selectLocation(data);
+                          }
+                        },
+                        child: CustomText(
+                          text: AppString.selectFromMap,
+                          color: AppColors.primaryColor,
+                          fontSize: 16.sp,
+                        ),
+                      ),
                       CustomText(
                         text: AppString.selectFromMapNote,
                         fontWeight: FontWeight.w600,
