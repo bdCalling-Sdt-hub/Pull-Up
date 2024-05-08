@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../core/app_route.dart';
 
@@ -28,6 +29,8 @@ class NotificationService {
   }
 
   Future<void> showNotification(dynamic message) async {
+    if (!PrefsHelper.isNotifications) return;
+
     AndroidNotificationChannel channel = AndroidNotificationChannel(
         Random.secure().nextInt(10000).toString(),
         "High Importance Notification",

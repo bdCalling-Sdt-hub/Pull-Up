@@ -109,30 +109,30 @@ class UpdateProfile extends StatelessWidget {
                             }
                           },
                         ),
-                        CustomText(
-                          text: AppString.email,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14.sp,
-                          top: 12.h,
-                          bottom: 6.h,
-                          textAlign: TextAlign.start,
-                          color: AppColors.white50,
-                        ),
-                        CustomTextField(
-                          hintText: AppString.email,
-                          keyboardType: TextInputType.emailAddress,
-                          controller: controller.emailController,
-                          fillColor: AppColors.transparent,
-                          borderColor: AppColors.white50,
-                          paddingVertical: 10.sp,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.thisFieldIsRequired;
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
+                        // CustomText(
+                        //   text: AppString.email,
+                        //   fontWeight: FontWeight.w300,
+                        //   fontSize: 14.sp,
+                        //   top: 12.h,
+                        //   bottom: 6.h,
+                        //   textAlign: TextAlign.start,
+                        //   color: AppColors.white50,
+                        // ),
+                        // CustomTextField(
+                        //   hintText: AppString.email,
+                        //   keyboardType: TextInputType.emailAddress,
+                        //   controller: controller.emailController,
+                        //   fillColor: AppColors.transparent,
+                        //   borderColor: AppColors.white50,
+                        //   paddingVertical: 10.sp,
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       return AppString.thisFieldIsRequired;
+                        //     } else {
+                        //       return null;
+                        //     }
+                        //   },
+                        // ),
                         CustomText(
                           text: AppString.location,
                           fontWeight: FontWeight.w300,
@@ -185,7 +185,7 @@ class UpdateProfile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 50.h,
                     ),
                     controller.isLoading
                         ? const CustomElevatedLoadingButton()

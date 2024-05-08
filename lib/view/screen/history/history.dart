@@ -99,30 +99,28 @@ class _HistoryScreenState extends State<HistoryScreen>
                           ),
                         Status.completed => controller.productHistory.isEmpty
                             ? const NoData()
-                            : Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w, vertical: 10.h),
-                                  child: ListView.builder(
-                                    itemCount: controller.productHistory.length,
-                                    padding: EdgeInsets.zero,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      Data item =
-                                          controller.productHistory[index];
+                            : Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 10.h),
+                              child: ListView.builder(
+                                itemCount: controller.productHistory.length,
+                                padding: EdgeInsets.zero,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  Data item =
+                                      controller.productHistory[index];
 
-                                      return ProductItem(
-                                        title: item.productId?.name ?? "",
-                                        subTitle:
-                                            item.productId?.description ?? "",
-                                        image:
-                                            "${AppUrl.imageUrl}/${item.productId?.image?.path}",
-                                        price: item.productId?.price ?? " ",
-                                      );
-                                    },
-                                  ),
-                                ),
+                                  return ProductItem(
+                                    title: item.productId?.name ?? "",
+                                    subTitle:
+                                        item.productId?.description ?? "",
+                                    image:
+                                        "${AppUrl.imageUrl}/${item.productId?.image?.path}",
+                                    price: item.productId?.price ?? " ",
+                                  );
+                                },
                               ),
+                            ),
                       }
                     : switch (controller.status) {
                         Status.loading => const CustomLoader(),
@@ -133,29 +131,27 @@ class _HistoryScreenState extends State<HistoryScreen>
                           ),
                         Status.completed => controller.eventHistory.isEmpty
                             ? const NoData()
-                            : Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w, vertical: 10.h),
-                                  child: ListView.builder(
-                                    itemCount: controller.eventHistory.length,
-                                    padding: EdgeInsets.zero,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      var item = controller.eventHistory[index];
+                            : Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 10.h),
+                              child: ListView.builder(
+                                itemCount: controller.eventHistory.length,
+                                padding: EdgeInsets.zero,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  var item = controller.eventHistory[index];
 
-                                      return ProductItem(
-                                        title: item.eventId?.name ?? "",
-                                        subTitle:
-                                            item.eventId?.description ?? "",
-                                        image:
-                                            "${AppUrl.imageUrl}/${item.eventId?.image?.path}",
-                                        price: item.eventId?.price ?? " ",
-                                      );
-                                    },
-                                  ),
-                                ),
+                                  return ProductItem(
+                                    title: item.eventId?.name ?? "",
+                                    subTitle:
+                                        item.eventId?.description ?? "",
+                                    image:
+                                        "${AppUrl.imageUrl}/${item.eventId?.image?.path}",
+                                    price: item.eventId?.price ?? " ",
+                                  );
+                                },
                               ),
+                            ),
                       },
               ),
             ],

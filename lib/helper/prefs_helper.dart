@@ -6,6 +6,7 @@ import '../core/app_route.dart';
 class PrefsHelper extends GetxController {
   static String token = "";
   static bool isLogIn = false;
+  static bool isNotifications = true;
   static String refreshToken = "";
   static String userId = "";
   static String myImage = "";
@@ -24,6 +25,7 @@ class PrefsHelper extends GetxController {
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
+    isNotifications = preferences.getBool("isNotifications") ?? true;
     mySubscription = preferences.getString("mySubscription") ?? "shopping";
 
     print(userId);
@@ -40,6 +42,7 @@ class PrefsHelper extends GetxController {
     preferences.setString("myName", "");
     preferences.setString("myEmail", "");
     preferences.setBool("isLogIn", false);
+    preferences.setBool("isNotifications", true);
     preferences.setString("mySubscription", "shopping");
 
     Get.offAllNamed(AppRoute.login);

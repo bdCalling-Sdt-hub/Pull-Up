@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/core/app_route.dart';
+import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
@@ -22,7 +24,16 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  bool isSwitch = false;
+  final controller = ValueNotifier<bool>(PrefsHelper.isNotifications);
+
+  @override
+  void initState() {
+    controller.addListener(() {
+      PrefsHelper.isNotifications = controller.value;
+      PrefsHelper.setBool("isNotifications", PrefsHelper.isNotifications);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +64,13 @@ class _SettingScreenState extends State<SettingScreen> {
                   left: 8.w,
                 ),
                 const Spacer(),
-                Switch(
-                    value: isSwitch,
-                    activeColor: AppColors.background,
-                    activeTrackColor: AppColors.primaryColor,
-                    onChanged: (value) {
-                      isSwitch = value;
-                      setState(() {});
-                    })
+                AdvancedSwitch(
+                  height: 24.h,
+                  width: 48.w,
+                  controller: controller,
+                  activeColor: AppColors.primaryColor,
+                  initialValue: PrefsHelper.isNotifications,
+                ),
               ],
             ),
             Item(

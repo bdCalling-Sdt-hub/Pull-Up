@@ -60,7 +60,6 @@ class LocatedGridviewItem extends StatelessWidget {
               color: AppColors.grey900,
               left: 4.h,
               maxLines: 1,
-              top: 4.h,
               fontWeight: FontWeight.w700,
             ),
             CustomText(
