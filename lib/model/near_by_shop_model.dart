@@ -35,7 +35,6 @@ class Data {
   String? password;
   Image? image;
   String? role;
-  String? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -69,7 +68,6 @@ class Data {
       this.password,
       this.image,
       this.role,
-      this.oneTimeCode,
       this.emailVerified,
       this.createdAt,
       this.updatedAt,
@@ -103,7 +101,6 @@ class Data {
     password = json['password'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
-    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -143,7 +140,6 @@ class Data {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
-    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

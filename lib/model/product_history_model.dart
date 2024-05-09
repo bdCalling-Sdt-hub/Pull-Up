@@ -63,7 +63,6 @@ class UserId {
   String? phoneNumber;
   Image? image;
   String? role;
-  Null? oneTimeCode;
   bool? emailVerified;
   String? createdAt;
   String? updatedAt;
@@ -85,7 +84,6 @@ class UserId {
       this.phoneNumber,
       this.image,
       this.role,
-      this.oneTimeCode,
       this.emailVerified,
       this.createdAt,
       this.updatedAt,
@@ -107,7 +105,6 @@ class UserId {
     phoneNumber = json['phoneNumber'];
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     role = json['role'];
-    oneTimeCode = json['oneTimeCode'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -135,7 +132,6 @@ class UserId {
       data['image'] = this.image!.toJson();
     }
     data['role'] = this.role;
-    data['oneTimeCode'] = this.oneTimeCode;
     data['emailVerified'] = this.emailVerified;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
