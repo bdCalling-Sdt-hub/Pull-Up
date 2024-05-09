@@ -45,17 +45,10 @@ class _ShowGoogleMapState extends State<ShowGoogleMap> {
           initialCameraPosition: controller.kGooglePlex,
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
+          cameraTargetBounds: CameraTargetBounds.unbounded,
           onTap: (LatLng latLng) {
             widget.onTapLatLong(latLng);
-            Marker newMarker = Marker(
-                markerId: const MarkerId("1"),
-                position: LatLng(latLng.latitude, latLng.longitude));
-            widget.latitude = latLng.latitude;
-            widget.longitude = latLng.longitude;
-
-            controller.marker.add(newMarker);
-
-            setState(() {});
+            controller.setMarker(latLng);
           },
           markers: Set<Marker>.of(controller.marker),
           onMapCreated: (GoogleMapController googleMapController) {
@@ -79,6 +72,26 @@ class ShowGoogleMapController extends GetxController {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14,
   );
+
+  setMarker(LatLng latLng) async {
+    Marker newMarker = Marker(
+        markerId: const MarkerId("1"),
+        position: LatLng(latLng.latitude, latLng.longitude));
+    latitude = latLng.latitude;
+    longitude = latLng.longitude;
+
+    marker.add(newMarker);
+    update();
+    CameraPosition newCameraPosition = CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(latitude, longitude),
+        tilt: 59.440717697143555,
+        zoom: 14);
+
+    final GoogleMapController googleMapController = await controller.future;
+    await googleMapController
+        .animateCamera(CameraUpdate.newCameraPosition(newCameraPosition));
+  }
 
   getCurrentLocation() async {
     Position? positions = await LocationService.getCurrentPosition();
