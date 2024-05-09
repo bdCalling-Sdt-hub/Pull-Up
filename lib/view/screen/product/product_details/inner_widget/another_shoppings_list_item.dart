@@ -68,7 +68,7 @@ class AnotherShoppingListItem extends StatelessWidget {
                             color: AppColors.grey300,
                             borderRadius: BorderRadius.circular(10.r)),
                         child: const Icon(
-                          Icons.add,
+                          Icons.arrow_forward_ios,
                           color: AppColors.primaryColor,
                         ))
                   ],

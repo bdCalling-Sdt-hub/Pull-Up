@@ -83,9 +83,9 @@ class _HistoryScreenState extends State<HistoryScreen>
                 ),
                 tabs: const [
                   Tab(
-                    text: AppString.product,
+                    text: AppString.products,
                   ),
-                  Tab(text: AppString.event),
+                  Tab(text: AppString.events),
                 ],
               ),
               Expanded(

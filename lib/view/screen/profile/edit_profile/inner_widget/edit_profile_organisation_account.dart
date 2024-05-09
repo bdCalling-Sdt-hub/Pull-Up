@@ -393,7 +393,7 @@ class _EditProfileOrganisationAccountState
             CustomTextField(
               controller: controller.postalCodeController,
               hintText: AppString.postalCode,
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
               fillColor: AppColors.transparent,
               borderColor: AppColors.white50,
               paddingVertical: 10.sp,

@@ -76,12 +76,9 @@ class PlaceOrder extends StatelessWidget {
                               : "",
                           color: AppColors.grey300,
                         ),
+                        const SizedBox()
                       ],
                     ),
-                    const Icon(
-                      Icons.close,
-                      color: AppColors.grey900,
-                    )
                   ],
                 ),
                 Row(
@@ -215,7 +212,7 @@ class PlaceOrder extends StatelessWidget {
                 Align(
                     alignment: FractionalOffset.centerLeft,
                     child: CustomText(
-                      text: AppString.anotherShopping,
+                      text: AppString.youMayAlsoLike,
                       color: AppColors.grey300,
                       fontWeight: FontWeight.w600,
                       fontSize: 18.sp,
@@ -243,11 +240,17 @@ class PlaceOrder extends StatelessWidget {
                               itemCount: controller.products.length,
                               itemBuilder: (context, index) {
                                 Data item = controller.products[index];
-                                return AnotherShoppingListItem(
-                                  image:
-                                      "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
-                                  price: item.price ?? "",
-                                  name: item.name ?? "",
+                                return GestureDetector(
+                                  onTap: () {
+                                    controller.productRepo(
+                                        productId: item.sId ?? "");
+                                  },
+                                  child: AnotherShoppingListItem(
+                                    image:
+                                        "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
+                                    price: item.price ?? "",
+                                    name: item.name ?? "",
+                                  ),
                                 );
                               }),
                     }),
@@ -283,7 +286,7 @@ class PlaceOrder extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                             CustomText(
-                              text: "(${controller.item} item)",
+                              text: "(${controller.item} ${controller.item > 1 ?  "items" :"item"})",
                               color: AppColors.white50,
                               fontWeight: FontWeight.w300,
                               left: 6.w,

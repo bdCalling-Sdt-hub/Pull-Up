@@ -53,7 +53,7 @@ class LogInScreen extends StatelessWidget {
                     bottom: 22.h,
                   ),
                   CustomTextField(
-                    labelText: AppString.emailOrUsername,
+                    labelText: AppString.email,
                     controller: controller.emailController,
                     validator: (value) {
                       if (value!.isEmpty) {

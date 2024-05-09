@@ -323,8 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                               height: 190.sp,
                               child: switch (controller.bookStatus) {
-                                Status.loading => const Center(
-                                    child: CircularProgressIndicator()),
+                                Status.loading => const CustomLoader(),
                                 Status.error => ErrorScreen(
                                     onTap: () {
                                       controller.bookPage = 1;
@@ -402,8 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                               height: 190.sp,
                               child: switch (controller.eventStatus) {
-                                Status.loading => const Center(
-                                    child: CircularProgressIndicator()),
+                                Status.loading => const CustomLoader(),
                                 Status.error => ErrorScreen(
                                     onTap: () {
                                       controller.eventPage = 1;
@@ -479,8 +477,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: 190.sp,
                             child: switch (controller.burgerStatus) {
-                              Status.loading => const Center(
-                                  child: CircularProgressIndicator()),
+                              Status.loading => const CustomLoader(),
                               Status.error => ErrorScreen(onTap: () {
                                   controller.burgerPage = 1;
                                   controller.burgerRepo();

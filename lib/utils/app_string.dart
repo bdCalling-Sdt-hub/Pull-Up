@@ -47,7 +47,6 @@ class AppString {
 
   static const String loginYourAccount = "Login to your Account";
 
-  static const String emailOrUsername = "Email Or Username";
 
   static const String forgotPassword = "Forgot Password?";
 
@@ -75,6 +74,7 @@ class AppString {
   static const String burger = "Burger";
 
   static const String event = "Event";
+  static const String events = "Events";
   static const String myEvent = "My Event";
 
   static const String iceCream = "Ice cream";
@@ -144,7 +144,7 @@ class AppString {
   static const String guildStreetLondonEngland =
       "50 Guild Street, London England";
 
-  static const String anotherShopping = "Another Shopping";
+  static const String youMayAlsoLike = "You may also like";
 
   static const String familyFriendsLoveBook = "Family Friends Love Book";
 
@@ -294,6 +294,7 @@ class AppString {
 
   static const String menu = "Menu";
   static const String product = "Product";
+  static const String products = "Products";
   static const String myProduct = "My Product";
   static const String productName = "Product Name";
 

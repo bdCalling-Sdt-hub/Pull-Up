@@ -18,7 +18,7 @@ import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';
 
 class EditProfileBusinessAccount extends StatefulWidget {
-  EditProfileBusinessAccount({super.key});
+  const EditProfileBusinessAccount({super.key});
 
   @override
   State<EditProfileBusinessAccount> createState() =>
@@ -417,7 +417,7 @@ class _EditProfileBusinessAccountState
             CustomTextField(
               controller: controller.postalCodeController,
               hintText: AppString.postalCode,
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
               fillColor: AppColors.transparent,
               borderColor: AppColors.white50,
               paddingVertical: 10.sp,
