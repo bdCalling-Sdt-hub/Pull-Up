@@ -214,12 +214,14 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                                           onTap: () {
                                             controller.isFavoriteRepo(index);
                                           },
-
                                           image:
                                               "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
                                           title: item.name ?? "",
                                           subTitle: item.description ?? "",
-                                          isFavorite: false,
+                                          isFavorite: item.isFavorite != null &&
+                                                  item.isFavorite!
+                                              ? item.isFavorite!
+                                              : false,
                                         ),
                                       );
                                     },
