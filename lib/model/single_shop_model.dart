@@ -45,7 +45,9 @@ class Data {
   String? businessName;
   String? businessNumber;
   String? businessWebsite;
+
   bool? isExpiration;
+  bool? isFavorite;
   String? id;
 
   Data(
@@ -72,6 +74,7 @@ class Data {
       this.businessNumber,
       this.businessWebsite,
       this.isExpiration,
+      this.isFavorite,
       this.id});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -100,6 +103,7 @@ class Data {
     businessNumber = json['businessNumber'];
     businessWebsite = json['businessWebsite'];
     isExpiration = json['isExpiration'];
+    isFavorite = json['isFavorite'];
     id = json['id'];
   }
 
@@ -132,6 +136,7 @@ class Data {
     data['businessNumber'] = this.businessNumber;
     data['businessWebsite'] = this.businessWebsite;
     data['isExpiration'] = this.isExpiration;
+    data['isFavorite'] = this.isFavorite;
     data['id'] = this.id;
     return data;
   }

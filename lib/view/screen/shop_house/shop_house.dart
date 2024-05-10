@@ -210,8 +210,11 @@ class _ShopHouseScreenState extends State<ShopHouseScreen> {
                                             parameters: {
                                               "productId": item.sId!
                                             }),
-
                                         child: HomeProductItem(
+                                          onTap: () {
+                                            controller.isFavoriteRepo(index);
+                                          },
+
                                           image:
                                               "${AppUrl.imageUrl}/${item.image?.path ?? ""}",
                                           title: item.name ?? "",

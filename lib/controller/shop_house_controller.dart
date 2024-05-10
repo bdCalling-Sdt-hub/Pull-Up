@@ -5,6 +5,7 @@ import 'package:pull_up/model/product_model.dart';
 import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/model/single_shop_model.dart';
 
+import '../helper/prefs_helper.dart';
 import '../model/api_response_model.dart';
 import '../services/api_service.dart';
 import '../utils/app_url.dart';
@@ -45,7 +46,6 @@ class ShopHouseController extends GetxController {
       "${AppUrl.shopProduct}/$userId",
     );
 
-
     if (response.statusCode == 200) {
       productModel = ShopProductModel.fromJson(jsonDecode(response.body));
 
@@ -61,5 +61,30 @@ class ShopHouseController extends GetxController {
       update();
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  Future<void> favoriteRepo(String productId) async {
+    var body = {"id": productId};
+
+    var response = await ApiService.postApi(AppUrl.isFavorite, body);
+
+    if (response.statusCode == 200) {
+    } else {
+      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+    }
+  }
+
+  isFavoriteRepo(int index) {
+    if (PrefsHelper.token.isEmpty) return;
+
+    if (products[index].isFavorite != null && products[index].isFavorite) {
+      products[index].isFavorite = false;
+      update();
+    } else {
+      products[index].isFavorite = true;
+      update();
+    }
+
+    favoriteRepo(products[index].sId);
   }
 }

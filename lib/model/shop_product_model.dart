@@ -38,6 +38,8 @@ class Data {
   String? address;
   String? createdAt;
   String? updatedAt;
+  bool? isFavorite;
+
   int? iV;
 
   Data(
@@ -51,6 +53,7 @@ class Data {
         this.address,
         this.createdAt,
         this.updatedAt,
+        this.isFavorite,
         this.iV});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -64,6 +67,7 @@ class Data {
     address = json['address'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    isFavorite = json['isFavorite'];
     iV = json['__v'];
   }
 
@@ -80,7 +84,7 @@ class Data {
     data['userId'] = this.userId;
     data['address'] = this.address;
     data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    data['isFavorite'] = this.isFavorite;
     data['__v'] = this.iV;
     return data;
   }
