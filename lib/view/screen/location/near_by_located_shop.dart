@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,23 +7,19 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/near_by_shop_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_icons.dart';
-import 'package:pull_up/utils/app_images.dart';
+
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
-import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
-
-import '../../widget/home_product_item.dart';
 import '../../widget/navBar/navbar.dart';
 import 'inner_widget/located_gridview_item.dart';
 
 class NearByLocatedShop extends StatefulWidget {
-  NearByLocatedShop({super.key});
+  const NearByLocatedShop({super.key});
 
   @override
   State<NearByLocatedShop> createState() => _NearByLocatedShopState();
@@ -47,7 +41,6 @@ class _NearByLocatedShopState extends State<NearByLocatedShop> {
 
   @override
   Widget build(BuildContext context) {
-    print("=====$latitude,=============$longitude");
     ScreenUtil.init(context);
 
     return Scaffold(

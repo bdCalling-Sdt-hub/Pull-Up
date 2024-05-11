@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:pull_up/utils/app_string.dart';
+import 'package:pull_up/utils/app_utils.dart';
 
 class LocationService {
   static inti() async {
@@ -21,6 +23,7 @@ class LocationService {
 
   static Future<bool> locationPermission() async {
     LocationPermission permission = await Geolocator.checkPermission();
+
     if (kDebugMode) {
       print(permission);
     }
@@ -30,6 +33,17 @@ class LocationService {
       if (kDebugMode) {
         print(permission);
       }
+      if (permission == LocationPermission.deniedForever) {
+        Utils.snackBarMessage(
+            AppString.location, AppString.pleaseLocationPermissionEnabled);
+        Future.delayed(
+          const Duration(seconds: 1),
+          () async {
+            await Geolocator.openAppSettings();
+          },
+        );
+      }
+
       if (permission == LocationPermission.denied) {
         return false;
       } else {
@@ -49,9 +63,16 @@ class LocationService {
       }
       if (isEnabled) {
         bool isPermission = await locationPermission();
+
+        if (!isPermission) {
+          isPermission = await locationPermission();
+        }
+
         if (isPermission) {
           positions = await Geolocator.getCurrentPosition();
-          print(positions);
+          if (kDebugMode) {
+            print(positions);
+          }
 
           return positions;
         }
@@ -99,12 +120,15 @@ class LocationService {
             lat,
             long,
           );
-          print(placeMarks.first.street);
-          print(placeMarks.first.country);
-          print(placeMarks.first.administrativeArea);
-          print(placeMarks.first.subLocality);
-          print(placeMarks.first.isoCountryCode);
-          print(placeMarks);
+          if (kDebugMode) {
+            print(placeMarks.first.street);
+            print(placeMarks.first.country);
+            print(placeMarks.first.administrativeArea);
+            print(placeMarks.first.subLocality);
+            print(placeMarks.first.isoCountryCode);
+            print(placeMarks);
+          }
+
           return placeMarks;
         }
       }

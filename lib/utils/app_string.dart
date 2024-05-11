@@ -47,7 +47,6 @@ class AppString {
 
   static const String loginYourAccount = "Login to your Account";
 
-
   static const String forgotPassword = "Forgot Password?";
 
   static const String doNotHaveAccount = "Don’t have an Account?";
@@ -452,7 +451,11 @@ class AppString {
   static const String incomeList = "Income List";
 
   static const String areYouSure = "Are You Sure?";
+  static const String requestLocationPermission =
+      "Pull Up App collects location data to enable identification of nearby products when the app is closed or not in use";
   static const String skip = "Skip";
+  static const String pleaseLocationPermissionEnabled =
+      "please, location permission enabled";
   static const String enterValidEmail = "Enter valid email";
   static const String passwordValidator =
       "Password must be 8 characters & contain both \nalphabets and numerics";
