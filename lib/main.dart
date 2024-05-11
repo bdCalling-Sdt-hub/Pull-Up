@@ -40,6 +40,15 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return GetMaterialApp(
+          builder: (context, child) {
+            return Overlay(
+              initialEntries: [
+                OverlayEntry(
+                  builder: (context) => child ?? Container(),
+                ),
+              ],
+            );
+          },
           debugShowCheckedModeBanner: false,
           theme: themeData,
           transitionDuration: const Duration(milliseconds: 200),
