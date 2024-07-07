@@ -7,7 +7,6 @@ import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';

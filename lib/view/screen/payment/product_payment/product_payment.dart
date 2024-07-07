@@ -2,15 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
-import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
-
 import '../../../../../utils/app_images.dart';
-import '../../../../../utils/app_string.dart';
 import 'inner_widget/add_payment_method.dart';
 
 class Productpayment extends StatelessWidget {

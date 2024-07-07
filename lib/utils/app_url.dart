@@ -1,8 +1,8 @@
 class AppUrl {
   ///<<<=================Base Url=========================>>>
 
-  static const baseUrl = "http://192.168.10.14:3000/api";
-  static const imageUrl = "http://192.168.10.14:3000";
+  static const baseUrl = "http://192.168.10.14:3001/api";
+  static const imageUrl = "http://192.168.10.14:3001 ";
   static const socketUrl = "http://192.168.10.14:3000";
 
   // static const baseUrl = "http://143.110.241.244:3000/api";

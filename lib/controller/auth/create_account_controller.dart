@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -40,7 +39,6 @@ class CreateAccountController extends GetxController {
       body,
     );
 
-    print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
       Utils.toastMessage(message: response.message);

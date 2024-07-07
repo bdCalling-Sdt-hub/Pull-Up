@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/product_details_model.dart';

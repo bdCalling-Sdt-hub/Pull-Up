@@ -7,7 +7,6 @@ import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/my_event_model.dart';
 
 import '../../model/my_event_history_model.dart';
-import '../../model/product_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
 import 'package:pull_up/core/app_route.dart';
-import 'package:pull_up/services/location_service.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';

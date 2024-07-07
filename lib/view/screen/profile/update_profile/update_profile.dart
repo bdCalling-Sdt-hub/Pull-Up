@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
-import 'package:pull_up/helper/prefs_helper.dart';
-import 'package:pull_up/utils/app_images.dart';
-import 'package:pull_up/utils/app_utils.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/custom_loading.dart';
@@ -17,8 +14,6 @@ import '../../../widget/image/custom_image.dart';
 import '../../../widget/profile/profile_image.dart';
 import '../../../widget/text/custom_text.dart';
 import '../../../widget/text_field/custom_text_field.dart';
-import '../edit_profile/inner_widget/edit_profile_organisation_account.dart';
-import '../edit_profile/inner_widget/edit_profile_shoping_account.dart';
 
 class UpdateProfile extends StatelessWidget {
   UpdateProfile({super.key});

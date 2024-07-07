@@ -11,7 +11,6 @@ import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
-import 'package:pull_up/view/widget/no_data.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';

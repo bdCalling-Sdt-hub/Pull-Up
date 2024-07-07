@@ -4,15 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_up/controller/profile_controller/profile_controller.dart';
-import 'package:pull_up/helper/prefs_helper.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_string.dart';
-import '../../../../../utils/app_utils.dart';
-import '../../../../widget/button/custom_button.dart';
 import '../../../../widget/custom_loader.dart';
-import '../../../../widget/custom_loading.dart';
 import '../../../../widget/image/custom_image.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../../../../widget/text_field/custom_text_field.dart';

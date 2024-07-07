@@ -9,8 +9,6 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/item.dart';
-import 'package:pull_up/view/screen/setting/setting_screen/inner_widget/sistance_units_popup.dart';
-import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/navBar/navbar.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 

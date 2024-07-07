@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:pull_up/model/product_model.dart';
 import 'package:pull_up/model/shop_product_model.dart';
 import 'package:pull_up/model/single_shop_model.dart';
 

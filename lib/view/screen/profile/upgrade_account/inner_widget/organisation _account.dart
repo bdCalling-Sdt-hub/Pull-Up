@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
-import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/screen/profile/upgrade_account/inner_widget/feature_item.dart';

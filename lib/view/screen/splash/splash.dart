@@ -9,7 +9,6 @@ import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 
-import '../../../services/other_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

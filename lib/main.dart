@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
-import 'package:pull_up/services/location_service.dart';
 import 'package:pull_up/services/notification_service.dart';
 import 'package:pull_up/services/other_service.dart';
 import 'package:pull_up/services/socket_service.dart';

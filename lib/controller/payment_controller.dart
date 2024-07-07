@@ -5,12 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:pull_up/controller/upgrade_account/upgrade_account.dart';
-import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/utils/app_string.dart';
-import 'package:pull_up/utils/app_url.dart';
-
-import '../services/api_service.dart';
 import '../utils/app_utils.dart';
 import '../utils/payment_key.dart';
 

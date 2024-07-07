@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class AccountButton extends StatelessWidget {
