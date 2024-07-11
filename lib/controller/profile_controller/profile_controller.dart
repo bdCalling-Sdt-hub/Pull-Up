@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -82,7 +80,6 @@ class ProfileController extends GetxController {
       List list = await LocationService.coordinateToAddress(
           lat: position.latitude, long: position.longitude);
       if (list.isNotEmpty) {
-        print(list);
         countryController.text = list.first.isoCountryCode;
         stateController.text = list.first.administrativeArea;
         cityController.text = list.first.locality;
@@ -104,7 +101,6 @@ class ProfileController extends GetxController {
     if (getImages != null) {
       image = getImages.path;
       update();
-      print(image);
     }
   }
 
@@ -186,7 +182,6 @@ class ProfileController extends GetxController {
       update();
     }
 
-    print("===============Picked Time${businessHoursController.text}");
     update();
   }
 
@@ -227,7 +222,6 @@ class ProfileController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
-      print(response.body);
     } else {
       Utils.toastMessage(message: response.message);
     }
@@ -265,7 +259,6 @@ class ProfileController extends GetxController {
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
-      print(response.body);
     } else {
       Utils.toastMessage(message: response.message);
     }
@@ -297,14 +290,12 @@ class ProfileController extends GetxController {
       "account_number": accountNumberController.text,
     };
 
-    print(body);
 
     var response = await ApiService.multipartRequest(
         url: AppUrl.updateAccount, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
-      print(response.body);
     } else {
       Utils.toastMessage(message: response.message);
     }

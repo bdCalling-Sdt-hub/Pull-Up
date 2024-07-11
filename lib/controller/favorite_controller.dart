@@ -54,7 +54,6 @@ class FavoriteController extends GetxController {
 
       if (favoriteModel?.data?.result != null) {
         favorites.addAll(favoriteModel!.data!.result!);
-        print("================> ${favorites.length}");
       }
       status = Status.completed;
       update();

@@ -22,7 +22,6 @@ class PaymentController extends GetxController {
       Utils.toastMessage(message: AppString.somethingIsWrong);
       Get.back(result: null);
 
-      print("amount ========================>$amount");
 
       return;
     }

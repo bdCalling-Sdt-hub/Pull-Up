@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,7 +29,9 @@ class PrefsHelper extends GetxController {
     isNotifications = preferences.getBool("isNotifications") ?? true;
     mySubscription = preferences.getString("mySubscription") ?? "shopping";
 
-    print(userId);
+    if (kDebugMode) {
+      print(userId);
+    }
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

@@ -109,8 +109,6 @@ class ProductDetailsController extends GetxController {
       Utils.toastMessage(message: response.message);
     }
 
-    print(response.statusCode);
-    print(response.body);
 
     // isLoading = false;
     // update();

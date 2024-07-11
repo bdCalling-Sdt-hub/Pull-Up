@@ -69,7 +69,6 @@ class IncomeController extends GetxController {
 
       totalIncome = (totalIncome / 100);
       update();
-      print("totalIncome doller====================> $totalIncome");
     }
   }
 

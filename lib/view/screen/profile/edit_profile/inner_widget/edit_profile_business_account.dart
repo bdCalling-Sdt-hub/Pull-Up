@@ -48,6 +48,7 @@ class _EditProfileBusinessAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -70,6 +71,7 @@ class _EditProfileBusinessAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -92,6 +94,7 @@ class _EditProfileBusinessAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -145,6 +148,7 @@ class _EditProfileBusinessAccountState
                   if (value!.isEmpty) {
                     return AppString.thisFieldIsRequired;
                   }
+                  return null;
                 },
                 decoration: InputDecoration(
                   hintText: AppString.description,
@@ -174,6 +178,7 @@ class _EditProfileBusinessAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -198,6 +203,7 @@ class _EditProfileBusinessAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
               paddingVertical: 10.sp,
               suffixIcon: const Icon(

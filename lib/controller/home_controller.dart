@@ -99,7 +99,6 @@ class HomeController extends GetxController {
 
       if (productModel?.data?.result != null) {
         books.addAll(productModel!.data!.result!);
-        print("================> ${books.length}");
       }
       if (productModel?.data?.meta?.totalPage != null) {
         bookTotalPage = productModel!.data!.meta!.totalPage!;
@@ -130,7 +129,6 @@ class HomeController extends GetxController {
 
       if (productModel?.data?.result != null) {
         burgers.addAll(productModel!.data!.result!);
-        print("================> ${burgers.length}");
       }
       burgerStatus = Status.completed;
       update();
@@ -159,7 +157,6 @@ class HomeController extends GetxController {
 
       if (eventListModel?.data?.result != null) {
         events.addAll(eventListModel!.data!.result!);
-        print("================> ${events.length}");
       }
       eventStatus = Status.completed;
       update();
@@ -186,7 +183,6 @@ class HomeController extends GetxController {
 
       if (keywordModel?.data != null) {
         keywords.addAll(keywordModel!.data!);
-        print("================> ${keywords.length}");
       }
       keywordStatus = Status.completed;
       update();

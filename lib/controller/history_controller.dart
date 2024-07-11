@@ -35,7 +35,6 @@ class HistoryController extends GetxController {
       if (productHistoryModel?.data != null) {
         productHistory.clear();
         productHistory.addAll(productHistoryModel!.data!);
-        print("================> ${productHistory.length}");
       }
       status = Status.completed;
       update();
@@ -61,7 +60,6 @@ class HistoryController extends GetxController {
       if (myEventHistoryModel?.data != null) {
         eventHistory.clear();
         eventHistory.addAll(myEventHistoryModel!.data!);
-        print("================> ${eventHistory.length}");
       }
       status = Status.completed;
       update();

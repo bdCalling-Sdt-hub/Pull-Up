@@ -80,14 +80,12 @@ class CreateAccountController extends GetxController {
       "oneTimeCode": otpController.text
     };
 
-    print(body);
 
     var response = await ApiService.postApi(
       AppUrl.verifyEmail,
       body,
     );
 
-    print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.login);

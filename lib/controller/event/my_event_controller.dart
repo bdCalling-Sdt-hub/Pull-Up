@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/model/api_response_model.dart';
@@ -53,7 +52,6 @@ class MyEventController extends GetxController {
 
       if (productModel?.data?.result != null) {
         products.addAll(productModel!.data!.result!);
-        print("================> ${products.length}");
       }
       status = Status.completed;
       update();
@@ -81,7 +79,6 @@ class MyEventController extends GetxController {
       if (myEventHistoryModel?.data != null) {
         eventHistory.clear();
         eventHistory.addAll(myEventHistoryModel!.data!);
-        print("================> ${products.length}");
       }
       status = Status.completed;
       update();

@@ -12,7 +12,7 @@ import '../../../../widget/text_field/custom_text_field.dart';
 class CreateAccountAllField extends StatelessWidget {
   CreateAccountAllField({super.key});
 
-  CreateAccountController controller = Get.put(CreateAccountController());
+  final CreateAccountController controller = Get.put(CreateAccountController());
 
   @override
   Widget build(BuildContext context) {

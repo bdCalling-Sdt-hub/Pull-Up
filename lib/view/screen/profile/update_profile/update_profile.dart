@@ -20,7 +20,7 @@ class UpdateProfile extends StatelessWidget {
 
   final formKey = GlobalKey<FormState>();
 
-  ProfileController profileController = Get.put(ProfileController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {

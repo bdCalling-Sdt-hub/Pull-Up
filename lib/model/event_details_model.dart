@@ -3,19 +3,19 @@ class EventDetailsModel {
   String? message;
   Data? data;
 
-  EventDetailsModel({this.success, this.message, this.data});
+  EventDetailsModel({success, message, data});
 
   EventDetailsModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['message'] = this.message;
-    if (this.data != null) {
+    final Map<String, dynamic> data ={};
+    data['success'] = success;
+    data['message'] = message;
+    if (data != null) {
       data['data'] = this.data!.toJson();
     }
     return data;
@@ -36,24 +36,24 @@ class Data {
   int? iV;
 
   Data(
-      {this.sId,
-      this.name,
-      this.description,
-      this.price,
-      this.image,
-      this.location,
-      this.dateTime,
-      this.userId,
-      this.createdAt,
-      this.updatedAt,
-      this.iV});
+      {sId,
+      name,
+      description,
+      price,
+      image,
+      location,
+      dateTime,
+      userId,
+      createdAt,
+      updatedAt,
+      iV});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     description = json['description'];
     price = json['price'];
-    image = json['image'] != null ? new Image.fromJson(json['image']) : null;
+    image = json['image'] != null ? Image.fromJson(json['image']) : null;
     location = json['location'];
     dateTime = json['dateTime'];
     userId = json['userId'];
@@ -63,20 +63,20 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    if (this.image != null) {
-      data['image'] = this.image!.toJson();
+    final Map<String, dynamic> data ={};
+    data['_id'] = sId;
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    if (image != null) {
+      data['image'] = image!.toJson();
     }
-    data['location'] = this.location;
-    data['dateTime'] = this.dateTime;
-    data['userId'] = this.userId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
+    data['location'] = location;
+    data['dateTime'] = dateTime;
+    data['userId'] = userId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -85,7 +85,7 @@ class Image {
   String? publicFileUrl;
   String? path;
 
-  Image({this.publicFileUrl, this.path});
+  Image({publicFileUrl, path});
 
   Image.fromJson(Map<String, dynamic> json) {
     publicFileUrl = json['publicFileUrl'];
@@ -93,9 +93,9 @@ class Image {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['publicFileUrl'] = this.publicFileUrl;
-    data['path'] = this.path;
+    final Map<String, dynamic> data ={};
+    data['publicFileUrl'] = publicFileUrl;
+    data['path'] = path;
     return data;
   }
 }

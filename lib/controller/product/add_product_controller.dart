@@ -32,7 +32,6 @@ class AddProductController extends GetxController {
     if (response.statusCode == 200) {
       profileModel = ProfileModel.fromJson(jsonDecode(response.body));
 
-      print(profileModel?.data?.isExpiration);
 
       status = Status.completed;
       update();

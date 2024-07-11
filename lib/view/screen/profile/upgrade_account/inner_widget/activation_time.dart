@@ -75,6 +75,7 @@ class ActivationTime {
                           if (value!.isEmpty) {
                             return AppString.thisFieldIsRequired;
                           }
+                          return null;
                         },
                         suffixIcon: const Icon(
                           Icons.calendar_month_outlined,

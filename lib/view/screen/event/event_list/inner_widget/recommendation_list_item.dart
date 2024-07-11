@@ -3,25 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_up/utils/app_colors.dart';
 import 'package:pull_up/utils/app_icons.dart';
-import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 import '../../../../../utils/app_string.dart';
 
 class RecommendationsListItem extends StatelessWidget {
-  RecommendationsListItem({
+  const RecommendationsListItem({
     super.key,
     required this.image,
     required this.title,
     required this.price,
   });
 
-  String image;
+  final String image;
 
-  String title;
+  final String title;
 
-  String price;
+  final String price;
 
   @override
   Widget build(BuildContext context) {

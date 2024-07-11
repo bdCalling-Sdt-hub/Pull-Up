@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pull_up/view/screen/product/product_list/inner_widget/delete_popup.dart';
 import 'package:pull_up/view/widget/image/custom_image.dart';
 
 import '../../../../../utils/app_colors.dart';

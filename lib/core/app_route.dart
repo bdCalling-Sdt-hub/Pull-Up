@@ -84,49 +84,162 @@ class AppRoute {
   static const String selectLocationFromMap = "/select_location_from_mao.dart";
 
   static List<GetPage> routes = [
-    GetPage(name: test, page: () => Test()),
-    GetPage(name: splash, page: () => SplashScreen()),
-    GetPage(name: enableLocation, page: () => EnableLocationScreen()),
-    GetPage(name: onboarding, page: () => OnboardingScreen()),
-    GetPage(name: createAccount, page: () => CreateAccountScreen()),
-    GetPage(name: emailVerify, page: () => EmailVerify()),
-    GetPage(name: login, page: () => LogInScreen()),
     GetPage(
-        name: forgetPasswordCheckEmail, page: () => ForgetPasswordCheckEmail()),
+        name: test,
+        page: () => const Test(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: splash,
+        page: () => const SplashScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: enableLocation,
+        page: () => const EnableLocationScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: onboarding,
+        page: () => const OnboardingScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: createAccount,
+        page: () => const CreateAccountScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: emailVerify,
+        page: () => EmailVerify(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: login,
+        page: () => LogInScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: forgetPasswordCheckEmail,
+        page: () => ForgetPasswordCheckEmail(),
+        transition: Transition.rightToLeftWithFade),
     GetPage(
         name: forgetPasswordEmailVerify,
-        page: () => ForgetPasswordEmailVerify()),
+        page: () => ForgetPasswordEmailVerify(),
+        transition: Transition.rightToLeftWithFade),
     GetPage(
         name: forgetPasswordResetPassword,
-        page: () => ForgetPasswordResetPassword()),
-    GetPage(name: home, page: () => HomeScreen()),
-    GetPage(name: changeLocation, page: () => ChangeLocationScreen()),
-    GetPage(name: locatedShop, page: () => NearByLocatedShop()),
-    GetPage(name: shopHouse, page: () => ShopHouseScreen()),
-    GetPage(name: productDetails, page: () => ProductDetails()),
-    GetPage(name: productPayment, page: () => Productpayment()),
-    GetPage(name: eventList, page: () => EventListScreen()),
-    GetPage(name: eventDetails, page: () => EventDetailsScreen()),
-    GetPage(name: ticketPayment, page: () => TicketPurchasePayment()),
-    GetPage(name: notification, page: () => NotificationScreen()),
-    GetPage(name: favorites, page: () => FavoritesScreen()),
-    GetPage(name: settingScreen, page: () => SettingScreen()),
-    GetPage(name: deactiveateAccount, page: () => DeactiveateAccount()),
-    GetPage(name: newEvent, page: () => NewEvent()),
-    GetPage(name: addProduct, page: () => AddProduct()),
-    GetPage(name: productList, page: () => ProductList()),
-    GetPage(name: addDeal, page: () => AddDeal()),
-    GetPage(name: profileWithoutLogin, page: () => ProfileWithOutLogIn()),
-    GetPage(name: profile, page: () => ProfileScreen()),
-    GetPage(name: upgradeAccount, page: () => UpgradeAccount()),
-    GetPage(name: income, page: () => Income()),
-    GetPage(name: editProfile, page: () => EditProfile()),
-    GetPage(name: noInternet, page: () => NoInternet()),
-    GetPage(name: myProduct, page: () => MyProduct()),
-    GetPage(name: payment, page: () => PaymentScreen()),
-    GetPage(name: history, page: () => HistoryScreen()),
-    GetPage(name: myEvent, page: () => MyEvent()),
-    GetPage(name: updateProfile, page: () => UpdateProfile()),
-    GetPage(name: selectLocationFromMap, page: () => SelectLocationFromMap()),
+        page: () => ForgetPasswordResetPassword(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: home,
+        page: () => HomeScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: changeLocation,
+        page: () => const ChangeLocationScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: locatedShop,
+        page: () => const NearByLocatedShop(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: shopHouse,
+        page: () => const ShopHouseScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: productDetails,
+        page: () => ProductDetails(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: productPayment,
+        page: () => Productpayment(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: eventList,
+        page: () => EventListScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: eventDetails,
+        page: () => EventDetailsScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: ticketPayment,
+        page: () => TicketPurchasePayment(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: notification,
+        page: () => NotificationScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: favorites,
+        page: () => const FavoritesScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: settingScreen,
+        page: () => SettingScreen(),
+        transition: Transition.leftToRight),
+    // Note: this line was already different
+    GetPage(
+        name: deactiveateAccount,
+        page: () => DeactiveateAccount(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: newEvent,
+        page: () => NewEvent(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: addProduct,
+        page: () => AddProduct(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: productList,
+        page: () => ProductList(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: addDeal,
+        page: () => AddDeal(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: profileWithoutLogin,
+        page: () => const ProfileWithOutLogIn(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: profile,
+        page: () => const ProfileScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: upgradeAccount,
+        page: () => const UpgradeAccount(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: income,
+        page: () => Income(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: editProfile,
+        page: () => EditProfile(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: noInternet,
+        page: () => const NoInternet(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: myProduct,
+        page: () => MyProduct(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: payment,
+        page: () => PaymentScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: history,
+        page: () => HistoryScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: myEvent,
+        page: () => MyEvent(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: updateProfile,
+        page: () => UpdateProfile(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: selectLocationFromMap,
+        page: () => const SelectLocationFromMap(),
+        transition: Transition.rightToLeftWithFade),
   ];
 }

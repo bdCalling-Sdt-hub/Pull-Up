@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,6 +50,7 @@ class _EditProfileOrganisationAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -73,6 +73,7 @@ class _EditProfileOrganisationAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(
@@ -150,6 +151,7 @@ class _EditProfileOrganisationAccountState
                   if (value!.isEmpty) {
                     return AppString.thisFieldIsRequired;
                   }
+                  return null;
                 },
                 decoration: InputDecoration(
                   hintText: AppString.description,
@@ -179,6 +181,7 @@ class _EditProfileOrganisationAccountState
                 if (value!.isEmpty) {
                   return AppString.thisFieldIsRequired;
                 }
+                return null;
               },
             ),
             CustomText(

@@ -23,7 +23,6 @@ class ProductListController extends GetxController {
   Future<void> scrollControllerCall({required String keyword}) async {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      print(productModel?.data?.meta?.totalPage);
       if (productModel?.data?.meta?.totalPage != null &&
           productModel!.data!.meta!.totalPage! < page) return;
 
@@ -51,7 +50,6 @@ class ProductListController extends GetxController {
 
       if (productModel?.data?.result != null) {
         products.addAll(productModel!.data!.result!);
-        print("================> ${products.length}");
       }
       status = Status.completed;
       update();

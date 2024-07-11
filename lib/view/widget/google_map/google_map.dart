@@ -13,9 +13,9 @@ class ShowGoogleMap extends StatefulWidget {
       this.longitude = 0,
       required this.onTapLatLong});
 
-  double latitude;
+  final double latitude;
 
-  double longitude;
+  final double longitude;
   Function(LatLng value) onTapLatLong;
 
   @override

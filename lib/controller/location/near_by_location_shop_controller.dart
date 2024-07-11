@@ -19,7 +19,7 @@ class NearbyLocationShopController extends GetxController {
     status = Status.loading;
     update();
     var response = await ApiService.getApi(
-      "${AppUrl.nearbyShop}?longitude=$longitude&latitude=${latitude}&accountType=business",
+      "${AppUrl.nearbyShop}?longitude=$longitude&latitude=$latitude&accountType=business",
     );
 
     if (response.statusCode == 200) {

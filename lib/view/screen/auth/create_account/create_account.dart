@@ -8,7 +8,6 @@ import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/view/screen/auth/create_account/inner_widget/create_account_all_field.dart';
 import 'package:pull_up/view/widget/button/custom_button.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
-import 'package:pull_up/view/widget/text_field/custom_text_field.dart';
 
 import '../../../../controller/auth/create_account_controller.dart';
 import '../../../../utils/app_utils.dart';

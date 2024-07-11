@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pull_up/utils/app_images.dart';
-
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
 import '../../../widget/image/custom_image.dart';
 import '../../../widget/text/custom_text.dart';
-import '../../notification/inner_widget/delete_popup.dart';
 
 class IncomeItem extends StatelessWidget {
   IncomeItem({

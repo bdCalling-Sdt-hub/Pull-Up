@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -140,6 +139,7 @@ class _AddProductState extends State<AddProduct> {
                             if (value.isEmpty) {
                               return AppString.thisFieldIsRequired;
                             }
+                            return null;
                           },
                         ),
                         CustomText(
@@ -164,6 +164,7 @@ class _AddProductState extends State<AddProduct> {
                               if (value != null && value.isEmpty) {
                                 return AppString.thisFieldIsRequired;
                               }
+                              return null;
                             },
                             controller: controller.desController,
                             decoration: InputDecoration(
@@ -192,6 +193,7 @@ class _AddProductState extends State<AddProduct> {
                             if (value.isEmpty) {
                               return AppString.thisFieldIsRequired;
                             }
+                            return null;
                           },
                         ),
                         CustomText(
@@ -212,6 +214,7 @@ class _AddProductState extends State<AddProduct> {
                             if (controller.tagList.isEmpty) {
                               return AppString.thisFieldIsRequired;
                             }
+                            return null;
                           },
                           onSubmitted: (value) {
                             if (value.isNotEmpty) {

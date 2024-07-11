@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           },
           debugShowCheckedModeBanner: false,
           theme: themeData,
-          transitionDuration: const Duration(milliseconds: 200),
+          transitionDuration: const Duration(milliseconds: 300),
           initialRoute: AppRoute.splash,
           getPages: AppRoute.routes,
         );

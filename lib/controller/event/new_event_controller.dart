@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -47,7 +46,6 @@ class NewEventController extends GetxController {
     if (response.statusCode == 200) {
       profileModel = ProfileModel.fromJson(jsonDecode(response.body));
 
-      print(profileModel?.data?.isExpiration);
 
       status = Status.completed;
       update();
@@ -100,8 +98,6 @@ class NewEventController extends GetxController {
           "${selectedTime!.hour}:${formatMinute(selectedTime!.minute.toString())}";
 
       update();
-      print(selectedTime);
-      print(selectedTime.toString());
     }
   }
 
@@ -156,12 +152,10 @@ class NewEventController extends GetxController {
       "dateTime": dateTime
     };
 
-    print(body);
     var response = await ApiService.multipartRequest(
         url: AppUrl.crateEvent, body: body, imagePath: image);
 
     if (response.statusCode == 200) {
-      print(response.body);
       Get.toNamed(AppRoute.eventList);
     } else {
       Utils.toastMessage(message: response.message);

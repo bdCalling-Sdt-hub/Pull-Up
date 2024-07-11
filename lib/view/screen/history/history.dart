@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_up/controller/history_controller.dart';
-import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/product_history_model.dart';
 import 'package:pull_up/utils/app_url.dart';

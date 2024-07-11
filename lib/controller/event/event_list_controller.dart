@@ -48,7 +48,6 @@ class EventListController extends GetxController {
 
       if (eventModel?.data != null) {
         events.addAll(eventModel!.data!);
-        print("================> ${events.length}");
       }
       status = Status.completed;
       update();

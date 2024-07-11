@@ -8,11 +8,11 @@ class LogInModel {
   LogInModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ?   Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =   Map<String, dynamic>();
     data['success'] = this.success;
     data['message'] = this.message;
     if (this.data != null) {
@@ -29,12 +29,12 @@ class Data {
   Data({this.user, this.accessToken});
 
   Data.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ?   User.fromJson(json['user']) : null;
     accessToken = json['accessToken'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =   Map<String, dynamic>();
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
@@ -101,7 +101,7 @@ class User {
     email = json['email'];
     phoneNumber = json['phoneNumber'];
     password = json['password'];
-    image = json['image'] != null ? new Image.fromJson(json['image']) : null;
+    image = json['image'] != null ?   Image.fromJson(json['image']) : null;
     role = json['role'];
     emailVerified = json['emailVerified'];
     createdAt = json['createdAt'];
@@ -112,7 +112,7 @@ class User {
     expirationDate = json['expirationDate'];
     location = json['location'];
     mapLocation = json['mapLocation'] != null
-        ? new MapLocation.fromJson(json['mapLocation'])
+        ?   MapLocation.fromJson(json['mapLocation'])
         : null;
     packageDuration = json['packageDuration'];
     businessDescription = json['businessDescription'];
@@ -125,7 +125,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =   Map<String, dynamic>();
     data['_id'] = this.sId;
     data['name'] = this.name;
     data['email'] = this.email;
@@ -170,7 +170,7 @@ class Image {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =   Map<String, dynamic>();
     data['publicFileUrl'] = this.publicFileUrl;
     data['path'] = this.path;
     return data;
@@ -193,7 +193,7 @@ class MapLocation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =   Map<String, dynamic>();
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
     data['_id'] = this.sId;

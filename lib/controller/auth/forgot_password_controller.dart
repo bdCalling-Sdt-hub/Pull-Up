@@ -31,7 +31,6 @@ class ForgotPasswordController extends GetxController {
       body: body,
     );
 
-    print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
       Utils.toastMessage(message: response.message);
@@ -53,14 +52,12 @@ class ForgotPasswordController extends GetxController {
       "oneTimeCode": otpController.text
     };
 
-    print(body);
 
     var response = await ApiService.patchApi(
       AppUrl.forgotPasswordVerify,
       body: body,
     );
 
-    print("===========${response.statusCode}===========");
 
     if (response.statusCode == 200) {
       Get.toNamed(AppRoute.forgetPasswordResetPassword);

@@ -18,7 +18,7 @@ class EventDetailsController extends GetxController {
     DateTime? dateTime = DateTime.tryParse(dateString);
     if (dateTime != null) {
       String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
-      print(formattedDate); // Output: 31 May, 2024
+      // Output: 31 May, 2024
       return formattedDate;
     } else {
       return "";
@@ -29,7 +29,7 @@ class EventDetailsController extends GetxController {
     DateTime? dateTime = DateTime.tryParse(dateString);
     if (dateTime != null) {
       String dayName = DateFormat('EEEE').format(dateTime);
-      print(dayName); // Output: Wednesday
+      // Output: Wednesday
       return dayName;
     } else {
       return "";
@@ -73,8 +73,6 @@ class EventDetailsController extends GetxController {
       Utils.toastMessage(message: response.message);
     }
 
-    print(response.statusCode);
-    print(response.body);
 
     // isLoading = false;
     // update();

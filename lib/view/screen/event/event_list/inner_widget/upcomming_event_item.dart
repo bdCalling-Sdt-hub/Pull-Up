@@ -8,7 +8,7 @@ import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 
 class UpcommingEventItem extends StatelessWidget {
-  UpcommingEventItem({
+  const UpcommingEventItem({
     super.key,
     required this.image,
     required this.name,
@@ -21,15 +21,15 @@ class UpcommingEventItem extends StatelessWidget {
     required this.thirdImage,
   });
 
-  String image;
-  String firstImage;
-  String secondImage;
-  String thirdImage;
-  String name;
-  String des;
-  String joinNumber;
-  String location;
-  String price;
+  final String image;
+  final String firstImage;
+  final String secondImage;
+  final String thirdImage;
+  final String name;
+  final String des;
+  final String joinNumber;
+  final String location;
+  final String price;
 
   @override
   Widget build(BuildContext context) {

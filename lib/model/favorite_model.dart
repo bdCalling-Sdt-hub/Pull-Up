@@ -3,22 +3,20 @@ class FavoriteModel {
   String? message;
   Data? data;
 
-  FavoriteModel({this.success, this.message, this.data});
+  FavoriteModel({success, message, data});
 
   FavoriteModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ?  Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
+    final Map<String, dynamic> data =  {};
+    data['success'] = success;
+    data['message'] = message;
+    data['data'] = this.data!.toJson();
+      return data;
   }
 }
 
@@ -26,25 +24,25 @@ class Data {
   List<Result>? result;
   Meta? meta;
 
-  Data({this.result, this.meta});
+  Data({result, meta});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
       result = <Result>[];
       json['result'].forEach((v) {
-        result!.add(new Result.fromJson(v));
+        result!.add( Result.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ?  Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data =  {};
+    if (result != null) {
+      data['result'] = result!.map((v) => v.toJson()).toList();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -59,18 +57,18 @@ class Result {
   String? updatedAt;
 
   Result(
-      {this.sId,
-        this.userId,
-        this.productId,
-        this.isFavorite,
-        this.createdAt,
-        this.updatedAt});
+      {sId,
+        userId,
+        productId,
+        isFavorite,
+        createdAt,
+        updatedAt});
 
   Result.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     userId = json['userId'];
     productId = json['productId'] != null
-        ? new ProductId.fromJson(json['productId'])
+        ?  ProductId.fromJson(json['productId'])
         : null;
     isFavorite = json['isFavorite'];
     createdAt = json['createdAt'];
@@ -78,15 +76,15 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['userId'] = this.userId;
-    if (this.productId != null) {
-      data['productId'] = this.productId!.toJson();
+    final Map<String, dynamic> data =  {};
+    data['_id'] = sId;
+    data['userId'] = userId;
+    if (productId != null) {
+      data['productId'] = productId!.toJson();
     }
-    data['isFavorite'] = this.isFavorite;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    data['isFavorite'] = isFavorite;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
     return data;
   }
 }
@@ -105,24 +103,24 @@ class ProductId {
   int? iV;
 
   ProductId(
-      {this.sId,
-        this.name,
-        this.description,
-        this.price,
-        this.image,
-        this.keywords,
-        this.userId,
-        this.address,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      {sId,
+        name,
+        description,
+        price,
+        image,
+        keywords,
+        userId,
+        address,
+        createdAt,
+        updatedAt,
+        iV});
 
   ProductId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     description = json['description'];
     price = json['price'];
-    image = json['image'] != null ? new Image.fromJson(json['image']) : null;
+    image = json['image'] != null ?  Image.fromJson(json['image']) : null;
     keywords = json['keywords'].cast<String>();
     userId = json['userId'];
     address = json['address'];
@@ -132,20 +130,20 @@ class ProductId {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    if (this.image != null) {
-      data['image'] = this.image!.toJson();
+    final Map<String, dynamic> data =  {};
+    data['_id'] = sId;
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    if (image != null) {
+      data['image'] = image!.toJson();
     }
-    data['keywords'] = this.keywords;
-    data['userId'] = this.userId;
-    data['address'] = this.address;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
+    data['keywords'] = keywords;
+    data['userId'] = userId;
+    data['address'] = address;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -154,7 +152,7 @@ class Image {
   String? publicFileUrl;
   String? path;
 
-  Image({this.publicFileUrl, this.path});
+  Image({publicFileUrl, path});
 
   Image.fromJson(Map<String, dynamic> json) {
     publicFileUrl = json['publicFileUrl'];
@@ -162,9 +160,9 @@ class Image {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['publicFileUrl'] = this.publicFileUrl;
-    data['path'] = this.path;
+    final Map<String, dynamic> data =  {};
+    data['publicFileUrl'] = publicFileUrl;
+    data['path'] = path;
     return data;
   }
 }
@@ -175,7 +173,7 @@ class Meta {
   int? totalPage;
   int? total;
 
-  Meta({this.page, this.limit, this.totalPage, this.total});
+  Meta({page, limit, totalPage, total});
 
   Meta.fromJson(Map<String, dynamic> json) {
     page = json['page'];
@@ -185,11 +183,11 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['page'] = this.page;
-    data['limit'] = this.limit;
-    data['totalPage'] = this.totalPage;
-    data['total'] = this.total;
+    final Map<String, dynamic> data =  {};
+    data['page'] = page;
+    data['limit'] = limit;
+    data['totalPage'] = totalPage;
+    data['total'] = total;
     return data;
   }
 }

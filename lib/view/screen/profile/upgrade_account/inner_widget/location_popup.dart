@@ -59,6 +59,7 @@ class LocationPopUp {
                           if (value!.isEmpty) {
                             return AppString.thisFieldIsRequired;
                           }
+                          return null;
                         },
                       ),
                       CustomText(

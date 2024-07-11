@@ -3,7 +3,7 @@ class KeywordModel {
   String? message;
   List<Data>? data;
 
-  KeywordModel({this.success, this.message, this.data});
+  KeywordModel({success, message, data});
 
   KeywordModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
@@ -11,16 +11,16 @@ class KeywordModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add( Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['message'] = this.message;
-    if (this.data != null) {
+    final Map<String, dynamic> data =  {};
+    data['success'] = success;
+    data['message'] = message;
+    if (data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
@@ -31,7 +31,7 @@ class Data {
   int? count;
   String? keyword;
 
-  Data({this.count, this.keyword});
+  Data({count, keyword});
 
   Data.fromJson(Map<String, dynamic> json) {
     count = json['count'];
@@ -39,9 +39,9 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['count'] = this.count;
-    data['keyword'] = this.keyword;
+    final Map<String, dynamic> data =  {};
+    data['count'] = count;
+    data['keyword'] = keyword;
     return data;
   }
 }

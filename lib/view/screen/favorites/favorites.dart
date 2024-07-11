@@ -6,14 +6,11 @@ import 'package:pull_up/controller/favorite_controller.dart';
 import 'package:pull_up/model/api_response_model.dart';
 import 'package:pull_up/model/favorite_model.dart';
 import 'package:pull_up/utils/app_colors.dart';
-import 'package:pull_up/utils/app_icons.dart';
-import 'package:pull_up/utils/app_images.dart';
 import 'package:pull_up/utils/app_string.dart';
 import 'package:pull_up/utils/app_url.dart';
 import 'package:pull_up/view/widget/appbar_icon/appbar_icon.dart';
 import 'package:pull_up/view/widget/custom_loader.dart';
 import 'package:pull_up/view/widget/error_screen.dart';
-import 'package:pull_up/view/widget/image/custom_image.dart';
 import 'package:pull_up/view/widget/no_data.dart';
 import 'package:pull_up/view/widget/text/custom_text.dart';
 

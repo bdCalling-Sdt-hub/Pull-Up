@@ -123,8 +123,6 @@ class UpgradeAccountController extends GetxController {
     isLoading = true;
     update();
 
-    List locations =
-        await LocationService.addressToCoordinate(addressController.text);
 
     var body = {
       "accountType": accountName,

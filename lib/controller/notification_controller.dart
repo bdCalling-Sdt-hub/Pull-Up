@@ -33,7 +33,6 @@ class NotificationController extends GetxController {
 
       if (notificationModel?.data?.result != null) {
         notifications.addAll(notificationModel!.data!.result!);
-        print("================> ${notifications.length}");
       }
       page += 1;
       status = Status.completed;
