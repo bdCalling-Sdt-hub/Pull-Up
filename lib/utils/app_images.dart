@@ -29,6 +29,7 @@ class AppImages {
   static const String noData = "$baseurl/noData.png" ;
   static const String noImage = "$baseurl/noImage.png" ;
   static const String defaultProfile = "$baseurl/default_profile.png" ;
+  static const String googleMap = "$baseurl/google_map.png" ;
 
 
 

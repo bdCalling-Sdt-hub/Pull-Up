@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_up/services/location_service.dart';
-
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_string.dart';
+import '../../../../../utils/app_colors.dart';
+import '../../../../services/location_service.dart';
+import '../../../../utils/app_images.dart';
 
 class RequestLocation {
   static getLocation() {
@@ -11,25 +10,25 @@ class RequestLocation {
       context: Get.context!,
       builder: (context) {
         return AlertDialog(
-          title: const Text(AppString.requestLocationPermission),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                AppImages.googleMap,
+                height: 100,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                  'Pull Up App collects location data to enable identification of nearby products'),
+            ],
+          ),
           actions: [
             TextButton(
                 style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(AppColors.deepOrange),
-                ),
-                onPressed: () async {
-                  await LocationService.locationPermission();
-                  Get.back();
-                },
-                child: const Text(
-                  AppString.yes,
-                  style: TextStyle(color: AppColors.white50),
-                )),
-            TextButton(
-                style: const ButtonStyle(
-                  side: MaterialStatePropertyAll(
-                    BorderSide(color: AppColors.grey900),
+                  side: WidgetStatePropertyAll(
+                    BorderSide(color: AppColors.primaryColor),
                   ),
                   // backgroundColor: MaterialStatePropertyAll(AppColors.blue_500),
                 ),
@@ -37,8 +36,20 @@ class RequestLocation {
                   Navigator.pop(context);
                 },
                 child: const Text(
-                  AppString.no,
-                  style: TextStyle(color: AppColors.grey900),
+                  'No',
+                  style: TextStyle(color: AppColors.black),
+                )),
+            TextButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                ),
+                onPressed: () async {
+                  await LocationService.locationPermission();
+                  Get.back();
+                },
+                child: const Text(
+                  'Ok',
+                  style: TextStyle(color: Colors.white),
                 )),
           ],
         );
