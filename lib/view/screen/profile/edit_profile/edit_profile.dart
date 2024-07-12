@@ -15,6 +15,7 @@ import '../../../widget/text/custom_text.dart';
 import 'inner_widget/edit_profile_business_account.dart';
 import 'inner_widget/edit_profile_organisation_account.dart';
 import 'inner_widget/edit_profile_shoping_account.dart';
+import 'inner_widget/identify_image.dart';
 
 class EditProfile extends StatelessWidget {
   EditProfile({super.key});
@@ -44,16 +45,10 @@ class EditProfile extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
+                    // const ProfileImage(),
+                    identifyImage(),
                     SizedBox(
-                      height: 10.h,
-                    ),
-                    const ProfileImage(),
-                    CustomText(
-                      text: controller.nameController.text,
-                      color: AppColors.white50,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w600,
-                      top: 8.h,
+                      height: 20.h,
                     ),
                     PrefsHelper.mySubscription == "organisation"
                         ? EditProfileOrganisationAccount()
@@ -65,9 +60,9 @@ class EditProfile extends StatelessWidget {
                         : CustomButton(
                             titleText: AppString.save,
                             onPressed: () {
-                              print(controller.image);
                               if (formKey.currentState!.validate()) {
-                                if (controller.image != null) {
+                                if (controller.identifyFont != null &&
+                                    controller.identifyBack != null) {
                                   if (PrefsHelper.mySubscription ==
                                       "organisation") {
                                     controller.updateOrganisationProfileRepo();

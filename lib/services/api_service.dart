@@ -346,6 +346,76 @@ class ApiService {
     }
   }
 
+  static Future<ApiResponseModel> multipartRequestMultiFile({
+    required String url,
+    method = "POST",
+    required List files,
+    required Map<String, dynamic> body,
+    Map<String, String>? header,
+  }) async {
+    try {
+      Map<String, String> mainHeader = {
+        'Authorization': "Bearer ${PrefsHelper.token}",
+      };
+
+      if (kDebugMode) {
+        print("===============================================>url $url");
+        print("===============================================>body $body");
+        print(
+            "===============================================>header ${header ?? mainHeader}");
+      }
+
+      var request = http.MultipartRequest(method, Uri.parse(url));
+      body.forEach((key, value) {
+        request.fields[key] = value;
+      });
+
+      for (var item in files) {
+        if (item['file'] != null) {
+          var mimeType = lookupMimeType(item['file']);
+          var shopImage = await http.MultipartFile.fromPath(
+              item['name'], item['file'],
+              contentType: MediaType.parse(mimeType!));
+          request.files.add(shopImage);
+        }
+      }
+
+      Map<String, String> headers = header ?? mainHeader;
+
+      headers.forEach((key, value) {
+        request.headers[key] = value;
+      });
+
+      var response = await request.send();
+
+      if (kDebugMode) {
+        print(
+            "===============================================>statusCode ${response.statusCode}");
+      }
+
+      if (response.statusCode == 200) {
+        String data = await response.stream.bytesToString();
+
+        return ApiResponseModel(200, jsonDecode(data)['message'], data);
+      } else if (response.statusCode == 201) {
+        String data = await response.stream.bytesToString();
+
+        return ApiResponseModel(200, jsonDecode(data)['message'], data);
+      } else {
+        String data = await response.stream.bytesToString();
+        return ApiResponseModel(
+            response.statusCode, jsonDecode(data)['message'], data);
+      }
+    } on SocketException {
+      // Get.toNamed(AppRoute.noInternet);
+      return ApiResponseModel(503, "No internet connection", '');
+    } on FormatException {
+      return ApiResponseModel(400, "Bad Response Request", '');
+    } on TimeoutException {
+      return ApiResponseModel(408, "Request Time Out", "");
+    }
+  }
+
   static Future<String> getRefreshToken() async {
     Map<String, String> mainHeader = {
       'Refresh-token': "Refresh-token ${PrefsHelper.refreshToken}",

@@ -18,6 +18,8 @@ class ProfileController extends GetxController {
   Status status = Status.completed;
 
   String? image;
+  String? identifyFont;
+  String? identifyBack;
 
   TimeOfDay? startTime;
   bool isLoading = false;
@@ -44,6 +46,28 @@ class ProfileController extends GetxController {
   TextEditingController countryController = TextEditingController();
 
   ProfileModel? profileModel;
+
+  static ProfileController get instance => Get.put(ProfileController());
+
+  font() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+    if (getImages != null) {
+      identifyFont = getImages.path;
+      update();
+    }
+  }
+
+  back() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+    if (getImages != null) {
+      identifyBack = getImages.path;
+      update();
+    }
+  }
 
   Future<void> profileRepo() async {
     if (profileModel != null) return;
@@ -195,8 +219,13 @@ class ProfileController extends GetxController {
       "email": emailController.text
     };
 
-    var response = await ApiService.multipartRequest(
-        url: AppUrl.user, body: body, imagePath: image, method: "patch");
+    var files = [
+      {'name': 'NIDF', 'file': identifyFont},
+      {'name': 'NIDB', 'file': identifyBack}
+    ];
+
+    var response = await ApiService.multipartRequestMultiFile(
+        url: AppUrl.user, body: body, files: files, method: "patch");
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
@@ -217,8 +246,13 @@ class ProfileController extends GetxController {
       "location": stateController.text
     };
 
-    var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: image);
+    var files = [
+      {'name': 'NIDF', 'file': identifyFont},
+      {'name': 'NIDB', 'file': identifyBack}
+    ];
+
+    var response = await ApiService.multipartRequestMultiFile(
+        url: AppUrl.updateAccount, body: body, files: files);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
@@ -254,8 +288,13 @@ class ProfileController extends GetxController {
       "account_number": accountNumberController.text,
     };
 
-    var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: image);
+    var files = [
+      {'name': 'NIDF', 'file': identifyFont},
+      {'name': 'NIDB', 'file': identifyBack}
+    ];
+
+    var response = await ApiService.multipartRequestMultiFile(
+        url: AppUrl.updateAccount, body: body, files: files);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
@@ -290,9 +329,13 @@ class ProfileController extends GetxController {
       "account_number": accountNumberController.text,
     };
 
+    var files = [
+      {'name': 'NIDF', 'file': identifyFont},
+      {'name': 'NIDB', 'file': identifyBack}
+    ];
 
-    var response = await ApiService.multipartRequest(
-        url: AppUrl.updateAccount, body: body, imagePath: image);
+    var response = await ApiService.multipartRequestMultiFile(
+        url: AppUrl.updateAccount, body: body, files: files);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoute.profile);
