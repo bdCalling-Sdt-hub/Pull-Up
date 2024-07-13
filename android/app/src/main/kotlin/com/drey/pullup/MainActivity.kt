@@ -1,4 +1,4 @@
-package com.example.pull_up
+package com.drey.pullup
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity
