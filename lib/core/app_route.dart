@@ -171,7 +171,7 @@ class AppRoute {
     GetPage(
         name: settingScreen,
         page: () => SettingScreen(),
-        transition: Transition.leftToRight),
+        transition: Transition.rightToLeftWithFade),
     // Note: this line was already different
     GetPage(
         name: deactiveateAccount,
