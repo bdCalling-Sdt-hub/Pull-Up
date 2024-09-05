@@ -13,7 +13,7 @@ import 'package:pull_up/view/widget/text/custom_text.dart';
 import '../../../../widget/button/custom_button.dart';
 
 class BusinessAccount extends StatefulWidget {
-  BusinessAccount({super.key});
+  const BusinessAccount({super.key});
 
   @override
   State<BusinessAccount> createState() => _BusinessAccountState();

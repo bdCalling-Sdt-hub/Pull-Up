@@ -10,7 +10,6 @@ import 'package:pull_up/view/widget/custom_loading.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
-import '../../../widget/profile/profile_image.dart';
 import '../../../widget/text/custom_text.dart';
 import 'inner_widget/edit_profile_business_account.dart';
 import 'inner_widget/edit_profile_organisation_account.dart';
