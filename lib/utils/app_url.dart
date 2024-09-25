@@ -1,13 +1,13 @@
 class AppUrl {
   ///<<<=================Base Url=========================>>>
 
-  // static const baseUrl = "http://115.127.156.14:4000/api";
-  // static const imageUrl = "http://115.127.156.14:4000";
-  // static const socketUrl = "http://115.127.156.14:4000";
+  static const baseUrl = "http://115.127.156.14:3000/api";
+  static const imageUrl = "http://115.127.156.14:3000";
+  static const socketUrl = "http://115.127.156.14:3000";
 
-  static const baseUrl = "https://api.pullupapp.net/api";
-  static const imageUrl = "https://api.pullupapp.net";
-  static const socketUrl = "https://api.pullupapp.net";
+  // static const baseUrl = "https://api.pullupapp.net/api";
+  // static const imageUrl = "https://api.pullupapp.net";
+  // static const socketUrl = "https://api.pullupapp.net";
 
   static const signUp = "$baseUrl/users/create-user";
   static const refreshToken = "$baseUrl/users/sign-in-with-refreh-token";
