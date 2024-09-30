@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_up/helper/prefs_helper.dart';
 import 'package:pull_up/model/login_model.dart';
 import 'package:pull_up/services/location_service.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../core/app_route.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_colors.dart';
@@ -122,7 +123,6 @@ class UpgradeAccountController extends GetxController {
   Future<void> shoppingUpgradedAccountRepo() async {
     isLoading = true;
     update();
-
 
     var body = {
       "accountType": accountName,

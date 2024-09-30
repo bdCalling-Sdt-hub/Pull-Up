@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_up/core/app_route.dart';
 import 'package:pull_up/model/profile_model.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../model/api_response_model.dart';
 import '../../services/api_service.dart';
@@ -20,10 +22,12 @@ class ProfileController extends GetxController {
   String? image;
   String? identifyFont;
   String? identifyBack;
+  String stripeUrl = '';
 
   TimeOfDay? startTime;
   bool isLoading = false;
   bool isLoadingLocation = false;
+  WebViewController webViewController = WebViewController();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -297,7 +301,9 @@ class ProfileController extends GetxController {
         url: AppUrl.updateAccount, body: body, files: files);
 
     if (response.statusCode == 200) {
-      Get.offAllNamed(AppRoute.profile);
+      stripeUrl = jsonDecode(response.body)['data']['url'] ?? "";
+      print(stripeUrl);
+      Get.toNamed(AppRoute.webview);
     } else {
       Utils.toastMessage(message: response.message);
     }
@@ -338,7 +344,8 @@ class ProfileController extends GetxController {
         url: AppUrl.updateAccount, body: body, files: files);
 
     if (response.statusCode == 200) {
-      Get.offAllNamed(AppRoute.profile);
+      stripeUrl = jsonDecode(response.body)['data']['url'] ?? "";
+      Get.offAllNamed(AppRoute.webview);
     } else {
       Utils.toastMessage(message: response.message);
     }
@@ -360,5 +367,36 @@ class ProfileController extends GetxController {
     String minuteStr = (minute < 10) ? '0$minute' : '$minute';
 
     return '$hourStr:$minuteStr $period';
+  }
+
+  createStripeAccount() {
+    print("stripeUrl =================> $stripeUrl");
+    if (stripeUrl.isEmpty) return;
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.contains(AppUrl.baseUrl)) {
+              Get.back();
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(stripeUrl));
+    webViewController.setOnConsoleMessage((message) {
+      if (kDebugMode) {
+        print("message: =========>> ${message.message}");
+      }
+    });
   }
 }

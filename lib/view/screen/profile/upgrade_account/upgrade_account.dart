@@ -102,7 +102,7 @@ class _UpgradeAccountState extends State<UpgradeAccount> {
                     child: controller.accountIndex == 0
                         ? const ShoppingAccount()
                         : controller.accountIndex == 1
-                            ? BusinessAccount()
+                            ? const BusinessAccount()
                             : OrganisationAccount()),
               ],
             ),

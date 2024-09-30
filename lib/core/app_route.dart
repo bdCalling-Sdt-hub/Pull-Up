@@ -20,6 +20,7 @@ import 'package:pull_up/view/screen/product/deal/add_deal.dart';
 import 'package:pull_up/view/screen/product/my_product.dart';
 import 'package:pull_up/view/screen/product/product_list/product_list.dart';
 import 'package:pull_up/view/screen/profile/edit_profile/edit_profile.dart';
+import 'package:pull_up/view/screen/profile/stripe_webview/webview.dart';
 import 'package:pull_up/view/screen/profile/update_profile/update_profile.dart';
 import 'package:pull_up/view/screen/profile/profile_screen/profile_screen.dart';
 import 'package:pull_up/view/screen/profile/profile_without_login/profile_without_login.dart';
@@ -82,6 +83,7 @@ class AppRoute {
   static const String myEvent = "/my_event.dart";
   static const String updateProfile = "/update_profile.dart";
   static const String selectLocationFromMap = "/select_location_from_mao.dart";
+  static const String webview = "/webview.dart";
 
   static List<GetPage> routes = [
     GetPage(
@@ -240,6 +242,10 @@ class AppRoute {
     GetPage(
         name: selectLocationFromMap,
         page: () => const SelectLocationFromMap(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(
+        name: webview,
+        page: () => const Webview(),
         transition: Transition.rightToLeftWithFade),
   ];
 }

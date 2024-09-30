@@ -389,16 +389,23 @@ class ApiService {
       var response = await request.send();
 
       if (kDebugMode) {
-        print(
-            "===============================================>statusCode ${response.statusCode}");
+        print("===================>statusCode ${response.statusCode}");
+
       }
 
       if (response.statusCode == 200) {
         String data = await response.stream.bytesToString();
 
+        if (kDebugMode) {
+          print("===================>data $data");
+        }
         return ApiResponseModel(200, jsonDecode(data)['message'], data);
       } else if (response.statusCode == 201) {
         String data = await response.stream.bytesToString();
+
+        if (kDebugMode) {
+          print("===================>data $data");
+        }
 
         return ApiResponseModel(200, jsonDecode(data)['message'], data);
       } else {
