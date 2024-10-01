@@ -302,7 +302,9 @@ class ProfileController extends GetxController {
 
     if (response.statusCode == 200) {
       stripeUrl = jsonDecode(response.body)['data']['url'] ?? "";
-      print(stripeUrl);
+      if (kDebugMode) {
+        print(stripeUrl);
+      }
       Get.toNamed(AppRoute.webview);
     } else {
       Utils.toastMessage(message: response.message);
@@ -370,7 +372,9 @@ class ProfileController extends GetxController {
   }
 
   createStripeAccount() {
-    print("stripeUrl =================> $stripeUrl");
+    if (kDebugMode) {
+      print("stripeUrl =================> $stripeUrl");
+    }
     if (stripeUrl.isEmpty) return;
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -384,7 +388,7 @@ class ProfileController extends GetxController {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.contains(AppUrl.baseUrl)) {
+            if (request.url.contains("https://pullupapp.net111")) {
               Get.back();
               return NavigationDecision.prevent;
             }

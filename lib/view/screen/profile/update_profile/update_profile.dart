@@ -11,10 +11,8 @@ import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widget/custom_loader.dart';
 import '../../../widget/image/custom_image.dart';
-import '../../../widget/profile/profile_image.dart';
 import '../../../widget/text/custom_text.dart';
 import '../../../widget/text_field/custom_text_field.dart';
-import '../edit_profile/inner_widget/identify_image.dart';
 
 class UpdateProfile extends StatelessWidget {
   UpdateProfile({super.key});
